@@ -1,6 +1,6 @@
 const Home =()=>{
     return(
-        <h1 className="text-primary">HOLA EMI</h1>
+        <button type="button" class="btn btn-primary">Primary</button>
     )
 }
  
