@@ -1,7 +1,6 @@
 const axios = require("axios");
 const { API } = process.env;
-const { Sequelize } = require("sequelize");
-const Op = Sequelize.Op;
+// const Op = Sequelize.Op;
 const { Diet, Recipe } = require("../db");
 
 async function getAllApi() {
@@ -76,11 +75,11 @@ async function getApiId(id) {
     healthScore: element.healthScore,
     img: element.image,
     steps:
-        element.analyzedInstructions[0] && element.analyzedInstructions[0].steps
-          ? element.analyzedInstructions[0].steps
-              .map((item) => item.step)
-              .join(" ")
-          : "",
+      element.analyzedInstructions[0] && element.analyzedInstructions[0].steps
+        ? element.analyzedInstructions[0].steps
+            .map((item) => item.step)
+            .join(" ")
+        : "",
     createdInDb: false,
     diets: diet,
   };
@@ -88,16 +87,16 @@ async function getApiId(id) {
 }
 
 async function getAllDb() {
-    const allDb = await Recipe.findAll({
-      include: {
-        model: Diet,
-        attributes: ["name"],
-        through: {
-          attributes: [],
-        },
+  const allDb = await Recipe.findAll({
+    include: {
+      model: Diet,
+      attributes: ["name"],
+      through: {
+        attributes: [],
       },
-    });
-    return allDb;
+    },
+  });
+  return allDb;
 }
 
 async function getDbQuery(name) {
