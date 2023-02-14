@@ -1,43 +1,13 @@
-const { DataTypes } = require("sequelize");
+const mongoose = require("mongoose");
 
-module.exports = (sequelize) => {
-  sequelize.define(
-    "recipe",
-    {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-        primaryKey: true,
-      },
-
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-
-      resume: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-
-      healthScore: {
-        type: DataTypes.INTEGER,
-      },
-
-      img: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-
-      steps: {
-        type: DataTypes.TEXT,
-      },
-
-      createdInDb: {
-        type: DataTypes.BOOLEAN,
-      },
+const products = mongoose.Schema(
+  {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
-    { timestamps: false }
-  );
-};
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Products", products);
