@@ -22,7 +22,8 @@ const users = mongoose.Schema({
     require: true,
   },
   addressID: {
-    type: Number,
+    type: mongoose.Types.ObjectId,
+    ref: "Products",
     require: true,
   }
 })
