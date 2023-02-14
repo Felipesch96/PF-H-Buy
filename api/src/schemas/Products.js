@@ -28,7 +28,8 @@ const products = mongoose.Schema({
     require: true,
   },
   seller_id: {
-    type: Number,
+    type: mongoose.Types.ObjectId,
+    ref: "Users",
     require: true,
   },
   category: {
