@@ -2,4 +2,11 @@
     margin: 0px;
     padding: 0px;
     background-image: url("./img-principal.png");
+    background-size: 1600px 820px;
+    text-align: center;
+    color: rgb(194, 194, 194);
+}
+.nosotros{
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.438);
 }

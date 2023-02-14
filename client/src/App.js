@@ -1,10 +1,9 @@
-import Home from "./components/views/Home";
+import LandingPage from "./components/views/landingPage/landingPage";
 
 function App() {
   return (
-    <div className="text-primary">
-      <h1>HOLA</h1>
-      <Home/>
+    <div>
+      <LandingPage/>
     </div>
   );
 }
