@@ -1,7 +1,9 @@
 const Home =()=>{
     return(
-        <button type="button" class="btn btn-primary">Primary</button>
+        <div>
+            
+        </div>
     )
-}
+};
  
-export default Home
+export default Home;
