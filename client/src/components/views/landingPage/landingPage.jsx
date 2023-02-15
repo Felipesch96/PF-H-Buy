@@ -1,10 +1,122 @@
-import styles from "./landingPage.module.css"
+import styles from "./landingPage.module.css";
+import random from "./negro.jpg";
+import linkedin from "./linkedin.png"
+import github from "./github.png"
 
-const LandingPage=()=>{
+const LandingPage = () => {
+  return (
     <div className={styles.landing}>
-        <h1>Hola, Esta es la landing page</h1>
-        <button type="button" class="btn btn-secondary">Ir al Home.</button>
-    </div>
-}
+      <div>
+        <div className="row row-cols-3 g-1 bg-dark bg-opacity-50">
+          <br />
+          <br />
+          <br />
+        <a href="#about" className="text-center"> 
+          <button>Sobre Nosotros</button>
+        </a>
+        <h1 className="text-center">Bienvenidos a H-Buy</h1>
+        </div>
+        <p>
+          Lorem ipsum dolor sit
+          <br /> amet consectetur adipisicing elit. Aut,
+          <br /> excepturi esse nemo
+          <br /> similique nobis incidunt molestias hic <br /> beatae assumenda
+          sequi inventore reprehen
+          <br />
+          derit laudantium eveniet fugiat repellat
+          <br />, natus culpa impedit in!
+        </p>
+        <p>
+          Lorem ipsum dolor sit
+          <br /> amet consectetur adipisicing elit. Aut,
+          <br /> excepturi esse nemo
+          <br /> similique nobis incidunt molestias hic beatae assumenda
+          sequi inventore reprehen
+          <br />
+          derit laudantium eveniet fugiat repellat
+          <br />, natus culpa impedit in!
+        </p>
+        <p>
+          Lorem ipsum dolor sit
+          <br /> amet consectetur adipisicing elit. Aut,
+          <br /> excepturi esse nemo
+          <br /> similique nobis incidunt molestias hic beatae assumenda
+          sequi inventore reprehen
+          <br />
+          derit laudantium eveniet fugiat repellat
+          <br />, natus culpa impedit in!
+        </p>
+        <p>
+          Lorem ipsum dolor sit
+          <br /> amet consectetur adipisicing elit. Aut, excepturi esse nemo
+          similique nobis incidunt molestias hic <br /> beatae assumenda sequi
+          inventore reprehen
+          <br />
+          derit laudantium eveniet fugiat repellat
+          <br />, natus culpa impedit in!
+        </p>
+        <a href="/home"><button type="button" class="btn btn-secondary text-center col-6 p-3">
+          Ir al Home.</button></a>
 
-export default LandingPage
+        <br />
+        <br />
+      </div>
+      <div className="bg-success-subtle">
+        <h1 className="text-center">Sobre Nosotros</h1>
+        <div className="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 rounded float-start" style={{textAlign:"center"}}>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+          <div>
+            <img src={random} alt="no se carga" style={{borderRadius:"100px"}} />
+            <h5>Emiliano Hernandez</h5>
+            <a href="https://github.com/emijhernandez"><img src={linkedin} alt="" style={{width:"50px"}} /> </a>
+            <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
+          </div>
+        </div>
+        <h1 id="about">Fin</h1>
+      </div>
+    </div>
+  );
+};
+
+export default LandingPage;
