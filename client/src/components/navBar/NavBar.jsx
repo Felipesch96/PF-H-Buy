@@ -24,6 +24,11 @@ const NavBar = () => {
                   Products
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link mt-1" to="/about">
+                  About
+                </Link>
+              </li>
               <li className="nav-item btn">
                 <Login />
                 {/* hacer condicional si esta logeado con auth0, ver como crea usuarios que no son de google */}
