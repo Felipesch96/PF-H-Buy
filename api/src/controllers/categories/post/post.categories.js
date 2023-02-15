@@ -6,7 +6,7 @@ categoriesCtrl.createNewCategories = async (req, res) => {
   const data = req.body;
 
   try {
-    if (data.name.trim().length && data.description.trim().length) {
+    if (data.name.trim().length) {
       const newCategorie = new Category(data);
       await newCategorie.save();
       res.status(200).send(newCategorie);

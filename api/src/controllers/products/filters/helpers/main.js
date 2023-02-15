@@ -1,16 +1,19 @@
-const filter = (type, name) => {
+const filterByCategory = require("./category.filter");
+const filterByBrand = require("./brand.filter");
+
+const filter = async (type, name) => {
   var filter = [];
   switch (type) {
-    case "caterogy":
-      return (filter = [...filter, filterByCategory(name)]);
+    case "category":
+      return (filter = [...filter, await filterByCategory(name)]);
     case "price":
-      return (filter = [...filter, filterByPrice(name)]);
+      return (filter = [...filter, await filterByPrice(name)]);
     case "brand":
-      return (filter = [...filter, filterByBrand(name)]);
+      return (filter = [...filter, await filterByBrand(name)]);
     case "newOrUsed":
-      return (filter = [...filter, filterByNewOrUsed(name)]);
+      return (filter = [...filter, await filterByNewOrUsed(name)]);
     case "payment":
-      return (filter = [...filter, filterByPayment(name)]);
+      return (filter = [...filter, await filterByPayment(name)]);
     default:
       return filter;
   }
