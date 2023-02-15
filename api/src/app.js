@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const products = require("./routes/products.router");
+const users = require("./routes/users.router");
 
 require("./db.js");
 
@@ -26,7 +27,7 @@ server.use((req, res, next) => {
 });
 
 server.use("/products", products);
-server.use("/users", products);
+server.use("/users", users);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

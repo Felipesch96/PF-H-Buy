@@ -7,10 +7,25 @@ productsCtrl.getProducts = async (req, res) => {
   try {
     if (!name) {
       const allProducts = await Product.find();
-      res.status(200).send(allProducts);
+      allProducts.length
+        ? res.status(200).send(allProducts)
+        : res
+            .status(202)
+            .send({ error: `There are no products in the DataBase` });
     } else {
-      const productByName = await Product.find({ name });
-      res.status(200).send(productByName);
+      const allProducts = await Product.find();
+      const productByName = allProducts.filter((element) =>
+        element.name
+          .toString()
+          .trim()
+          .toLowerCase()
+          .includes(name.toLowerCase())
+      );
+      productByName.length
+        ? res.status(200).send(productByName)
+        : res
+            .status(202)
+            .send({ error: `No products found with the name ${name}` });
     }
   } catch (error) {
     res.status(400).send({ error: error.message });
