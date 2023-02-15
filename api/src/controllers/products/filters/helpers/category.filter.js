@@ -1,5 +1,8 @@
-const Product = require("../../../schemas/Products");
+const Product = require("../../../../schemas/Products");
 
-const filterByCategory = (name) => {
-  const aux = Product.find({ category: name });
+const filterByCategory = async (name) => {
+  const aux = await Product.find({ category: name });
+  return aux;
 };
+
+module.exports = filterByCategory;

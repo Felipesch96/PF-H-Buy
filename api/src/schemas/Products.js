@@ -17,6 +17,9 @@ const products = mongoose.Schema({
     type: Number,
     require: true,
   },
+  brand: {
+    type: String,
+  },
   score: {
     type: Number,
   },
@@ -33,13 +36,16 @@ const products = mongoose.Schema({
     /* require: true, */
   },
   category: {
-    type: mongoose.Types.ObjectId,
-    ref: "Categories",
-    /* require: true, */
+    type: String,
   },
   isActive: {
     type: Boolean,
     default: true,
+  },
+  state: {
+    type: String,
+    enum: ["new", "used"],
+    default: "new",
   },
   created: {
     type: Date,
