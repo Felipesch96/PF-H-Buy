@@ -26,6 +26,7 @@ server.use((req, res, next) => {
 });
 
 server.use("/products", products);
+server.use("/users", products);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

@@ -1,12 +1,16 @@
 const { Router } = require("express");
 const router = Router();
 const {
+  createNewProduct,
+} = require("../controllers/products/post/post.products");
+const {
   getProducts,
   productById,
-  createNewProduct,
-  updateProduct,
+} = require("../controllers/products/get/get.products");
+const { updateProduct } = require("../controllers/products/put/put.products");
+const {
   deleteProduct,
-} = require("../controllers/products.controllers");
+} = require("../controllers/products/delete/delete.products");
 
 //Get Product
 router.get("/", getProducts);
