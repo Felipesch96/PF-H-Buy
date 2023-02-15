@@ -25,20 +25,25 @@ const products = mongoose.Schema({
   },
   stock: {
     type: Number,
-    require: true,
+    /* require: true, */
   },
   seller_id: {
     type: mongoose.Types.ObjectId,
     ref: "Users",
-    require: true,
+    /* require: true, */
   },
   category: {
     type: mongoose.Types.ObjectId,
     ref: "Categories",
-    require: true,
+    /* require: true, */
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
   },
   created: {
     type: Date,
+    immutable: true,
     default: () => Date.now(),
   },
   modified: {
