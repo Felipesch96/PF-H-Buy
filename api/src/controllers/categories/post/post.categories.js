@@ -1,13 +1,13 @@
-const Categorie = require("../../../schemas/Categories");
+const Category = require("../../../schemas/Categories");
 
 const categoriesCtrl = {};
 
-categoriesCtrl.createNewCategorie = async (req, res) => {
+categoriesCtrl.createNewCategories = async (req, res) => {
   const data = req.body;
 
   try {
     if (data.name.trim().length && data.description.trim().length) {
-      const newCategorie = new Categorie(data);
+      const newCategorie = new Category(data);
       await newCategorie.save();
       res.status(200).send(newCategorie);
     } else {
