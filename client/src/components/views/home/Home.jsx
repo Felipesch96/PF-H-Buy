@@ -1,10 +1,15 @@
 import React from "react";
+import Carousel from "./Carousel";
 
-export default function Home(){
+const Home = () => {
 
-  return (
-    <div>
-      <h1>trans</h1>
-    </div>
-  )
-}
+
+	return (
+		<div>
+			<Carousel />
+
+		</div>
+	)
+};
+
+export default Home;
