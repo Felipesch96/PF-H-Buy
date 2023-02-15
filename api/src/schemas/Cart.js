@@ -8,22 +8,20 @@ const Cart = mongoose.Schema(
     },
     status: {
       type: String,
-      required: true,
+      enum: ["in Process", "sold", "delivered"],
+      default: "in Process",
     },
     product_id: {
       type: mongoose.Types.ObjectId,
       ref: "Product",
-      required: true,
     },
     seller_id: {
       type: mongoose.Types.ObjectId,
       ref: "Product",
-      required: true,
     },
     buyer_id: {
       type: mongoose.Types.ObjectId,
       ref: "Users",
-      required: true,
     },
   },
   { timestamps: true }
