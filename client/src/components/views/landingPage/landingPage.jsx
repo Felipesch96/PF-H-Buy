@@ -2,9 +2,8 @@ import styled from 'styled-components'
 import { useState,useEffect } from "react";
 
 const CarrouselImg=styled.img`
-max-width:200px;
 width:100%;
-height:200px;
+height:500px;
 opacity:0;
 transition:1s;
 &.loaded{
@@ -13,7 +12,7 @@ transition:1s;
 `
 
 const LandingPage = () => {
-  const images= ["banner0.jpg","banner1.jpg","banner2.jpg"];  
+  const images= ["baner1.jpg","baner2.jpg","baner0.jpg"];  
   const [selectedIndex,setSelectedIndex]=useState(0)
   const [selectedImages,setSelectedImages]=useState(images[0])
   const [loaded,setLoaded]=useState(false)
@@ -38,7 +37,7 @@ const LandingPage = () => {
   useEffect(()=>{
     const reloj=setInterval(() => {
       selectNewImage(selectedIndex,images)
-    }, 1000);
+    }, 3000);
     return()=>clearInterval(reloj)
   })
 
