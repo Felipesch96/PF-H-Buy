@@ -1,0 +1,13 @@
+.landing{
+    margin: 0px;
+    padding: 0px;
+    /* background-image: url("landing.png"); */
+    background-size: 1550px 800px;
+    text-align: left;
+    color: rgb(0, 0, 0);
+}
+.nosotros{
+    border-radius: 50px;
+    background-color: rgba(0, 0, 0, 0.438);
+    text-align: center;
+}
