@@ -1,7 +1,6 @@
-import random from "../landingPage/negro.jpg";
-import linkedin from "../landingPage/linkedin.png"
-import github from "../landingPage/github.png"
-
+import random from "./media/avatar.jpg";
+import linkedin from "./media/linkedin.png"
+import github from "./media/github.png"
 const About=()=>{
     return(
         <div className="bg-success-subtle">

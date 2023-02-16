@@ -1,79 +1,52 @@
-import styles from "./landingPage.module.css";
-import Carousel from "../home/Carousel"
+import styled from 'styled-components'
+import { useState,useEffect } from "react";
+
+const CarrouselImg=styled.img`
+max-width:200px;
+width:100%;
+height:200px;
+opacity:0;
+transition:1s;
+&.loaded{
+  opacity:1;
+}
+`
 
 const LandingPage = () => {
-  return (
-    <div className={styles.landing}>
-      <div>
-        <div className="bg-dark bg-opacity-50">
-          <h1 className="text-center">Welcome to H-Buy</h1>
-        </div>
-        <div className="card" style={{width:"250px"}}>
-          <img
-            src="https://resource.logitech.com/w_800,c_lpad,ar_1:1,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/mice/m190-wireless-mouse/m190-wireless-mouse-charcoal-gallery-01.png?v=1"
-            className="card-img-top"
-            alt="Placeholder"
-          />
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <a href="#" className="btn btn-primary">
-              Go somewhere
-            </a>
-          </div>
-        </div>
-        <Carousel/>
-        <p>
-          Lorem ipsum dolor sit
-          <br /> amet consectetur adipisicing elit. Aut,
-          <br /> excepturi esse nemo
-          <br /> similique nobis incidunt molestias hic <br /> beatae assumenda
-          sequi inventore reprehen
-          <br />
-          derit laudantium eveniet fugiat repellat
-          <br />, natus culpa impedit in!
-        </p>
-        <p>
-          Lorem ipsum dolor sit
-          <br /> amet consectetur adipisicing elit. Aut,
-          <br /> excepturi esse nemo
-          <br /> similique nobis incidunt molestias hic beatae assumenda sequi
-          inventore reprehen
-          <br />
-          derit laudantium eveniet fugiat repellat
-          <br />, natus culpa impedit in!
-        </p>
-        <p>
-          Lorem ipsum dolor sit
-          <br /> amet consectetur adipisicing elit. Aut,
-          <br /> excepturi esse nemo
-          <br /> similique nobis incidunt molestias hic beatae assumenda sequi
-          inventore reprehen
-          <br />
-          derit laudantium eveniet fugiat repellat
-          <br />, natus culpa impedit in!
-        </p>
-        <p>
-          Lorem ipsum dolor sit
-          <br /> amet consectetur adipisicing elit. Aut, excepturi esse nemo
-          similique nobis incidunt molestias hic <br /> beatae assumenda sequi
-          inventore reprehen
-          <br />
-          derit laudantium eveniet fugiat repellat
-          <br />, natus culpa impedit in!
-        </p>
-        <a href="/home">
-          <button type="button" class="btn btn-secondary text-center col-6 p-3">
-            Ir al Home.
-          </button>
-        </a>
+  const images= ["banner0.jpg","banner1.jpg","banner2.jpg"];  
+  const [selectedIndex,setSelectedIndex]=useState(0)
+  const [selectedImages,setSelectedImages]=useState(images[0])
+  const [loaded,setLoaded]=useState(false)
 
-        <br />
-        <br />
-      </div>
+  const selectNewImage=(index,images,next=true)=>{
+    setLoaded(false)
+    setTimeout(() => {
+      const condition=next?selectedIndex<images.length-1:selectedIndex>0;
+      const nextIndex=next?condition?selectedIndex+1:0:condition?selectedIndex-1:images.length-1;
+      setSelectedImages(images[nextIndex])
+      setSelectedIndex(nextIndex)
+    }, 500);
+  }
+  
+  const previous=()=>{
+    selectNewImage(selectedIndex,images,false)
+  }
+  const next=()=>{
+    selectNewImage(selectedIndex,images) 
+  }
+
+  useEffect(()=>{
+    const reloj=setInterval(() => {
+      selectNewImage(selectedIndex,images)
+    }, 1000);
+    return()=>clearInterval(reloj)
+  })
+
+  return (
+    <div className="rounded-circle">
+      <CarrouselImg src={require(`./media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/>
+      <button onClick={previous}>{"<"}</button>
+      <button onClick={next}>{">"}</button>
     </div>
   );
 };
