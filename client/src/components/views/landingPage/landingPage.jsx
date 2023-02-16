@@ -5,7 +5,7 @@ const CarrouselImg=styled.img`
 width:100%;
 height:500px;
 opacity:0;
-transition:1s;
+transition:0.5s;
 &.loaded{
   opacity:1;
 }
@@ -44,8 +44,9 @@ const LandingPage = () => {
   return (
     <div className="rounded-circle">
       <CarrouselImg src={require(`./media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/>
-      <button onClick={previous}>{"<"}</button>
-      <button onClick={next}>{">"}</button>
+      {/* <button onClick={previous}>{"<"}</button>
+      <button onClick={next}>{">"}</button> */}
+      <hr />
     </div>
   );
 };
