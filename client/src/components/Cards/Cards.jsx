@@ -183,6 +183,7 @@ const Cards = () => {
         paginado={paginado}
         products={products.length}
         cardsPerPage={cardsPerPage}
+        pageCurrent={pageCurrent}
       />
       <div class="row g-3 row-cols-3">
         {cardsCurrent.map((p) => {
