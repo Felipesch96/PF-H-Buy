@@ -13,7 +13,7 @@ transition:1s;
 `
 
 const LandingPage = () => {
-  const images= ["avatar.jpg","landing.png","github.png"];  
+  const images= ["banner1.jpg","banner2.jpg","banner3.jpg"];  
   const [selectedIndex,setSelectedIndex]=useState(0)
   const [selectedImages,setSelectedImages]=useState(images[0])
   const [loaded,setLoaded]=useState(false)
@@ -44,7 +44,7 @@ const LandingPage = () => {
 
   return (
     <div className="rounded-circle">
-      <CarrouselImg src={require(`../about/media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/>
+      <CarrouselImg src={require(`./media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/>
       <button onClick={previous}>{"<"}</button>
       <button onClick={next}>{">"}</button>
     </div>
