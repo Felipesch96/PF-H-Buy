@@ -1,7 +1,7 @@
 import avatar from "./media/avatar.jpg";
 import linkedin from "./media/linkedin.png";
 import github from "./media/github.png";
-// import styles from "./landingPage.mudule.css";
+import styles from "./landingPage.module.css";
 
 const About = () => {
   return (
@@ -74,7 +74,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -88,7 +88,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -102,7 +102,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -116,7 +116,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -130,7 +130,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -144,7 +144,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -158,7 +158,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -172,7 +172,7 @@ const About = () => {
             <img
               src={avatar}
               alt="no se carga"
-              style={{ borderRadius: "100px" }}
+              className="border border-dark border-2 rounded-circle"
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -183,7 +183,7 @@ const About = () => {
             </a>
           </div>
         </div>
-        <h1 id="about">Fin</h1>
+        <h1 className="text-center">Team</h1>
       </div>
     </div>
   );

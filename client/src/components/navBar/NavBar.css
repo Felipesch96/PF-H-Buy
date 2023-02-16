@@ -1,0 +1,15 @@
+.navbar{
+  background-color: rgb(21, 109, 160);
+  align-items: center;
+  justify-content: space-between;
+}
+
+input {
+  max-width: 250px;
+}
+
+@media screen and (max-width: 767px){
+  .clase-logo {
+    display: none;
+  }
+}
