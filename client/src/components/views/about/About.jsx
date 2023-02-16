@@ -1,6 +1,6 @@
-import avatar from "./avatar.jpg";
-import linkedin from "./linkedin.png"
-import github from "./github.png"
+import avatar from "./media/avatar.jpg";
+import linkedin from "./media/linkedin.png"
+import github from "./media/github.png"
 import styles from "./landingPage.module.css";
 
 
