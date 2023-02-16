@@ -42,7 +42,7 @@ const products = mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  state: {
+  condition: {
     type: String,
     enum: ["new", "used"],
     default: "new",
