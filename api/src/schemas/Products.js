@@ -17,6 +17,9 @@ const products = mongoose.Schema({
     type: Number,
     require: true,
   },
+  brand: {
+    type: String,
+  },
   score: {
     type: Number,
   },
@@ -25,19 +28,28 @@ const products = mongoose.Schema({
   },
   stock: {
     type: Number,
-    require: true,
+    /* require: true, */
   },
   seller_id: {
-    type: Number,
-    require: true,
+    type: mongoose.Types.ObjectId,
+    ref: "Users",
+    /* require: true, */
   },
   category: {
-    type: mongoose.Types.ObjectId,
-    ref: "Categories",
-    require: true,
+    type: String,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  state: {
+    type: String,
+    enum: ["new", "used"],
+    default: "new",
   },
   created: {
     type: Date,
+    immutable: true,
     default: () => Date.now(),
   },
   modified: {
