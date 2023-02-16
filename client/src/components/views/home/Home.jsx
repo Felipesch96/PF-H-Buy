@@ -5,7 +5,7 @@ import Cards from "../../Cards/Cards";
 const Home = () => {
   return (
     <div>
-      <Carousel />
+      <Carousel  />
       <Cards />
     </div>
   );
