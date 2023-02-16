@@ -176,15 +176,33 @@ const Cards = () => {
   const paginado = (page) => {
     setPageCurrent(page);
   };
+  const prev = (e) => {
+    e.preventDefault();
+    if (pageCurrent <= 1) {
+      setPageCurrent(1);
+    } else {
+      setPageCurrent(pageCurrent - 1);
+    }
+  };
+  const next = (e) => {
+    e.preventDefault();
+    if (products.length < 9) return;
+    else {
+      setPageCurrent(pageCurrent + 1);
+    }
+  };
 
   return (
     <div class="container">
-      <Paginate
-        paginado={paginado}
-        products={products.length}
-        cardsPerPage={cardsPerPage}
-        pageCurrent={pageCurrent}
-      />
+      <div>
+        <Paginate
+          paginado={paginado}
+          products={products.length}
+          cardsPerPage={cardsPerPage}
+          pageCurrent={pageCurrent}
+          cardsCurrent={cardsCurrent.length}
+        />
+      </div>
       <div class="row g-3 row-cols-3">
         {cardsCurrent.map((p) => {
           return (
