@@ -1,16 +1,16 @@
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import { useState,useEffect } from "react";
 
-const CarrouselImg=styled.img`
-max-width:200px;
-width:100%;
-height:200px;
-opacity:0;
-transition:1s;
-&.loaded{
-  opacity:1;
-}
-`
+// const CarrouselImg=styled.img`
+// max-width:200px;
+// width:100%;
+// height:200px;
+// opacity:0;
+// transition:1s;
+// &.loaded{
+//   opacity:1;
+// }
+// `
 
 const LandingPage = () => {
   const images= ["avatar.jpg","landing.png","github.png"];  
@@ -44,7 +44,7 @@ const LandingPage = () => {
 
   return (
     <div className="rounded-circle">
-      <CarrouselImg src={require(`../about/media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/>
+      {/* <CarrouselImg src={require(`../about/media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/> */}
       <button onClick={previous}>{"<"}</button>
       <button onClick={next}>{">"}</button>
     </div>
