@@ -56,7 +56,7 @@ const About=()=>{
             <a href="https://github.com/emijhernandez"><img src={github} alt="" style={{width:"50px"}}/> </a>
           </div>
         </div>
-        <h1 id="about">Fin</h1>
+        <h1 className="text-center">Team</h1>
       </div>
     )
 }
