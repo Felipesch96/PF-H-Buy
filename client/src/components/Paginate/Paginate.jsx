@@ -8,10 +8,12 @@ const Paginate = (props) => {
   }
 
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Search results pages">
       <ul class="pagination justify-content-center">
         <li class="page-item disabled">
-          <span class="page-link">Previous</span>
+          <span class="page-link" tabIndex="-1" aria-disabled="true">
+            Previous
+          </span>
         </li>
         {numbers?.map((page) => {
           return (

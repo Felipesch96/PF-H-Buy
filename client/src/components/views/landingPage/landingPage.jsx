@@ -1,5 +1,5 @@
 // import styled from 'styled-components'
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 // const CarrouselImg=styled.img`
 // max-width:200px;
@@ -13,34 +13,42 @@ import { useState,useEffect } from "react";
 // `
 
 const LandingPage = () => {
-  const images= ["avatar.jpg","landing.png","github.png"];  
-  const [selectedIndex,setSelectedIndex]=useState(0)
-  const [selectedImages,setSelectedImages]=useState(images[0])
-  const [loaded,setLoaded]=useState(false)
+  const images = ["avatar.jpg", "landing.png", "github.png"];
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedImages, setSelectedImages] = useState(images[0]);
+  const [loaded, setLoaded] = useState(false);
 
-  const selectNewImage=(index,images,next=true)=>{
-    setLoaded(false)
+  const selectNewImage = (index, images, next = true) => {
+    setLoaded(false);
     setTimeout(() => {
-      const condition=next?selectedIndex<images.length-1:selectedIndex>0;
-      const nextIndex=next?condition?selectedIndex+1:0:condition?selectedIndex-1:images.length-1;
-      setSelectedImages(images[nextIndex])
-      setSelectedIndex(nextIndex)
+      const condition = next
+        ? selectedIndex < images.length - 1
+        : selectedIndex > 0;
+      const nextIndex = next
+        ? condition
+          ? selectedIndex + 1
+          : 0
+        : condition
+        ? selectedIndex - 1
+        : images.length - 1;
+      setSelectedImages(images[nextIndex]);
+      setSelectedIndex(nextIndex);
     }, 500);
-  }
-  
-  const previous=()=>{
-    selectNewImage(selectedIndex,images,false)
-  }
-  const next=()=>{
-    selectNewImage(selectedIndex,images) 
-  }
+  };
 
-  useEffect(()=>{
-    const reloj=setInterval(() => {
-      selectNewImage(selectedIndex,images)
+  const previous = () => {
+    selectNewImage(selectedIndex, images, false);
+  };
+  const next = () => {
+    selectNewImage(selectedIndex, images);
+  };
+
+  useEffect(() => {
+    const reloj = setInterval(() => {
+      selectNewImage(selectedIndex, images);
     }, 1000);
-    return()=>clearInterval(reloj)
-  })
+    return () => clearInterval(reloj);
+  });
 
   return (
     <div className="rounded-circle">
