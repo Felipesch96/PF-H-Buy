@@ -18,7 +18,7 @@ const Paginate = (props) => {
   };
   const next = (e) => {
     e.preventDefault();
-    if (props.products < 9) return;
+    if (props.products < 8) return;
     else {
       props.paginado(props.pageCurrent + 1);
     }
@@ -65,7 +65,7 @@ const Paginate = (props) => {
           onClick={(e) => {
             next(e);
           }}
-          disabled={props.cardsCurrent < 9}
+          disabled={props.cardsCurrent < props.cardsPerPage}
         >
           &raquo;
         </button>
