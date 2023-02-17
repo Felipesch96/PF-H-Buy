@@ -1,7 +1,7 @@
 import { useState } from "react"
 import {useSelector} from 'react-redux'
-import { ProductModal } from "../modals/product"
-import { CategoryModal } from "../modals/category"
+import { ProductModal } from "../../modals/product"
+import { CategoryModal } from "../../modals/category"
 
 import './adminBoard.css'
 export const AdminBoard = () => {
