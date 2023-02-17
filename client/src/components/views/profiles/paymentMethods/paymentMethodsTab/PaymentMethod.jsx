@@ -1,6 +1,6 @@
 import React from "react";
 
-const PaymentMethod = () => {
+const PaymentMethod = ({ card, type, number, name, expDate }) => {
 
   return (
     <div class="col-md-6">
