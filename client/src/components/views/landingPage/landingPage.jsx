@@ -58,6 +58,14 @@ const LandingPage = () => {
       <br />
       <h1 className='text-center'>Recomendados</h1>
       <Carousel/>
+      <hr />
+      <div className='text-center'>
+      <h1>¿Queres explorar mas adentro de la pagina?</h1>
+      <a href="/home">
+      <button className='btn btn-secondary'>Click aquí</button>
+      <hr />
+      </a>
+      </div>
     </div>
   );
 };

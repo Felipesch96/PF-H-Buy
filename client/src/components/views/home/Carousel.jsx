@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Card from "../../Card/Card";
 
 
@@ -115,15 +115,15 @@ const Carousel = () => {
   const selectNewImage = (index, images, next = true) => {
     setTimeout(() => {
       const condition = next
-        ? pageCurrent < products.length - 1
-        : pageCurrent > 0;
+        ? pageCurrent < 2
+        : pageCurrent > 1;
       const nextIndex = next
         ? condition
           ? pageCurrent + 1
-          : 0
+          : 1
         : condition
         ? pageCurrent - 1
-        : products.length - 1;
+        : 2;
       setPageCurrent(products[nextIndex]);
       setPageCurrent(nextIndex);
     }, 500);
@@ -136,9 +136,16 @@ const next = () => {
   selectNewImage(pageCurrent, products);
 };
 
+useEffect(() => {
+  const reloj = setInterval(() => {
+    selectNewImage(pageCurrent, products);
+  }, 2500);
+  return () => clearInterval(reloj);
+});
+
   return (
     <div className="d-grid gap-3">
-  <button class="btn btn-primary " type="button" onClick={previous}>Button</button>
+  <button class="btn btn-primary " type="button" onClick={previous}>Preview</button>
       <div class="row gx-0">
         {cardsCurrent.map((p) => {
           return (
@@ -156,7 +163,7 @@ const next = () => {
           );
         })}
       </div>
-  <button class="btn btn-primary " type="button" onClick={next}>Button</button>
+  <button class="btn btn-primary " type="button" onClick={next}>Next</button>
     </div>
   )
 };
