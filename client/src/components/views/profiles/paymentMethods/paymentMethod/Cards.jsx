@@ -1,6 +1,6 @@
 import React from "react";
 
-const PaymentMethod = ({ card, type, number, name, expDate }) => {
+const Cards = ({ card, type, number, name, expDate }) => {
 
   return (
     <div class="col-md-6">
@@ -53,4 +53,4 @@ const PaymentMethod = ({ card, type, number, name, expDate }) => {
   )
 };
 
-export default PaymentMethod;
+export default Cards;

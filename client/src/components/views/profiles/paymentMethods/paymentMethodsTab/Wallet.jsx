@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import NewPaymentMethod from "../newPaymentMethod/NewPaymentMethod";
-import PaymentMethod from "../paymentMethod/PaymentMethod";
-import "./paymentMethodsTab.css";
+import PaymentMethod from "../paymentMethod/Cards";
 
-const PaymentMethodsTab = () => {
+
+const Wallet = () => {
 
   // un map por de metodos de pago
 
-  const [paymentMethods, setPaymentMethods] = useState([
+  const [wallet, setWallet] = useState([
     {
       card: "Visa",
       type: "credit",
@@ -23,7 +23,7 @@ const PaymentMethodsTab = () => {
       <div class="row">
         <div>
           {
-            paymentMethods?.map(pm => {
+            wallet?.map(pm => {
               return (
                 <PaymentMethod card={pm.card} type={pm.type} number={pm.number} name={pm.name} expDate={pm.expDate} />
               )
@@ -39,4 +39,4 @@ const PaymentMethodsTab = () => {
   )
 };
 
-export default PaymentMethodsTab;
+export default Wallet;
