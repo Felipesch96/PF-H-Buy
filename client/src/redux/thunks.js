@@ -6,7 +6,7 @@ import { setProducts, setCategories } from './slices/productsSlice';
 
 export const fetchProducts = () => {
     return async(dispatch) => {
-        const { data } = await axios.get("la ruta");
+        const { data } = await axios.get("http://localhost:3001/products");
         dispatch(setProducts(data))
     }
 }
