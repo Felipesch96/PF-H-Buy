@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 import App from './App';
-
+import { Provider } from 'react-redux';
+import {store} from './redux/index'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -12,7 +13,10 @@ root.render(
       clientId="UrkVwaJuWk91Fk9ulfoTTlKgt0NOKq0Z"
       redirectUri="http://localhost:3000/profile/" // donde estaba
     >
-      <App />
+    <Provider store={store}>
+    <App />
     </Auth0Provider>
+  </Provider>
+    
   </BrowserRouter >
 );

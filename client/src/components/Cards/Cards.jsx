@@ -176,9 +176,25 @@ const Cards = () => {
   const paginado = (page) => {
     setPageCurrent(page);
   };
+  const prev = (e) => {
+    e.preventDefault();
+    if (pageCurrent <= 1) {
+      setPageCurrent(1);
+    } else {
+      setPageCurrent(pageCurrent - 1);
+    }
+  };
+  const next = (e) => {
+    e.preventDefault();
+    if (products.length < 9) return;
+    else {
+      setPageCurrent(pageCurrent + 1);
+    }
+  };
 
   return (
     <div class="container">
+<<<<<<< HEAD
       <Paginate
         paginado={paginado}
         products={products.length}
@@ -186,6 +202,18 @@ const Cards = () => {
         pageCurrent={pageCurrent}
       />
       <div class="row g-4 row-cols-4">
+=======
+      <div>
+        <Paginate
+          paginado={paginado}
+          products={products.length}
+          cardsPerPage={cardsPerPage}
+          pageCurrent={pageCurrent}
+          cardsCurrent={cardsCurrent.length}
+        />
+      </div>
+      <div class="row g-3 row-cols-3">
+>>>>>>> b43bdadc59e01129c78cd2c0a88231505e539965
         {cardsCurrent.map((p) => {
           return (
             <div class="col">

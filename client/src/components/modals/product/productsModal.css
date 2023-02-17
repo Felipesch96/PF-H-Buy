@@ -1,0 +1,9 @@
+
+.productModal {
+    position: absolute;
+    height: 50% ;
+    width: 50%;
+    background-color: blue;
+    top: 250px;
+    left: 300px ;
+}
