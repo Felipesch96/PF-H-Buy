@@ -8,16 +8,6 @@ import { store } from './redux/store'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-<<<<<<< HEAD
-    <Auth0Provider
-      domain="dev-c2fel1eg8iqp6ark.us.auth0.com"
-      clientId="UrkVwaJuWk91Fk9ulfoTTlKgt0NOKq0Z"
-      redirectUri="http://localhost:3000/profile/" // donde estaba
-    >
-    <App />
-    </Auth0Provider>
-    
-=======
     <Provider store={store}>
       <Auth0Provider
         domain="dev-c2fel1eg8iqp6ark.us.auth0.com"
@@ -28,6 +18,5 @@ root.render(
       </Auth0Provider>
     </Provider>
 
->>>>>>> d3ab43b470158927b554d43ff5c1fd0c93369506
   </BrowserRouter >
 );
