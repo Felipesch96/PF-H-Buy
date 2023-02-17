@@ -62,7 +62,8 @@ const LandingPage = () => {
       <div className='text-center'>
       <h1>¿Queres explorar mas adentro de la pagina?</h1>
       <a href="/home">
-      <button className='btn-secondary'>Click aquí</button>
+      <button className='btn btn-secondary'>Click aquí</button>
+      <hr />
       </a>
       </div>
     </div>
