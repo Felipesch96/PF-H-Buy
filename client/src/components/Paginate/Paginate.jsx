@@ -7,12 +7,39 @@ const Paginate = (props) => {
     numbers.push(i + 1);
   }
 
+  // handler buttom prev y next
+  const prev = (e) => {
+    e.preventDefault();
+    if (props.pageCurrent <= 1) {
+      props.paginado(1);
+    } else {
+      props.paginado(props.pageCurrent - 1);
+    }
+  };
+  const next = (e) => {
+    e.preventDefault();
+    if (props.products < 9) return;
+    else {
+      props.paginado(props.pageCurrent + 1);
+    }
+  };
+  //
+
   return (
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Search results pages">
       <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style={{ marginRight: "1px" }}
+          onClick={(e) => {
+            prev(e);
+          }}
+          disabled={props.pageCurrent <= 1}
+        >
+          &laquo;
+        </button>
+
         {numbers?.map((page) => {
           return (
             <li
@@ -22,17 +49,26 @@ const Paginate = (props) => {
                 props.paginado(page);
               }}
             >
-              <a class="page-link" href="#">
-                {page}
-              </a>
+              <div className={page === props.pageCurrent ? "active" : ""}>
+                <a class="page-link" href="#">
+                  {page}
+                </a>
+              </div>
             </li>
           );
         })}
-        <li class="page-item">
-          <a class="page-link" href="#">
-            Next
-          </a>
-        </li>
+
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          style={{ marginLeft: "1px" }}
+          onClick={(e) => {
+            next(e);
+          }}
+          disabled={props.cardsCurrent < 9}
+        >
+          &raquo;
+        </button>
       </ul>
     </nav>
   );
