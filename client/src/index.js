@@ -8,12 +8,13 @@ import {store} from './redux/index'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
+  <Provider store={store}>
     <Auth0Provider
       domain="dev-c2fel1eg8iqp6ark.us.auth0.com"
       clientId="UrkVwaJuWk91Fk9ulfoTTlKgt0NOKq0Z"
       redirectUri="http://localhost:3000/profile/" // donde estaba
     >
-    <Provider store={store}>
+    
     <App />
     </Auth0Provider>
   </Provider>
