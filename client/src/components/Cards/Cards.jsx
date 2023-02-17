@@ -168,7 +168,7 @@ const Cards = () => {
   ];
 
   const [pageCurrent, setPageCurrent] = useState(1);
-  const [cardsPerPage, setCardsPerPage] = useState(9);
+  const [cardsPerPage, setCardsPerPage] = useState(8);
   const indexLastCard = pageCurrent * cardsPerPage;
   const indexFirstCard = indexLastCard - cardsPerPage;
   const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
@@ -185,7 +185,7 @@ const Cards = () => {
         cardsPerPage={cardsPerPage}
         pageCurrent={pageCurrent}
       />
-      <div class="row g-3 row-cols-3">
+      <div class="row g-4 row-cols-4">
         {cardsCurrent.map((p) => {
           return (
             <div class="col">
