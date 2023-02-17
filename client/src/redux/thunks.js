@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { onLogin, onSignUp } from './slices/authSlice';
-import { setProducts } from './slices/productsSlice';
+import { setProducts, setCategories } from './slices/productsSlice';
 
 
 
@@ -10,6 +10,14 @@ export const fetchProducts = () => {
         dispatch(setProducts(data))
     }
 }
+
+export const fetchCategories = () => {
+  return async(dispatch) => {
+      const { data } = await axios.get("la ruta");
+      dispatch(setCategories(data))
+  }
+}
+
 export const userLogin = (payload) => {
     return async (dispatch) => {
         const { data } = await axios.post(

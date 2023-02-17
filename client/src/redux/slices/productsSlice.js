@@ -3,11 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const productsSlice = createSlice({
     name: "productSlice",
     initialState: {
-      products: []
+      products: [],
+      categories : []
     },
     reducers: {
       setProducts: (state, {payload}) => {
         state.products = payload;
+      },
+      setCategories : (state,{payload}) => {
+        state.categories = payload
       },
       orderByName: (state, {payload}) => {
         payload === 'A-Z' ? state.products = [...state.products].sort((a,b) => a.name-b.name) :
@@ -26,4 +30,4 @@ export const productsSlice = createSlice({
   });
 
 
-export const {setProducts , orderByName , orderByPrice , orderByReviews} = productsSlice.actions
+export const {setProducts , setCategories, orderByName , orderByPrice , orderByReviews} = productsSlice.actions
