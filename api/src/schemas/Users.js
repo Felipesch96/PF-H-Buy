@@ -14,17 +14,18 @@ const users = mongoose.Schema({
     require: true,
   },
   userType: {
-    type: Enumerator,
-    require: true,
+    type: String,
+    enum: ["buyer", "seller", "admin"],
+    default: "buyer",
   },
   isActive: {
     type: Boolean,
-    require: true,
+    default: true,
   },
   addressID: {
-    type: Number,
-    require: true,
-  }
-})
+    type: mongoose.Types.ObjectId,
+    ref: "Address",
+  },
+});
 
 module.exports = mongoose.model("Users", users);
