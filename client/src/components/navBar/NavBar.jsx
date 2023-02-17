@@ -17,7 +17,12 @@ const NavBar = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5">
+            <li className="nav-item">
+                <Link className="nav-link mt-1" to="/">
+                  {"<"}
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link mt-1" to="/home">
                   Home
@@ -26,6 +31,11 @@ const NavBar = () => {
               <li className="nav-item">
                 <Link className="nav-link mt-1" to="/products">
                   Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link mt-1" to="/admin">
+                  Admin Board
                 </Link>
               </li>
               <li className="nav-item">

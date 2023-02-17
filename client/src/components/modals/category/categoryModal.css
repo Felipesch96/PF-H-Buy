@@ -1,0 +1,8 @@
+
+.categoryModal {
+    position: absolute;
+    height: 50% ;
+    width: 50%;
+    background-color: red;
+    left: 300px ;
+}
