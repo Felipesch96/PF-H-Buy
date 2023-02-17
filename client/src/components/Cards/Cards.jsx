@@ -4,6 +4,7 @@ import { useState } from "react";
 import Paginate from "../Paginate/Paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../redux/thunks";
+import { Link } from "react-router-dom";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -39,15 +40,17 @@ const Cards = () => {
         {cardsCurrent.map((p) => {
           return (
             <div class="col">
-              <Card
-                key={p.id}
-                id={p.id}
-                img={p.img}
-                name={p.name}
-                price={p.price}
-                score={p.score}
-                category={p.category}
-              />
+              <Link to={`/products/${p.id}`}>
+                <Card
+                  key={p.id}
+                  id={p.id}
+                  img={p.img}
+                  name={p.name}
+                  price={p.price}
+                  score={p.score}
+                  category={p.category}
+                />
+              </Link>
             </div>
           );
         })}
