@@ -168,7 +168,7 @@ const Cards = () => {
   ];
 
   const [pageCurrent, setPageCurrent] = useState(1);
-  const [cardsPerPage, setCardsPerPage] = useState(9);
+  const [cardsPerPage, setCardsPerPage] = useState(8);
   const indexLastCard = pageCurrent * cardsPerPage;
   const indexFirstCard = indexLastCard - cardsPerPage;
   const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
@@ -194,6 +194,15 @@ const Cards = () => {
 
   return (
     <div class="container">
+<<<<<<< HEAD
+      <Paginate
+        paginado={paginado}
+        products={products.length}
+        cardsPerPage={cardsPerPage}
+        pageCurrent={pageCurrent}
+      />
+      <div class="row g-4 row-cols-4">
+=======
       <div>
         <Paginate
           paginado={paginado}
@@ -204,6 +213,7 @@ const Cards = () => {
         />
       </div>
       <div class="row g-3 row-cols-3">
+>>>>>>> b43bdadc59e01129c78cd2c0a88231505e539965
         {cardsCurrent.map((p) => {
           return (
             <div class="col">

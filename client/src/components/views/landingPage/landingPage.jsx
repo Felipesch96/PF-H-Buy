@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useState, useEffect } from "react";
+import Carousel from '../home/Carousel';
 
 const CarrouselImg=styled.img`
 width:100%;
@@ -35,12 +36,12 @@ const LandingPage = () => {
     }, 500);
   };
 
-  const previous = () => {
-    selectNewImage(selectedIndex, images, false);
-  };
-  const next = () => {
-    selectNewImage(selectedIndex, images);
-  };
+  // const previous = () => {
+  //   selectNewImage(selectedIndex, images, false);
+  // };
+  // const next = () => {
+  //   selectNewImage(selectedIndex, images);
+  // };
 
   useEffect(() => {
     const reloj = setInterval(() => {
@@ -54,8 +55,9 @@ const LandingPage = () => {
       <a href="/products">
       <CarrouselImg src={require(`./media/${selectedImages}`)} alt="no funciona" className={loaded?"loaded":""} onLoad={()=>setLoaded(true)}/>
       </a>
-      {/* <button onClick={previous}>{"<"}</button>
-      <button onClick={next}>{">"}</button> */}
+      <br />
+      <h1 className='text-center'>Recomendados</h1>
+      <Carousel/>
     </div>
   );
 };
