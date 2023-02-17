@@ -6,14 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../redux/thunks";
 
 const Cards = () => {
-  
-
   const dispatch = useDispatch();
-  const productos = useSelector(state => state.product.products);
+  const productos = useSelector((state) => state.product.products);
   console.log(productos);
 
   const [pageCurrent, setPageCurrent] = useState(1);
-  const [cardsPerPage, setCardsPerPage] = useState(8);
+  const [cardsPerPage, setCardsPerPage] = useState(9);
   const indexLastCard = pageCurrent * cardsPerPage;
   const indexFirstCard = indexLastCard - cardsPerPage;
   const cardsCurrent = productos?.slice(indexFirstCard, indexLastCard);
@@ -21,24 +19,9 @@ const Cards = () => {
   const paginado = (page) => {
     setPageCurrent(page);
   };
-  const prev = (e) => {
-    e.preventDefault();
-    if (pageCurrent <= 1) {
-      setPageCurrent(1);
-    } else {
-      setPageCurrent(pageCurrent - 1);
-    }
-  };
-  const next = (e) => {
-    e.preventDefault();
-    if (productos.length < 9) return;
-    else {
-      setPageCurrent(pageCurrent + 1);
-    }
-  };
 
   useEffect(() => {
-    dispatch(fetchProducts())
+    dispatch(fetchProducts());
   }, []);
 
   return (
@@ -62,8 +45,8 @@ const Cards = () => {
                 img={p.img}
                 name={p.name}
                 price={p.price}
-                calification={p.calification}
-                categories={p.categories}
+                score={p.score}
+                category={p.category}
               />
             </div>
           );
