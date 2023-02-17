@@ -7,13 +7,7 @@ const About = () => {
   return (
     <div className={styles.landing}>
       <div>
-        <div className="row row-cols-3 g-1 bg-dark bg-opacity-50">
-          <br />
-          <br />
-          <br />
-          <a href="#about" className="text-center">
-            <button>Sobre Nosotros</button>
-          </a>
+        <div className="bg-dark bg-opacity-50">
           <h1 className="text-center">Bienvenidos a H-Buy</h1>
         </div>
         <p>
@@ -90,7 +84,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Cesar Leyton</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
@@ -104,7 +98,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Jhoan Alvarez</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
@@ -118,7 +112,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Lara Onyskiw</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
@@ -132,7 +126,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Nicolas Iconicoff</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
@@ -146,7 +140,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Cristopher Lazo</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
@@ -160,7 +154,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Felipe Schwindt</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
@@ -174,7 +168,7 @@ const About = () => {
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
             />
-            <h5>Emiliano Hernandez</h5>
+            <h5>Francisco Cia</h5>
             <a href="https://github.com/emijhernandez">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>

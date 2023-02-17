@@ -13,10 +13,8 @@ root.render(
       clientId="UrkVwaJuWk91Fk9ulfoTTlKgt0NOKq0Z"
       redirectUri="http://localhost:3000/profile/" // donde estaba
     >
-    <Provider store={store}>
     <App />
     </Auth0Provider>
-  </Provider>
     
   </BrowserRouter >
 );
