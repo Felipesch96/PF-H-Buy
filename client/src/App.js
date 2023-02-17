@@ -5,7 +5,7 @@ import ProductsPage from './components/views/productsPage/ProductsPage';
 import Footer from './components/views/footer/Footer';
 import LandingPage from './components/views/landingPage/LandingPage';
 import About from './components/views/about/About';
-import { AdminBoard } from './components/adminBoard';
+import ProfileComponent from './components/views/profiles/profileComponent/ProfileComponent';
 
 const App =()=>{
   return (
@@ -17,7 +17,7 @@ const App =()=>{
           <Route exact path='/about' component={About} />
           <Route exact path='/home' component={Home} />
           <Route exact path='/products' component={ProductsPage} />
-          <Route exact path='/admin' component={AdminBoard} />
+          <Route exact path='/profile' component={ProfileComponent} />
         </Switch>
         <Footer />
       </Router>
