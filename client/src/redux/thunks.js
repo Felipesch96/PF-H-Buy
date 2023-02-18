@@ -13,7 +13,7 @@ export const fetchProducts = () => {
 
 export const fetchCategories = () => {
   return async(dispatch) => {
-      const { data } = await axios.get("la ruta");
+      const { data } = await axios.get("http://localhost:3001/categories");
       dispatch(setCategories(data))
   }
 }

@@ -1,5 +1,7 @@
 import { useState } from "react"
 import {useSelector} from 'react-redux'
+import {FiEdit2} from 'react-icons/fi'
+import {MdDelete} from 'react-icons/md'
 import { ProductModal } from "../../modals/product"
 import { CategoryModal } from "../../modals/category"
 
@@ -9,24 +11,62 @@ export const AdminBoard = () => {
     const [productModal, setProductModal] = useState(false)
     const [showProducts, setShowProducts] = useState(false)
     const [showCategories, setShowCategories] = useState(false)
-    const {products, categories} =  useSelector(state => state.product)
+   // const {products, categories} =  useSelector(state => state.product)
+   const categories =  [
+    {
+        name : 'action',
+    
+    },
+    {
+        name: 'spy'
+    },
+    {
+        name: 'aadad'
+    }
+   ]
+   const products =  [
+    {
+        name : 'car',
+    
+    },
+    {
+        name: 'ball'
+    },
+    {
+        name: 'boat'
+    },
+    {
+        name : 'car',
+    
+    },
+    {
+        name: 'ball'
+    },
+    {
+        name: 'boat'
+    }
+   ]
     return(
-        <section className="adminBoard">
-            <h1>Welcome to admin board</h1>
+        <main className="adminBoard">
+            <div className="leftNavBar">
             <section className="buttons">
+                <section className="profile">
+                    <h3>Perfil</h3>
+                </section>
+                
                 <section className="creationButtons">
                     <button className="adminButton" onClick={() => setCategoryModal(true)}>
-                        Crear Categoria
+                        Crear Categorias
                     </button>
                     <button className="adminButton"  onClick={() => setProductModal(true)}>
                         Crear Producto
                     </button>
-                </section>
-                <section className="showButtons">
                     <button className="adminButton"  onClick={() => setShowCategories(true)}>Mostrar categorias</button>
                     <button className="adminButton"  onClick={() => setShowProducts(true)}>Mostrar productos</button>
-                </section>
+                </section> 
             </section>
+            </div>
+           
            
          
             {
@@ -36,46 +76,48 @@ export const AdminBoard = () => {
             {
                 productModal && <ProductModal onClose={setProductModal}/>
             }
-            <section>
-
-            
+            <section className="showSections">
                 {
                         showCategories && 
-                        (<section>
-                           
+                        (
+                        <div className="showCategories">
+                            <ul className="categoriesList">
                             {
                                 categories.map(c => (
                                    
-                                    <div>
-                                         {/* {icono para editar} */}
+                                    <li className="categoriesItem">
                                         {c.name}
-                                    </div>
+                                         <FiEdit2/>
+                                         <MdDelete/> 
+                                    </li>
                                 ))
                             }
-                            
-
-                          
-                        </section> )
+                        </ul>
+                        </div> )
                     }
 
             
                     {
                         showProducts && 
-                        (<section>
+                        (
+                        <div className="showProducts">
+                            <ul className="productsList">
                             {
                                 products.map(p => (
-                                    <div>
-                                        {/* {icono para editar} */}
+                                    <li className="productsItem">    
                                         {p.name}
-                                        </div>
+                                        <FiEdit2/>
+                                        <MdDelete/> 
+                                    </li>
                                 ))
                             }
-                        </section> )
+                        </ul> 
+                        </div>)
                     }
               
             
             </section>
-        </section>
+        </main>
     )
     
 
