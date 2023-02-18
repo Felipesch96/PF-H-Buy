@@ -40,17 +40,27 @@ const Cards = () => {
         {cardsCurrent.map((p) => {
           return (
             <div class="col">
-              <Link to={`/products/${p.id}`}>
+              <div class="card mb-3">
                 <Card
-                  key={p.id}
-                  id={p.id}
+                  key={p._id}
                   img={p.img}
                   name={p.name}
                   price={p.price}
                   score={p.score}
                   category={p.category}
                 />
-              </Link>
+                <div class="card-body text-center-body">
+                  <Link to={`/products/${p._id}`}>
+                    <a
+                      class="btn btn-outline-primary btn-sm"
+                      href="#"
+                      data-abc="true"
+                    >
+                      View Product
+                    </a>
+                  </Link>
+                </div>
+              </div>
             </div>
           );
         })}
