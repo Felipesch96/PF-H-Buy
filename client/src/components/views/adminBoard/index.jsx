@@ -1,11 +1,12 @@
 import { useState } from "react"
 import {useSelector} from 'react-redux'
-import {FiEdit2} from 'react-icons/fi'
-import {MdDelete} from 'react-icons/md'
+
 import { ProductModal } from "../../modals/product"
 import { CategoryModal } from "../../modals/category"
 
 import './adminBoard.css'
+import { EditProductCard } from "../../editProductCard"
+import { EditCategoryCard } from "../../editCategoryCard"
 export const AdminBoard = () => {
     const [categoryModal, setCategoryModal] = useState(false)
     const [productModal, setProductModal] = useState(false)
@@ -15,7 +16,6 @@ export const AdminBoard = () => {
    const categories =  [
     {
         name : 'action',
-    
     },
     {
         name: 'spy'
@@ -27,24 +27,30 @@ export const AdminBoard = () => {
    const products =  [
     {
         name : 'car',
-    
-    },
-    {
-        name: 'ball'
-    },
-    {
-        name: 'boat'
+        img: 'adda',
+        description: 'adada',
+        price: 20,
+        brand: 'adidas',
+        stock: 20
     },
     {
         name : 'car',
-    
-    },
-    {
-        name: 'ball'
-    },
-    {
-        name: 'boat'
-    }
+        img: 'adda',
+        description: 'adada',
+        price: 20,
+        brand: 'adidas',
+        stock: 20
+},
+{
+        name : 'car',
+        img: 'adda',
+        description: 'adada',
+        price: 20,
+        brand: 'adidas',
+        stock: 20
+}
+
+
    ]
     return(
         <main className="adminBoard">
@@ -55,14 +61,29 @@ export const AdminBoard = () => {
                 </section>
                 
                 <section className="creationButtons">
-                    <button className="adminButton" onClick={() => setCategoryModal(true)}>
+                    <button className="adminButton" 
+                    onClick={() => {
+                        setProductModal(false)
+                        setCategoryModal(true)}}>
+
                         Crear Categorias
                     </button>
-                    <button className="adminButton"  onClick={() => setProductModal(true)}>
+                    <button className="adminButton"  
+                    onClick={() => {
+                        setCategoryModal(false)
+                        setProductModal(true)}}>
                         Crear Producto
                     </button>
-                    <button className="adminButton"  onClick={() => setShowCategories(true)}>Mostrar categorias</button>
-                    <button className="adminButton"  onClick={() => setShowProducts(true)}>Mostrar productos</button>
+                    <button className="adminButton"  
+                    onClick={() => {
+                        setShowProducts(false)
+                        setShowCategories(true)
+                        }}>Mostrar categorias</button>
+                    <button className="adminButton"  
+                    onClick={() => {
+                        setShowCategories(false)
+                        setShowProducts(true)
+                        }}>Mostrar productos</button>
                 </section> 
             </section>
             </div>
@@ -81,37 +102,31 @@ export const AdminBoard = () => {
                         showCategories && 
                         (
                         <div className="showCategories">
-                            <ul className="categoriesList">
+                            <div className="categoriesList">
                             {
                                 categories.map(c => (
                                    
-                                    <li className="categoriesItem">
-                                        {c.name}
-                                         <FiEdit2/>
-                                         <MdDelete/> 
-                                    </li>
+                                    <div className="categoriesItem">
+                                     <EditCategoryCard categories={c}/>
+                                    </div>
                                 ))
                             }
-                        </ul>
+                            </div>
                         </div> )
                     }
-
-            
                     {
                         showProducts && 
                         (
                         <div className="showProducts">
-                            <ul className="productsList">
+                            <div className="productsList">
                             {
                                 products.map(p => (
-                                    <li className="productsItem">    
-                                        {p.name}
-                                        <FiEdit2/>
-                                        <MdDelete/> 
-                                    </li>
+                                    <div className="productsItem">    
+                                         <EditProductCard products={p}/>
+                                    </div>
                                 ))
                             }
-                        </ul> 
+                            </div> 
                         </div>)
                     }
               

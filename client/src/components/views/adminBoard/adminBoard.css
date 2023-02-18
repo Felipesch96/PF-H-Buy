@@ -44,6 +44,7 @@
     justify-content: center;
     align-items: center;
     border: 1px solid #5ec59f ;
+    border-radius: 10px;
 }
 
 .creationButtons{
@@ -64,7 +65,6 @@
 }
 
 .categoriesList{
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -83,7 +83,6 @@
 }
 
 .productsList{
-    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -94,7 +93,7 @@
     background-color: #2b4883;
     border-radius: 10px;
     padding: 5px;
-    width: 300px ;
+    width: 400px ;
     justify-content: space-between;
     align-items: center;
     color: #5ec59f ;
@@ -106,12 +105,12 @@
     background-color:#5ec59f;
     border-radius: 20px;
     height: 300px;
-    width: 400px;
+    width: 750px;
     overflow: scroll;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -121,11 +120,13 @@
     background-color:#5ec59f;
     border-radius: 20px;
     height: 300px;
-    width: 400px;
+    width: 750px;
     overflow: scroll;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+
