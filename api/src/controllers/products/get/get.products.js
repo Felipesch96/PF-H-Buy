@@ -39,7 +39,7 @@ productsCtrl.getProducts = async (req, res) => {
       allProducts.length
         ? res.status(200).send(allProducts)
         : res
-            .status(202)
+            .status(400)
             .send({ error: `There are no products in the DataBase` });
     }
   } catch (error) {
