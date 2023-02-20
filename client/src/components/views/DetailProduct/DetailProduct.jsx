@@ -63,44 +63,12 @@ const DetailProduct = () => {
                   </p>
                 </div>
                 <div class="">
-                  <a href="#" class="btn btn-success bi bi-bag-fill m-3 ">
+                  <a href="#" class="btn btn-success bi bi-handbag-fill m-3 ">
                     <span class="p-1">Buy product </span>
                   </a>
                   <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
                     <span class="p-1">Add to Cart </span>
                   </a>
-                </div>
-                <div class="card-body">
-                  <span
-                    class="bi bi-star"
-                    style={{ cursor: "pointer" }}
-                    id="1star"
-                    onClick={(item) => calification(item)}
-                  ></span>
-                  <span
-                    class="bi bi-star"
-                    style={{ cursor: "pointer" }}
-                    id="2star"
-                    onClick={(item) => calification(item)}
-                  ></span>
-                  <span
-                    class="bi bi-star"
-                    style={{ cursor: "pointer" }}
-                    id="3star"
-                    onClick={(item) => calification(item)}
-                  ></span>
-                  <span
-                    class="bi bi-star"
-                    style={{ cursor: "pointer" }}
-                    id="4star"
-                    onClick={(item) => calification(item)}
-                  ></span>
-                  <span
-                    class="bi bi-star"
-                    style={{ cursor: "pointer" }}
-                    id="5star"
-                    onClick={(item) => calification(item)}
-                  ></span>
                 </div>
               </div>
             </div>
@@ -167,16 +135,35 @@ const DetailProduct = () => {
                     <tr class="table-primary">
                       <th scope="col">Name</th>
                       <th scope="col">Brand</th>
-                      <th scope="col">Category</th>
                       <th scope="col">Model</th>
+                      <th scope="col">Category</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td scope="row">{detailProduct.name}</td>
-                      <td scope="row">{detailProduct.brand}</td>
-                      <td scope="row">{detailProduct.category}</td>
-                      <td scope="row">{detailProduct.model}</td>
+
+                      <td scope="row">
+                        {detailProduct.brand ? (
+                          detailProduct.brand
+                        ) : (
+                          <span class="text-danger">not specified</span>
+                        )}
+                      </td>
+                      <td scope="row">
+                        {detailProduct.model ? (
+                          detailProduct.model
+                        ) : (
+                          <span class="text-danger">not specified</span>
+                        )}
+                      </td>
+                      <td scope="row">
+                        {detailProduct.category ? (
+                          detailProduct.category
+                        ) : (
+                          <span class="text-danger">not specified</span>
+                        )}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
