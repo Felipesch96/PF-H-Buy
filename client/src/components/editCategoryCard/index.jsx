@@ -37,7 +37,7 @@ const handleOnClickEdit = () => {
             selected ? <input value={newCategory.name} type='text' onChange={handleOnChange} onBlur={()=> {
                 setSelected(false)
             }}/>:
-            <p onClick={handleOnClickEdit} >{newCategory}</p>
+            <p onClick={handleOnClickEdit} >{newCategory.name}</p>
         }
         <FiEdit2 onClick={()=> setEdit(!edit)} />
         { !edit && <MdDelete onClick={()=> onDelete(newCategory.id)}/> }

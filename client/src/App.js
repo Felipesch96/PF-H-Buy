@@ -5,7 +5,7 @@ import ProductsPage from './components/views/productsPage/ProductsPage';
 import Footer from './components/views/footer/Footer';
 import LandingPage from './components/views/LandingPage/landingPage'
 import About from './components/views/about/About';
-import { AdminBoard } from './components/views/adminBoard';
+import { AdminBoard } from './components/views/profiles/adminBoard';
 
 const App =()=>{
   return (

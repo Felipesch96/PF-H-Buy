@@ -1,11 +1,11 @@
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 import { useState } from "react"
 import {useSelector} from 'react-redux'
-import { ProductModal } from "../../modals/product"
-import { CategoryModal } from "../../modals/category"
+import { ProductModal } from "../../../modals/product"
+import { CategoryModal } from "../../../modals/category"
 import './adminBoard.css'
-import { EditProductCard } from "../../editProductCard"
-import { EditCategoryCard } from "../../editCategoryCard"
+import { EditProductCard } from "../../../editProductCard"
+import { EditCategoryCard } from "../../../editCategoryCard"
 export const AdminBoard = () => {
     const [categoryModal, setCategoryModal] = useState(false)
     const [productModal, setProductModal] = useState(false)
