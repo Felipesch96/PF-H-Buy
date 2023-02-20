@@ -13,15 +13,15 @@ export const usersSlice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload
     },
+    setLogedUser: (state, { payload }) => {
+      state.user = payload
+    },
     orderByName: (state, { payload }) => {
       payload === "A-Z"
         ? (state.users = [...state.users].sort((a, b) => a.name - b.name))
         : (state.users = [...state.users].sort(
             (a, b) => b.name - a.name
           ));
-    },
-    getUserByEmail: (state, { payload }) => {
-      state.user = payload
     }
   },
 });
@@ -30,5 +30,5 @@ export const {
   setUsers,
   setUser,
   orderByName,
-  getUserByEmail
+  setLogedUser,
 } = usersSlice.actions;

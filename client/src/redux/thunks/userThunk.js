@@ -1,8 +1,8 @@
 import axios from "axios";
-import { onLogin, onSignUp } from "../slices/authSlice";
 import {
   setUsers,
   setUser,
+  setLogedUser,
   orderByName,
 } from "../slices/usersSlice";
 
@@ -13,35 +13,36 @@ export const fetchUsers = () => {
   };
 };
 
-export const userLogin = (payload) => {
-  return async (dispatch) => {
-    const { data } = await axios.post("la ruta", payload);
-    dispatch(onLogin(data));
-  };
-};
+
 
 export const newUser = (payload) => {
   return async (dispatch) => {
     try {
-      const userCreated = await axios.post("http://localhost:3001/users", payload);
-      console.log(userCreated.data);
-      // dispatch(setUser(userCreated.data));
-      dispatch(getUserByEmail(userCreated.data.email));
+      const {data} = await axios.post("http://localhost:3001/users", payload);
+      console.log(data);
+      dispatch(setUser(data));
+     
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const getUserByEmail = (payload) => {
+export const userLogin = (payload) => {
   return async (dispatch) => {
     try {
-      const usuarioPorEmail = await axios.get("http://localhost:3001/users", payload);
-      console.log(usuarioPorEmail);
-      dispatch(setUser(usuarioPorEmail.data))
+      const { data } = await axios.post(
+        "http://localhost:3001/users",
+        payload
+        );
+        dispatch(setLogedUser(data));
     } catch (error) {
-      console.log(error);
+      console.log('algo salio mal')
+      console.log(error)
     }
-
+     
+    };
   };
-};
+  
+
+
