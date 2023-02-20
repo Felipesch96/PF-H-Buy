@@ -20,6 +20,9 @@ const products = mongoose.Schema({
   brand: {
     type: String,
   },
+  model: {
+    type: String,
+  },
   score: {
     type: Number,
   },
