@@ -1,12 +1,18 @@
 import React from "react";
 import "./Card.css";
 const Card = (props) => {
+  const formater = new Intl.NumberFormat("en");
+
   return (
     <div class="card mb-3">
       <div class="row g-0">
-
-          <img src={props.img} class="img-fluid rounded-start" alt="..." style={{maxWidth:"220px",height:"150px"}}/>
         <div class="col-md-12">
+          <img
+            src={props.img}
+            class="img-fluid rounded-start mt-2"
+            alt="..."
+            style={{ height: "230px" }}
+          />
           <div class="card-body">
             <h5 class="card-title">{props.name}</h5>
             <p
@@ -17,10 +23,10 @@ const Card = (props) => {
                 padding: "3px",
               }}
             >
-              ${props.price}
+              ${formater.format(props.price)}
             </p>
-            <p class="card-text">Qualification: {props.calification} ☆</p>
-            <p class="card-text">Category: {props.categories}</p>
+            <p class="card-text">Qualification: {props.score} ☆</p>
+            <p class="card-text">Category: {props.category}</p>
 
             <p class="card-text">
               <small class="text-muted">Last updated 3 mins ago</small>
