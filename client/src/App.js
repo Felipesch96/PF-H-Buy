@@ -6,7 +6,7 @@ import Footer from './components/views/footer/Footer';
 import LandingPage from './components/views/landingPage/LandingPage';
 import About from './components/views/about/About';
 
-function App() {
+const App =()=>{
   return (
     <div>
       <Router>

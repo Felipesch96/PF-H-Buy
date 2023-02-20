@@ -5,7 +5,7 @@ const productsCtrl = {};
 productsCtrl.getProducts = async (req, res) => {
   const { name, category, priceMin, priceMax, brand, condition } = req.query;
   try {
-    if (name || category || priceMin || priceMax || brand || condition) {
+    if (name || category || (priceMin && priceMax) || brand || condition) {
       if (category !== undefined && typeof category === "string") {
         const allProducts = await Product.find({
           category: category
