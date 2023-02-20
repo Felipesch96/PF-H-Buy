@@ -5,7 +5,7 @@ const usersCtrl = {};
 usersCtrl.createNewUser = async (req, res) => {
   const data = req.body;
   try {
-    if (data.name.trim().length && data.description.trim().length) {
+    if (data.name.length) {
       const newUser = new User(data);
       await newUser.save();
       res.status(200).send(newUser);
