@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
       </footer>
       <footer class="container-fluid bg-dark text-center footer py-2">
-        <span class="text-muted">Copyrigth 2022-2023 H-Buy SA - pending pattent &#174;</span>
+        <span class="">Copyrigth 2022-2023 H-Buy SA - pending pattent &#174;</span>
       </footer>
 
     </div>
