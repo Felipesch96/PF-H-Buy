@@ -16,52 +16,65 @@ export const EditProductCard = ({products}) => {
     price: false,
     stock: false
  })
- const [prueba, setPrueba] = useState('prueba')
  
+ const [newProduct, setNewProduct] = useState({
+    name: products.name,
+    description: products.description,
+    brand: products.brand,
+    price: products.price,
+    stock: products.stock
+
+ })
  const handleOnClickEdit = ({target}) => {
     if(edit) setSelected({...selected, [target.id]: true})
  }
+
+ const handleOnChange = ({target}) => {
+   setNewProduct({...newProduct,
+   [target.name]:target.value})
+ }
  const submitChanges = (e) => {
     e.preventDefault()
-    editProduct()
+    editProduct(newProduct)
+    setEdit(false)
  }
     return(
        <div className="productDetails">
            {
-            selected.name ? <input type='text' onBlur={({target})=> {
+            selected.name ? <input className='updateInput' type='text' name='name' value={newProduct.name} onChange={handleOnChange} onBlur={()=> {
                 setSelected({...selected, name: false})
-                setPrueba(target.value)
+     
             }}/>:
-            <p onClick={handleOnClickEdit} id='name'>{prueba}</p>}
+            <p onClick={handleOnClickEdit} id='name'>{newProduct.name}</p>}
            {
-             selected.description ? <input type='text' onBlur={({target})=> {
+             selected.description ? <input className='updateInput' type='text' name='description' value={newProduct.description} onChange={handleOnChange} onBlur={()=> {
                 setSelected({...selected, description: false})
-                setPrueba(target.value)
+              
             }}/> :
-            <p onClick={handleOnClickEdit} id='description'>{products.description}</p>
+            <p onClick={handleOnClickEdit} id='description'>{newProduct.description}</p>
             }
            {
-             selected.brand ? <input type='text' onBlur={({target})=> {
-                setSelected({...selected, description: false})
-                setPrueba(target.value)
+             selected.brand ? <input className='updateInput' type='text' name='brand' value={newProduct.brand} onChange={handleOnChange} onBlur={()=> {
+                setSelected({...selected, brand: false})
+               
             }}/> :
-            <p onClick={handleOnClickEdit} id='brand'>{products.brand}</p>
+            <p onClick={handleOnClickEdit} id='brand'>{newProduct.brand}</p>
             }
           { 
-           selected.price ? <input type='text' onBlur={({target})=> {
+           selected.price ? <input className='updateInput' type='text' name='price' value={newProduct.price} onChange={handleOnChange} onBlur={()=> {
             setSelected({...selected, price: false})
-            setPrueba(target.value)
+       
         }}/> :
-          <p onClick={handleOnClickEdit} id='price'>{products.price}</p>
+          <p onClick={handleOnClickEdit} id='price'>{newProduct.price}</p>
           }
            {
-           selected.stock ? <input type='text' onBlur={({target})=> {
+           selected.stock ? <input className='updateInput' type='text' name='stock' value={newProduct.stock} onChange={handleOnChange} onBlur={()=> {
             setSelected({...selected, stock: false})
-            setPrueba(target.value)
+      
         }}/> :
-            <p onClick={handleOnClickEdit} id='stock'>{products.stock}</p>}
+            <p onClick={handleOnClickEdit} id='stock'>{newProduct.stock}</p>}
         <FiEdit2 onClick={()=> setEdit(!edit)} />
-        <MdDelete/> 
+         { !edit && <MdDelete/> }
          { edit && <AiOutlineSave onClick={submitChanges}/>}
         </div>
         

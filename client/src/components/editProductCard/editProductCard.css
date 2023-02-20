@@ -8,3 +8,8 @@
 .productDetails > p {
     margin-bottom: 0;
 }
+
+.updateInput{
+    height: 20px;
+    width: 50px;
+}

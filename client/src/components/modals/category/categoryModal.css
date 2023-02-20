@@ -64,3 +64,9 @@
     border: none;
     color: #2b4883;
 }
+
+.errors{
+    color: red;
+    font-size: 12px;
+    margin: 0;
+}

@@ -1,9 +1,8 @@
+import {AiOutlineCloseCircle} from 'react-icons/ai'
 import { useState } from "react"
 import {useSelector} from 'react-redux'
-
 import { ProductModal } from "../../modals/product"
 import { CategoryModal } from "../../modals/category"
-
 import './adminBoard.css'
 import { EditProductCard } from "../../editProductCard"
 import { EditCategoryCard } from "../../editCategoryCard"
@@ -57,7 +56,7 @@ export const AdminBoard = () => {
             <div className="leftNavBar">
             <section className="buttons">
                 <section className="profile">
-                    <h3>Perfil</h3>
+                    <h3>Profile</h3>
                 </section>
                 
                 <section className="creationButtons">
@@ -66,24 +65,24 @@ export const AdminBoard = () => {
                         setProductModal(false)
                         setCategoryModal(true)}}>
 
-                        Crear Categorias
+                        Create Categories                    
                     </button>
                     <button className="adminButton"  
                     onClick={() => {
                         setCategoryModal(false)
                         setProductModal(true)}}>
-                        Crear Producto
+                        Create Product
                     </button>
                     <button className="adminButton"  
                     onClick={() => {
                         setShowProducts(false)
                         setShowCategories(true)
-                        }}>Mostrar categorias</button>
+                        }}>Show categories</button>
                     <button className="adminButton"  
                     onClick={() => {
                         setShowCategories(false)
                         setShowProducts(true)
-                        }}>Mostrar productos</button>
+                        }}>Show products</button>
                 </section> 
             </section>
             </div>
@@ -102,6 +101,7 @@ export const AdminBoard = () => {
                         showCategories && 
                         (
                         <div className="showCategories">
+                            <AiOutlineCloseCircle onClick={()=> setShowCategories(false)} className="close"/> 
                             <div className="categoriesList">
                             {
                                 categories.map(c => (
@@ -118,6 +118,7 @@ export const AdminBoard = () => {
                         showProducts && 
                         (
                         <div className="showProducts">
+                            <AiOutlineCloseCircle onClick={()=> setShowProducts(false)} className="close"/> 
                             <div className="productsList">
                             {
                                 products.map(p => (
