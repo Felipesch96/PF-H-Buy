@@ -30,7 +30,7 @@ const formValidations =  (form)  =>{
 
 const initialForm = {
   name: '',
-  lastName: '',
+  lastname: '',
   email: '',
   password: '',
   userType: '',
