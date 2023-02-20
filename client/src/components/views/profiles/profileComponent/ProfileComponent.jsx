@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import AdminProfile from "../adminProfile/AdminProfile";
+import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
 
 const ProfileComponent = () => {
 
+  const isSeller = 1;
+  const isAdmin = 1;
   const [userType, setUserType] = useState("buyer");
 
   const buyerButton = () =>{
@@ -31,31 +33,28 @@ const ProfileComponent = () => {
                     class="rounded-circle img-fluid" style={{ width: "150px;" }} />
                   <h5 class="my-3">John Smith</h5>
                   <p class="text-muted mb-1">{userType}</p>
-                  <p class="text-muted mb-4">
-                    Si es Admin: oficina/puesto/departamento
-                  </p>
                   <div class="d-flex justify-content-center mb-2">
-                    <button
+                    {isSeller && userType!== "buyer"?<button
                       type="button"
                       class="btn btn-outline-primary ms-1"
                       onClick={() => buyerButton()}
                     >
                       Buyer
-                    </button>
-                    <button
+                    </button>:null}
+                    {isSeller && userType!== "seller"?<button
                       type="button"
                       class="btn btn-outline-primary ms-1"
                       onClick={() => sellerButton()}
                     >
                       Seller
-                    </button>
-                    <button
+                    </button>:null}
+                    {isAdmin && userType!== "admin"?<button
                       type="button"
                       class="btn btn-outline-primary ms-1"
                       onClick={() => adminButton()}
                     >
                       Admin
-                    </button>
+                    </button>:null}
                   </div>
                 </div>
               </div>
@@ -68,7 +67,7 @@ const ProfileComponent = () => {
                   ? <ClientProfile />
                   : userType === "seller"
                     ? <SellerProfile />
-                    : <AdminProfile />
+                    : <AdminBoard />
               }
 
             </div>
