@@ -18,7 +18,7 @@ const NavBar = () => {
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5">
-            <li className="nav-item">
+              <li className="nav-item">
                 <Link className="nav-link mt-1" to="/">
                   {"<"}
                 </Link>
@@ -39,11 +39,15 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link mt-1" to="/profile">
-                Profile
-              </Link>
+                <Link className="nav-link mt-1" to="/profile">
+                  Profile
+                </Link>
               </li>
-  
+              <li>
+                <Link className="nav-link mt-1" to="/signup">
+                  Signup
+                </Link>
+              </li>
               <li>
                 <Login />
 
@@ -54,10 +58,10 @@ const NavBar = () => {
               </li>
             </ul>
             <div>
-            <form class="d-flex justify-content-center" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+              <form class="d-flex justify-content-center" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
             </div>
           </div>
         </div>

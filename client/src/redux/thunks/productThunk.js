@@ -1,10 +1,10 @@
 import axios from "axios";
-import { onLogin, onSignUp } from "./slices/authSlice";
+import { onLogin, onSignUp } from "../slices/authSlice";
 import {
   setProducts,
   setCategories,
   detailProduct,
-} from "./slices/productsSlice";
+} from "../slices/productsSlice";
 
 export const fetchProducts = () => {
   return async (dispatch) => {

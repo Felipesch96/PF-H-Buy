@@ -7,6 +7,7 @@ import LandingPage from './components/views/landingPage/LandingPage';
 import About from './components/views/about/About';
 import ProfileComponent from './components/views/profiles/profileComponent/ProfileComponent';
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
+import SignUp from "./components/views/signIn/SignUp";
 
 const App =()=>{
 
@@ -21,6 +22,8 @@ const App =()=>{
           <Route exact path="/products" component={ProductsPage} />
           <Route exact path='/profile' component={ProfileComponent} />
           <Route exact path="/products/:id" component={DetailProduct} />
+          <Route exact path="/signup" component={SignUp} />
+
         </Switch>
         <Footer />
       </Router>
