@@ -14,17 +14,20 @@ export const AdminBoard = () => {
    // const {products, categories} =  useSelector(state => state.product)
    const categories =  [
     {
+        id: 1,
         name : 'action',
     },
     {
+        id:2,
         name: 'spy'
     },
     {
+        id: 3,
         name: 'aadad'
     }
    ]
    const products =  [
-    {
+    {   id: 1,
         name : 'car',
         img: 'adda',
         description: 'adada',
@@ -33,6 +36,7 @@ export const AdminBoard = () => {
         stock: 20
     },
     {
+        id: 2,
         name : 'car',
         img: 'adda',
         description: 'adada',
@@ -40,7 +44,8 @@ export const AdminBoard = () => {
         brand: 'adidas',
         stock: 20
 },
-{
+{   
+        id: 3,
         name : 'car',
         img: 'adda',
         description: 'adada',

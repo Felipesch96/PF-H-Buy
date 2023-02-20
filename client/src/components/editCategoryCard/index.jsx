@@ -4,19 +4,27 @@ import {AiOutlineSave} from 'react-icons/ai'
 import { useState } from "react"
 import './editCategoryCard.css'
 import { editCategory } from '../../helpers/editCategory'
+import { deleteCategory } from '../../helpers/deleteCategory'
 
 export const EditCategoryCard = ({categories}) => {
 const [edit,setEdit] = useState(false)
 const [selected, setSelected] = useState(false)
-const [newCategory, setNewCategory] = useState(categories.name)
+const [newCategory, setNewCategory] = useState({
+    id: categories.id,
+    name: categories.name
+})
 
 const handleOnClickEdit = () => {
     if(edit) setSelected(true)
  }
 
  const handleOnChange = ({target}) => {
-   setNewCategory(target.value)
+   setNewCategory({...newCategory, name : target.value})
  }
+
+ const onDelete = (id) => {
+    deleteCategory(id)
+  }
  const submitChanges = (e) => {
     e.preventDefault()
     editCategory(newCategory)
@@ -26,13 +34,13 @@ const handleOnClickEdit = () => {
  return(
     <div className="categoryDetails">
         {
-            selected ? <input value={newCategory} type='text' onChange={handleOnChange} onBlur={()=> {
+            selected ? <input value={newCategory.name} type='text' onChange={handleOnChange} onBlur={()=> {
                 setSelected(false)
             }}/>:
             <p onClick={handleOnClickEdit} >{newCategory}</p>
         }
         <FiEdit2 onClick={()=> setEdit(!edit)} />
-        { !edit && <MdDelete/> }
+        { !edit && <MdDelete onClick={()=> onDelete(newCategory.id)}/> }
          { edit && <AiOutlineSave onClick={submitChanges}/>}
     </div>
  )

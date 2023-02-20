@@ -5,6 +5,7 @@ import {AiOutlineSave} from 'react-icons/ai'
 import { useState } from "react"
 import './editProductCard.css'
 import { editProduct } from '../../helpers/editProduct'
+import { deleteProduct } from '../../helpers/deleteProduct'
 
 
 export const EditProductCard = ({products}) => {
@@ -18,6 +19,7 @@ export const EditProductCard = ({products}) => {
  })
  
  const [newProduct, setNewProduct] = useState({
+    id: products.id,
     name: products.name,
     description: products.description,
     brand: products.brand,
@@ -32,6 +34,11 @@ export const EditProductCard = ({products}) => {
  const handleOnChange = ({target}) => {
    setNewProduct({...newProduct,
    [target.name]:target.value})
+ }
+
+ const onDelete = (id) => {
+   
+   deleteProduct(id)
  }
  const submitChanges = (e) => {
     e.preventDefault()
@@ -74,7 +81,7 @@ export const EditProductCard = ({products}) => {
         }}/> :
             <p onClick={handleOnClickEdit} id='stock'>{newProduct.stock}</p>}
         <FiEdit2 onClick={()=> setEdit(!edit)} />
-         { !edit && <MdDelete/> }
+         { !edit && <MdDelete onClick={() => onDelete(newProduct.id)}/> }
          { edit && <AiOutlineSave onClick={submitChanges}/>}
         </div>
         
