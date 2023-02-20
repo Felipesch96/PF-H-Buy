@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDetailProduct } from "../../../redux/thunks";
 import carrito from "./img/carritoDetail.jpg";
+
 const DetailProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -14,9 +15,21 @@ const DetailProduct = () => {
   }, [dispatch, id]);
   const formater = new Intl.NumberFormat("en");
 
-  //     style: "currency",
-  //     currency: "ARS",
-  //
+  //   style: "currency",
+  //   currency: "ARS",
+  const calification = (item) => {
+    e.prevenDefault();
+    var cont;
+    cont = item.id[0];
+    let nombre = item.id.substring(1);
+    for (let i = 0; i < 5; i++) {
+      if (i < cont) {
+        document.getElementById(i + 1 + nombre).style.color = "orange";
+      } else {
+        document.getElementById(i + 1 + nombre).style.color = "black";
+      }
+    }
+  };
   return (
     <div className="container">
       <div class="abs-center m-4">
@@ -41,7 +54,8 @@ const DetailProduct = () => {
                       display: "inline-block",
                     }}
                   >
-                    ${formater.format(detailProduct.price)}
+                    <i class="bi bi-currency-dollar"></i>
+                    {formater.format(detailProduct.price)}
                   </h4>
                   <p class="card-text">Qualification: {detailProduct.score}☆</p>
                   <p class="card-text">
@@ -49,22 +63,49 @@ const DetailProduct = () => {
                   </p>
                 </div>
                 <div class="">
-                  <a href="#" class="btn btn-success m-3" aria-current="page">
-                    Buy product
+                  <a href="#" class="btn btn-success bi bi-bag-fill m-3 ">
+                    <span class="p-1">Buy product </span>
                   </a>
-                  <a href="#" class="btn btn-primary m-3">
-                    Add to cart{" "}
-                    <img
-                      src={carrito}
-                      class="rounded"
-                      style={{ height: "25px", width: "25px" }}
-                    />
+                  <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
+                    <span class="p-1">Add to Cart </span>
                   </a>
+                </div>
+                <div class="card-body">
+                  <span
+                    class="bi bi-star"
+                    style={{ cursor: "pointer" }}
+                    id="1star"
+                    onClick={(item) => calification(item)}
+                  ></span>
+                  <span
+                    class="bi bi-star"
+                    style={{ cursor: "pointer" }}
+                    id="2star"
+                    onClick={(item) => calification(item)}
+                  ></span>
+                  <span
+                    class="bi bi-star"
+                    style={{ cursor: "pointer" }}
+                    id="3star"
+                    onClick={(item) => calification(item)}
+                  ></span>
+                  <span
+                    class="bi bi-star"
+                    style={{ cursor: "pointer" }}
+                    id="4star"
+                    onClick={(item) => calification(item)}
+                  ></span>
+                  <span
+                    class="bi bi-star"
+                    style={{ cursor: "pointer" }}
+                    id="5star"
+                    onClick={(item) => calification(item)}
+                  ></span>
                 </div>
               </div>
             </div>
 
-            <nav class="mt-3">
+            <nav class="mt-3 nav justify-content-center">
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button
                   class="nav-link active"
@@ -111,7 +152,9 @@ const DetailProduct = () => {
                 role="tabpanel"
                 aria-labelledby="nav-description-tab"
               >
-                <p class="card-text m-3">{detailProduct.description}</p>
+                <p class="card-text text-center m-3">
+                  {detailProduct.description}
+                </p>
               </div>
               <div
                 class="tab-pane fade m-3"
@@ -133,7 +176,7 @@ const DetailProduct = () => {
                       <td scope="row">{detailProduct.name}</td>
                       <td scope="row">{detailProduct.brand}</td>
                       <td scope="row">{detailProduct.category}</td>
-                      <td scope="row">...</td>
+                      <td scope="row">{detailProduct.model}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -144,7 +187,9 @@ const DetailProduct = () => {
                 role="tabpanel"
                 aria-labelledby="nav-review-tab"
               >
-                Criticas al producto ...
+                <p class="card-text text-center m-3">
+                  Criticas al producto ...
+                </p>
               </div>
             </div>
           </div>
