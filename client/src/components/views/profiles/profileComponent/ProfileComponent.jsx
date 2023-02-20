@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import AdminProfile from "../adminProfile/AdminProfile";
+import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
 
 const ProfileComponent = () => {
 
+  const isSeller = 1;
+  const isAdmin = 0;
   const [userType, setUserType] = useState("buyer");
 
   const buyerButton = () =>{
@@ -35,27 +37,27 @@ const ProfileComponent = () => {
                     Si es Admin: oficina/puesto/departamento
                   </p>
                   <div class="d-flex justify-content-center mb-2">
-                    <button
+                    {isSeller?<button
                       type="button"
                       class="btn btn-outline-primary ms-1"
                       onClick={() => buyerButton()}
                     >
                       Buyer
-                    </button>
-                    <button
+                    </button>:null}
+                    {isSeller?<button
                       type="button"
                       class="btn btn-outline-primary ms-1"
                       onClick={() => sellerButton()}
                     >
                       Seller
-                    </button>
-                    <button
+                    </button>:null}
+                    {isAdmin?<button
                       type="button"
                       class="btn btn-outline-primary ms-1"
                       onClick={() => adminButton()}
                     >
                       Admin
-                    </button>
+                    </button>:null}
                   </div>
                 </div>
               </div>
@@ -68,7 +70,7 @@ const ProfileComponent = () => {
                   ? <ClientProfile />
                   : userType === "seller"
                     ? <SellerProfile />
-                    : <AdminProfile />
+                    : <AdminBoard />
               }
 
             </div>
