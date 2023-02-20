@@ -3,8 +3,9 @@ import Card from "../Card/Card";
 import { useState } from "react";
 import Paginate from "../Paginate/Paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../redux/thunks";
+
 import { Link } from "react-router-dom";
+import { fetchProducts } from "../../redux/thunks/productThunk";
 
 const Cards = () => {
   const dispatch = useDispatch();

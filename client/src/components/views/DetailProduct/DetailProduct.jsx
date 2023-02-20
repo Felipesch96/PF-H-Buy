@@ -2,7 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailProduct } from "../../../redux/thunks";
+import { fetchDetailProduct } from "../../../redux/thunks/productThunk";
+
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
