@@ -4,6 +4,8 @@ import {
   setProducts,
   setCategories,
   detailProduct,
+  setSearch,
+  setFilter,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -14,11 +16,29 @@ export const fetchProducts = () => {
 };
 
 export const fetchCategories = () => {
-  return async(dispatch) => {
-      const { data } = await axios.get("http://localhost:3001/categories");
-      dispatch(setCategories(data))
-  }
-}
+  return async (dispatch) => {
+    const { data } = await axios.get("http://localhost:3001/categories");
+    dispatch(setCategories(data));
+  };
+};
+
+export const fetchSearch = (value) => {
+  return async (dispatch) => {
+    const { data } = await axios.get(
+      `http://localhost:3001/products?name=${value}`
+    );
+    dispatch(setFilter(data));
+  };
+};
+
+export const fetchSearchProductByCtg = (type) => {
+  return async function (dispatch) {
+    const { data } = await axios.get(
+      `http://localhost:3001/products?category=${type}`
+    );
+    dispatch(setFilter(data));
+  };
+};
 
 // export const userLogin = (payload) => {
 //   return async (dispatch) => {

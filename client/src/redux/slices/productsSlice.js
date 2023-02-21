@@ -5,6 +5,8 @@ export const productsSlice = createSlice({
   initialState: {
     products: [],
     categories: [],
+    search: [],
+    filter: [],
     detailproduct: {},
   },
   reducers: {
@@ -13,6 +15,12 @@ export const productsSlice = createSlice({
     },
     setCategories: (state, { payload }) => {
       state.categories = payload;
+    },
+    setSearch: (state, { payload }) => {
+      state.search = payload;
+    },
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
     },
     orderByName: (state, { payload }) => {
       payload === "A-Z"
@@ -56,4 +64,6 @@ export const {
   orderByPrice,
   orderByReviews,
   detailProduct,
+  setSearch,
+  setFilter,
 } = productsSlice.actions;

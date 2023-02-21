@@ -8,10 +8,13 @@ import { CategoryModal } from "../../../modals/category";
 import { EditProductCard } from "../../../editProductCard";
 import { EditCategoryCard } from "../../../editCategoryCard";
 import "./adminBoard.css";
-import { fetchCategories, fetchProducts } from "../../../../redux/thunks/productThunk";
+import {
+  fetchCategories,
+  fetchProducts,
+} from "../../../../redux/thunks/productThunk";
 
 export const AdminBoard = () => {
-    const { products, categories } = useSelector((state) => state.product);
+  const { products, categories } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProducts());
@@ -22,7 +25,6 @@ export const AdminBoard = () => {
   const [productModal, setProductModal] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
-  
 
   return (
     <main className="adminBoard">
