@@ -1,11 +1,11 @@
 import axios from "axios";
-import { onLogin, onSignUp } from "../slices/authSlice";
+// import { onLogin, onSignUp } from "../slices/authSlice";
 import {
   setProducts,
   setCategories,
   detailProduct,
   setSearch,
-  setFilter,
+  // setFilter,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -27,7 +27,7 @@ export const fetchSearch = (value) => {
     const { data } = await axios.get(
       `http://localhost:3001/products?name=${value}`
     );
-    dispatch(setFilter(data));
+    // dispatch(setFilter(data));
   };
 };
 
@@ -36,7 +36,7 @@ export const fetchSearchProductByCtg = (type) => {
     const { data } = await axios.get(
       `http://localhost:3001/products?category=${type}`
     );
-    dispatch(setFilter(data));
+    // dispatch(setFilter(data));
   };
 };
 
