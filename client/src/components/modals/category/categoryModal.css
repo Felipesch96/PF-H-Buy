@@ -3,6 +3,70 @@
     position: absolute;
     height: 50% ;
     width: 50%;
-    background-color: red;
-    left: 300px ;
+    background-color: #2b4883;
+    left: 315px ;
+    top: 100px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px;
+}
+
+.closeIcon{
+    width: 30px;
+    height: 30px;
+    color: #5ec59f ;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+}
+
+.formInput{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nameLabel{
+    color: #5ec59f;
+}
+.input{
+    border: none;
+    height: 25px;
+    background-color: #2b4883;
+    border: 2px solid #5ec59f ;
+    border-radius: 5px;
+    padding: 0px 10px;
+    color: #5ec59f;
+}
+
+.input:focus{
+    background-color: white;
+    color: black;
+}
+
+.categoryButton{
+    border: 2px solid #5ec59f ;
+    border-radius: 20px ;
+    width: 100px;
+    align-self: center;
+    height: 35px;
+    background-color: #2b4883;
+    font-weight: 600;
+    font-size: 15px;
+    color: #5ec59f;
+    margin-top: 10px;
+}
+
+.categoryButton:hover {
+    background-color: #5ec59f;
+    border: none;
+    color: #2b4883;
+}
+
+.errors{
+    color: red;
+    font-size: 12px;
+    margin: 0;
 }

@@ -3,11 +3,9 @@ import { createProduct } from "../helpers/createProduct"
 import { createCategory } from "../helpers/createCategory"
 
 export const useForm = (initialForm = {}, formValidations) => {
-    console.log(initialForm)
 
     const [form,setForm] = useState(initialForm)
-    console.log(form)
-    const [errors,setErrors]= useState([])
+    const [errors,setErrors] = useState([])
 
     const handleChange = ({target}) => {
         setForm({
@@ -31,10 +29,9 @@ export const useForm = (initialForm = {}, formValidations) => {
 
     }
 
-    const handleBlur = (e) => {
+    const handleBlur = () => {
         setErrors(formValidations(form))
     }
-
 
     return {
         form,
@@ -43,6 +40,7 @@ export const useForm = (initialForm = {}, formValidations) => {
         handleChange,
         handleBlur,
         handleSubmitCategory,
-        handleSubmitProduct
+        handleSubmitProduct,
+        handleBlur
     }
 }
