@@ -5,7 +5,7 @@ import {
   setCategories,
   detailProduct,
   clearDetail,
-} from "./slices/productsSlice";
+} from "../slices/productsSlice";
 
 export const fetchProducts = () => {
   return async (dispatch) => {

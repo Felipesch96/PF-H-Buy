@@ -2,7 +2,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailProduct, clearDetailProduct } from "../../../redux/thunks";
+import {
+  fetchDetailProduct,
+  clearDetailProduct,
+} from "../../../redux/thunks/productThunk";
 import carrito from "./img/carritoDetail.jpg";
 
 import { Button } from "@mui/material";
@@ -24,22 +27,7 @@ const DetailProduct = () => {
   }, [dispatch, id]);
 
   const formater = new Intl.NumberFormat("en");
-
-  //   style: "currency",
-  //   currency: "ARS",
-  const calification = (item) => {
-    e.prevenDefault();
-    var cont;
-    cont = item.id[0];
-    let nombre = item.id.substring(1);
-    for (let i = 0; i < 5; i++) {
-      if (i < cont) {
-        document.getElementById(i + 1 + nombre).style.color = "orange";
-      } else {
-        document.getElementById(i + 1 + nombre).style.color = "black";
-      }
-    }
-  };
+  const [value, setValue] = React.useState(2);
   return (
     <div className="container">
       <div class="abs-center m-4">
