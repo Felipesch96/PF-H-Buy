@@ -186,7 +186,7 @@ const DetailProduct = () => {
                 aria-labelledby="nav-review-tab"
               >
                 <p class="card-text text-center m-3">
-                  <div>
+                  <div class="container">
                     <Box
                       sx={{
                         "& > legend": { mt: 2 },
