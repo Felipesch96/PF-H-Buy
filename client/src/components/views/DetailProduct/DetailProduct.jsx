@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailProduct } from "../../../redux/thunks";
+import { fetchDetailProduct } from "../../../redux/thunks/productThunk";
 import carrito from "./img/carritoDetail.jpg";
 
 const DetailProduct = () => {
@@ -17,7 +17,7 @@ const DetailProduct = () => {
 
   //   style: "currency",
   //   currency: "ARS",
-  const calification = (item) => {
+  const calification = (item, e) => {
     e.prevenDefault();
     var cont;
     cont = item.id[0];

@@ -8,7 +8,7 @@ import { CategoryModal } from "../../../modals/category";
 import { EditProductCard } from "../../../editProductCard";
 import { EditCategoryCard } from "../../../editCategoryCard";
 import "./adminBoard.css";
-import { fetchCategories, fetchProducts } from "../../../../redux/thunks";
+import { fetchCategories, fetchProducts } from "../../../../redux/thunks/productThunk";
 
 export const AdminBoard = () => {
     const { products, categories } = useSelector((state) => state.product);

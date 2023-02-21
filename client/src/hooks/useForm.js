@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createProduct } from "../helpers/createProduct";
 import { createCategory } from "../helpers/createCategory";
 import { useDispatch } from "react-redux";
-import { fetchCategories, fetchProducts } from "../redux/thunks";
+import { fetchCategories, fetchProducts } from "../redux/thunks/productThunk";
 
 export const useForm = (initialForm = {}, formValidations) => {
   const dispatch = useDispatch();
