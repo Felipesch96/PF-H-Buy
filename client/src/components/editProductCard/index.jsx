@@ -56,7 +56,7 @@ export const EditProductCard = ({ products }) => {
           {newProduct.name}
         </p>
       )}
-      {selected.description ? (
+      {/* {selected.description ? (
         <input
           className="updateInput"
           type="text"
@@ -71,7 +71,7 @@ export const EditProductCard = ({ products }) => {
         <p onClick={handleOnClickEdit} id="description">
           {newProduct.description}
         </p>
-      )}
+      )} */}
       {selected.brand ? (
         <input
           className="updateInput"
