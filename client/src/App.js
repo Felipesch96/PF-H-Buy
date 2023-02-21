@@ -7,7 +7,7 @@ import LandingPage from './components/views/landingPage/index'
 import About from './components/views/about/About';
 import ProfileComponent from './components/views/profiles/profileComponent/ProfileComponent';
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
-import SignUp from "./components/views/signIn/SignUp";
+import SignUp from "./components/views/signUp/SignUp";
 import { Login } from "./components/views/profiles/login";
 
 const App =()=>{
