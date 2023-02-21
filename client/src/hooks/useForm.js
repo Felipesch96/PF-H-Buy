@@ -38,6 +38,7 @@ export const useForm = (initialForm = {}, formValidations) => {
         errors,
 
         handleChange,
+        handleBlur,
         handleSubmitCategory,
         handleSubmitProduct,
         handleBlur
