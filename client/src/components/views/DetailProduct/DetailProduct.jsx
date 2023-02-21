@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailProduct } from "../../../redux/thunks";
-import carrito from "./img/carritoDetail.jpg";
+// import carrito from "./img/carritoDetail.jpg";
+import { fetchDetailProduct } from "../../../redux/thunks/productThunk";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -17,8 +17,8 @@ const DetailProduct = () => {
 
   //   style: "currency",
   //   currency: "ARS",
-  const calification = (item) => {
-    e.prevenDefault();
+/*   const calification = (item) => {
+    item.prevenDefault();
     var cont;
     cont = item.id[0];
     let nombre = item.id.substring(1);
@@ -29,7 +29,7 @@ const DetailProduct = () => {
         document.getElementById(i + 1 + nombre).style.color = "black";
       }
     }
-  };
+  }; */
   return (
     <div className="container">
       <div class="abs-center m-4">

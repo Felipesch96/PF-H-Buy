@@ -6,33 +6,42 @@ productsCtrl.getProducts = async (req, res) => {
   const { name, category, priceMin, priceMax, brand, condition } = req.query;
   try {
     if (name || category || (priceMin && priceMax) || brand || condition) {
-      if (category !== undefined && typeof category === "string") {
+      if (category && typeof category === "string") {
         const allProducts = await Product.find({
-          category: category
+          category,
         });
-        return res.status(200).send(allProducts)
+        allProducts.length;
+        res.status(200).send(allProducts); /* 
+          : res.status(404).send("No products found"); */
       } else if (name !== undefined && typeof name === "string") {
         const allProducts = await Product.find({
-          name: name && new RegExp(name, "i")
+          name: name && new RegExp(name, "i"),
         });
-        return res.status(200).send(allProducts)
-      } else if (priceMin !== undefined && priceMax !== undefined && typeof priceMin === "number" && typeof priceMax === "number") {
+        return res.status(200).send(allProducts);
+      } else if (
+        priceMin !== undefined &&
+        priceMax !== undefined &&
+        typeof priceMin === "number" &&
+        typeof priceMax === "number"
+      ) {
         const allProducts = await Product.find({
-          price: hola
-        })
-        return res.status(200).send(allProducts)
+          price: hola,
+        });
+        return res.status(200).send(allProducts);
       } else if (brand !== undefined && typeof brand === "string") {
         const allProducts = await Product.find({
-          brand: brand
+          brand: brand,
         });
-        return res.status(200).send(allProducts)
+        return res.status(200).send(allProducts);
       } else if (condition !== undefined && typeof condition === "string") {
         const allProducts = await Product.find({
-          condition: condition
+          condition: condition,
         });
-        return res.status(200).send(allProducts)
+        return res.status(200).send(allProducts);
       } else {
-        res.status(202).send({ error: `There are no products in the DataBase` });
+        res
+          .status(202)
+          .send({ error: `There are no products in the DataBase` });
       }
     } else {
       const allProducts = await Product.find();
