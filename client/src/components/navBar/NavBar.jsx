@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux"
 // import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Login from "../buttons/Login/Login";
@@ -8,6 +9,8 @@ import "./NavBar.css";
 const NavBar = () => {
   // const { user, isAuthenticated } = useAuth0();
   // console.log(user);
+  const user =  useSelector((state) => state.user.user)
+	console.log(user)
 
   return (
     <div>
@@ -55,6 +58,11 @@ const NavBar = () => {
               <li>
                 <Logout />
 
+              </li>
+              <li>
+              <Link className="nav-link mt-1" to="/login">
+                  Login
+                </Link>
               </li>
             </ul>
             <div>
