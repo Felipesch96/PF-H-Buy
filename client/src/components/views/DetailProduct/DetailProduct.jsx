@@ -25,11 +25,21 @@ const DetailProduct = () => {
 
   const formater = new Intl.NumberFormat("en");
 
-  /// Material UI calificacion
-  const [value, setValue] = React.useState(2);
-
-  //
-
+  //   style: "currency",
+  //   currency: "ARS",
+  const calification = (item) => {
+    e.prevenDefault();
+    var cont;
+    cont = item.id[0];
+    let nombre = item.id.substring(1);
+    for (let i = 0; i < 5; i++) {
+      if (i < cont) {
+        document.getElementById(i + 1 + nombre).style.color = "orange";
+      } else {
+        document.getElementById(i + 1 + nombre).style.color = "black";
+      }
+    }
+  };
   return (
     <div className="container">
       <div class="abs-center m-4">

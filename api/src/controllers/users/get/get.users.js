@@ -40,4 +40,23 @@ usersCtrl.usersById = async (req, res) => {
   }
 };
 
+usersCtrl.userByEmail = async (req, res) => {
+  const {email} = req.body;
+  try {
+    const userByEmail = await findOne({where: email});
+    res.send(userByEmail);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+usersCtrl.getUser = async (req, res) =>{
+  try {
+    const userByEmail = await findOne({where: email});
+    res.send(userByEmail);
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = usersCtrl;

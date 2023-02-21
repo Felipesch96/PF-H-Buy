@@ -1,5 +1,5 @@
 import axios from "axios";
-import { onLogin, onSignUp } from "./slices/authSlice";
+import { onLogin, onSignUp } from "../slices/authSlice";
 import {
   setProducts,
   setCategories,
@@ -21,19 +21,19 @@ export const fetchCategories = () => {
   };
 };
 
-export const userLogin = (payload) => {
-  return async (dispatch) => {
-    const { data } = await axios.post("la ruta", payload);
-    dispatch(onLogin(data));
-  };
-};
+// export const userLogin = (payload) => {
+//   return async (dispatch) => {
+//     const { data } = await axios.post("la ruta", payload);
+//     dispatch(onLogin(data));
+//   };
+// };
 
-export const newUser = (payload) => {
-  return async (dispatch) => {
-    const { data } = await axios.post("la ruta", payload);
-    dispatch(onSignUp(data));
-  };
-};
+// export const newUser = (payload) => {
+//   return async (dispatch) => {
+//     const { data } = await axios.post("la ruta", payload);
+//     dispatch(onSignUp(data));
+//   };
+// };
 
 export const fetchDetailProduct = (id) => {
   return async (dispatch) => {

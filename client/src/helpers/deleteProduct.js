@@ -1,10 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
-export const deleteProduct = (id) => {
-    try {
-        axios.put(`http://localhost:3001/products/${id}`)
-    } catch (error) {
-        console.log(error)
-    }
-
-} 
+export const deleteProduct = (_id) => {
+  try {
+    axios.delete(`http://localhost:3001/products/${_id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};

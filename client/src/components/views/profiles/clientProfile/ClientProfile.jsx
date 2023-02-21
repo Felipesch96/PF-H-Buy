@@ -16,32 +16,87 @@ const ClientProfile = () => {
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-            <div class="row">
+            <div class="column">
               <div class="col-md-6">
                 <div class="card mb-4 mb-md-0">
                   <div class="card-body">
-                    <p class="mb-4"><span class="text-primary font-italic me-1">Purchases</span> (cantidad)
+                    <p class="mb-4">
+                      <span class="text-primary font-italic me-1">
+                        <div class="btn-group dropend">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Purchases
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Purchase 1</a></li>
+                            <li><a class="dropdown-item" href="#">Purchase 2</a></li>
+                            <li><a class="dropdown-item" href="#">Purchase 3</a></li>
+                          </ul>
+                        </div>
+                                                
+                      </span>
+                      (cant) 
                     </p>
-                    <p class="mb-1" style={{ fontSize: ".77rem;" }}>uno de estos por cada compra</p>
+                    
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="card mb-4 mb-md-0">
                   <div class="card-body">
-                    <p class="mb-4"><span class="text-primary font-italic me-1">Favorites</span> (cantidad)
+                    <p class="mb-4">
+                      <span class="text-primary font-italic me-1">
+                        <div class="btn-group dropend">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Favorites
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Fav 1</a></li>
+                            <li><a class="dropdown-item" href="#">Fav 2</a></li>
+                            <li><a class="dropdown-item" href="#">Fav 3</a></li>
+                          </ul>
+                        </div>
+                      </span> (cant)
                     </p>
-                    <p class="mb-1" style={{ fontSize: ".77rem;" }}>uno de estos por cada favorito</p>
-
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="card mb-4 mb-md-0">
                   <div class="card-body">
-                    <p class="mb-4"><span class="text-primary font-italic me-1">Reclamos?</span> (cantidad)
+                    <p class="mb-4">
+                      <span class="text-primary font-italic me-1">
+                        <div class="btn-group dropend">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Inquiries made
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Product 1</a></li>
+                            <li><a class="dropdown-item" href="#">Product 2</a></li>
+                            <li><a class="dropdown-item" href="#">Product 3</a></li>
+                          </ul>
+                        </div>
+                      </span> (cant)
                     </p>
-                    <p class="mb-1" style={{ fontSize: ".77rem;" }}>uno de estos por cada reclamo</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card mb-4 mb-md-0">
+                  <div class="card-body">
+                    <p class="mb-4">
+                      <span class="text-primary font-italic me-1">
+                        <div class="btn-group dropend">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Claims
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Claim 1</a></li>
+                            <li><a class="dropdown-item" href="#">Claim 2</a></li>
+                            <li><a class="dropdown-item" href="#">Claim 3</a></li>
+                          </ul>
+                        </div>
+                      </span> (cant)
+                    </p>
                   </div>
                 </div>
               </div>
