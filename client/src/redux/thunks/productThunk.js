@@ -4,6 +4,7 @@ import {
   setProducts,
   setCategories,
   detailProduct,
+  clearDetail,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -14,11 +15,11 @@ export const fetchProducts = () => {
 };
 
 export const fetchCategories = () => {
-  return async(dispatch) => {
-      const { data } = await axios.get("http://localhost:3001/categories");
-      dispatch(setCategories(data))
-  }
-}
+  return async (dispatch) => {
+    const { data } = await axios.get("http://localhost:3001/categories");
+    dispatch(setCategories(data));
+  };
+};
 
 // export const userLogin = (payload) => {
 //   return async (dispatch) => {
@@ -40,6 +41,8 @@ export const fetchDetailProduct = (id) => {
     dispatch(detailProduct(data));
   };
 };
-// export const clearDetailProduct = () => {
-//   return clearDetail();
-// };
+export const clearDetailProduct = () => {
+  return (dispatch) => {
+    dispatch(clearDetail());
+  };
+};

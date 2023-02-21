@@ -2,8 +2,16 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailProduct } from "../../../redux/thunks/productThunk";
+import {
+  fetchDetailProduct,
+  clearDetailProduct,
+} from "../../../redux/thunks/productThunk";
 import carrito from "./img/carritoDetail.jpg";
+
+import { Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -12,24 +20,14 @@ const DetailProduct = () => {
 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
-  }, [dispatch, id]);
-  const formater = new Intl.NumberFormat("en");
 
-  //   style: "currency",
-  //   currency: "ARS",
-  const calification = (item, e) => {
-    e.prevenDefault();
-    var cont;
-    cont = item.id[0];
-    let nombre = item.id.substring(1);
-    for (let i = 0; i < 5; i++) {
-      if (i < cont) {
-        document.getElementById(i + 1 + nombre).style.color = "orange";
-      } else {
-        document.getElementById(i + 1 + nombre).style.color = "black";
-      }
-    }
-  };
+    return () => {
+      dispatch(clearDetailProduct());
+    };
+  }, [dispatch, id]);
+
+  const formater = new Intl.NumberFormat("en");
+  const [value, setValue] = React.useState(2);
   return (
     <div className="container">
       <div class="abs-center m-4">
@@ -57,7 +55,18 @@ const DetailProduct = () => {
                     <i class="bi bi-currency-dollar"></i>
                     {formater.format(detailProduct.price)}
                   </h4>
-                  <p class="card-text">Qualification: {detailProduct.score}☆</p>
+                  <div class="container">
+                    <p class="card-text mb-1">
+                      Qualification: {detailProduct.score} ☆
+                    </p>
+
+                    <Rating
+                      name="half-rating-read"
+                      defaultValue={detailProduct.score}
+                      precision={0.5}
+                      readOnly
+                    />
+                  </div>
                   <p class="card-text">
                     <span class="text-muted">Last updated 3 mins ago</span>
                   </p>
@@ -175,7 +184,29 @@ const DetailProduct = () => {
                 aria-labelledby="nav-review-tab"
               >
                 <p class="card-text text-center m-3">
-                  Criticas al producto ...
+                  <div class="container">
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Typography component="legend">
+                        Califica el Producto:
+                      </Typography>
+                      <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                          setValue(newValue);
+                        }}
+                      />
+                      <div>
+                        <Typography component="legend">Puntuacion</Typography>
+                        <Rating name="read-only" value={value} readOnly />
+                      </div>
+                    </Box>
+                    <Button variant="contained">Send</Button>
+                  </div>
                 </p>
               </div>
             </div>
