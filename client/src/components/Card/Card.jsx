@@ -31,7 +31,6 @@ const Card = (props) => {
               <p class="card-text mb-1">Qualification: {props.score} ☆</p>
 
               <Rating
-                style={{ fontSize: "15px" }}
                 name="half-rating-read"
                 value={props.score}
                 precision={0.5}
