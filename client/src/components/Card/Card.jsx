@@ -1,4 +1,6 @@
 import React from "react";
+import Rating from "@mui/material/Rating";
+
 import "./Card.css";
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
@@ -25,7 +27,18 @@ const Card = (props) => {
             >
               ${formater.format(props.price)}
             </p>
-            <p class="card-text">Qualification: {props.score} ☆</p>
+            <div class="container">
+              <p class="card-text mb-1">Qualification: {props.score} ☆</p>
+
+              <Rating
+                style={{ fontSize: "15px" }}
+                name="half-rating-read"
+                value={props.score}
+                precision={0.5}
+                readOnly
+              />
+            </div>
+
             <p class="card-text">Category: {props.category}</p>
 
             <p class="card-text">
