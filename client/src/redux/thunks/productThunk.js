@@ -27,7 +27,7 @@ export const fetchSearch = (value) => {
     const { data } = await axios.get(
       `http://localhost:3001/products?name=${value}`
     );
-    // dispatch(setFilter(data));
+    dispatch(setFilter(data));
   };
 };
 
