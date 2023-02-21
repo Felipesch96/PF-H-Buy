@@ -206,7 +206,6 @@ const DetailProduct = () => {
                         <Typography component="legend">Puntuacion</Typography>
                         <Rating name="read-only" value={value} readOnly />
                       </div>
-                      <p clas></p>
                     </Box>
                     <Button variant="contained">Send</Button>
                   </div>
