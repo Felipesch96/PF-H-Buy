@@ -33,7 +33,7 @@ const initialForm = {
   lastname: '',
   email: '',
   password: '',
-  userType: '',
+  // userType: '',
 }
 
 const SignUp = () => {

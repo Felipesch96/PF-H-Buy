@@ -19,6 +19,7 @@ export const useForm = (initialForm = {}, formValidations) => {
 
   const handleSubmitCategory = (e) => {
     e.preventDefault();
+    console.log(form)
     createCategory(form);
     dispatch(fetchCategories());
   };

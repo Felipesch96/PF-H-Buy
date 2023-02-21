@@ -1,19 +1,20 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useForm } from "../../../../hooks/useForm"
 import { userLogin } from "../../../../redux/thunks/userThunk"
 
 const initialForm = {
-    email: '',
-    password: ''
+	email: '',
+	password: ''
 }
 export const Login = () => {
-   const {form, handleChange} =  useForm(initialForm)
-   const dispatch = useDispatch()
-   const handleLogin = (e) => {
-    e.preventDefault()
-    dispatch(userLogin(form))
-
-   } 
+	const user =  useSelector((state) => state.user.user)
+	console.log(user)
+	const { form, handleChange } = useForm(initialForm)
+	const dispatch = useDispatch()
+	const handleLogin = (e) => {
+		e.preventDefault()
+		dispatch(userLogin(form))
+	}
 
    return(
     <div>
