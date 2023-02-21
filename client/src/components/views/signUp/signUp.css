@@ -1,0 +1,29 @@
+.signUpForm{
+   
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+}
+
+
+.signUpInput{
+
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.signUpInputContainer{
+    display: flex;
+    gap: 5px;
+}
+.errors{
+    margin: 0;
+    color: red;
+}
+
+.signUpButton{
+    border-radius: 10px;
+    width: 100px;
+    border: 2px solid black
+}

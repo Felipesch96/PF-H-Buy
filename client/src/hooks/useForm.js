@@ -1,39 +1,46 @@
-import { useState } from "react"
-import { createProduct } from "../helpers/createProduct"
-import { createCategory } from "../helpers/createCategory"
+import { useState } from "react";
+import { createProduct } from "../helpers/createProduct";
+import { createCategory } from "../helpers/createCategory";
+import { useDispatch } from "react-redux";
+import { fetchCategories, fetchProducts } from "../redux/thunks/productThunk";
 
-export const useForm = (initialForm = {}) => {
+export const useForm = (initialForm = {}, formValidations) => {
+  const dispatch = useDispatch();
 
-    const [form,setForm] = useState(initialForm)
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState([]);
 
-    const handleChange = ({target}) => {
-        setForm({
-            ...form,
-            [target.name]: target.value
-        })
+  const handleChange = ({ target }) => {
+    setForm({
+      ...form,
+      [target.name]: target.value,
+    });
+  };
 
-    }
+  const handleSubmitCategory = (e) => {
+    e.preventDefault();
+    console.log(form)
+    createCategory(form);
+    dispatch(fetchCategories());
+  };
 
-    const handleSubmitCategory = (e) => {
-        e.preventDefault()
-        createCategory(form)
+  const handleSubmitProduct = (e) => {
+    e.preventDefault();
+    createProduct(form);
+    dispatch(fetchProducts());
+  };
 
+  const handleBlur = () => {
+    setErrors(formValidations(form));
+  };
 
+  return {
+    form,
+    errors,
 
-    }
-
-    const handleSubmitProduct = (e) => {
-        e.preventDefault()
-        createProduct(form)
-
-    }
-
-    return {
-        form,
-
-
-        handleChange,
-        handleSubmitCategory,
-        handleSubmitProduct
-    }
-}
+    handleChange,
+    handleSubmitCategory,
+    handleSubmitProduct,
+    handleBlur,
+  };
+};

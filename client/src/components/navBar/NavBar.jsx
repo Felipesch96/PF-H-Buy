@@ -1,13 +1,40 @@
 import React, { useEffect, useState } from "react";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux"
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
+import { getProductsByName } from "../../redux/thunks/productThunk";
+
 
 const NavBar = () => {
-  // const { user, isAuthenticated } = useAuth0();
-  // console.log(user);
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useAuth0();
+  console.log(user);
+  // const user = useSelector((state) => state.user.user)
+  // console.log(user)
+	const [searchValue, setsearchValue] = useState(false);
+
+  function handleChangeSearch(e) {
+		setsearchValue(e.target.value);
+	}
+
+  function submitSearch(e) {
+		e.preventDefault();
+		dispatch(getProductsByName(searchValue));
+	}
+
+  const [serachNavStorage, setSearchNavStorage] = useState("");
+  function handleSearchInput(e){
+    setSearchNavStorage(e.target.value);
+    console.log(serachNavStorage);
+  };
+
+  const searchHandler = (e) =>{
+    e.preventDefault();
+    getProductsByName(serachNavStorage)
+  }
 
   return (
     <div>
@@ -17,8 +44,8 @@ const NavBar = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5">
-            <li className="nav-item">
+            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
+              <li className="nav-item">
                 <Link className="nav-link mt-1" to="/">
                   {"<"}
                 </Link>
@@ -39,25 +66,77 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link mt-1" to="/profile">
-                Profile
-              </Link>
+
               </li>
-  
               <li>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-square"></i>
+                  </button>
+                  {
+                    isAuthenticated
+                      ? <ul class="dropdown-menu justify-content-center">
+                        <li>
+                          <Link className="nav-link mt-1" to="/profile">
+                            Profile
+                          </Link>
+                        </li>
+                        <li>...</li>
+                        <li>...</li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><Logout /></li>
+                      </ul>
+                      : <ul class="dropdown-menu justify-content-center">
+                        <li>
+                          <Login />
+                        </li>
+                        {/* <li>
+                          <Link className="nav-link mt-1" to="/signup">
+                             Signup
+                          </Link>
+                        </li> */}
+                      </ul>
+                  }
+
+
+                </div>
+
+              </li>
+              {/* <li>
+                <Link className="nav-link mt-1" to="/signup">
+                  Signup
+                </Link>
+              </li> */}
+              {/* <li>
                 <Login />
 
               </li>
               <li>
                 <Logout />
 
+              </li> */}
+              <li>
+                {/* <Link className="nav-link mt-1" to="/login">
+                  Login
+                </Link> */}
               </li>
             </ul>
             <div>
-            <form class="d-flex justify-content-center" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+              <form 
+              class="d-flex justify-content-center" 
+              role="search"
+              onSubmit={submitSearch}
+              >
+                <input 
+                class="form-control me-2" 
+                type="search" 
+                placeholder="Search by name"
+                name="filter-by-name" 
+                aria-label="Search" 
+                value={serachNavStorage} 
+                onChange={handleChangeSearch}/>
+                <button class="btn btn-outline-success" type="submit" onClick={(e) => searchHandler(e)}>Search</button>
+              </form>
             </div>
           </div>
         </div>

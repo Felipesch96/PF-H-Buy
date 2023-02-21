@@ -1,30 +1,45 @@
-import { useForm } from "../../../hooks/useForm"
-import './productsModal.css'
+import { useForm } from "../../../hooks/useForm";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import "./productsModal.css";
+import CreateProductFrom from "./CreateProductForm";
+
+const formValidations = (form) => {
+  let errors = {};
+  if (!form.name.trim()) {
+    errors.name = "The name of the product is required";
+  }
+  if (!form.description.length > 0) {
+    errors.description = "You must provide a description of your product";
+  }
+  /* if (!form.healthScore) {
+    errors.healthScore = "Rating is required";
+  } else if (!/^[1-5]$/.test(form.rating)) {
+    errors.healthScore = "only ratings between 1 and 5 are valid";
+  }
+  if (!form.brand.trim()) {
+    errors.brand = "The brand of the product is required";
+  }
+  if (form.stock < 1) {
+    errors.stock = "You must provide at least one product";
+  } */
+
+  return errors;
+};
 
 const initialForm = {
-    name: '',
-    resume:'',
-    healthScore: '',
+  name: "",
+  img: "",
+  description: "",
+  price: 0,
+};
 
-}
+export const ProductModal = ({ onClose }) => {
+  const { form, errors, handleBlur, handleChange, handleSubmitProduct } =
+    useForm(initialForm, formValidations);
 
-export const ProductModal = ({onClose}) => {
-   const {form, handleChange, handleSubmitProduct} = useForm(initialForm)
-
-   return(
+  return (
     <section className="productModal">
-        <form onSubmit={handleSubmitProduct}>
-        <button onClick={()=> onClose(false)}>X</button>
-            <label htmlFor="name">Name your product</label>
-            <input type="text" id="name" name="name" value={form.name} onChange={handleChange} />
-            <label htmlFor="resume">Describe your product</label>
-            <textarea id="resume" name="resume" onChange={handleChange} value={form.resume}></textarea>
-            <label htmlFor="score">Rate your product</label>
-            <input type="number" id="score" name="healthScore" value={form.healthScore} onChange={handleChange}/>
-            {/* {aca va cloudinary} */}
-            <button type="submit">Crear</button>
-            
-        </form>
+      <CreateProductFrom onClose={onClose}/>
     </section>
-   )
-}
+  );
+};
