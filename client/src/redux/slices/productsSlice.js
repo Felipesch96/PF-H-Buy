@@ -8,7 +8,7 @@ export const productsSlice = createSlice({
     search: [],
     filter: [],
     detailproduct: {},
-    filtered: []
+    filtered: [],
   },
   reducers: {
     setProducts: (state, { payload }) => {
@@ -51,15 +51,10 @@ export const productsSlice = createSlice({
     detailProduct: (state, { payload }) => {
       state.detailproduct = payload;
     },
-    // clearDetail: (state) => {
-    //   state.detailproduct = {};
-    // },
-    filterByName: (state, { payload }) => {
-      
-    },
     clearDetail: (state) => {
       state.detailproduct = {};
     },
+    filterByName: (state, { payload }) => {},
   },
 });
 
@@ -70,4 +65,5 @@ export const {
   orderByPrice,
   orderByReviews,
   detailProduct,
+  clearDetail,
 } = productsSlice.actions;
