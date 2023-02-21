@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const Address = mongoose.Schema(
   {
@@ -25,5 +25,4 @@ const Address = mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Address', Address);
-
+module.exports = mongoose.model("Address", Address);
