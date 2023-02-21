@@ -1,7 +1,6 @@
-import axios from "axios"
+import axios from "axios";
 
-export const editProduct = (product) => {
+export const editProduct = async (product) => {
     console.log(product)
-    axios.put(`http://localhost:3001/products/${product.id}`, product)
-
-} 
+  await axios.put(`http://localhost:3001/products/${product._id}`, product);
+};
