@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
+import { getProductsByName } from "../../redux/thunks/productThunk";
 
 
 const NavBar = () => {
-  const { user } = useAuth0();
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useAuth0();
   console.log(user);
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
+	const [searchValue, setsearchValue] = useState(false);
+
+  function handleChangeSearch(e) {
+		setsearchValue(e.target.value);
+	}
+
+  function submitSearch(e) {
+		e.preventDefault();
+		dispatch(getProductsByName(searchValue));
+	}
+
+  const [serachNavStorage, setSearchNavStorage] = useState("");
+  function handleSearchInput(e){
+    setSearchNavStorage(e.target.value);
+    console.log(serachNavStorage);
+  };
+
+  const searchHandler = (e) =>{
+    e.preventDefault();
+    getProductsByName(serachNavStorage)
+  }
 
   return (
     <div>
@@ -51,7 +74,7 @@ const NavBar = () => {
                     <i class="bi bi-person-square"></i>
                   </button>
                   {
-                    user
+                    isAuthenticated
                       ? <ul class="dropdown-menu justify-content-center">
                         <li>
                           <Link className="nav-link mt-1" to="/profile">
@@ -99,9 +122,20 @@ const NavBar = () => {
               </li>
             </ul>
             <div>
-              <form class="d-flex justify-content-center" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">Search</button>
+              <form 
+              class="d-flex justify-content-center" 
+              role="search"
+              onSubmit={submitSearch}
+              >
+                <input 
+                class="form-control me-2" 
+                type="search" 
+                placeholder="Search by name"
+                name="filter-by-name" 
+                aria-label="Search" 
+                value={serachNavStorage} 
+                onChange={handleChangeSearch}/>
+                <button class="btn btn-outline-success" type="submit" onClick={(e) => searchHandler(e)}>Search</button>
               </form>
             </div>
           </div>

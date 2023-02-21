@@ -3,9 +3,12 @@ const Product = require("../../../schemas/Products");
 const productsCtrl = {};
 
 productsCtrl.getProducts = async (req, res) => {
-  const { name, category, priceMin, priceMax, brand, condition } = req.query;
+
+  const products = await Product.find();
+  
+  const { name, category, priceMin, priceMax, brand, condition, order } = req.query;
   try {
-    if (name || category || (priceMin && priceMax) || brand || condition) {
+    if (name || category || (priceMin && priceMax) || brand || condition || order) {
       if (category && typeof category === "string") {
         const allProducts = await Product.find({
           category,
@@ -38,6 +41,31 @@ productsCtrl.getProducts = async (req, res) => {
           condition: condition,
         });
         return res.status(200).send(allProducts);
+      } else if (order) {
+        if (order === "A-Z"){
+          try {
+            const productsAsc = await products.sort((a, b) => {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+              if (b.name.toLowerCase() > a.name.toLowerCase()) return -1;
+              return 0;
+            });
+            res.json(productsAsc);
+          } catch (error) {
+            console.log(error);
+          } 
+        } else if (order === "Z-A") {
+          try {
+            const productsDesc = await products.sort((a, b) => {
+              if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+              if (b.name.toLowerCase() > a.name.toLowerCase()) return 1;
+              return 0;
+            });
+            res.json(productsDesc);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+
       } else {
         res
           .status(202)
