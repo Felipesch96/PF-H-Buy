@@ -8,7 +8,7 @@ const Cart = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["in Process", "sold", "delivered"],
+      enum: ["in process", "sold", "delivered"],
       default: "in Process",
       require: true,
     },
