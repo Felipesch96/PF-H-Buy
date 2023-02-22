@@ -1,4 +1,5 @@
 const User = require("../../../schemas/Users");
+const Fav = require("../../../schemas/Favorites");
 const bcryptjs = require("bcryptjs");
 const Users = require("../../../schemas/Users");
 const jwt = require("../../../helpers/createJwt");
@@ -40,7 +41,6 @@ usersCtrl.createNewUser = async (req, res) => {
     const salt = bcryptjs.genSaltSync();
     const newUser = await User(req.body);
     newUser.password = bcryptjs.hashSync(password, salt);
-    console.log(newUser);
     await newUser.save();
     return res.json(newUser);
   } catch (error) {
