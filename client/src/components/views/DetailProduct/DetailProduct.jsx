@@ -23,7 +23,9 @@ const DetailProduct = () => {
     };
   }, [dispatch, id]);
   const formater = new Intl.NumberFormat("en");
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(1);
+
+  const promedio = (detailProduct.score + value) / 2;
 
   return (
     <div className="container">
@@ -41,18 +43,27 @@ const DetailProduct = () => {
               <div class="col-7 col-sm-8">
                 <div class="card-body">
                   <h2 class="card-title">{detailProduct.name}</h2>
-                  <p class="card-text">Stock : {detailProduct.stock}</p>
-                  <h4
-                    class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
-                    style={{
-                      textAlign: "center",
-                      display: "inline-block",
-                    }}
-                  >
-                    <i class="bi bi-currency-dollar"></i>
-                    {formater.format(detailProduct.price)}
-                  </h4>
-                  <div class="container">
+                  <div>
+                    <span class="card-text">Stock :</span>{" "}
+                    {detailProduct.stock ? (
+                      <span class="text-success">{detailProduct.stock}</span>
+                    ) : (
+                      <span class="text-danger">off</span>
+                    )}
+                  </div>
+                  <div class="mt-1">
+                    <h4
+                      class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
+                      style={{
+                        textAlign: "center",
+                        display: "inline-block",
+                      }}
+                    >
+                      <i class="bi bi-currency-dollar"></i>
+                      {formater.format(detailProduct.price)}
+                    </h4>
+                  </div>
+                  <div class="mt-1">
                     <p class="card-text mb-1">
                       Qualification: {detailProduct.score} ☆
                     </p>
@@ -197,12 +208,27 @@ const DetailProduct = () => {
                           setValue(newValue);
                         }}
                       />
-                      <div>
-                        <Typography component="legend">Puntuacion</Typography>
-                        <Rating name="read-only" value={value} readOnly />
+                      <Typography component="legend">
+                        Promedio del Producto:{promedio}
+                      </Typography>
+                      <div class="input-group mb-3">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Recipient's username"
+                          aria-label="Recipient's username"
+                          aria-describedby="basic-addon2"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-outline-secondary"
+                            type="button"
+                          >
+                            Send
+                          </button>
+                        </div>
                       </div>
                     </Box>
-                    <Button variant="contained">Send</Button>
                   </div>
                 </p>
               </div>
