@@ -47,20 +47,4 @@ usersCtrl.createNewUser = async (req, res) => {
     res.send(error.message);
   }
 };
-
-usersCtrl.createNewUserByGoogle = async (req, res) => {
-  const { email } = req.body;
-  const user = await Users.findOne({ email });
-  try {
-    if (user) {
-      res.status(202).send(user);
-    } else {
-      const newUser = await User(req.body);
-      await newUser.save();
-      res.status(200).send(newUser);
-    }
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-};
 module.exports = usersCtrl;
