@@ -5,10 +5,11 @@ const { getProducts, productById } = require("../controllers/products/get/get.pr
 const { updateProduct } = require("../controllers/products/put/put.products");
 const { deleteProduct } = require("../controllers/products/delete/delete.products");
 
+const upload = require("../multer");
 
 router.get("/", getProducts);
 router.get("/:id", productById);
-router.post("/", createNewProduct);
+router.post("/", createNewProduct, upload.single('image'));
 router.put("/:id", updateProduct);
 router.delete("/:id", deleteProduct);
 
