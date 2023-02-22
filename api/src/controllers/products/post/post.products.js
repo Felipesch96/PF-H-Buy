@@ -4,7 +4,6 @@ const productsCtrl = {};
 
 productsCtrl.createNewProduct = async (req, res) => {
   const data = req.body;
-  console.log(data)
   try {
     if (data.name.trim().length && data.description.trim().length) {
       const newProduct = new Product(data);

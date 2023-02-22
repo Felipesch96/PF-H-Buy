@@ -6,11 +6,12 @@ const favorites = mongoose.Schema({
     ref: "Users",
     require: true,
   },
-  products: {
+  product_id: {
     type: mongoose.Types.ObjectId,
     ref: "Products",
     require: true,
   },
+
 });
 
 module.exports = mongoose.model("Favorites", favorites);
