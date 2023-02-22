@@ -66,4 +66,5 @@ export const {
   orderByReviews,
   detailProduct,
   clearDetail,
+  setFilter,
 } = productsSlice.actions;
