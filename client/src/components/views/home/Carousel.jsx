@@ -144,7 +144,7 @@ useEffect(() => {
 });
 
   return (
-    <div className="d-grid gap-3">
+    <div className="d-grid gap-3 d-flex">
   <button class="btn btn-primary " type="button" onClick={previous}>Preview</button>
       <div class="row gx-0">
         {cardsCurrent.map((p) => {

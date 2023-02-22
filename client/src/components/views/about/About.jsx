@@ -97,9 +97,10 @@ const About = () => {
         >
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Emiliano Hernandez</h5>
             <a href="https://github.com/emijhernandez">
@@ -111,9 +112,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Cesar Leyton</h5>
             <a href="https://github.com/emijhernandez">
@@ -125,9 +127,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Jhoan Alvarez</h5>
             <a href="https://github.com/emijhernandez">
@@ -139,9 +142,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Lara Onyskiw</h5>
             <a href="https://github.com/emijhernandez">
@@ -153,9 +157,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Nicolas Iconicoff</h5>
             <a href="https://github.com/emijhernandez">
@@ -167,9 +172,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Cristopher Lazo</h5>
             <a href="https://github.com/emijhernandez">
@@ -181,9 +187,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Felipe Schwindt</h5>
             <a href="https://github.com/emijhernandez">
@@ -195,9 +202,10 @@ const About = () => {
           </div>
           <div>
             <img
-              src={avatar}
+              src={github} 
               alt="no se carga"
               className="border border-dark border-2 rounded-circle"
+              style={{ width: "150px" }}
             />
             <h5>Francisco Cia</h5>
             <a href="https://github.com/emijhernandez">
