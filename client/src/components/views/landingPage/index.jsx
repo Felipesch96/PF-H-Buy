@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../redux/thunks/productThunk";
-import Carousel from "../home/Carousel";
 import styles from "./landingPage.module.css";
 
 const LandingPage = () => {

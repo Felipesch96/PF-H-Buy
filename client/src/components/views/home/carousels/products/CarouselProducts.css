@@ -1,0 +1,21 @@
+.contenedor-products{
+  border: 1px solid black;
+  height: fit-content;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid{
+  display: flex;
+
+}
+
+.tarjeta{
+  height: fit-content;
+  margin: 5px;
+}
+
+.card-body img{
+  height: fit-;
+}
+
