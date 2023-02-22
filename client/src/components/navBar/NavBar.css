@@ -1,7 +1,7 @@
 .navbar{
   background-color: rgb(21, 109, 160);
-  align-items: center;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
 }
 
 input {
@@ -12,4 +12,8 @@ input {
   .clase-logo {
     display: none;
   }
+}
+
+.navbar-collapse{
+justify-content: space-around;
 }
