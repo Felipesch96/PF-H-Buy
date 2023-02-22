@@ -56,12 +56,12 @@ const CarouselProducts = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     // dispatch(fetchCategories());
-  }, [dispatch, JSON.stringify(products)]);
+  }, [dispatch]);
 
   return (
     <div className="d-grid gap-3 d-flex contenedor-products">
 
-      <button class="btn btn-primary box" type="button" onClick={previous}>Preview</button>
+      <button class="btn btn-primary box" type="button" onClick={previous}>Previos</button>
       {cardsCurrent.map((p) => {
         return (
           <div class="box">
