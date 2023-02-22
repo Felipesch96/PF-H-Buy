@@ -17,6 +17,10 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
+  favorites: {
+    type: mongoose.Types.ObjectId,
+    ref: "Favorites",
+  },
   userType: {
     type: String,
     enum: ["buyer", "seller", "admin"],

@@ -4,19 +4,19 @@ const Address = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      require: true,
     },
     street: {
       type: String,
-      required: true,
+      require: true,
     },
     city: {
       type: String,
-      required: true,
+      require: true,
     },
     country: {
       type: String,
-      required: true,
+      require: true,
     },
     additional_data: {
       type: String,
