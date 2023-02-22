@@ -1,9 +1,12 @@
 .navbar{
-  background-color: rgb(21, 109, 160);
+  background-color: rgba(1, 47, 73, 0.979);
   align-items: center;
   justify-content: space-between;
+  color: antiquewhite;
 }
-
+.letras{
+  color: antiquewhite;
+}
 input {
   max-width: 250px;
 }
