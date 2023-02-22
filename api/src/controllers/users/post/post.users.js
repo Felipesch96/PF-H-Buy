@@ -42,11 +42,6 @@ usersCtrl.createNewUser = async (req, res) => {
     const newUser = await User(req.body);
     newUser.password = bcryptjs.hashSync(password, salt);
     await newUser.save();
-    const newFav = await Fav({ user_id: newUser._id });
-    await newFav.save();
-    const id = newUser._id;
-    const data = { favorites: newFav._id };
-    await User.findByIdAndUpdate(id, data);
     return res.json(newUser);
   } catch (error) {
     res.send(error.message);

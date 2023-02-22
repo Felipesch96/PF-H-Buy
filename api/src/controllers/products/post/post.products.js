@@ -5,9 +5,11 @@ const productsCtrl = {};
 
 productsCtrl.createNewProduct = async (req, res) => {
   const data = req.body;
+
   if (!req.file) {
     return res.status(200).send("Please select an image");
   }
+
   try {
 
     const cloudinary_image = await cloudinary.uploader.upload(req.file.path, {
