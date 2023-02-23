@@ -35,7 +35,7 @@ const ProfileComponent = () => {
                     class="rounded-circle img-fluid"
                     style={{ width: "150px;" }}
                   />
-                  <h5 class="my-3">{`${userLocal?.name} ${userLocal.lastName}`}</h5>
+                  <h5 class="my-3">{userLocal.lastName ? `${userLocal?.name} ${userLocal.lastName}`: `${userLocal.name}`}</h5>
                   <div class="d-flex justify-content-center mb-2">
                     
                     {!userLocal.isAdmin && userType !== "buyer" ? (

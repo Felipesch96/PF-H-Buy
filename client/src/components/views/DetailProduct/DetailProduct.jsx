@@ -2,18 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   fetchDetailProduct,
   clearDetailProduct,
 } from "../../../redux/thunks/productThunk";
-import { Button } from "@mui/material";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { fetchDetailProduct } from "../../../redux/thunks/productThunk";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 

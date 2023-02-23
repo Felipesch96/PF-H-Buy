@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 const AccountInfo = () => {
 
-const usuario = useSelector((state) => state.user.userLocal);
+const {userLocal} = useSelector((state) => state.user);
 
   return (
     <div>
@@ -15,7 +15,7 @@ const usuario = useSelector((state) => state.user.userLocal);
               <p class="mb-0">Full Name</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{`${usuario.name} ${usuario.lastName}`}</p>
+              <p class="text-muted mb-0">{userLocal.lastName ? `${userLocal?.name} ${userLocal.lastName}`: `${userLocal.name}`}</p>
             </div>
           </div>
           <hr />
@@ -24,7 +24,7 @@ const usuario = useSelector((state) => state.user.userLocal);
               <p class="mb-0">Email</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.email}</p>
+              <p class="text-muted mb-0">{userLocal.email}</p>
             </div>
           </div>
           <hr />
@@ -33,7 +33,7 @@ const usuario = useSelector((state) => state.user.userLocal);
               <p class="mb-0">Phone</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.phone}</p>
+              <p class="text-muted mb-0">{userLocal.phone}</p>
             </div>
           </div>
           <hr />
@@ -42,7 +42,7 @@ const usuario = useSelector((state) => state.user.userLocal);
               <p class="mb-0">Address</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.address}</p>
+              <p class="text-muted mb-0">{userLocal.address}</p>
             </div>
           </div>
         </div>
