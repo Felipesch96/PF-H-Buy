@@ -14,25 +14,21 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <div>
-      <section class="productsPage">
-        <div class="container-fluid text-center">
-          <div class="row">
-            <div class="col-12 col-md-3 ">
-              <Filters />
-            </div>
-            <div class="col">
-              {filters.length ? (
-                <div class="col">
-                  <Cards array={filters} />
-                </div>
-              ) : (
-                <Cards array={productos} />
-              )}
-            </div>
-          </div>
+    <div class="container-fluid text-center">
+      <div class="row">
+        <div class="col-9 col-md-3">
+          <Filters />
         </div>
-      </section>
+        <div class="col-12 col-sm-9">
+          {filters.length ? (
+            <div class="col">
+              <Cards array={filters} />
+            </div>
+          ) : (
+            <Cards array={productos} />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 
 const DetailProduct = () => {
@@ -99,6 +100,9 @@ const DetailProduct = () => {
                   </a>
                   <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
                     <span class="p-1">Add to Cart </span>
+                  </a>
+                  <a href="#">
+                    <FavoriteButton class="fa-regular fa-heart" />
                   </a>
                 </div>
               </div>
