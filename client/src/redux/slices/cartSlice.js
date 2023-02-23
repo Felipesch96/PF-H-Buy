@@ -4,7 +4,10 @@ export const cartSlice = createSlice({
     name: 'cartSlice',
     initialState: {
         cartList: [],
-        amountOfItems: 0
+        amountOfItems: 0,
+        shippingInfo: {
+
+        }
     },
     reducers: {
         addToCart: (state, {payload}) => {
@@ -41,8 +44,11 @@ export const cartSlice = createSlice({
             state.cartList = [];
             state.amountOfItems = 0
            
+        },
+        setShipping: (state, {payload}) => {
+            state.shippingInfo = payload
         }
     }
 });
 
-  export const { addToCart, incrementQuantity, decrementQuantity, removeFromCart, removeAll } = cartSlice.actions;
+  export const { addToCart, incrementQuantity, decrementQuantity, removeFromCart, removeAll, setShipping } = cartSlice.actions;

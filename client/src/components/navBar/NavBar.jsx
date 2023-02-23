@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import {BsCart4} from 'react-icons/bs'
+import { Link, useHistory } from "react-router-dom";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
 import { getProductsByName } from "../../redux/thunks/productThunk";
-import { CartModal } from "../cartModal";
+
 
 
 const NavBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
   const { user, isAuthenticated } = useAuth0();
-  const {amountOfItems} = useSelector(state => state.cart)
+  const { amountOfItems} = useSelector(state => state.cart)
   console.log(user);
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
@@ -87,9 +89,12 @@ const NavBar = () => {
 
               </li>
               <li className="nav-link mt-1">
-                          <div>{amountOfItems}</div>
-                          <CartModal  />
-                        </li>
+                          <div className="shoppingCart">
+                          <div className="counter">{amountOfItems}</div>
+                          <BsCart4 onClick={()=> history.push('/shoppingCart') } className="carIcon"/>
+                          </div>
+                          
+              </li>
               <li>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

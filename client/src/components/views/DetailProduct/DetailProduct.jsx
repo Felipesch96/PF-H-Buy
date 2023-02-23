@@ -12,13 +12,16 @@ import { addToCart } from "../../../redux/slices/cartSlice";
 const DetailProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const detailProduct = useSelector((state) => state.product.detailproduct);
-  const {totalPrice, cartList} = useSelector((state) => state.cart)
-  console.log('items',cartList)
- 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
   }, [])
+  const detailProduct = useSelector((state) => state.product.detailproduct);
+  // const [inStock, setInStock] = useState(true)
+  const addElementToCart = () => {
+     detailProduct.stock > 0 ? 
+     dispatch(addToCart(detailProduct)) : 
+     window.alert('there is no product in stock')
+  }
   //   style: "currency",
   //   currency: "ARS",
 /*   const calification = (item) => {
@@ -50,7 +53,7 @@ const DetailProduct = () => {
               <div class="col-7 col-sm-8">
                 <div class="card-body">
                   <h2 class="card-title">{detailProduct.name}</h2>
-                  <p class="card-text">Stock : {detailProduct.stock}</p>
+                  <p class="card-text">Stock : {detailProduct.stock > 0 ? detailProduct.stock : <p>Out of Stock</p>}</p>
                   <h4
                     class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
                     style={{
@@ -79,10 +82,10 @@ const DetailProduct = () => {
                 </div>
                 <div class="">
                   <a href="#" class="btn btn-success bi bi-handbag-fill m-3 ">
-                    <span class="p-1">Buy product </span>
+                    <span class="p-1" onClick={addElementToCart}>Buy product </span>
                   </a>
                   <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
-                    <button onClick={()=> dispatch(addToCart(detailProduct))} class="p-1">Add to Cart </button>
+                    <span onClick={addElementToCart} class="p-1">Add to Cart </span>
                   </a>
                 </div>
               </div>
