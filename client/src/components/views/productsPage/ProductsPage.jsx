@@ -24,9 +24,7 @@ const ProductsPage = () => {
           {error ? (
             <h2>{error}</h2>
           ) : filters.length ? (
-            <div class="col">
-              <Cards array={filters} />
-            </div>
+            <Cards array={filters} />
           ) : (
             <Cards array={products} />
           )}
