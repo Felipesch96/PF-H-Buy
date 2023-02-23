@@ -1,5 +1,5 @@
 import axios from "axios";
-import { onLogin, onSignUp } from "../slices/authSlice";
+// import { onLogin, onSignUp } from "../slices/authSlice";
 import {
   setProducts,
   setCategories,
@@ -68,21 +68,27 @@ export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1
   return async function (dispatch) {
     try {
-      let productsByName = await axios.get(`http://localhost:3001/products?name=${name}`, {});
+      let productsByName = await axios.get(
+        `http://localhost:3001/products?name=${name}`,
+        {}
+      );
       dispatch(setProducts(productsByName));
     } catch (error) {
       console.log(error);
     }
   };
-};
+}
 
 export function getProductsByOrder(order) {
   return async function (dispatch) {
     try {
-      let productsByOrder = await axios.get(`http://localhost:3001/products?order=${order}`, {});
-      return dispatch(setProducts(productsByOrder))
+      let productsByOrder = await axios.get(
+        `http://localhost:3001/products?order=${order}`,
+        {}
+      );
+      return dispatch(setProducts(productsByOrder));
     } catch (error) {
       console.log(error);
     }
-  }
-};
+  };
+}

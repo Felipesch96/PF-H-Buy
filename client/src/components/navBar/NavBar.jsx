@@ -1,11 +1,11 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import { fetchSearch, getProductsByName } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
-import { fetchSearch, getProductsByName } from "../../redux/thunks/productThunk";
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -50,15 +50,13 @@ const NavBar = () => {
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+
+          <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
+
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
               <li className="nav-item">
                 <Link className="nav-link mt-1" to="/">
-                  {"<"}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link mt-1" to="/home">
                   Home
                 </Link>
               </li>
@@ -112,24 +110,6 @@ const NavBar = () => {
                     </ul>
                   )}
                 </div>
-              </li>
-              {/* <li>
-                <Link className="nav-link mt-1" to="/signup">
-                  Signup
-                </Link>
-              </li> */}
-              {/* <li>
-                <Login />
-
-              </li>
-              <li>
-                <Logout />
-
-              </li> */}
-              <li>
-                {/* <Link className="nav-link mt-1" to="/login">
-                  Login
-                </Link> */}
               </li>
             </ul>
             <div>
