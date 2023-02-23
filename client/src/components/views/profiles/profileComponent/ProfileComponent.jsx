@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
@@ -8,7 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 const ProfileComponent = () => {
   const { userLocal } = useSelector((state) => state.user);
   console.log(userLocal);
-  const dispatch = useDispatch();
   const { user } = useAuth0();
 
   const isSeller = 1;
@@ -26,6 +25,7 @@ const ProfileComponent = () => {
   const adminButton = () => {
     setUserType("admin");
   };
+  // const user = useSelector((state) => state.user.userLocal);
 
   return (
     <div>

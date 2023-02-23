@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { fetchSearch, getProductsByName } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
@@ -112,30 +112,25 @@ const NavBar = () => {
                 </div>
               </li>
             </ul>
-            <div>
-              <form
-                class="d-flex justify-content-center"
-                role="search"
-                onSubmit={submitSearch}
-              >
-                <input
-                  class="form-control me-2"
-                  type="text"
-                  placeholder="Search by name"
-                  name="filter-by-name"
-                  aria-label="Search"
-                  autoComplete="off"
-                  onChange={handleChangeSearch}
-                />
-                <button
-                  class="btn btn-outline-success"
-                  type="submit"
-                  value="Search"
+            <Route path="/products">
+              <div>
+                <form
+                  class="d-flex justify-content-center"
+                  role="search"
+                  onSubmit={submitSearch}
                 >
-                  Search
-                </button>
-              </form>
-            </div>
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Search by name"
+                    name="filter-by-name"
+                    aria-label="Search"
+                    value={serachNavStorage}
+                    onChange={handleChangeSearch} />
+                  <button class="btn btn-outline-success" type="submit" onClick={(e) => searchHandler(e)}>Search</button>
+                </form>
+              </div>
+            </Route>
           </div>
         </div>
       </nav>

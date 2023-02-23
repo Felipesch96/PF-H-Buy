@@ -1,16 +1,10 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const AccountInfo = () => {
 
-  const [usuario, setUsuario] = useState(
-    {
-      name: "pepito",
-      surname: "pindonga",
-      email: "pepito@gmail.com",
-      phone: "** **** **23",
-      adress: "calle falsa 123"
-    }
-  );
+const usuario = useSelector((state) => state.user.userLocal);
+console.log(usuario);
 
   return (
     <div>
