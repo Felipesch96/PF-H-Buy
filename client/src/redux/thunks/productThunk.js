@@ -5,6 +5,7 @@ import {
   setCategories,
   detailProduct,
   setSearch,
+  clearDetail,
   setFilter,
 } from "../slices/productsSlice";
 
@@ -60,9 +61,11 @@ export const fetchDetailProduct = (id) => {
     dispatch(detailProduct(data));
   };
 };
-// export const clearDetailProduct = () => {
-//   return clearDetail();
-// };
+export const clearDetailProduct = () => {
+  return (dispatch) => {
+    dispatch(clearDetail());
+  };
+};
 
 export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1

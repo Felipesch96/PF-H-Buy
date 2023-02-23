@@ -4,12 +4,19 @@ const Product = require("../../../schemas/Products");
 const productsCtrl = {};
 
 productsCtrl.getProducts = async (req, res) => {
-
   const products = await Product.find();
-  
-  const { name, category, priceMin, priceMax, brand, condition, order } = req.query;
+
+  const { name, category, priceMin, priceMax, brand, condition, order } =
+    req.query;
   try {
-    if (name || category || (priceMin && priceMax) || brand || condition || order) {
+    if (
+      name ||
+      category ||
+      (priceMin && priceMax) ||
+      brand ||
+      condition ||
+      order
+    ) {
       if (category && typeof category === "string") {
         const allProducts = await Product.find({
           category,
@@ -43,7 +50,7 @@ productsCtrl.getProducts = async (req, res) => {
         });
         return res.status(200).send(allProducts);
       } else if (order) {
-        if (order === "A-Z"){
+        if (order === "A-Z") {
           try {
             const productsAsc = await products.sort((a, b) => {
               if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
@@ -53,7 +60,7 @@ productsCtrl.getProducts = async (req, res) => {
             res.json(productsAsc);
           } catch (error) {
             console.log(error);
-          } 
+          }
         } else if (order === "Z-A") {
           try {
             const productsDesc = await products.sort((a, b) => {
@@ -66,7 +73,6 @@ productsCtrl.getProducts = async (req, res) => {
             console.log(error);
           }
         }
-
       } else {
         res
           .status(202)

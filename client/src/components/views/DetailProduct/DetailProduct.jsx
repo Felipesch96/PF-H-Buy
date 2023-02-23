@@ -1,13 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchDetailProduct } from "../../../redux/thunks/productThunk";
+import {
+  fetchDetailProduct,
+  clearDetailProduct,
+} from "../../../redux/thunks/productThunk";
 import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import FavoriteButton from "../../Favorites/Favorites";
+import StarRating from "../../StarRating/StarRating";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -16,22 +20,32 @@ const DetailProduct = () => {
 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
-  }, [])
-  //   style: "currency",
-  //   currency: "ARS",
-/*   const calification = (item) => {
-    item.prevenDefault();
-    var cont;
-    cont = item.id[0];
-    let nombre = item.id.substring(1);
-    for (let i = 0; i < 5; i++) {
-      if (i < cont) {
-        document.getElementById(i + 1 + nombre).style.color = "orange";
-      } else {
-        document.getElementById(i + 1 + nombre).style.color = "black";
-      }
-    }
-  }; */
+    return () => {
+      dispatch(clearDetailProduct());
+    };
+  }, [dispatch, id]);
+  const formater = new Intl.NumberFormat("en");
+
+  ///estado local para la calificacion
+  const [value, setValue] = useState(detailProduct.score);
+  // const value = ;
+
+  //
+  const promedio = (detailProduct.score + value) / 2;
+  //
+  const labels = {
+    0.5: "Useless",
+    1: "Useless+",
+    1.5: "Poor",
+    2: "Poor+",
+    2.5: "Ok",
+    3: "Ok+",
+    3.5: "Good",
+    4: "Good+",
+    4.5: "Excellent",
+    5: "Excellent+",
+  };
+
   return (
     <div className="container">
       <div class="abs-center m-4">
@@ -48,28 +62,33 @@ const DetailProduct = () => {
               <div class="col-7 col-sm-8">
                 <div class="card-body">
                   <h2 class="card-title">{detailProduct.name}</h2>
-                  <p class="card-text">Stock : {detailProduct.stock}</p>
-                  <h4
-                    class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
-                    style={{
-                      textAlign: "center",
-                      display: "inline-block",
-                    }}
-                  >
-                    <i class="bi bi-currency-dollar"></i>
-                    {/* {formater.format(detailProduct.price)} */}
-                  </h4>
-                  <div class="container">
+                  <div>
+                    <span class="card-text">Stock :</span>{" "}
+                    {detailProduct.stock ? (
+                      <span class="text-success">{detailProduct.stock}</span>
+                    ) : (
+                      <span class="text-danger">off</span>
+                    )}
+                  </div>
+                  <div class="mt-1">
+                    <h4
+                      class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
+                      style={{
+                        textAlign: "center",
+                        display: "inline-block",
+                      }}
+                    >
+                      <i class="bi bi-currency-dollar"></i>
+                      {formater.format(detailProduct.price)}
+                    </h4>
+                  </div>
+                  <div class="mt-1">
                     <p class="card-text mb-1">
                       Qualification: {detailProduct.score} ☆
                     </p>
-
-                    <Rating
-                      name="half-rating-read"
-                      defaultValue={detailProduct.score}
-                      precision={0.5}
-                      readOnly
-                    />
+                    <div class="container">
+                      <StarRating score={detailProduct.score} />
+                    </div>
                   </div>
                   <p class="card-text">
                     <span class="text-muted">Last updated 3 mins ago</span>
@@ -83,7 +102,7 @@ const DetailProduct = () => {
                     <span class="p-1">Add to Cart </span>
                   </a>
                   <a href="#">
-                  <FavoriteButton class="fa-regular fa-heart"/>
+                    <FavoriteButton class="fa-regular fa-heart" />
                   </a>
                 </div>
               </div>
@@ -192,31 +211,9 @@ const DetailProduct = () => {
               >
                 <p class="card-text text-center m-3">
                   <div class="container">
-                    <Box
-                      sx={{
-                        "& > legend": { mt: 2 },
-                      }}
-                    >
-                      <Typography component="legend">
-                        Califica el Producto:
-                      </Typography>
-                      <Rating
-                        name="simple-controlled"
-                        // value={value}
-                        onChange={(event, newValue) => {
-                          // setValue(newValue);
-                        }}
-                      />
-                      <div>
-                        <Typography component="legend">Puntuacion</Typography>
-                        <Rating 
-                        name="read-only" 
-                        // value={value} 
-                        readOnly 
-                        />
-                      </div>
-                    </Box>
-                    <Button variant="contained">Send</Button>
+                    <span class="text-muted">
+                      No reviews about the product ...
+                    </span>
                   </div>
                 </p>
               </div>

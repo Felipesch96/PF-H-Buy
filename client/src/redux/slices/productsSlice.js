@@ -51,9 +51,9 @@ export const productsSlice = createSlice({
     detailProduct: (state, { payload }) => {
       state.detailproduct = payload;
     },
-    // clearDetail: (state) => {
-    //   state.detailproduct = {};
-    // },
+    clearDetail: (state) => {
+      state.detailproduct = {};
+    },
     filterByName: (state, { payload }) => {},
   },
 });
@@ -65,5 +65,6 @@ export const {
   orderByPrice,
   orderByReviews,
   detailProduct,
+  clearDetail,
   setFilter,
 } = productsSlice.actions;
