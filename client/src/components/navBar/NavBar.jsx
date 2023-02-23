@@ -42,7 +42,6 @@ const NavBar = () => {
         <div class="container-fluid d-flex justify-content-center ">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            
           </button>
 
           <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
@@ -54,13 +53,13 @@ const NavBar = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item text-end justify-content-center ">
-                <Link className="nav-link mt-1 letras" to="/products">
+              <li className="nav-item">
+                <Link className="nav-link mt-1" to="/products">
                   Products
                 </Link>
               </li>
-              <li className="nav-item text-end">
-                <Link className="nav-link mt-1 letras" to="/about">
+              <li className="nav-item">
+                <Link className="nav-link mt-1" to="/about">
                   About
                 </Link>
               </li>
@@ -88,7 +87,7 @@ const NavBar = () => {
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
 
               <li>
-                <div class="btn-group text-end">
+                <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-square"></i>
                   </button>
@@ -116,13 +115,9 @@ const NavBar = () => {
                         </li> */}
                       </ul>
                   }
-
-
                 </div>
-
               </li>
             </ul>
-            </div>
           </div>
         </div>
       </nav>
