@@ -1,0 +1,30 @@
+.contenedor-products{
+  border: 1px solid black;
+  height: fit-content;
+  /* align-items: center;
+  justify-content: space-between; */
+  flex-direction: row;
+}
+
+.contenedor-products button{
+width: 1.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.grid{
+  /* width: 100%; */
+  display: grid;
+
+  
+}
+
+.tarjeta{
+  height: fit-content;
+  margin: 5px;
+}
+
+.card-body img{
+  height: fit-;
+}

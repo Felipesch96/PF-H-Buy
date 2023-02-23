@@ -1,3 +1,7 @@
 card mb-3{
     background-color: aqua;
 }
+
+.tarjeta{
+    border: 1px solid black;
+}
