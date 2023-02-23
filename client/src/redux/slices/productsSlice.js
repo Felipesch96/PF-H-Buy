@@ -52,9 +52,9 @@ export const productsSlice = createSlice({
     detailProduct: (state, { payload }) => {
       state.detailproduct = payload;
     },
-    // clearDetail: (state) => {
-    //   state.detailproduct = {};
-    // },
+    clearDetail: (state) => {
+      state.detailproduct = {};
+    },
     filterByName: (state, { payload }) => {},
     setError: (state, { payload }) => {
       state.error = payload;
@@ -69,6 +69,7 @@ export const {
   orderByPrice,
   orderByReviews,
   detailProduct,
+  clearDetail,
   setFilter,
   setError  
 } = productsSlice.actions;

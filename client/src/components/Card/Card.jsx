@@ -5,6 +5,7 @@ import Rating from "@mui/material/Rating";
 import "./Card.css";
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
+  //comentariosss
 
   return (
     <div class="row g-0 tarjeta">

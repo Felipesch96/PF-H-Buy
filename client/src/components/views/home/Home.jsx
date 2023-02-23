@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import CarouselProducts from "./carousels/products/CarouselProducts";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
 import "./Home.css";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch, useSelector } from "react-redux";
-import { newGoogleUser } from "../../../redux/thunks/userThunk";
 
 // const CarrouselImg = styled.img`
 //   width: 100%;
