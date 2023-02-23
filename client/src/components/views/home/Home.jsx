@@ -1,16 +1,17 @@
-import styled from "styled-components";
 import { useState, useEffect } from "react";
-import Carousel from "../home/Carousel";
+import CarouselProducts from "./carousels/products/CarouselProducts";
+import CarouselBanner from "./carousels/banner/CarouselBanner";
+import "./Home.css"
 
-const CarrouselImg = styled.img`
-  width: 100%;
-  height: 500px;
-  opacity: 0;
-  transition: 0.5s;
-  &.loaded {
-    opacity: 1;
-  }
-`;
+// const CarrouselImg = styled.img`
+//   width: 100%;
+//   height: 500px;
+//   opacity: 0;
+//   transition: 0.5s;
+//   &.loaded {
+//     opacity: 1;
+//   }
+// `;
 
 const Home = () => {
   const images = ["baner1.jpg", "baner2.jpg", "baner0.jpg"];
@@ -29,8 +30,8 @@ const Home = () => {
           ? selectedIndex + 1
           : 0
         : condition
-        ? selectedIndex - 1
-        : images.length - 1;
+          ? selectedIndex - 1
+          : images.length - 1;
       setSelectedImages(images[nextIndex]);
       setSelectedIndex(nextIndex);
     }, 500);
@@ -44,18 +45,17 @@ const Home = () => {
   });
 
   return (
-    <div>
-      <a href="/products">
-        <CarrouselImg
-          src={require(`../landingPage/media/baner1.jpg`)}
-          alt="no funciona"
-          className={loaded ? "loaded" : ""}
-          onLoad={() => setLoaded(true)}
-        />
-      </a>
+    <div className="home">
+      <div className="carousel-banner">
+        <CarouselBanner />
+      </div>
+      <hr />
       <br />
       <h1 className="text-center">Recomendados</h1>
-      <Carousel />
+      <div class="container-fluid carousel-productos">
+        <CarouselProducts />
+
+      </div>
       <hr />
       <div className="text-center">
         <h1>¿Quieres ver mas productos?</h1>
