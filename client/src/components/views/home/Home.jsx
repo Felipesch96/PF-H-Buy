@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import CarouselProducts from "./carousels/products/CarouselProducts";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
-import "./Home.css"
+import "./Home.css";
 
 // const CarrouselImg = styled.img`
 //   width: 100%;
@@ -30,8 +30,8 @@ const Home = () => {
           ? selectedIndex + 1
           : 0
         : condition
-          ? selectedIndex - 1
-          : images.length - 1;
+        ? selectedIndex - 1
+        : images.length - 1;
       setSelectedImages(images[nextIndex]);
       setSelectedIndex(nextIndex);
     }, 500);
@@ -54,7 +54,6 @@ const Home = () => {
       <h1 className="text-center">Recomendados</h1>
       <div class="container-fluid carousel-productos">
         <CarouselProducts />
-
       </div>
       <hr />
       <div className="text-center">
