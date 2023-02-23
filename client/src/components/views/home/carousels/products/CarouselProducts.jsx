@@ -61,21 +61,22 @@ const CarouselProducts = () => {
   return (
     <div className="d-grid gap-3 d-flex contenedor-products">
 
-      <button class="btn btn-primary box" type="button" onClick={previous}>Previos</button>
-      {cardsCurrent.map((p) => {
-        return (
-          <div class="box">
-            <CarouselCard
-              _id={p._id}
-              img={p.img}
-              name={p.name}
-              score={p.score}
-            />
-          </div>
-        );
-      })}
-
-      <button class="btn btn-primary box" type="button" onClick={next}>Next</button>
+      <button class="btn btn-primary box" type="button" onClick={previous}>{"<"}</button>
+      <div class="d-flex justify-content-center align-items-center">
+        {cardsCurrent.map((p) => {
+          return (
+            <div class="box">
+              <CarouselCard
+                _id={p._id}
+                img={p.img}
+                name={p.name}
+                score={p.score}
+              />
+            </div>
+          );
+        })}
+      </div>
+      <button class="btn btn-primary box" type="button" onClick={next}>{">"}</button>
     </div>
   )
 };

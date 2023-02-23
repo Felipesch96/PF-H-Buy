@@ -6,23 +6,15 @@ const ProductsPage = () => {
 
 
 	return (
-		<div>
-			<section class="productsPage">
-				<div class="container-fluid text-center">
-					<div class="row">
-						<div class="col-12 col-md-3 ">
-							<Filters />
-
-						</div>
-						<div class="col-8">
-						<Cards />
-
-						</div>
-
-					</div>
+		<div class="d-flex justify-content-center">
+			<div class="row">
+				<div class="col-9 col-md-3">
+					<Filters />
 				</div>
-
-			</section>
+				<div class="col-12 col-sm-9">
+					<Cards />
+				</div>
+			</div>
 		</div>
 	)
 };
