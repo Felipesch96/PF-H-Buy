@@ -16,24 +16,24 @@ const Filters = () => {
   const [order, setOrder] = useState();
 
   useEffect(() => {
-    setFilterByCat(filter);
-    dispatch(fetchCategories());
-  }, [dispatch, filter]);
+      setFilterByCat(filter);
+      dispatch(fetchCategories());
+    }, [dispatch, filter]);
 
-  const productByName = useSelector((state) => state.product.filtered);
-  // console.log(productByName);
+    const productByName = useSelector((state) => state.product.filtered);
+    // console.log(productByName);
 
-  async function submitSearch(e) {
-    e.preventDefault();
-    dispatch(fetchSearch(searchValue));
-  }
+    async function submitSearch(e) {
+      e.preventDefault();
+      dispatch(fetchSearch(searchValue));
+    }
 
-  function handleChangeSearch(e) {
-    setsearchValue(e.target.value);
-  }
+    function handleChangeSearch(e) {
+      setsearchValue(e.target.value);
+    }
 
-  function handleOrderInput(e) {
-    // dispatch(getProductsByOrder(e.target.value));
+    function handleOrderInput(e) {
+      // dispatch(getProductsByOrder(e.target.value));
   }
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));

@@ -89,10 +89,7 @@ export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1
   return async function (dispatch) {
     try {
-      let productsByName = await axios.get(
-        `http://localhost:3001/products?name=${name}`,
-        {}
-      );
+      let productsByName = await axios.get(`http://localhost:3001/products?name=${name}`);
       dispatch(setProducts(productsByName));
     } catch (error) {
       dispatch(setError(error.message));
