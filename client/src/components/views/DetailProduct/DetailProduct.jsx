@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchDetailProduct,
@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import StarRating from "../../StarRating/StarRating";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,26 @@ const DetailProduct = () => {
     };
   }, [dispatch, id]);
   const formater = new Intl.NumberFormat("en");
-  const [value, setValue] = React.useState(1);
 
+  ///estado local para la calificacion
+  const [value, setValue] = useState(detailProduct.score);
+  // const value = ;
+
+  //
   const promedio = (detailProduct.score + value) / 2;
+  //
+  const labels = {
+    0.5: "Useless",
+    1: "Useless+",
+    1.5: "Poor",
+    2: "Poor+",
+    2.5: "Ok",
+    3: "Ok+",
+    3.5: "Good",
+    4: "Good+",
+    4.5: "Excellent",
+    5: "Excellent+",
+  };
 
   return (
     <div className="container">
@@ -67,13 +85,9 @@ const DetailProduct = () => {
                     <p class="card-text mb-1">
                       Qualification: {detailProduct.score} ☆
                     </p>
-
-                    <Rating
-                      name="half-rating-read"
-                      defaultValue={detailProduct.score}
-                      precision={0.5}
-                      readOnly
-                    />
+                    <div class="container">
+                      <StarRating score={detailProduct.score} />
+                    </div>
                   </div>
                   <p class="card-text">
                     <span class="text-muted">Last updated 3 mins ago</span>
@@ -193,42 +207,9 @@ const DetailProduct = () => {
               >
                 <p class="card-text text-center m-3">
                   <div class="container">
-                    <Box
-                      sx={{
-                        "& > legend": { mt: 2 },
-                      }}
-                    >
-                      <Typography component="legend">
-                        Califica el Producto:
-                      </Typography>
-                      <Rating
-                        name="simple-controlled"
-                        value={value}
-                        onChange={(event, newValue) => {
-                          setValue(newValue);
-                        }}
-                      />
-                      <Typography component="legend">
-                        Promedio del Producto:{promedio}
-                      </Typography>
-                      <div class="input-group mb-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="Recipient's username"
-                          aria-label="Recipient's username"
-                          aria-describedby="basic-addon2"
-                        />
-                        <div class="input-group-append">
-                          <button
-                            class="btn btn-outline-secondary"
-                            type="button"
-                          >
-                            Send
-                          </button>
-                        </div>
-                      </div>
-                    </Box>
+                    <span class="text-muted">
+                      No reviews about the product ...
+                    </span>
                   </div>
                 </p>
               </div>
