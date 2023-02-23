@@ -1,5 +1,4 @@
 const User = require("../../../schemas/Users");
-const Fav = require("../../../schemas/Favorites");
 const bcryptjs = require("bcryptjs");
 const Users = require("../../../schemas/Users");
 const jwt = require("../../../helpers/createJwt");

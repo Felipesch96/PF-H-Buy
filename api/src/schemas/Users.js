@@ -17,15 +17,6 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
-  favorites: {
-    type: mongoose.Types.ObjectId,
-    ref: "Favorites",
-  },
-  userType: {
-    type: String,
-    enum: ["buyer", "seller", "admin"],
-    default: "buyer",
-  },
   isActive: {
     type: Boolean,
     default: true,
@@ -34,6 +25,10 @@ const users = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Address",
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 module.exports = mongoose.model("Users", users);
