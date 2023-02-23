@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const products = require("./routes/products.router");
 const users = require("./routes/users.router");
 const categories = require("./routes/categories.router");
+const favorites = require("./routes/favorites.router");
+const cart = require("./routes/cart.router");
 
 require("./db.js");
 
@@ -30,6 +32,8 @@ server.use((req, res, next) => {
 server.use("/products", products);
 server.use("/users", users);
 server.use("/categories", categories);
+server.use("/favorites", favorites);
+server.use("/cart", cart);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

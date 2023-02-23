@@ -2,26 +2,29 @@ const mongoose = require("mongoose");
 
 const Cart = mongoose.Schema(
   {
-    quantity: {
-      type: Number,
-      required: true,
-    },
     status: {
       type: String,
-      enum: ["in Process", "sold", "delivered"],
+      enum: ["in process", "sold", "delivered"],
       default: "in Process",
+      require: true,
     },
     product_id: {
       type: mongoose.Types.ObjectId,
-      ref: "Product",
+      ref: "Products",
+      require: true,
     },
     seller_id: {
       type: mongoose.Types.ObjectId,
-      ref: "Product",
+      ref: "Users",
+      require: true,
     },
     buyer_id: {
       type: mongoose.Types.ObjectId,
       ref: "Users",
+      require: true,
+    },
+    quantity: {
+      type: Number,
     },
   },
   { timestamps: true }
