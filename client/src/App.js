@@ -8,6 +8,7 @@ import ProfileComponent from './components/views/profiles/profileComponent/Profi
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
 import SignUp from "./components/views/signUp/SignUp";
 import { Login } from "./components/views/profiles/login";
+import { ShoppingCart } from "./components/views/shoppingCart";
 
 const App =()=>{
 
@@ -23,6 +24,7 @@ const App =()=>{
           <Route exact path="/products/:id" component={DetailProduct} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/shoppingCart" component={ShoppingCart} />
         </Switch>
         <Footer />
       </Router>

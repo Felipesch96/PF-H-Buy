@@ -47,7 +47,7 @@ const Home = () => {
     <div>
       <a href="/products">
         <CarrouselImg
-          src={require(`../landingPage/media/${selectedImages}`)}
+          src={require(`../LandingPage/media/baner1.jpg`)}
           alt="no funciona"
           className={loaded ? "loaded" : ""}
           onLoad={() => setLoaded(true)}

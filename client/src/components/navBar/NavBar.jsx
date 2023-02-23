@@ -6,11 +6,13 @@ import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
 import { getProductsByName } from "../../redux/thunks/productThunk";
+import { CartModal } from "../cartModal";
 
 
 const NavBar = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
+  const {amountOfItems} = useSelector(state => state.cart)
   console.log(user);
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
@@ -45,7 +47,7 @@ const NavBar = () => {
             
           </button>
           <a href="/">
-          <img src={require("../views/landingPage/media/logoh.png")} style={{width:"50px"}} alt="" />
+          <img src={require("../views/LandingPage/media/logoh.png")} style={{width:"50px"}} alt="" />
           </a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
           <div>
@@ -84,6 +86,10 @@ const NavBar = () => {
               <li className="nav-item">
 
               </li>
+              <li className="nav-link mt-1">
+                          <div>{amountOfItems}</div>
+                          <CartModal  />
+                        </li>
               <li>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,7 +103,7 @@ const NavBar = () => {
                             Profile
                           </Link>
                         </li>
-                        <li>...</li>
+                      
                         <li>...</li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><Logout /></li>

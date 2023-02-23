@@ -7,12 +7,15 @@ import { Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import { addToCart } from "../../../redux/slices/cartSlice";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const detailProduct = useSelector((state) => state.product.detailproduct);
-
+  const {totalPrice, cartList} = useSelector((state) => state.cart)
+  console.log('items',cartList)
+ 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
   }, [])
@@ -79,7 +82,7 @@ const DetailProduct = () => {
                     <span class="p-1">Buy product </span>
                   </a>
                   <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
-                    <span class="p-1">Add to Cart </span>
+                    <button onClick={()=> dispatch(addToCart(detailProduct))} class="p-1">Add to Cart </button>
                   </a>
                 </div>
               </div>
