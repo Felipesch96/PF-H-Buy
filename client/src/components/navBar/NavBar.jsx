@@ -65,27 +65,25 @@ const NavBar = () => {
                 <button class="btn btn-primary" type="submit" onClick={(e) => searchHandler(e)}>Search</button>
               </form>
             </div>
-            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
-              <li className="nav-item" style={{marginLeft:"950px"}}>
+            <div className="d-flex justify-content-md-end">
+            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5">
+              <li className="nav-item text-end">
                 <Link className="nav-link mt-1 letras" to="/">
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item text-end justify-content-center ">
                 <Link className="nav-link mt-1 letras" to="/products">
                   Products
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item text-end">
                 <Link className="nav-link mt-1 letras" to="/about">
                   About
                 </Link>
               </li>
-              <li className="nav-item">
-
-              </li>
               <li>
-                <div class="btn-group">
+                <div class="btn-group text-end">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-person-square"></i>
                   </button>
@@ -137,6 +135,7 @@ const NavBar = () => {
                 </Link> */}
               </li>         
             </ul>
+            </div>
           </div>
         </div>
       </nav>
