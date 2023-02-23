@@ -36,9 +36,8 @@ const NavBar = () => {
     getProductsByName(serachNavStorage)
   }
 
-  return (
-    <div>
-      <nav class="navbar navbar-expand-lg border-bottom barra-navegador"  >
+  return (<div>
+        <nav class="navbar navbar-expand-lg border-bottom barra-navegador"  >
         <div class="container-fluid d-flex justify-content-center ">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -122,9 +121,9 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-        </div>
-      </nav>
-    </div >
+          </div>
+        </nav>
+      </div>
   )
 };
 
