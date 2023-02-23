@@ -12,7 +12,7 @@ const Card = (props) => {
       <div class="col-md-12">
         <img 
           src={props.img}
-          class="img-fluid rounded-start mt-2 bg-light"
+          class="img-fluid rounded-start bg-light"
           alt="..."
           style={{ height: "230px" }}
         />

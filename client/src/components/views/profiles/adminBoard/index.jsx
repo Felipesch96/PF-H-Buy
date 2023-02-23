@@ -16,11 +16,11 @@ export const AdminBoard = () => {
   const dispatch = useDispatch();
 
   const { products, categories } = useSelector((state) => state.product);
-
+  
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
-  }, [dispatch, JSON.stringify(products)]);
+  }, []);
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
