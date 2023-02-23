@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
-
+import FavoriteButton from "../../../../Favorites/Favorites";
 
 const CarouselCard = (props) => {
-
   return (
     <Link class="card tarjeta" to={`/products/${props._id}`}>
       <div class="card-body">
         <p class="card-title">{props.name}</p>
+        <FavoriteButton/>
         <Rating
           style={{ fontSize: "17px" }}
           name="half-rating-read"
@@ -24,8 +24,7 @@ const CarouselCard = (props) => {
         />
       </div>
     </Link>
-
-  )
+  );
 };
 
 export default CarouselCard;
