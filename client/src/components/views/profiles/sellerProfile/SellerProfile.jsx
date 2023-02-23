@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductModal } from "../../../modals/product";
 import CreateProductFrom from "../../../modals/product/CreateProductForm";
 import AccountInfo from "../accountInfo/AccountInfo";
@@ -6,6 +7,10 @@ import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 
 
 const SellerProfile = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userLocal);
+
+
 
   const [productModal, setProductModal] = useState(false);
 
@@ -45,7 +50,7 @@ const SellerProfile = () => {
                             <li><a class="dropdown-item" href="#">Sale 3</a></li>
                           </ul>
                         </div>
-                      </span> (cant)
+                      </span> 
                     </p>
                   </div>
                 </div>
@@ -65,7 +70,7 @@ const SellerProfile = () => {
                             <li><a class="dropdown-item" href="#">Claim 3</a></li>
                           </ul>
                         </div>
-                      </span> (cant)
+                      </span> 
                     </p>
                   </div>
                 </div>
@@ -85,7 +90,7 @@ const SellerProfile = () => {
                             <li><a class="dropdown-item" href="#">Question 3</a></li>
                           </ul>
                         </div>
-                      </span> (cant)
+                      </span> 
                     </p>
                   </div>
                 </div>

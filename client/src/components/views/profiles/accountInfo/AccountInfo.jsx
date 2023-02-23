@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 const AccountInfo = () => {
 
 const usuario = useSelector((state) => state.user.userLocal);
-console.log(usuario);
 
   return (
     <div>
@@ -16,7 +15,7 @@ console.log(usuario);
               <p class="mb-0">Full Name</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{`${usuario.name} ${usuario.surname}`}</p>
+              <p class="text-muted mb-0">{`${usuario.name} ${usuario.lastName}`}</p>
             </div>
           </div>
           <hr />
@@ -43,7 +42,7 @@ console.log(usuario);
               <p class="mb-0">Address</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.adress}</p>
+              <p class="text-muted mb-0">{usuario.address}</p>
             </div>
           </div>
         </div>

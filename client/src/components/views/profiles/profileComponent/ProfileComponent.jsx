@@ -3,15 +3,11 @@ import { useSelector } from "react-redux";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfileComponent = () => {
-  const { userLocal } = useSelector((state) => state.user);
-  console.log(userLocal);
-  const { user } = useAuth0();
+  
+  const userLocal = useSelector((state) => state.user.userLocal);
 
-  const isSeller = 1;
-  const isAdmin = 1;
   const [userType, setUserType] = useState("buyer");
 
   const buyerButton = () => {
@@ -22,10 +18,8 @@ const ProfileComponent = () => {
     setUserType("seller");
   };
 
-  const adminButton = () => {
-    setUserType("admin");
-  };
-  // const user = useSelector((state) => state.user.userLocal);
+
+  
 
   return (
     <div>
@@ -41,49 +35,49 @@ const ProfileComponent = () => {
                     class="rounded-circle img-fluid"
                     style={{ width: "150px;" }}
                   />
-                  <h5 class="my-3">{`${user?.given_name} ${user.family_name}`}</h5>
-                  <p class="text-muted mb-1">
-                    {user?.userType} aca deberia ir el userType
-                  </p>
+                  <h5 class="my-3">{`${userLocal?.name} ${userLocal.lastName}`}</h5>
                   <div class="d-flex justify-content-center mb-2">
-                    {isSeller && userType !== "buyer" ? (
+                    
+                    {!userLocal.isAdmin && userType !== "buyer" ? (
+                      <span>
+                        <h3>SELLER</h3>
                       <button
                         type="button"
                         class="btn btn-outline-primary ms-1"
                         onClick={() => buyerButton()}
                       >
-                        Buyer
+                        Switch to buyer
                       </button>
+                      </span>
                     ) : null}
-                    {isSeller && userType !== "seller" ? (
-                      <button
+                    {!userLocal.isAdmin && userType !== "seller" ? (
+                      <span>
+                        <h3>BUYER</h3>
+                        <button
                         type="button"
                         class="btn btn-outline-primary ms-1"
                         onClick={() => sellerButton()}
                       >
-                        Seller
+                        Switch to seller
                       </button>
+                      </span>
                     ) : null}
-                    {isAdmin && userType !== "admin" ? (
-                      <button
-                        type="button"
-                        class="btn btn-outline-primary ms-1"
-                        onClick={() => adminButton()}
-                      >
+                    {userLocal.isAdmin? (
+                      <h2>
                         Admin
-                      </button>
+                      </h2>
                     ) : null}
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-8">
-              {userType === "buyer" ? (
-                <ClientProfile />
+              {userLocal.isAdmin? (
+                <AdminBoard/>
               ) : userType === "seller" ? (
                 <SellerProfile />
               ) : (
-                <AdminBoard />
+                <ClientProfile  />
               )}
             </div>
           </div>
