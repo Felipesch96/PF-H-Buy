@@ -10,7 +10,7 @@ import "./NavBar.css";
 const NavBar = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
-  console.log(user);
+  // console.log(user);
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
   const [searchValue, setsearchValue] = useState(false);
@@ -27,7 +27,7 @@ const NavBar = () => {
   const [serachNavStorage, setSearchNavStorage] = useState("");
   function handleSearchInput(e) {
     setSearchNavStorage(e.target.value);
-    console.log(serachNavStorage);
+    // console.log(serachNavStorage);
   }
 
   const searchHandler = (e) => {

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 
 
 const ClientProfile = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.userLocal);
+  const favs = useSelector((state) => state.fav.favList)
+  useEffect(()=>{
+    if(!favs.length) dispatch(getFavs(user._id));
+  },[favs.length])
+
 
 
   return (
@@ -28,13 +38,11 @@ const ClientProfile = () => {
                           </button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Purchase 1</a></li>
-                            <li><a class="dropdown-item" href="#">Purchase 2</a></li>
-                            <li><a class="dropdown-item" href="#">Purchase 3</a></li>
                           </ul>
                         </div>
                                                 
                       </span>
-                      (cant) 
+                       
                     </p>
                     
                   </div>
@@ -50,12 +58,18 @@ const ClientProfile = () => {
                             Favorites
                           </button>
                           <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Fav 1</a></li>
-                            <li><a class="dropdown-item" href="#">Fav 2</a></li>
-                            <li><a class="dropdown-item" href="#">Fav 3</a></li>
+                          {favs.map((element) => { 
+                              return(
+                                <ul key={element._id}>
+                                  <li><h3><Link to={`/products/${element.product_id?._id}`}>{element.product_id?.name}</Link></h3></li>
+                                  {/* <li><img src={element.product_id?.img} alt="" /></li> */} 
+                                  <li><h4>${element.product_id?.price}</h4></li>
+                                </ul>                                
+                              )
+                            })}
                           </ul>
                         </div>
-                      </span> (cant)
+                      </span> 
                     </p>
                   </div>
                 </div>
@@ -75,7 +89,7 @@ const ClientProfile = () => {
                             <li><a class="dropdown-item" href="#">Product 3</a></li>
                           </ul>
                         </div>
-                      </span> (cant)
+                      </span> 
                     </p>
                   </div>
                 </div>
@@ -95,7 +109,7 @@ const ClientProfile = () => {
                             <li><a class="dropdown-item" href="#">Claim 3</a></li>
                           </ul>
                         </div>
-                      </span> (cant)
+                      </span> 
                     </p>
                   </div>
                 </div>

@@ -13,6 +13,10 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
+  phone: {
+    type: String,
+    require: true,
+  },
   Image: {
     type: String,
   },
