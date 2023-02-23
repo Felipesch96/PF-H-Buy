@@ -1,32 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const fetchFromLocalStorage = () => {
-//     let cart = localStorage.getItem('cart');
-//     if(cart){
-//         return localStorage.getItem('cart');
-//     } else {
-//         return [];
-//     }
-// }
 export const cartSlice = createSlice({
     name: 'cartSlice',
     initialState: {
         cartList: [],
-        amountOfItems: 0,
-        totalPrice: 0
+        amountOfItems: 0
     },
     reducers: {
         addToCart: (state, {payload}) => {
-            state.cartList = [...state.cartList, payload]
-        },
-        removeFromCart: (state, {payload}) => {
-            state.cartList = state.cartList.filter(itm => itm._id !== payload)
-        },
-        removeAll: (state) => {
+            const itemInCart = state.cartList.find((item) => item._id === payload._id);
+            if(itemInCart) {
+              itemInCart.quantity++;
+              state.amountOfItems++
+            } else {
+              state.cartList.push({ ...payload, quantity: 1 });
+              state.amountOfItems++
+            }
+          },
+          incrementQuantity: (state, {payload}) => {
+            const item = state.cartList.find((item) => item._id === payload);
+            item.quantity++;
+            state.amountOfItems++
+          },
+          decrementQuantity: (state, {payload}) => {
+            const item = state.cartList.find((item) => item._id === payload);
+            if (item.quantity === 1) {
+              item.quantity = 1
+            } else {
+              item.quantity--;
+              state.amountOfItems--
+            }
+          }, 
+          removeFromCart: (state, {payload}) => {
+            console.log('lo que llega', payload)
+            console.log(state.cartList.filter(item => item._id !== payload.id))
+            state.cartList = state.cartList.filter(item => item._id !== payload.id)
+            state.amountOfItems= state.amountOfItems - payload.quantity >= 0 ? state.amountOfItems - payload.quantity : 0
+          },
+          removeAll: (state) => {
             state.cartList = [];
-            localStorage.setItem('cart',state.cartList);
+            state.amountOfItems = 0
+           
         }
     }
 });
 
-  export const { addToCart, removeFromCart, removeAll } = cartSlice.actions;
+  export const { addToCart, incrementQuantity, decrementQuantity, removeFromCart, removeAll } = cartSlice.actions;

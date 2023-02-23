@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
-import { removeAll, removeFromCart } from "../../redux/slices/cartSlice"
+import { decrementQuantity, incrementQuantity, removeAll, removeFromCart } from "../../redux/slices/cartSlice"
 
-export const CartCard = ({name, id}) => {
+export const CartCard = ({name, id, quantity, price}) => {
    const dispatch =  useDispatch()
     return(
         <main>
             <h1>{name}</h1>
-            <button onClick={() => dispatch(removeFromCart(id))}>Remove one item</button>
-            <button onClick={() => dispatch(removeAll())}>Remove all items</button>
+            <h5> price: {price * quantity}</h5>
+            <div >
+          <button onClick={() => dispatch(incrementQuantity(id))}>+</button>
+            <p>{quantity}</p>
+          <button onClick={() => dispatch(decrementQuantity(id))}>-</button>
+        </div>
+            <button onClick={() => dispatch(removeFromCart({id, quantity}))}>Remove item</button>
         </main>
     )
 }
