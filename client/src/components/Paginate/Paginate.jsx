@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Paginate.css"
 
 const Paginate = ({ currentPage, setCurrentPage, max }) => {
   const [input, setInput] = useState(1);
@@ -43,7 +44,7 @@ const Paginate = ({ currentPage, setCurrentPage, max }) => {
 
   return (
     <nav aria-label="Search results pages ">
-      <ul class="pagination justify-content-center mt-3">
+      <ul class="pagination justify-content-center align-items-center">
         <li class="page-item ">
           <button
             class="btn btn-primary"
@@ -63,8 +64,10 @@ const Paginate = ({ currentPage, setCurrentPage, max }) => {
             value={input}
             autoComplete="off"
           />
-          <span class="text">of {max}</span>
         </div>
+        <li>
+          <span class="text">of {max}</span>
+        </li>
         <li class="page-item">
           <button
             class="btn  btn-primary"
