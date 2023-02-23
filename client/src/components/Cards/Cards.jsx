@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../redux/thunks/productThunk";
+import ViewProductButton from "../buttons/ViewPoroduct/ViewProductButton";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -41,59 +42,39 @@ const Cards = () => {
       <div class="row g-3 row-cols-3">
         {filters.length
           ? filterCurrent.map((p) => {
-              return (
-                <div class="col">
-                  <div class="card mb-3">
-                    <Card
-                      key={p._id}
-                      img={p.img}
-                      name={p.name}
-                      price={p.price}
-                      score={p.score}
-                      category={p.category}
-                    />
-                    <div class="card-body text-center-body">
-                      <Link to={`/products/${p._id}`}>
-                        <a
-                          class="btn btn-outline-primary btn-sm"
-                          href="#"
-                          data-abc="true"
-                        >
-                          View Product
-                        </a>
-                      </Link>
-                    </div>
-                  </div>
+            return (
+              <div class="col">
+                <div class="card mb-3">
+                  <Card
+                    key={p._id}
+                    img={p.img}
+                    name={p.name}
+                    price={p.price}
+                    score={p.score}
+                    category={p.category}
+                  />
+                  <ViewProductButton _id={p._id} />
                 </div>
-              );
-            })
+              </div>
+            );
+          })
           : productsCurrent.map((p) => {
-              return (
-                <div class="col">
-                  <div class="card mb-3">
-                    <Card
-                      key={p._id}
-                      img={p.img}
-                      name={p.name}
-                      price={p.price}
-                      score={p.score}
-                      category={p.category}
-                    />
-                    <div class="card-body text-center-body">
-                      <Link to={`/products/${p._id}`}>
-                        <a
-                          class="btn btn-outline-primary btn-sm"
-                          href="#"
-                          data-abc="true"
-                        >
-                          View Product
-                        </a>
-                      </Link>
-                    </div>
-                  </div>
+            return (
+              <div class="col">
+                <div class="card mb-3">
+                  <Card
+                    key={p._id}
+                    img={p.img}
+                    name={p.name}
+                    price={p.price}
+                    score={p.score}
+                    category={p.category}
+                  />
+                  <ViewProductButton _id={p._id} />
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
       </div>
     </div>
   );

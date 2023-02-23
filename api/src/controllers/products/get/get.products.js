@@ -1,3 +1,4 @@
+const { model } = require("mongoose");
 const Product = require("../../../schemas/Products");
 
 const productsCtrl = {};
