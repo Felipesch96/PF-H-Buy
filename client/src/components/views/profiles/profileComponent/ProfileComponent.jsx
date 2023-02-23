@@ -1,10 +1,11 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { newUser } from "../../../../redux/thunks/userThunk";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
-import { useAuth0 } from "@auth0/auth0-react";
-import { newUser } from "../../../../redux/thunks/userThunk";
+
 
 
 const ProfileComponent = () => {
@@ -26,6 +27,7 @@ const ProfileComponent = () => {
   const adminButton = () =>{
     setUserType("admin");
   };
+  // const user = useSelector((state) => state.user.userLocal);
 
   useEffect(() => {
     if (user) dispatch(newUser(user))
