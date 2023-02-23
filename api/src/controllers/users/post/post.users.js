@@ -12,10 +12,10 @@ usersCtrl.loginUser = async (req, res) => {
   try {
     const user = await Users.findOne({ email });
     if (!user) {
-      res.status(404).send("email no register");
+      res.status(404).send("email not registered");
     }
     if (!user.isActive) {
-      res.status(404).send("user desactive");
+      res.status(404).send("user isn't active");
     }
     const validPassword = bcryptjs.compareSync(password, user.password);
     if (!validPassword) {
@@ -35,7 +35,7 @@ usersCtrl.createNewUser = async (req, res) => {
   const { password, email } = req.body;
   const user = await Users.findOne({ email });
   if (user) {
-    return res.send("user exist");
+    return res.send("user with that mail already exists");
   }
   try {
     const salt = bcryptjs.genSaltSync();

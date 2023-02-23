@@ -6,35 +6,33 @@ productsCtrl.getProducts = async (req, res) => {
   const { name, category, priceMin, priceMax, brand, condition } = req.query;
   try {
     if (name || category || (priceMin && priceMax) || brand || condition ) {
+      
       if (category && typeof category === "string") {
         const allProducts = await Product.find({category});
         res.status(200).send(allProducts);
+      
       } else if (name !== undefined && typeof name === "string") {
-        const allProducts = await Product.find({
-          name: name && new RegExp(name, "i"),
-        });
+        const allProducts = await Product.find({name: name && new RegExp(name, "i")});
         return res.status(200).send(allProducts);
+
       } else if (
         priceMin !== undefined &&
         priceMax !== undefined &&
         typeof priceMin === "number" &&
         typeof priceMax === "number"
       ) {
-        const allProducts = await Product.find({
-          price: hola,
-        });
+        const allProducts = await Product.find({ price: hola });
         return res.status(200).send(allProducts);
+
       } else if (brand !== undefined && typeof brand === "string") {
-        const allProducts = await Product.find({
-          brand: brand,
-        });
+        const allProducts = await Product.find({ brand: brand });
         return res.status(200).send(allProducts);
+        
       } else if (condition !== undefined && typeof condition === "string") {
-        const allProducts = await Product.find({
-          condition: condition,
-        });
+        const allProducts = await Product.find({ condition: condition });
         return res.status(200).send(allProducts);
       } 
+      
     } else {
       const allProducts = await Product.find();
       allProducts.length
