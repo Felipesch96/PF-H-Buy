@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import CarouselProducts from "./carousels/products/CarouselProducts";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
-import "./Home.css"
+import "./Home.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { newGoogleUser } from "../../../redux/thunks/userThunk";
 
 // const CarrouselImg = styled.img`
 //   width: 100%;
@@ -18,6 +21,23 @@ const Home = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedImages, setSelectedImages] = useState(images[0]);
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useAuth0();
+  const { userLocal } = useSelector((state) => state.user);
+
+  function verifyAuth() {
+    if (user) {
+      if (!userLocal.email) {
+        const newUserAuth = {
+          name: user.given_name,
+          lastName: user.family_name,
+          image: user.picture,
+          email: user.email,
+        };
+        dispatch(newGoogleUser(newUserAuth));
+      }
+    }
+  }
 
   const selectNewImage = (index, images, next = true) => {
     setLoaded(false);
@@ -30,14 +50,15 @@ const Home = () => {
           ? selectedIndex + 1
           : 0
         : condition
-          ? selectedIndex - 1
-          : images.length - 1;
+        ? selectedIndex - 1
+        : images.length - 1;
       setSelectedImages(images[nextIndex]);
       setSelectedIndex(nextIndex);
     }, 500);
   };
 
   useEffect(() => {
+    verifyAuth();
     const reloj = setInterval(() => {
       selectNewImage(selectedIndex, images);
     }, 3000);
@@ -54,7 +75,6 @@ const Home = () => {
       <h1 className="text-center">Recomendados</h1>
       <div class="container-fluid carousel-productos">
         <CarouselProducts />
-
       </div>
       <hr />
       <div className="text-center">

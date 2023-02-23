@@ -5,7 +5,7 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     require: true,
   },
@@ -13,9 +13,11 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
+  Image: {
+    type: String,
+  },
   password: {
     type: String,
-    require: true,
   },
   isActive: {
     type: Boolean,
