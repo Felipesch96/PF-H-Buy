@@ -7,7 +7,7 @@ import { fetchProducts } from "../../../redux/thunks/productThunk";
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.product.filter);
-  const productos = useSelector((state) => state.product.products);
+  const error = useSelector((state) => state.product.error);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -20,12 +20,14 @@ const ProductsPage = () => {
           <Filters />
         </div>
         <div class="col-12 col-sm-9">
-          {filters.length ? (
+          {error ? (
+            <h2>{error}</h2>
+          ) : filters.length ? (
             <div class="col">
-              <Cards array={filters} />
+              <Cards />
             </div>
           ) : (
-            <Cards array={productos} />
+            <Cards />
           )}
         </div>
       </div>

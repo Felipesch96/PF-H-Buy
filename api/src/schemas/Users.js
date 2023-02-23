@@ -13,11 +13,12 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
-  Image: {
+  image: {
     type: String,
   },
   password: {
     type: String,
+    require: true,
   },
   isActive: {
     type: Boolean,
@@ -30,7 +31,7 @@ const users = mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false,
-  }
+  },
 });
 
 module.exports = mongoose.model("Users", users);

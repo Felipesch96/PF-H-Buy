@@ -4,39 +4,56 @@ import {
   setProducts,
   setCategories,
   detailProduct,
-  setSearch,
   setFilter,
+  setError,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("http://localhost:3001/products");
-    dispatch(setProducts(data));
+    try {
+      const { data } = await axios.get("http://localhost:3001/products");
+      dispatch(setProducts(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+    }
   };
 };
 
 export const fetchCategories = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("http://localhost:3001/categories");
-    dispatch(setCategories(data));
+    try {
+      const { data } = await axios.get("http://localhost:3001/categories");
+      dispatch(setCategories(data));
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
   };
 };
 
 export const fetchSearch = (value) => {
   return async (dispatch) => {
-    const { data } = await axios.get(
-      `http://localhost:3001/products?name=${value}`
-    );
-    dispatch(setFilter(data));
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/products?name=${value}`
+      );
+      dispatch(setFilter(data));
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
   };
 };
 
 export const fetchSearchProductByCtg = (type) => {
   return async function (dispatch) {
-    const { data } = await axios.get(
-      `http://localhost:3001/products?category=${type}`
-    );
-    dispatch(setFilter(data));
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/products?category=${type}`
+      );
+      dispatch(setFilter(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
   };
 };
 
@@ -56,8 +73,12 @@ export const fetchSearchProductByCtg = (type) => {
 
 export const fetchDetailProduct = (id) => {
   return async (dispatch) => {
-    const { data } = await axios.get(`http://localhost:3001/products/${id}`);
-    dispatch(detailProduct(data));
+    try {
+      const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+      dispatch(detailProduct(data));
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
   };
 };
 // export const clearDetailProduct = () => {
@@ -74,7 +95,7 @@ export function getProductsByName(name) {
       );
       dispatch(setProducts(productsByName));
     } catch (error) {
-      console.log(error);
+      dispatch(setError(error.message));
     }
   };
 }
@@ -88,7 +109,7 @@ export function getProductsByOrder(order) {
       );
       return dispatch(setProducts(productsByOrder));
     } catch (error) {
-      console.log(error);
+      dispatch(setError(error.message));
     }
   };
 }

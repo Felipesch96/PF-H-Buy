@@ -25,16 +25,33 @@ const Home = () => {
   const { user } = useAuth0();
   const { userLocal } = useSelector((state) => state.user);
 
+  useEffect(() => {
+    verifyAuth();
+    const reloj = setInterval(() => {
+      selectNewImage(selectedIndex, images);
+    }, 3000);
+    return () => clearInterval(reloj);
+  });
+
   function verifyAuth() {
     if (user) {
       if (!userLocal.email) {
-        const newUserAuth = {
-          name: user.given_name,
-          lastName: user.family_name,
-          image: user.picture,
-          email: user.email,
-        };
-        dispatch(newGoogleUser(newUserAuth));
+        if (user.given_name) {
+          const newUserAuth = {
+            name: user.given_name,
+            lastName: user.family_name,
+            image: user.picture,
+            email: user.email,
+          };
+          dispatch(newGoogleUser(newUserAuth));
+        } else {
+          const newUserAuth = {
+            name: user.nickname,
+            image: String(user.picture),
+            email: user.email,
+          };
+          dispatch(newGoogleUser(newUserAuth));
+        }
       }
     }
   }
@@ -56,14 +73,6 @@ const Home = () => {
       setSelectedIndex(nextIndex);
     }, 500);
   };
-
-  useEffect(() => {
-    verifyAuth();
-    const reloj = setInterval(() => {
-      selectNewImage(selectedIndex, images);
-    }, 3000);
-    return () => clearInterval(reloj);
-  });
 
   return (
     <div className="home">

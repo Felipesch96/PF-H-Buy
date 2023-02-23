@@ -1,18 +1,18 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Route } from "react-router-dom";
-import { fetchSearch, getProductsByName } from "../../redux/thunks/productThunk";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  fetchSearch,
+  getProductsByName,
+} from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  const { user, isAuthenticated } = useAuth0();
-  console.log(user);
-  // const user = useSelector((state) => state.user.user)
-  // console.log(user)
+  const { isAuthenticated } = useAuth0();
   const [searchValue, setsearchValue] = useState(false);
 
   function handleChangeSearch(e) {
@@ -25,10 +25,6 @@ const NavBar = () => {
   }
 
   const [serachNavStorage, setSearchNavStorage] = useState("");
-  function handleSearchInput(e) {
-    setSearchNavStorage(e.target.value);
-    console.log(serachNavStorage);
-  }
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -51,7 +47,11 @@ const NavBar = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
+          <img
+            src={require("./media/logoh.png")}
+            style={{ width: "50px" }}
+            alt=""
+          />
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
@@ -88,8 +88,6 @@ const NavBar = () => {
                           Profile
                         </Link>
                       </li>
-                      <li>...</li>
-                      <li>...</li>
                       <li>
                         <hr class="dropdown-divider" />
                       </li>
@@ -112,25 +110,26 @@ const NavBar = () => {
                 </div>
               </li>
             </ul>
-            <Route path="/products">
-              <div>
-                <form
-                  class="d-flex justify-content-center"
-                  role="search"
-                  onSubmit={submitSearch}
-                >
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search by name"
-                    name="filter-by-name"
-                    aria-label="Search"
-                    value={serachNavStorage}
-                    onChange={handleChangeSearch} />
-                  <button class="btn btn-outline-success" type="submit" onClick={(e) => searchHandler(e)}>Search</button>
-                </form>
-              </div>
-            </Route>
+            <div>
+              <form
+                class="d-flex justify-content-center"
+                role="search"
+                onSubmit={submitSearch}
+              >
+                <input
+                  class="form-control me-2"
+                  type="text"
+                  placeholder="Search by name"
+                  name="filter-by-name"
+                  aria-label="Search"
+                  onChange={handleChangeSearch}
+                />
+
+                <button class="btn btn-outline-success" type="submit">
+                  <Link to="/products">Search</Link>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </nav>
