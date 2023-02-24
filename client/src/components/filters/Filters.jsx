@@ -33,6 +33,7 @@ const Filters = () => {
   }
 
   function handleOrderInput(e) {
+    // e.preventDefault();
     // dispatch(getProductsByOrder(e.target.value));
   }
   function handleChangeType(e) {
@@ -48,7 +49,7 @@ const Filters = () => {
   //   }
   // }
   return (
-    <div>
+    <div class="container">
       <div
         id="sidebar"
         className="col-12 d-flex flex-column border max-height-sidebar py-2 text-center rounded mb-4"

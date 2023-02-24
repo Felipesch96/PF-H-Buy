@@ -7,6 +7,7 @@ import {
   setSearch,
   clearDetail,
   setFilter,
+  orderByName,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
