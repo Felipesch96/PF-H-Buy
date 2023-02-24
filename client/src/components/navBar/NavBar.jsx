@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
 import { getProductsByName } from "../../redux/thunks/productThunk";
 
 
-const NavBar = () => {
+const NavBar = ({route}) => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   console.log(user);
+
+  const [rutaHistorial, setRutaHistorial] = useState({
+    home: false,
+    products: false,
+    about: false
+  });
+
+  const location = useLocation();
+  console.log(location.pathname);
+
+  const history = useHistory();
+  console.log(history);
+
+  useEffect(() =>{
+    if(location.pathname === "/") setRutaHistorial({...rutaHistorial, home: true});
+    if(location.pathname === "/products") setRutaHistorial({...rutaHistorial, products: true});
+    if(location.pathname === "/about") setRutaHistorial({...rutaHistorial, about: true});
+  }, [location.pathname])
+
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
   const [searchValue, setsearchValue] = useState(false);
@@ -48,19 +67,19 @@ const NavBar = () => {
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/">
+                <a className={location.pathname === "/" ? "nav-link mt-1 route-flag" : "nav-link mt-1"} href="/">
                   Home
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/products">
+                <a className={location.pathname === "/products" ? "nav-link mt-1 route-flag" : "nav-link mt-1"} href="/products">
                   Products
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/about">
+                <a className={location.pathname === "/about" ? "nav-link mt-1 route-flag" : "nav-link mt-1"} href="/about">
                   About
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
 
