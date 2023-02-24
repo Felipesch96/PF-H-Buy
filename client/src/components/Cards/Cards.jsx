@@ -4,6 +4,7 @@ import Paginate from "../Paginate/Paginate";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { fetchProducts } from "../../redux/thunks/productThunk";
+import "./Cards.css"
 
 const Cards = ({ array }) => {
   const [currentPage, setCurrentPage] = useState(1);

@@ -1,8 +1,7 @@
-
-.productModal {
+.productModal-seller {
     position: absolute;
     min-height: 400px ;
-    width: 50%;
+    width: fit-content;
     background-color: #5ec59f ;
     /* top: 15px;
     left: 315px ; */
