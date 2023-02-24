@@ -26,7 +26,7 @@ export const productsSlice = createSlice({
         ? (state.filterHelper = []) && (state.filter = payload)
         : (state.filter = payload);
     },
-    setFilterdemo: (state, { payload }) => {
+    setFilterName: (state, { payload }) => {
       state.filterHelper.length
         ? (state.filterHelper = [
             ...state.filterHelper.filter((Element) =>
@@ -71,7 +71,7 @@ export const productsSlice = createSlice({
           : (state.filterHelper = [...state.filter].sort(
               (a, b) => b.name - a.name
             ));
-      } else {  
+      } else {
         payload === "A-Z"
           ? (state.filter = [...state.products].sort((a, b) => a.name - b.name))
           : (state.filter = [...state.products].sort(
@@ -80,22 +80,58 @@ export const productsSlice = createSlice({
       }
     },
     orderByPrice: (state, { payload }) => {
-      payload === "incremental"
-        ? (state.products = [...state.products].sort(
-            (a, b) => a.price - b.price
-          ))
-        : (state.products = [...state.products].sort(
-            (a, b) => b.price - a.price
-          ));
+      if (state.filterHelper.length) {
+        payload === "lower_price"
+          ? (state.filterHelper = [...state.filterHelper].sort(
+              (a, b) => a.price - b.price
+            ))
+          : (state.filterHelper = [...state.filterHelper].sort(
+              (a, b) => b.price - a.price
+            ));
+      } else if (state.filter.length) {
+        payload === "lower_price"
+          ? (state.filterHelper = [...state.filter].sort(
+              (a, b) => a.price - b.price
+            ))
+          : (state.filterHelper = [...state.filter].sort(
+              (a, b) => b.price - a.price
+            ));
+      } else {
+        payload === "lower_price"
+          ? (state.filter = [...state.products].sort(
+              (a, b) => a.price - b.price
+            ))
+          : (state.filter = [...state.products].sort(
+              (a, b) => b.price - a.price
+            ));
+      }
     },
-    orderByReviews: (state, { payload }) => {
-      payload === "incremental"
-        ? (state.products = [...state.products].sort(
-            (a, b) => a.reviews - b.reviews
-          ))
-        : (state.products = [...state.products].sort(
-            (a, b) => b.reviews - a.reviews
-          ));
+    orderByScore: (state, { payload }) => {
+      if (state.filterHelper.length) {
+        payload === "maximum_score"
+          ? (state.filterHelper = [...state.filterHelper].sort(
+              (a, b) => a.score - b.score
+            ))
+          : (state.filterHelper = [...state.filterHelper].sort(
+              (a, b) => b.score - a.score
+            ));
+      } else if (state.filter.length) {
+        payload === "maximum_score"
+          ? (state.filterHelper = [...state.filter].sort(
+              (a, b) => a.score - b.score
+            ))
+          : (state.filterHelper = [...state.filter].sort(
+              (a, b) => b.score - a.score
+            ));
+      } else {
+        payload === "maximum_score"
+          ? (state.filter = [...state.products].sort(
+              (a, b) => a.score - b.score
+            ))
+          : (state.filter = [...state.products].sort(
+              (a, b) => b.score - a.score
+            ));
+      }
     },
     clearFilter: (state) => {
       state.filterHelper.length
@@ -104,9 +140,6 @@ export const productsSlice = createSlice({
     },
     detailProduct: (state, { payload }) => {
       state.detailproduct = payload;
-    },
-    clearDetail: (state) => {
-      state.detailproduct = {};
     },
     setError: (state, { payload }) => {
       state.error = payload;
@@ -119,11 +152,11 @@ export const {
   setCategories,
   orderByName,
   orderByPrice,
-  orderByReviews,
+  orderByScore,
   detailProduct,
   clearDetail,
   setFilter,
-  setFilterdemo,
+  setFilterName,
   setError,
   clearFilter,
 } = productsSlice.actions;

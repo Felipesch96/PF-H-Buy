@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchCategories,
   fetchClearFilter,
+  fetchOrderAlphabet,
+  fetchOrderAlphabeth,
   fetchOrderInFilter,
+  fetchOrderPrice,
+  fetchOrderScore,
   fetchSearchInFilter,
   fetchSearchProductByCtg,
 } from "../../redux/thunks/productThunk";
@@ -23,8 +27,16 @@ const Filters = () => {
     dispatch(fetchSearchInFilter(search));
   }
 
-  function handleOrderInput(e) {
-    dispatch(fetchOrderInFilter(e.target.value));
+  function handleOrderAlphabet(e) {
+    dispatch(fetchOrderAlphabet(e.target.value));
+  }
+
+  function handleOrderPrice(e) {
+    dispatch(fetchOrderPrice(e.target.value));
+  }
+
+  function handleOrderScore(e) {
+    dispatch(fetchOrderScore(e.target.value));
   }
 
   function handleChangeType(e) {
@@ -83,7 +95,7 @@ const Filters = () => {
                   name="type"
                   value="A-Z"
                   id="higher"
-                  onChange={handleOrderInput}
+                  onChange={handleOrderAlphabet}
                 />
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;A-Z</label>
               </div>
@@ -93,9 +105,42 @@ const Filters = () => {
                   name="type"
                   value="Z-A"
                   id="order"
-                  onChange={handleOrderInput}
+                  onChange={handleOrderAlphabet}
                 />
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="lower_price"
+                  id="order"
+                  onChange={handleOrderPrice}
+                />
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;lower price</label>
+              </div>
+
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="higher_price"
+                  id="order"
+                  onChange={handleOrderPrice}
+                />
+
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;maximum score</label>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="maximum_score"
+                  id="order"
+                  onChange={handleOrderScore}
+                />
+
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
               </div>
               <button type="submit">Reset Filters</button>
             </form>
