@@ -7,6 +7,8 @@ import {
   clearDetail,
   setFilter,
   setError,
+  setFilterdemo,
+  orderByName,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -61,6 +63,28 @@ export const fetchSearchProductByCtg = (type) => {
         `http://localhost:3001/products?category=${type}`
       );
       dispatch(setFilter(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const fetchSearchInFilter = (data) => {
+  return async function (dispatch) {
+    try {
+      dispatch(setFilterdemo(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const fetchOrderInFilter = (data) => {
+  return async function (dispatch) {
+    try {
+      dispatch(orderByName(data));
     } catch (error) {
       dispatch(setError(error.response.data));
       console.log(error.response.data);
