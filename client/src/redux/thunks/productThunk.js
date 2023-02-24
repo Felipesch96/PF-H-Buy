@@ -4,10 +4,11 @@ import {
   setProducts,
   setCategories,
   detailProduct,
-  setSearch,
   clearDetail,
   setFilter,
   setError,
+  setFilterdemo,
+  orderByName,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -15,6 +16,16 @@ export const fetchProducts = () => {
     try {
       const { data } = await axios.get("http://localhost:3001/products");
       dispatch(setProducts(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+    }
+  };
+};
+
+export const fetchNewProducts = (form) => {
+  return async (dispatch) => {
+    try {
+      await axios.post("http://localhost:3001/products", form);
     } catch (error) {
       dispatch(setError(error.response.data));
     }
@@ -59,19 +70,27 @@ export const fetchSearchProductByCtg = (type) => {
   };
 };
 
-// export const userLogin = (payload) => {
-//   return async (dispatch) => {
-//     const { data } = await axios.post("la ruta", payload);
-//     dispatch(onLogin(data));
-//   };
-// };
+export const fetchSearchInFilter = (data) => {
+  return async function (dispatch) {
+    try {
+      dispatch(setFilterdemo(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
 
-// export const newUser = (payload) => {
-//   return async (dispatch) => {
-//     const { data } = await axios.post("la ruta", payload);
-//     dispatch(onSignUp(data));
-//   };
-// };
+export const fetchOrderInFilter = (data) => {
+  return async function (dispatch) {
+    try {
+      dispatch(orderByName(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
 
 export const fetchDetailProduct = (id) => {
   return async (dispatch) => {
@@ -93,7 +112,9 @@ export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1
   return async function (dispatch) {
     try {
-      let productsByName = await axios.get(`http://localhost:3001/products?name=${name}`);
+      let productsByName = await axios.get(
+        `http://localhost:3001/products?name=${name}`
+      );
       dispatch(setProducts(productsByName));
     } catch (error) {
       dispatch(setError(error.message));

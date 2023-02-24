@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { createProduct } from "../helpers/createProduct";
 import { createCategory } from "../helpers/createCategory";
 import { useDispatch } from "react-redux";
-import { fetchCategories, fetchProducts } from "../redux/thunks/productThunk";
+import {
+  fetchCategories,
+  fetchNewProducts,
+  fetchProducts,
+} from "../redux/thunks/productThunk";
 
 export const useForm = (initialForm = {}, formValidations) => {
   const dispatch = useDispatch();
@@ -19,14 +22,32 @@ export const useForm = (initialForm = {}, formValidations) => {
 
   const handleSubmitCategory = (e) => {
     e.preventDefault();
-    console.log(form)
+    console.log(form);
     createCategory(form);
     dispatch(fetchCategories());
   };
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    createProduct(form);
+    const { name, img, condition, price, description, category, stock } = form;
+    console.log({
+      name,
+      img,
+      condition,
+      price: Number(price),
+      description,
+      category,
+      stock: Number(stock),
+    });
+    dispatch(fetchNewProducts({
+      name,
+      img,
+      condition,
+      price: Number(price),
+      description,
+      category,
+      stock: Number(stock),
+    }))
     dispatch(fetchProducts());
   };
 
@@ -37,7 +58,6 @@ export const useForm = (initialForm = {}, formValidations) => {
   return {
     form,
     errors,
-
     handleChange,
     handleSubmitCategory,
     handleSubmitProduct,

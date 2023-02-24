@@ -2,52 +2,35 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchCategories,
-  fetchProducts,
-  fetchSearch,
+  fetchOrderInFilter,
+  fetchSearchInFilter,
   fetchSearchProductByCtg,
-  getProductsByOrder,
 } from "../../redux/thunks/productThunk";
-import "./Filter.css"
+import "./Filter.css";
 
 const Filters = () => {
   const dispatch = useDispatch();
   const { categories, filter } = useSelector((state) => state.product);
-  const [searchValue, setsearchValue] = useState(false);
   const [filterByCat, setFilterByCat] = useState();
-  const [order, setOrder] = useState();
 
   useEffect(() => {
       setFilterByCat(filter);
       dispatch(fetchCategories());
     }, [dispatch, filter]);
 
-    const productByName = useSelector((state) => state.product.filtered);
-    // console.log(productByName);
-
-    async function submitSearch(e) {
-      e.preventDefault();
-      dispatch(fetchSearch(searchValue));
-    }
-
-    function handleChangeSearch(e) {
-      setsearchValue(e.target.value);
-    }
-
-    function handleOrderInput(e) {
-      // dispatch(getProductsByOrder(e.target.value));
+  function handleChangeSearch(e) {
+    e.preventDefault();
+    dispatch(fetchSearchInFilter(e.target.value));
   }
+
+  function handleOrderInput(e) {
+  dispatch(fetchOrderInFilter(e.target.value));
+  }
+
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
   }
 
-  // function handleName(e) {
-  //   e.preventDefault();
-  //   if (filterByCat) {
-  //     filter.filter((f) => f.name === e.target.value);
-  //   } else {
-  //     dispatch(fetchSearch(e.target.value));
-  //   }
-  // }
   return (
     <div>
       <div
@@ -76,9 +59,18 @@ const Filters = () => {
           </div>
           <div className="col-lg-12 col-sm-6 col-12">
             <div>
-
               <div class="d-flex justify-content-center">
-                
+                <div>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Search by name"
+                    name="filter-by-name"
+                    autoComplete="off"
+                    onChange={handleChangeSearch}
+                  />
+                </div>
+
                 <ul class="list-group">
                   {/* <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
 									<span class="fa fa-circle pr-1" id="men"></span>Word
@@ -88,7 +80,7 @@ const Filters = () => {
 
               <div class="">
                 {/* <h6 className="border-bottom">Cost</h6> */}
-                <form class="ml-md-2 ">
+                {/* <form class="ml-md-2 ">
                   <div class="form-inline border rounded p-sm-2 my-2">
                     <input
                       type="radio"
@@ -113,7 +105,7 @@ const Filters = () => {
                       &nbsp;Z-A
                     </label>
                   </div>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>

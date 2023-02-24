@@ -3,11 +3,12 @@ import Filters from "../../filters/Filters";
 import Cards from "../../Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../redux/thunks/productThunk";
-import "./ProductsPage.css"
+import "./ProductsPage.css";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.product.filter);
+  const helper = useSelector((state) => state.product.filterHelper);
   const products = useSelector((state) => state.product.products);
   const error = useSelector((state) => state.product.error);
 
@@ -24,6 +25,8 @@ const ProductsPage = () => {
         <div class="col-12 col-sm-9">
           {error ? (
             <h2>{error}</h2>
+          ) : helper.length ? (
+            <Cards array={helper} />
           ) : filters.length ? (
             <Cards array={filters} />
           ) : (
