@@ -1,7 +1,5 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { newUser } from "../../../../redux/thunks/userThunk";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
@@ -22,18 +20,15 @@ const ProfileComponent = () => {
     setUserType("Seller");
   };
 
-
-  
-
   return (
     <div class="container-fluid pagina-perfiles">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
           <div class={userLocal.isAdmin? "card perfil-admin-contenedor" : userType === "Buyer" ? "card perfil-buyer-contenedor" : "card perfil-seller-contenedor"}>
             <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              <img src={userLocal.image} alt="avatar"
                 class="rounded-circle img-fluid" style={{ width: "150px;" }} />
-              <h5 class="my-3 buttons-card-profile">{`${userLocal?.name} ${userLocal.lastName}`}</h5>
+              <h5 class="my-3 buttons-card-profile">{userLocal.lastName ? `${userLocal?.name} ${userLocal.lastName}` :`${userLocal?.name}` }</h5>
               <p class="text-muted mb-1">{userLocal.isAdmin?<h3>Admin</h3>:<h3>{userType}</h3>}</p>
               <div class="d-flex justify-content-center mb-2">
                 {!userLocal.isAdmin && userType !== "Buyer" ? <button

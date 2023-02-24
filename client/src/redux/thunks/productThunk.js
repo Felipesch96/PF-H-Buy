@@ -4,7 +4,6 @@ import {
   setProducts,
   setCategories,
   detailProduct,
-  setSearch,
   clearDetail,
   setFilter,
   setError,

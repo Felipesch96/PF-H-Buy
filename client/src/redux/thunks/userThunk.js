@@ -3,7 +3,6 @@ import {
   setUsers,
   setUser,
   setLogedUser,
-  orderByName,
 } from "../slices/usersSlice";
 
 export const fetchUsers = () => {
