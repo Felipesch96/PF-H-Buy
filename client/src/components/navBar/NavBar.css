@@ -24,9 +24,3 @@ justify-content: space-around;
 .visited-route{
   color: rgb(134, 71, 71);
 }
-
-/* li */
-{location.pathname === "/" ? "nav-item route-flag" : "nav-item"}
-
-/* Link */
-{location.pathname === "/" ? "nav-link mt-1 route-flag" : "nav-link mt-1"}
