@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import "../product/productsModal.css";
-import { EditProductCard } from "../../editProductCard";
 import {DataGrid} from '@mui/x-data-grid';
 
 
@@ -10,8 +9,8 @@ export const ShowProductModal = ({ onClose }) => {
   const { products, categories } = useSelector((state) => state.product);
 
   const columns = [
-    {field: "id", headerName: "ID", width: 50},
-    {field: "name", headerName: "Name", width: 90},
+    {field: "id", headerName: "ID", width: 70},
+    {field: "name", headerName: "Name", width: 120},
     {field: "price", headerName: "Price", width: 90},
   ];
   const rows = products.map((p) => ({
@@ -31,7 +30,7 @@ export const ShowProductModal = ({ onClose }) => {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
+          pageSize={6}
           rowsPerPageOptions={[5]}
           checkboxSelection
         />

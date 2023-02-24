@@ -18,9 +18,6 @@ const ProfileComponent = () => {
     setUserType("seller");
   };
 
-
-  
-
   return (
     <div>
       <section style={{ backgroundColor: "#eee;" }}>
@@ -30,7 +27,7 @@ const ProfileComponent = () => {
               <div class="card">
                 <div class="card-body text-center">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    src={userLocal.image}
                     alt="avatar"
                     class="rounded-circle img-fluid"
                     style={{ width: "150px;" }}

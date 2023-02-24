@@ -1,11 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
-export const deleteCategory = (id) => {
-    try {
-        axios.put(`http://localhost:3001/categories/${id}`)
-    } catch (error) {
-        console.log(error)
-    }
-    
-
-} 
+export const deleteCategory = async (id) => {
+  try {
+    await axios.delete(`http://localhost:3001/categories/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -51,11 +51,7 @@ const Cards = ({ array }) => {
           <h2>{array}</h2>
         )}
       </div>
-      {/* <Paginate
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        max={max}
-      /> */}
+      
     </div>
   );
 };
