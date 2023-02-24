@@ -105,7 +105,7 @@ const SellerProfile = () => {
             <Wallet />
             {/* deberia recibir los datos del usuario */}
           </div>
-          <div class="tab-pane fade show active" id="nav-create-product" role="tabpanel" aria-labelledby="nav-create-product-tab">
+          <div class="tab-pane fade" id="nav-create-product" role="tabpanel" aria-labelledby="nav-create-product-tab">
             <CreateProductFrom onClose={setProductModal} />
           </div>
         </div>
