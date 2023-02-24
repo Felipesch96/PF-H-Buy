@@ -17,24 +17,24 @@ const Filters = () => {
   const [order, setOrder] = useState();
 
   useEffect(() => {
-      setFilterByCat(filter);
-      dispatch(fetchCategories());
-    }, [dispatch, filter]);
+    setFilterByCat(filter);
+    dispatch(fetchCategories());
+  }, [dispatch, filter]);
 
-    const productByName = useSelector((state) => state.product.filtered);
-    // console.log(productByName);
+  const productByName = useSelector((state) => state.product.filtered);
+  // console.log(productByName);
 
-    async function submitSearch(e) {
-      e.preventDefault();
-      dispatch(fetchSearch(searchValue));
-    }
+  async function submitSearch(e) {
+    e.preventDefault();
+    dispatch(fetchSearch(searchValue));
+  }
 
-    function handleChangeSearch(e) {
-      setsearchValue(e.target.value);
-    }
+  function handleChangeSearch(e) {
+    setsearchValue(e.target.value);
+  }
 
-    function handleOrderInput(e) {
-      // dispatch(getProductsByOrder(e.target.value));
+  function handleOrderInput(e) {
+    // dispatch(getProductsByOrder(e.target.value));
   }
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
@@ -76,9 +76,27 @@ const Filters = () => {
           </div>
           <div className="col-lg-12 col-sm-6 col-12">
             <div>
+              <h6 class="p-1 border-bottom fw-bold">Filter By</h6>
 
               <div class="d-flex justify-content-center">
-                
+                <div>
+                  <form onSubmit={submitSearch}>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Search by name"
+                      name="filter-by-name"
+                      autoComplete="off"
+                      onChange={handleChangeSearch}
+                    />
+                    <input
+                      className="button--submit"
+                      value="Search"
+                      type="submit"
+                    />
+                  </form>
+                </div>
+
                 <ul class="list-group">
                   {/* <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
 									<span class="fa fa-circle pr-1" id="men"></span>Word
