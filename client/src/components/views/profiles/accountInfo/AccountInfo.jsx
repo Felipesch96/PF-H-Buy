@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 const AccountInfo = () => {
 
 const {userLocal} = useSelector((state) => state.user);
+console.log(userLocal);
 
   return (
     <div>

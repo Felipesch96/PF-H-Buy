@@ -1,10 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import {
   fetchSearch,
-  getProductsByName,
 } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
@@ -13,23 +13,12 @@ import "./NavBar.css";
 const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
-  const [searchValue, setsearchValue] = useState(false);
-
-  function handleChangeSearch(e) {
-    setsearchValue(e.target.value);
-  }
+  const [text, setText] = useLocalStorage("text", "");
 
   function submitSearch(e) {
     e.preventDefault();
-    dispatch(fetchSearch(searchValue));
+    dispatch(fetchSearch(text));
   }
-
-  const [serachNavStorage, setSearchNavStorage] = useState("");
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-    getProductsByName(serachNavStorage);
-  };
 
   return (
     <div>
@@ -100,11 +89,6 @@ const NavBar = () => {
                       <li>
                         <Login />
                       </li>
-                      {/* <li>
-                          <Link className="nav-link mt-1" to="/signup">
-                             Signup
-                          </Link>
-                        </li> */}
                     </ul>
                   )}
                 </div>
@@ -118,11 +102,11 @@ const NavBar = () => {
               >
                 <input
                   class="form-control me-2"
-                  type="text"
                   placeholder="Search by name"
+                  value={text}
                   name="filter-by-name"
                   aria-label="Search"
-                  onChange={handleChangeSearch}
+                  onChange={e => setText(e.target.value)}
                 />
 
                 <button class="btn btn-outline-success" type="submit">

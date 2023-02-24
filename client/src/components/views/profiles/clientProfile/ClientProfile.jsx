@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
+import "./ClientProfile.css";
+// import ProfileComponent from "./client/src/components/views/profiles/profileComponent/ProfileComponent";
 
 
 const ClientProfile = () => {
@@ -18,7 +20,7 @@ const ClientProfile = () => {
 
   return (
     <div>
-      <div class="col-lg-8">
+      <div class="col-lg-8 col-md-8">
         <nav class="nav nav-tabs" id="nav-tab" role="tablist">
           <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
           <a class="nav-link" id="nav-account-tab" data-bs-toggle="tab" href="#nav-account" role="tab" aria-controls="nav-account" aria-selected="false">Account</a>
@@ -28,37 +30,31 @@ const ClientProfile = () => {
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="column">
               <div class="col-md-6">
-                <div class="card mb-4 mb-md-0">
+                <div class="card mb-4 mt-4 buyer-button">
                   <div class="card-body">
-                    <p class="mb-4">
-                      <span class="text-primary font-italic me-1">
+                      <span class="text-primary font-italic">
                         <div class="btn-group dropend">
                           <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Purchases
+                            Purchases (cant)
                           </button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Purchase 1</a></li>
                           </ul>
                         </div>
-                                                
                       </span>
-                       
-                    </p>
-                    
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="card mb-4 mb-md-0">
+                <div class="card mb-4 mt-4 buyer-button">
                   <div class="card-body">
-                    <p class="mb-4">
-                      <span class="text-primary font-italic me-1">
-                        <div class="btn-group dropend">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Favorites
-                          </button>
-                          <ul class="dropdown-menu">
-                          {favs.map((element) => { 
+                    <span class="text-primary font-italic">
+                      <div class="btn-group dropend">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Favorites (cant)
+                        </button>
+                        <ul class="dropdown-menu">
+                        {favs.map((element) => { 
                               return(
                                 <ul key={element._id}>
                                   <li><h3><Link to={`/products/${element.product_id?._id}`}>{element.product_id?.name}</Link></h3></li>
@@ -67,50 +63,45 @@ const ClientProfile = () => {
                                 </ul>                                
                               )
                             })}
-                          </ul>
-                        </div>
-                      </span> 
-                    </p>
+                        </ul>
+                      </div>
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="card mb-4 mb-md-0">
+                <div class="card mb-4 mt-4 buyer-button">
                   <div class="card-body">
-                    <p class="mb-4">
-                      <span class="text-primary font-italic me-1">
-                        <div class="btn-group dropend">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Inquiries made
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Product 1</a></li>
-                            <li><a class="dropdown-item" href="#">Product 2</a></li>
-                            <li><a class="dropdown-item" href="#">Product 3</a></li>
-                          </ul>
-                        </div>
-                      </span> 
-                    </p>
+                    <span class="text-primary font-italic">
+                      <div class="btn-group dropend">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Inquiries (cant)
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Product 1</a></li>
+                          <li><a class="dropdown-item" href="#">Product 2</a></li>
+                          <li><a class="dropdown-item" href="#">Product 3</a></li>
+                        </ul>
+                      </div>
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="card mb-4 mb-md-0">
+                <div class="card mb-4 mt-4 buyer-button">
                   <div class="card-body">
-                    <p class="mb-4">
-                      <span class="text-primary font-italic me-1">
-                        <div class="btn-group dropend">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Claims
-                          </button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Claim 1</a></li>
-                            <li><a class="dropdown-item" href="#">Claim 2</a></li>
-                            <li><a class="dropdown-item" href="#">Claim 3</a></li>
-                          </ul>
-                        </div>
-                      </span> 
-                    </p>
+                    <span class="text-primary font-italic">
+                      <div class="btn-group dropend">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Claims (cant)
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Claim 1</a></li>
+                          <li><a class="dropdown-item" href="#">Claim 2</a></li>
+                          <li><a class="dropdown-item" href="#">Claim 3</a></li>
+                        </ul>
+                      </div>
+                    </span>
                   </div>
                 </div>
               </div>

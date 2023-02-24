@@ -8,7 +8,7 @@ export const productsSlice = createSlice({
     search: [],
     filter: [],
     detailproduct: {},
-    filtered: [],
+    filterHelper: [],
     error: "",
   },
   reducers: {
@@ -24,10 +24,22 @@ export const productsSlice = createSlice({
     setFilter: (state, { payload }) => {
       state.filter = payload;
     },
+    setFilterdemo: (state, { payload }) => {
+      payload
+        ? (state.filterHelper = [
+            ...state.filter.filter((Element) =>
+              Element.name
+                .toString()
+                .toLowerCase()
+                .includes(payload.toLowerCase())
+            ),
+          ])
+        : (state.filterHelper = []);
+    },
     orderByName: (state, { payload }) => {
       payload === "A-Z"
-        ? (state.products = [...state.products].sort((a, b) => a.name - b.name))
-        : (state.products = [...state.products].sort(
+        ? (state.filterHelper = [...state.filter].sort((a, b) => a.name - b.name))
+        : (state.filterHelper = [...state.filter].sort(
             (a, b) => b.name - a.name
           ));
     },
@@ -55,7 +67,6 @@ export const productsSlice = createSlice({
     clearDetail: (state) => {
       state.detailproduct = {};
     },
-    filterByName: (state, { payload }) => {},
     setError: (state, { payload }) => {
       state.error = payload;
     },
@@ -71,5 +82,6 @@ export const {
   detailProduct,
   clearDetail,
   setFilter,
-  setError  
+  setFilterdemo,
+  setError,
 } = productsSlice.actions;
