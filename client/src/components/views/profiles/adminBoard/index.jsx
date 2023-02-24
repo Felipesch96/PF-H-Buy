@@ -11,6 +11,7 @@ import {
 } from "../../../../redux/thunks/productThunk";
 import { ShowCategoriesModal } from "../../../modals/showCategories";
 import { ShowProductModal } from "../../../modals/showProducts";
+// import ClientProfile from "./client/src/components/views/profiles/clientProfile/ClientProfile";
 
 export const AdminBoard = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export const AdminBoard = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
-  }, [dispatch, JSON.stringify(products)]);
+  }, []);
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [productModal, setProductModal] = useState(false);

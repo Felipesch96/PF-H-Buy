@@ -4,6 +4,7 @@ import Paginate from "../Paginate/Paginate";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 // import { fetchProducts } from "../../redux/thunks/productThunk";
+import "./Cards.css"
 
 const Cards = ({ array }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +26,7 @@ const Cards = ({ array }) => {
           )
           .map((element) => (
             <div class="col">
-              <div class="card mb-3">
+              <div class="card mb-3 bg-dark">
                 <Card
                   key={element._id}
                   img={element.img}
@@ -34,7 +35,7 @@ const Cards = ({ array }) => {
                   score={element.score}
                   category={element.category}
                 />
-                <div class="card-body text-center-body">
+                <div class="ver-produto">
                   <Link to={`/products/${element._id}`}>
                     <a
                       class="btn btn-outline-primary btn-sm"

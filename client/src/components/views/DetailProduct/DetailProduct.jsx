@@ -12,6 +12,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
+import "./DetailProduct.css";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -47,14 +48,14 @@ const DetailProduct = () => {
   };
 
   return (
-    <div className="container">
-      <div class="abs-center m-4">
+    <div className="container-fluid p-4 contenedor-detalle">
+      <div class="abs-center">
         <div class="card center ">
           <div class="row g-10">
             <div class="col-5 col-sm-4">
               <img
                 src={detailProduct.img}
-                class="img-fluid w-100 m-2"
+                class="img-fluid w-100 m-2 img-detail"
                 alt="card-horizontal-image"
               />
             </div>

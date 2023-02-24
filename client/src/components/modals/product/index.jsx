@@ -38,7 +38,7 @@ export const ProductModal = ({ onClose }) => {
     useForm(initialForm, formValidations);
 
   return (
-    <section className="productModal">
+    <section className="productModal-seller">
       <CreateProductFrom onClose={onClose}/>
     </section>
   );

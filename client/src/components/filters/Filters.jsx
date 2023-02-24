@@ -7,6 +7,7 @@ import {
   fetchSearchProductByCtg,
   getProductsByOrder,
 } from "../../redux/thunks/productThunk";
+import "./Filter.css"
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Filters = () => {
     <div>
       <div
         id="sidebar"
-        className="col-12 d-flex flex-column border max-height-sidebar py-2 text-center rounded mb-4"
+        className="col-12 d-flex flex-column border max-height-sidebar py-2 text-center rounded mb-4 contenedor-filtros"
       >
         {/* <h2 className="text-center mb-4 text-info fw-bold"></h2> */}
         <div className="row">
