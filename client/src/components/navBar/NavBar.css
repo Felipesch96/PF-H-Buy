@@ -1,5 +1,5 @@
 .navbar{
-  background-color: rgb(49, 49, 253);
+  background-color: rgb(21, 109, 160);
   display: flex;
   flex-direction: column;
 }
@@ -15,9 +15,4 @@ input {
 
 .navbar-collapse{
 justify-content: space-around;
-}
-
-.lugar:focus{
-  background-color: rgba(0, 0, 0, 0.123);
-  border-radius: 50px;
 }
