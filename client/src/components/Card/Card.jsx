@@ -12,6 +12,9 @@ const Card = (props) => {
       <div class="col-md-12">
         <img 
           src={props.img}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src="https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";}}
           class="img-fluid rounded-start bg-light"
           alt="..."
           style={{ height: "230px" }}
