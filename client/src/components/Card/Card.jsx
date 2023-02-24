@@ -16,6 +16,7 @@ const Card = (props) => {
           alt="..."
           style={{ height: "230px" }}
         />
+        <hr />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
           <p

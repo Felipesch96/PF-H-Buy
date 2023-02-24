@@ -26,7 +26,7 @@ const Cards = ({ array }) => {
           )
           .map((element) => (
             <div class="col">
-              <div class="card mb-3 bg-dark">
+              <div class="card mb-3 bg-dark tarjeta">
                 <Card
                   key={element._id}
                   img={element.img}

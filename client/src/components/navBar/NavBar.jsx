@@ -42,23 +42,26 @@ const NavBar = () => {
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
+          <div>
+          <Link className="lugar" to="/">
           <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
+          </Link>
+          </div>
 
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/">
+                <Link className="nav-link mt-1 lugar" to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/products">
+                <Link className="nav-link mt-1 lugar" to="/products">
                   Products
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/about">
+                <Link className="nav-link mt-1 lugar" to="/about">
                   About
                 </Link>
               </li>

@@ -59,7 +59,7 @@ const CarouselProducts = () => {
   }, [dispatch]);
 
   return (
-    <div className="d-grid gap-3 d-flex contenedor-products">
+    <div className="d-grid gap-2 d-flex contenedor-products">
 
       <button class="btn btn-primary box" type="button" onClick={previous}>{"<"}</button>
       <div class="d-flex justify-content-center align-items-center">

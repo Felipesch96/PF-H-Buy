@@ -18,7 +18,7 @@ const CarouselCard = (props) => {
           src={props.img}
           class="img-fluid rounded-start mt-2"
           alt="..."
-          style={{ height: "100px" }}
+          style={{ height: "120px" }}
         />
       </div>
     </Link>
