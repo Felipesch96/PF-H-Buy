@@ -22,10 +22,21 @@ export const productsSlice = createSlice({
       state.search = payload;
     },
     setFilter: (state, { payload }) => {
-      state.filter = payload;
+      state.filterHelper.length || state.filter.length
+        ? (state.filterHelper = []) && (state.filter = payload)
+        : (state.filter = payload);
     },
     setFilterdemo: (state, { payload }) => {
-      payload
+      state.filterHelper.length
+        ? (state.filterHelper = [
+            ...state.filterHelper.filter((Element) =>
+              Element.name
+                .toString()
+                .toLowerCase()
+                .includes(payload.toLowerCase())
+            ),
+          ])
+        : state.filter.length
         ? (state.filterHelper = [
             ...state.filter.filter((Element) =>
               Element.name
@@ -34,14 +45,39 @@ export const productsSlice = createSlice({
                 .includes(payload.toLowerCase())
             ),
           ])
-        : (state.filterHelper = []);
+        : (state.filter = [
+            ...state.products.filter((Element) =>
+              Element.name
+                .toString()
+                .toLowerCase()
+                .includes(payload.toLowerCase())
+            ),
+          ]);
     },
     orderByName: (state, { payload }) => {
-      payload === "A-Z"
-        ? (state.filterHelper = [...state.filter].sort((a, b) => a.name - b.name))
-        : (state.filterHelper = [...state.filter].sort(
-            (a, b) => b.name - a.name
-          ));
+      if (state.filterHelper.length) {
+        payload === "A-Z"
+          ? (state.filterHelper = [...state.filterHelper].sort((a, b) =>
+              a.name.localeCompare(b.name)
+            ))
+          : (state.filterHelper = [...state.filterHelper]
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .reverse());
+      } else if (state.filter.length) {
+        payload === "A-Z"
+          ? (state.filterHelper = [...state.filter].sort(
+              (a, b) => a.name - b.name
+            ))
+          : (state.filterHelper = [...state.filter].sort(
+              (a, b) => b.name - a.name
+            ));
+      } else {  
+        payload === "A-Z"
+          ? (state.filter = [...state.products].sort((a, b) => a.name - b.name))
+          : (state.filter = [...state.products].sort(
+              (a, b) => b.name - a.name
+            ));
+      }
     },
     orderByPrice: (state, { payload }) => {
       payload === "incremental"
@@ -60,6 +96,11 @@ export const productsSlice = createSlice({
         : (state.products = [...state.products].sort(
             (a, b) => b.reviews - a.reviews
           ));
+    },
+    clearFilter: (state) => {
+      state.filterHelper.length
+        ? (state.filterHelper = []) && (state.filter = [])
+        : (state.filter = []);
     },
     detailProduct: (state, { payload }) => {
       state.detailproduct = payload;
@@ -84,4 +125,5 @@ export const {
   setFilter,
   setFilterdemo,
   setError,
+  clearFilter,
 } = productsSlice.actions;

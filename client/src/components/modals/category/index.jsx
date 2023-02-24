@@ -26,7 +26,7 @@ export const CategoryModal = ({ onClose }) => {
 				<section className="formInput">
 					<label htmlFor="name" className="nameLabel">Name of the category</label>
 					<input type="text" id="name" name="name" value={form.name} onChange={handleChange} onBlur={handleBlur} className="input" />
-					{errors.name && <p className="errors">{errors.name}</p>}
+					{errors.name && <span className="errors">{errors.name}</span>}
 				</section>
 				<button type="submit" className="categoryButton" disabled={errors.length > 0}>Crear</button>
 			</form>

@@ -6,7 +6,7 @@ const CarouselCard = (props) => {
   return (
     <Link class="card card-prod-carousel" to={`/products/${props._id}`}>
       <div class="card-body">
-        <p class="card-title">{props.name}</p>
+        <span class="card-title">{props.name}</span>
         <Rating
           style={{ fontSize: "17px" }}
           name="half-rating-read"

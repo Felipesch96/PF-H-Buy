@@ -5,6 +5,7 @@ import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { newGoogleUser } from "../../../redux/thunks/userThunk";
+
 // const CarrouselImg = styled.img`
 //   width: 100%;
 //   height: 500px;

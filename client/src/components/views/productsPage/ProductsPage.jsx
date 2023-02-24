@@ -14,7 +14,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div class="container-fluid text-center pag-prods">
@@ -26,11 +26,17 @@ const ProductsPage = () => {
           {error ? (
             <h2>{error}</h2>
           ) : helper.length ? (
-            <Cards array={helper} />
+            <>
+              <Cards array={helper} />
+            </>
           ) : filters.length ? (
-            <Cards array={filters} />
+            <>
+              <Cards array={filters} />
+            </>
           ) : (
-            <Cards array={products} />
+            <>
+              <Cards array={products} />
+            </>
           )}
         </div>
       </div>

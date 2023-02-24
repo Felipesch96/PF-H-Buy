@@ -42,9 +42,9 @@ export const ShowUsersModal = ({ onClose }) => {
         />
       </div>
       {/* <div className="productsList">
-        {products.map((p) => (
+        {products.map((span) => (
           <div className="productsItem">
-            <EditProductCard products={p} />
+            <EditProductCard products={span} />
           </div>
         ))}
       </div> */}

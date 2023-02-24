@@ -45,7 +45,7 @@ const DetailProduct = () => {
   };
 
   return (
-    <div className="container-fluid p-4 contenedor-detalle">
+    <div className="container-fluid span-4 contenedor-detalle">
       <div class="abs-center">
         <div class="card center ">
           <div class="row g-10">
@@ -70,7 +70,7 @@ const DetailProduct = () => {
                   </div>
                   <div class="mt-1">
                     <h4
-                      class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
+                      class="card-text text-white rounded-2 bg-success span-1 bg-opacity-70"
                       style={{
                         textAlign: "center",
                         display: "inline-block",
@@ -81,23 +81,23 @@ const DetailProduct = () => {
                     </h4>
                   </div>
                   <div class="mt-1">
-                    <p class="card-text mb-1">
+                    <span class="card-text mb-1">
                       Qualification: {detailProduct.score} ☆
-                    </p>
+                    </span>
                     <div class="container">
                       <StarRating score={detailProduct.score} />
                     </div>
                   </div>
-                  <p class="card-text">
+                  <span class="card-text">
                     <span class="text-muted">Last updated 3 mins ago</span>
-                  </p>
+                  </span>
                 </div>
                 <div class="">
                   <a href="#" class="btn btn-success bi bi-handbag-fill m-3 ">
-                    <span class="p-1">Buy product </span>
+                    <span class="span-1">Buy product </span>
                   </a>
                   <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
-                    <span class="p-1">Add to Cart </span>
+                    <span class="span-1">Add to Cart </span>
                   </a>
                   <a href="#">
                     <FavoriteButton class="fa-regular fa-heart" />
@@ -153,9 +153,9 @@ const DetailProduct = () => {
                 role="tabpanel"
                 aria-labelledby="nav-description-tab"
               >
-                <p class="card-text text-center m-3">
+                <span class="card-text text-center m-3">
                   {detailProduct.description}
-                </p>
+                </span>
               </div>
               <div
                 class="tab-pane fade m-3"
@@ -207,13 +207,13 @@ const DetailProduct = () => {
                 role="tabpanel"
                 aria-labelledby="nav-review-tab"
               >
-                <p class="card-text text-center m-3">
+                <span class="card-text text-center m-3">
                   <div class="container">
                     <span class="text-muted">
                       No reviews about the product ...
                     </span>
                   </div>
-                </p>
+                </span>
               </div>
             </div>
           </div>

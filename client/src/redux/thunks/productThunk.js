@@ -9,6 +9,7 @@ import {
   setError,
   setFilterdemo,
   orderByName,
+  clearFilter,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -85,6 +86,17 @@ export const fetchOrderInFilter = (data) => {
   return async function (dispatch) {
     try {
       dispatch(orderByName(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const fetchClearFilter = () => {
+  return async function (dispatch) {
+    try {
+      dispatch(clearFilter());
     } catch (error) {
       dispatch(setError(error.response.data));
       console.log(error.response.data);

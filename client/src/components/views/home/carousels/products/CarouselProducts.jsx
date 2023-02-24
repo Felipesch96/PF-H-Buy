@@ -63,14 +63,14 @@ const CarouselProducts = () => {
 
       <button class="btn btn-primary box" type="button" onClick={previous}>{"<"}</button>
       <div class="d-flex justify-content-center align-items-center">
-        {cardsCurrent.map((p) => {
+        {cardsCurrent.map((span) => {
           return (
-            <div class="box">
+            <div key={span._id} class="box">
               <CarouselCard
-                _id={p._id}
-                img={p.img}
-                name={p.name}
-                score={p.score}
+                _id={span._id}
+                img={span.img}
+                name={span.name}
+                score={span.score}
               />
             </div>
           );
