@@ -31,7 +31,6 @@ const products = mongoose.Schema({
   },
   stock: {
     type: Number,
-    require: true,
   },
   seller_id: {
     type: mongoose.Types.ObjectId,

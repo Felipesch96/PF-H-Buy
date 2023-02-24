@@ -9,7 +9,6 @@ import "./profileComponent.css";
 const ProfileComponent = () => {
   
   const userLocal = useSelector((state) => state.user.userLocal);
-  console.log(userLocal);
   const [userType, setUserType] = useState("Buyer");
 
   const buyerButton = () => {

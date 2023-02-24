@@ -20,6 +20,16 @@ export const fetchProducts = () => {
   };
 };
 
+export const fetchNewProducts = (form) => {
+  return async (dispatch) => {
+    try {
+      await axios.post("http://localhost:3001/products", form);
+    } catch (error) {
+      dispatch(setError(error.response.data));
+    }
+  };
+};
+
 export const fetchCategories = () => {
   return async (dispatch) => {
     try {
@@ -58,20 +68,6 @@ export const fetchSearchProductByCtg = (type) => {
   };
 };
 
-// export const userLogin = (payload) => {
-//   return async (dispatch) => {
-//     const { data } = await axios.post("la ruta", payload);
-//     dispatch(onLogin(data));
-//   };
-// };
-
-// export const newUser = (payload) => {
-//   return async (dispatch) => {
-//     const { data } = await axios.post("la ruta", payload);
-//     dispatch(onSignUp(data));
-//   };
-// };
-
 export const fetchDetailProduct = (id) => {
   return async (dispatch) => {
     try {
@@ -92,7 +88,9 @@ export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1
   return async function (dispatch) {
     try {
-      let productsByName = await axios.get(`http://localhost:3001/products?name=${name}`);
+      let productsByName = await axios.get(
+        `http://localhost:3001/products?name=${name}`
+      );
       dispatch(setProducts(productsByName));
     } catch (error) {
       dispatch(setError(error.message));
