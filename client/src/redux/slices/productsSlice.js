@@ -65,18 +65,20 @@ export const productsSlice = createSlice({
               .reverse());
       } else if (state.filter.length) {
         payload === "A-Z"
-          ? (state.filterHelper = [...state.filter].sort(
-              (a, b) => a.name - b.name
+          ? (state.filterHelper = [...state.filter].sort((a, b) =>
+              a.name.localeCompare(b.name)
             ))
-          : (state.filterHelper = [...state.filter].sort(
-              (a, b) => b.name - a.name
-            ));
+          : (state.filterHelper = [...state.filter]
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .reverse());
       } else {
         payload === "A-Z"
-          ? (state.filter = [...state.products].sort((a, b) => a.name - b.name))
-          : (state.filter = [...state.products].sort(
-              (a, b) => b.name - a.name
-            ));
+          ? (state.filter = [...state.products].sort((a, b) =>
+              a.name.localeCompare(b.name)
+            ))
+          : (state.filter = [...state.products]
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .reverse());
       }
     },
     orderByPrice: (state, { payload }) => {

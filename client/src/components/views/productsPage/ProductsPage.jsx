@@ -7,10 +7,9 @@ import "./ProductsPage.css";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.product.filter);
-  const helper = useSelector((state) => state.product.filterHelper);
-  const products = useSelector((state) => state.product.products);
-  const error = useSelector((state) => state.product.error);
+  const { filter, filterHelper, products, error } = useSelector(
+    (state) => state.product
+  );
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -33,13 +32,13 @@ const ProductsPage = () => {
                 " {error}"
               </div>
             </div>
-          ) : helper.length ? (
+          ) : filterHelper.length ? (
             <>
-              <Cards array={helper} />
+              <Cards array={filterHelper} />
             </>
-          ) : filters.length ? (
+          ) : filter.length ? (
             <>
-              <Cards array={filters} />
+              <Cards array={filter} />
             </>
           ) : (
             <>

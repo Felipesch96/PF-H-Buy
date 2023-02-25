@@ -14,11 +14,12 @@ import "./Filter.css";
 const Filters = () => {
   const dispatch = useDispatch();
   const { categories, filter } = useSelector((state) => state.product);
+
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(fetchCategories());
-  }, [dispatch, filter.length]);
+  }, [dispatch]);
 
   function handleChangeSearch(e) {
     e.preventDefault();
@@ -26,14 +27,17 @@ const Filters = () => {
   }
 
   function handleOrderAlphabet(e) {
+    console.log(e.target.value);
     dispatch(fetchOrderAlphabet(e.target.value));
   }
 
   function handleOrderPrice(e) {
+    console.log(e.target.value);
     dispatch(fetchOrderPrice(e.target.value));
   }
 
   function handleOrderScore(e) {
+    console.log(e.target.value);
     dispatch(fetchOrderScore(e.target.value));
   }
 
@@ -57,17 +61,19 @@ const Filters = () => {
         <div className="row">
           <div className="col-lg-12 col-sm-6 col-12">
             <div class="d-flex justify-content-center">
-              <form onSubmit={(e) => handleChangeSearch(e)}>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Search by name"
-                  name="filter-by-name"
-                  autoComplete="off"
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <button type="submit">search</button>
-              </form>
+              {filter.length ? (
+                <form onSubmit={(e) => handleChangeSearch(e)}>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Search by name"
+                    name="filter-by-name"
+                    autoComplete="off"
+                    onClick={(e) => setSearch(e.target.value)}
+                  />
+                  <button type="submit">search</button>
+                </form>
+              ) : null}
             </div>
             <form onSubmit={clearFilter} class="ml-md-2">
               <div className="col-lg-12 col-sm-6 col-12">
@@ -80,7 +86,7 @@ const Filters = () => {
                           type="radio"
                           name="categories"
                           value={c.name}
-                          onChange={handleChangeType}
+                          onClick={handleChangeType}
                         />
                         <label htmlFor="categories">{c.name}</label>
                       </div>
@@ -94,7 +100,7 @@ const Filters = () => {
                   name="type"
                   value="A-Z"
                   id="higher"
-                  onChange={handleOrderAlphabet}
+                  onClick={handleOrderAlphabet}
                 />
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;A-Z</label>
               </div>
@@ -104,19 +110,9 @@ const Filters = () => {
                   name="type"
                   value="Z-A"
                   id="order"
-                  onChange={handleOrderAlphabet}
+                  onClick={handleOrderAlphabet}
                 />
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
-              </div>
-              <div class="form-inline border rounded span-sm-2 my-2">
-                <input
-                  type="radio"
-                  name="type"
-                  value="lower_price"
-                  id="order"
-                  onChange={handleOrderPrice}
-                />
-                <label class="pl-1 pt-sm-0 pt-1">&nbsp;lower price</label>
               </div>
 
               <div class="form-inline border rounded span-sm-2 my-2">
@@ -125,10 +121,19 @@ const Filters = () => {
                   name="type"
                   value="higher_price"
                   id="order"
-                  onChange={handleOrderPrice}
+                  onClick={handleOrderPrice}
                 />
-
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;maximum score</label>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="lower_price"
+                  id="order"
+                  onClick={handleOrderPrice}
+                />
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;lower price</label>
               </div>
               <div class="form-inline border rounded span-sm-2 my-2">
                 <input
@@ -136,12 +141,14 @@ const Filters = () => {
                   name="type"
                   value="maximum_score"
                   id="order"
-                  onChange={handleOrderScore}
+                  onClick={handleOrderScore}
                 />
 
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
               </div>
-              <button type="submit">Reset Filters</button>
+              {filter.length ? (
+                <button type="submit">Reset Filters</button>
+              ) : null}
             </form>
           </div>
         </div>
