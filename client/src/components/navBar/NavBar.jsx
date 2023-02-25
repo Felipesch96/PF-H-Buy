@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import {BsCart4} from 'react-icons/bs'
+import { Link, useHistory } from "react-router-dom";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
 import { getProductsByName } from "../../redux/thunks/productThunk";
 
 
+
 const NavBar = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
   const { user, isAuthenticated } = useAuth0();
+  const { amountOfItems} = useSelector(state => state.cart)
   console.log(user);
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
@@ -36,41 +40,22 @@ const NavBar = () => {
     getProductsByName(serachNavStorage)
   }
 
-  return (<div>
+  return (
+  <div>
         <nav class="navbar navbar-expand-lg border-bottom barra-navegador"  >
         <div class="container-fluid d-flex justify-content-center ">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
-          <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
-
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
-              <li className="nav-item">
-                <Link className="nav-link mt-1" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link mt-1" to="/products">
-                  Products
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link mt-1" to="/about">
-                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-
-              </li>
-            </ul>
-            <div>
-              <form
-                class="d-flex justify-content-center"
-                role="search"
-                onSubmit={submitSearch}
+          <a href="/">
+          <img src={require("../views/landingPage/media/logoh.png")} style={{width:"50px"}} alt="" />
+          </a>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
+         
+              <form 
+              class="d-flex justify-content-center" 
+              role="search"
+              onSubmit={submitSearch}
               >
                 <input
                   class="form-control me-2"
@@ -84,7 +69,27 @@ const NavBar = () => {
               </form>
             </div>
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
+              <li className="nav-item">
+                <Link className="nav-link mt-1 letras" to="/products">
+                  Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link mt-1 letras" to="/about">
+                  About
+                </Link>
+              </li>
 
+              </ul>
+              <ul>
+              <li className="nav-link mt-1">
+                          <div className="shoppingCart">
+                          <div className="counter">{amountOfItems}</div>
+                          <BsCart4 onClick={()=> history.push('/shoppingCart') } className="carIcon"/>
+                          </div>
+                          
+              </li>
+              
               <li>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -98,7 +103,7 @@ const NavBar = () => {
                             Profile
                           </Link>
                         </li>
-                        <li>...</li>
+                      
                         <li>...</li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><Logout /></li>
@@ -119,9 +124,11 @@ const NavBar = () => {
                 </div>
 
               </li>
-            </ul>
+              
+              </ul>
+            <div/>
           </div>
-          </div>
+          
         </nav>
       </div>
   )

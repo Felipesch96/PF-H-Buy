@@ -58,6 +58,7 @@ export const fetchSearchProductByCtg = (type) => {
 export const fetchDetailProduct = (id) => {
   return async (dispatch) => {
     const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+    console.log(data)
     dispatch(detailProduct(data));
   };
 };

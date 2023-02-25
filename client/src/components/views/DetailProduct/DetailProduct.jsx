@@ -12,40 +12,37 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
+import { addToCart } from "../../../redux/slices/cartSlice";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const detailProduct = useSelector((state) => state.product.detailproduct);
-
+  
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
-    return () => {
-      dispatch(clearDetailProduct());
-    };
-  }, [dispatch, id]);
-  const formater = new Intl.NumberFormat("en");
-
-  ///estado local para la calificacion
-  const [value, setValue] = useState(detailProduct.score);
-  // const value = ;
-
-  //
-  const promedio = (detailProduct.score + value) / 2;
-  //
-  const labels = {
-    0.5: "Useless",
-    1: "Useless+",
-    1.5: "Poor",
-    2: "Poor+",
-    2.5: "Ok",
-    3: "Ok+",
-    3.5: "Good",
-    4: "Good+",
-    4.5: "Excellent",
-    5: "Excellent+",
-  };
-
+  }, [])
+  
+  const addElementToCart = () => {
+    detailProduct.stock > 0 ? 
+    dispatch(addToCart(detailProduct)) : 
+    window.alert('there is no product in stock')
+ }
+  //   style: "currency",
+  //   currency: "ARS",
+/*   const calification = (item) => {
+    item.prevenDefault();
+    var cont;
+    cont = item.id[0];
+    let nombre = item.id.substring(1);
+    for (let i = 0; i < 5; i++) {
+      if (i < cont) {
+        document.getElementById(i + 1 + nombre).style.color = "orange";
+      } else {
+        document.getElementById(i + 1 + nombre).style.color = "black";
+      }
+    }
+  }; */
   return (
     <div className="container">
       <div class="abs-center m-4">
@@ -62,27 +59,18 @@ const DetailProduct = () => {
               <div class="col-7 col-sm-8">
                 <div class="card-body">
                   <h2 class="card-title">{detailProduct.name}</h2>
-                  <div>
-                    <span class="card-text">Stock :</span>{" "}
-                    {detailProduct.stock ? (
-                      <span class="text-success">{detailProduct.stock}</span>
-                    ) : (
-                      <span class="text-danger">off</span>
-                    )}
-                  </div>
-                  <div class="mt-1">
-                    <h4
-                      class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
-                      style={{
-                        textAlign: "center",
-                        display: "inline-block",
-                      }}
-                    >
-                      <i class="bi bi-currency-dollar"></i>
-                      {formater.format(detailProduct.price)}
-                    </h4>
-                  </div>
-                  <div class="mt-1">
+                  <p class="card-text">Stock : {detailProduct.stock}</p>
+                  <h4
+                    class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
+                    style={{
+                      textAlign: "center",
+                      display: "inline-block",
+                    }}
+                  >
+                    <i class="bi bi-currency-dollar"></i>
+                    {/* {formater.format(detailProduct.price)} */}
+                  </h4>
+                  <div class="container">
                     <p class="card-text mb-1">
                       Qualification: {detailProduct.score} ☆
                     </p>
@@ -96,10 +84,10 @@ const DetailProduct = () => {
                 </div>
                 <div class="">
                   <a href="#" class="btn btn-success bi bi-handbag-fill m-3 ">
-                    <span class="p-1">Buy product </span>
+                    <span class="p-1" onClick={addElementToCart}>Buy product </span>
                   </a>
                   <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
-                    <span class="p-1">Add to Cart </span>
+                    <span onClick={addElementToCart} class="p-1">Add to Cart </span>
                   </a>
                   <a href="#">
                     <FavoriteButton class="fa-regular fa-heart" />

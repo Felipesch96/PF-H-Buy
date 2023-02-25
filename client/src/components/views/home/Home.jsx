@@ -45,11 +45,10 @@ const Home = () => {
   });
 
   return (
-    <div className="home">
-      <div className="carousel-banner">
+    <div>
+      <a href="/products">
         <CarouselBanner />
-      </div>
-      <hr />
+      </a>
       <br />
       <h1 className="text-center">Recomendados</h1>
       <div class="container-fluid carousel-productos">
