@@ -10,7 +10,6 @@ const ProfileComponent = () => {
   const dispatch = useDispatch();
   const userLocal = useSelector((state) => state.user.userLocal);
   const [userType, setUserType] = useState("Buyer");
-  const { user } = useAuth0();
 
   const buyerButton = () => {
     setUserType("Buyer");
@@ -24,7 +23,7 @@ const ProfileComponent = () => {
       },[]);
     
 
-  return user ? (
+  return (
     <div class="container-fluid pagina-perfiles">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -86,8 +85,6 @@ const ProfileComponent = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <><h1>Please Login</h1></>
   );
 };
 
