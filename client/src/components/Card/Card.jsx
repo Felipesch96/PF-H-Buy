@@ -15,7 +15,7 @@ const Card = (props) => {
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
             currentTarget.src="https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";}}
-          class="img-fluid rounded-start bg-light"
+          class="img-fluid bg-light img-detail"
           alt="..."
           style={{ height: "230px" }}
         />
