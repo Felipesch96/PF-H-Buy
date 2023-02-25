@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <div>
-      <footer class="container-fluid footer d-flex align-items-center justify-content-around">
+      <footer class="container-fluid footer fixed-bottom d-flex align-items-center justify-content-around">
         {/* <div class="row"> */}
           <div>
             <Link to={{ pathname: "https://whatsapp.com/" }} target="_blank" className="col-4"><i class="bi bi-whatsapp"></i></Link>
@@ -28,12 +28,8 @@ const Footer = () => {
           </div>
         {/* </div> */}
 
-
-      </footer>
-      <footer class="container-fluid copyright bg-dark text-center copyright py-2">
         <span class="">Copyrigth 2022-2023 H-Buy SA - pending pattent &#174;</span>
       </footer>
-
     </div>
   )
 };

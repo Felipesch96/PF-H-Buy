@@ -50,9 +50,9 @@ const DetailProduct = () => {
   return (
     <div className="container-fluid p-4 contenedor-detalle">
       <div class="abs-center">
-        <div class="card center ">
+        <div class="card center info">
           <div class="row g-10">
-            <div class="col-5 col-sm-4">
+            <div class="col-5 col-sm-4 mb-1">
               <img
                 src={detailProduct.img}
                 class="img-fluid w-100 m-2 img-detail"
@@ -63,33 +63,27 @@ const DetailProduct = () => {
               <div class="col-7 col-sm-8">
                 <div class="card-body">
                   <h2 class="card-title">{detailProduct.name}</h2>
-                  <div>
-                    <span class="card-text">Stock :</span>{" "}
-                    {detailProduct.stock ? (
-                      <span class="text-success">{detailProduct.stock}</span>
-                    ) : (
-                      <span class="text-danger">off</span>
-                    )}
-                  </div>
-                  <div class="mt-1">
-                    <h4
-                      class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
-                      style={{
-                        textAlign: "center",
-                        display: "inline-block",
-                      }}
-                    >
-                      <i class="bi bi-currency-dollar"></i>
-                      {formater.format(detailProduct.price)}
-                    </h4>
-                  </div>
-                  <div class="mt-1">
-                    <p class="card-text mb-1">
-                      Qualification: {detailProduct.score} ☆
-                    </p>
-                    <div class="container">
-                      <StarRating score={detailProduct.score} />
-                    </div>
+                  <span class="card-text">Stock :</span>{" "}
+                  {detailProduct.stock ? (
+                    <span class="text-success">{detailProduct.stock}</span>
+                  ) : (
+                    <span class="text-danger">off</span>
+                  )}
+                  <h4
+                    class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
+                    style={{
+                      textAlign: "center",
+                      display: "inline-block",
+                    }}
+                  >
+                    <i class="bi bi-currency-dollar"></i>
+                    {formater.format(detailProduct.price)}
+                  </h4>
+                  <p class="card-text mb-1">
+                    Qualification: {detailProduct.score} ☆
+                  </p>
+                  <div class="container">
+                    <StarRating score={detailProduct.score} />
                   </div>
                   <p class="card-text">
                     <span class="text-muted">Last updated 3 mins ago</span>
@@ -109,7 +103,7 @@ const DetailProduct = () => {
               </div>
             </div>
 
-            <nav class="mt-3 nav justify-content-center">
+            <nav class="mt-1 nav justify-content-center pestanas">
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button
                   class="nav-link active"
@@ -212,9 +206,31 @@ const DetailProduct = () => {
               >
                 <p class="card-text text-center m-3">
                   <div class="container">
-                    <span class="text-muted">
-                      No reviews about the product ...
-                    </span>
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Typography component="legend">
+                        Califica el Producto:
+                      </Typography>
+                      <Rating
+                        name="simple-controlled"
+                        // value={value}
+                        onChange={(event, newValue) => {
+                          // setValue(newValue);
+                        }}
+                      />
+                      <div>
+                        <Typography component="legend">Puntuacion</Typography>
+                        <Rating
+                          name="read-only"
+                          // value={value} 
+                          readOnly
+                        />
+                      </div>
+                    </Box>
+                    <Button variant="contained">Send</Button>
                   </div>
                 </p>
               </div>

@@ -9,10 +9,10 @@ import DetailProduct from "./components/views/DetailProduct/DetailProduct";
 import SignUp from "./components/views/signUp/SignUp";
 import { Login } from "./components/views/profiles/login";
 
-const App =()=>{
+const App = () => {
 
   return (
-    <div>
+    <div className="app">
       <Router>
         <NavBar />
         <Switch>

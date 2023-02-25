@@ -3,5 +3,6 @@
 }
 
 .pag-prods{
-  background-color: rgba(146, 146, 146, 0.342);
+  background-color: rgb(208, 250, 237);
+  min-height: 100vh;
 }
