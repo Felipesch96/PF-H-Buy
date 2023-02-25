@@ -1,7 +1,6 @@
 import React from "react";
 import Rating from "@mui/material/Rating";
 
-
 import "./Card.css";
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
@@ -10,8 +9,14 @@ const Card = (props) => {
   return (
     <div class="row g-0 tarjeta">
       <div class="col-md-12">
-        <img 
+        <img
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src =
+              "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
+          }}
           src={props.img}
+          className="img-detail"
           class="img-fluid rounded-start bg-light"
           alt="..."
           style={{ height: "230px" }}
@@ -43,7 +48,9 @@ const Card = (props) => {
           <span class="card-text">Category: {props.category}</span>
 
           <span class="card-text">
-            <small class="text-muted">Published: fecha de creacion del producto</small>
+            <small class="text-muted">
+              Published: fecha de creacion del producto
+            </small>
           </span>
         </div>
       </div>

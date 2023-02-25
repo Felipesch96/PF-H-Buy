@@ -2,14 +2,19 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   fetchDetailProduct,
   clearDetailProduct,
 } from "../../../redux/thunks/productThunk";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
+import { Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 import "./DetailProduct.css";
+
+import { addToCart } from "../../../redux/slices/cartSlice";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -23,6 +28,31 @@ const DetailProduct = () => {
     };
   }, [dispatch, id]);
   const formater = new Intl.NumberFormat("en");
+
+  const addElementToCart = () => {
+    detailProduct.stock > 0
+      ? dispatch(addToCart(detailProduct))
+      : window.alert("there is no product in stock");
+  };
+/*   ///estado local para la calificacion
+  const [value, setValue] = useState(detailProduct.score);
+  // const value = ;
+
+  //
+  const promedio = (detailProduct.score + value) / 2;
+  //
+  const labels = {
+    0.5: "Useless",
+    1: "Useless+",
+    1.5: "Poor",
+    2: "Poor+",
+    2.5: "Ok",
+    3: "Ok+",
+    3.5: "Good",
+    4: "Good+",
+    4.5: "Excellent",
+    5: "Excellent+",
+  }; */
 
   return (
     <div className="container-fluid span-4 contenedor-detalle">
@@ -74,10 +104,14 @@ const DetailProduct = () => {
                 </div>
               </div>
               <button class="btn btn-success bi bi-handbag-fill m-3 ">
-                <span class="span-1">Buy product </span>
+                <button class="span-1" onClick={addElementToCart}>
+                  Buy product{" "}
+                </button>
               </button>
               <button class="btn btn-primary bi bi-cart-plus-fill m-3">
-                <span class="span-1">Add to Cart </span>
+                <button class="span-1" onClick={addElementToCart}>
+                  Add to Cart{" "}
+                </button>
               </button>
               <button>
                 <FavoriteButton class="fa-regular fa-heart" />
@@ -185,13 +219,35 @@ const DetailProduct = () => {
                 role="tabpanel"
                 aria-labelledby="nav-review-tab"
               >
-                <span class="card-text text-center m-3">
+                <p class="card-text text-center m-3">
                   <div class="container">
-                    <span class="text-muted">
-                      No reviews about the product ...
-                    </span>
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Typography component="legend">
+                        Califica el Producto:
+                      </Typography>
+                      <Rating
+                        name="simple-controlled"
+                        // value={value}
+                        onChange={(event, newValue) => {
+                          // setValue(newValue);
+                        }}
+                      />
+                      <div>
+                        <Typography component="legend">Puntuacion</Typography>
+                        <Rating
+                          name="read-only"
+                          // value={value}
+                          readOnly
+                        />
+                      </div>
+                    </Box>
+                    <Button variant="contained">Send</Button>
                   </div>
-                </span>
+                </p>
               </div>
             </div>
           </div>

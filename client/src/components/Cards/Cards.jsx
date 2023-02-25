@@ -12,11 +12,12 @@ const Cards = ({ array }) => {
     (currentPage - 1) * cardsPerPage,
     (currentPage - 1) * cardsPerPage + cardsPerPage
   );
-  const selectFilter = useSelector((state) => state.product.filter)
+  const selectFilter = useSelector((state) => state.product.filter);
   useEffect(() => {
-    if (selectFilter.length && currentPage > (array.length/9)) setCurrentPage(1); 
-  },[selectFilter, currentPage])
-  
+    if (selectFilter.length && currentPage > array.length / 9)
+      setCurrentPage(1);
+  }, [selectFilter, currentPage, array.length]);
+
   return (
     <div class="container">
       <span>PAGE: {currentPage}</span>
@@ -31,7 +32,7 @@ const Cards = ({ array }) => {
           {Array.isArray(array) ? (
             cardsCurrent.map((element) => (
               <div key={element._id} class="col">
-                <div class="card mb-3 bg-dark">
+                <div class="card mb-3 bg-dark tarjeta">
                   <Card
                     img={element.img}
                     name={element.name}

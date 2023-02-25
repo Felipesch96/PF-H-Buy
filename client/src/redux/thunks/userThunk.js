@@ -2,7 +2,6 @@ import axios from "axios";
 import {
   setUsers,
   setUser,
-  setLogedUser,
 } from "../slices/usersSlice";
 
 export const fetchUsers = () => {
