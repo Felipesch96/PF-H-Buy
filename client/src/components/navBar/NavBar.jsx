@@ -1,11 +1,10 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { BsCart4 } from "react-icons/bs";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
-import {
-  fetchSearch,
-} from "../../redux/thunks/productThunk";
+import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
@@ -14,6 +13,8 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
+  const { amountOfItems } = useSelector((state) => state.cart);
+  const history = useHistory();
 
   function submitSearch(e) {
     e.preventDefault();
@@ -106,14 +107,75 @@ const NavBar = () => {
                   value={text}
                   name="filter-by-name"
                   aria-label="Search"
-                  onChange={e => setText(e.target.value)}
+                  onChange={(e) => setText(e.target.value)}
                 />
-
                 <button class="btn btn-outline-success" type="submit">
                   <Link to="/products">Search</Link>
                 </button>
               </form>
             </div>
+            <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
+              <li>
+                <div className="shoppingCart">
+                  <div
+                    className={
+                      amountOfItems === 0 ? "negativeCounter" : "counter"
+                    }
+                  >
+                    {amountOfItems}
+                  </div>
+                  <BsCart4
+                    className="carIcon"
+                    onClick={() => {
+                      if (amountOfItems === 0) {
+                        return window.alert(
+                          "You dont have any products in the cart"
+                        );
+                      }
+                      history.push("/shoppingCart");
+                    }}
+                  />
+                </div>
+              </li>
+              <li>
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-person-square"></i>
+                  </button>
+                  {isAuthenticated ? (
+                    <ul class="dropdown-menu dropdown-menu-end justify-content-center">
+                      <li>
+                        <Link className="nav-link mt-1" to="/profile">
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="nav-link mt-1" to="/shoppingCart">
+                          Cart
+                        </Link>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider" />
+                      </li>
+                      <li>
+                        <Logout />
+                      </li>
+                    </ul>
+                  ) : (
+                    <ul class="dropdown-menu justify-content-center">
+                      <li>
+                        <Login />
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>

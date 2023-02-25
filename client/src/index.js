@@ -23,7 +23,6 @@ root.render(
           {" "}
           <App />
         </PersistGate>
-        <App />
       </Auth0Provider>
     </Provider>
   </BrowserRouter>
