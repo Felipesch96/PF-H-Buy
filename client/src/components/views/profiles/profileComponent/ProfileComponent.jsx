@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../../../redux/thunks/productThunk";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
-import { fetchCategories } from "../../../../redux/thunks/productThunk";
 import "./profileComponent.css";
 
 const ProfileComponent = () => {
@@ -20,7 +20,7 @@ const ProfileComponent = () => {
   };
   useEffect(()=>{
     dispatch(fetchCategories())
-      },[]);
+      },[dispatch]);
     
 
   return (
