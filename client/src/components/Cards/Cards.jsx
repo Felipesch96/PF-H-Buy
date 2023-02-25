@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Paginate from "../Paginate/Paginate";
+import { useSelector } from "react-redux";
 import "./Cards.css";
 
 const Cards = ({ array }) => {
@@ -11,8 +12,14 @@ const Cards = ({ array }) => {
     (currentPage - 1) * cardsPerPage,
     (currentPage - 1) * cardsPerPage + cardsPerPage
   );
+  const selectFilter = useSelector((state) => state.product.filter)
+  useEffect(() => {
+    if (selectFilter.length && currentPage > (array.length/9)) setCurrentPage(1); 
+  },[selectFilter, currentPage])
+  
   return (
     <div class="container">
+      <span>PAGE: {currentPage}</span>
       <div class="container">
         <Paginate
           currentPage={currentPage}
