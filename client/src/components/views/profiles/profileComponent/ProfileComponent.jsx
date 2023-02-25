@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
+import { fetchCategories } from "../../../../redux/thunks/productThunk";
 import "./profileComponent.css";
 
 
 const ProfileComponent = () => {
-  
+  const dispatch = useDispatch();
   const userLocal = useSelector((state) => state.user.userLocal);
   const [userType, setUserType] = useState("Buyer");
 
@@ -18,6 +19,10 @@ const ProfileComponent = () => {
   const sellerButton = () => {
     setUserType("Seller");
   };
+  useEffect(()=>{
+    dispatch(fetchCategories())
+      },[]);
+    
 
   return (
     <div class="container-fluid pagina-perfiles">

@@ -1,32 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useSelector } from "react-redux";
 import { useForm } from "../../../hooks/useForm";
 
-const formValidations = (form) => {
-  let errors = {};
-  if (!form.name.trim()) {
+const formValidations = (form, type) => {
+  const reg = new RegExp('^[0-9]*$');
+  const errors = {};
+
+  if (type === "name" && !form.trim()) {
     errors.name = "The name of the product is required";
   }
-  if (!form.description.length > 0) {
-    errors.description = "You must provide a description of your product";
+  if (type === "description" && !form?.length > 0) {
+    errors.description = "You must provide a short description of your product";
   }
-  if (!form.category.length > 0) {
-    errors.category = "You must provide a category of your product";
+  if (type === "price" && (form < 1 || !reg.test(form))) {
+    errors.price = "Price must be a number higher than 0";
+  }
+  if (type === "stock" && (form < 1 || !reg.test(form))) {
+    errors.stock = "You must provide at least 1 product";
+  }
+  if (type === "condition" && (!form || form == "Select an option")) {
+    errors.condition = "Please select a condition";
+  }
+  if (type === "category" && (!form || form === "Select an option")) {
+    errors.category = "Please select a category";
+  }
+  if (type === "photo" && !form) {
+    errors.photo = "Please upload a photo";
   }
   return errors;
 };
+
 const initialForm = {
   name: "",
   img: "",
-  price: 0,
+  price: "",
   description: "",
   category: "",
-  stock: 1,
+  stock: "",
   condition: ""
 };
+
+
 const CreateProductFrom = ({ onClose }) => {
-  const { form, errors, handleBlur, handleChange, handleSubmitProduct } =
+  const { form, errors, handleNameBlur, handleChange, handleSubmitProduct,
+    handlePriceBlur, handleDescBlur, handlePhotoBlur, handleStockcBlur, handleCondBlur, handleCatBlur} =
     useForm(initialForm, formValidations);
+
+    const categories = useSelector((state) => state.product.categories)
+
 
 
   return (
@@ -35,6 +57,7 @@ const CreateProductFrom = ({ onClose }) => {
         onClick={() => onClose(false)}
         className="closeIconP"
       />
+      {/* {console.log(form)} */}
       <section className="formInputP">
         <label className="labelP">Name your product</label>
         <input
@@ -44,7 +67,7 @@ const CreateProductFrom = ({ onClose }) => {
           value={form.name}
           onChange={handleChange}
           className="inputP"
-          onBlur={handleBlur}
+          onBlur={handleNameBlur}
         />
         {errors.name && <p className="errors">{errors.name}</p>}
       </section>
@@ -60,8 +83,9 @@ const CreateProductFrom = ({ onClose }) => {
           className="inputP"
           value={form.img}
           onChange={handleChange}
+          onBlur={handlePhotoBlur}
         />
-        {/* {errors.name && <p>{errors.name}</p>} */}
+        {errors.photo && <p className="errors">{errors.photo}</p>}
       </section>
 
       <section className="formInputP">
@@ -71,26 +95,26 @@ const CreateProductFrom = ({ onClose }) => {
         <input
           name="price"
           id="price"
-          type="number"
+          type="text"
           className="inputP"
           value={form.price}
           onChange={handleChange}
+          onBlur={handlePriceBlur}
         />
-        {/* {errors.name && <p>{errors.name}</p>} */}
+        {errors.price && <p className="errors">{errors.price}</p>}
       </section>
 
       <section className="formInputP">
-        <label className="labelP">Add Category</label>
-        <input
-          type="text"
-          id="category"
-          name="category"
-          className="inputP"
-          onChange={handleChange}
-          value={form.category}
-          onBlur={handleBlur}
-        />
-        {errors.name && <p className="errors">{errors.category}</p>}
+        <label className="labelP">Select a category</label>
+        <select onChange={handleChange} onBlur={handleCatBlur} name="category">
+          <option>Select an option</option>
+          {categories.map((element) => {
+            return(
+              <option key={element._id}>{element.name}</option>
+            )
+          })}
+        </select>
+        {errors.category && <p className="errors">{errors.category}</p>}
       </section>
 
       <section className="formInputP">
@@ -100,27 +124,23 @@ const CreateProductFrom = ({ onClose }) => {
         <input
           name="stock"
           id="stock"
-          type="number"
+          type="text"
           className="inputP"
           value={form.stock}
           onChange={handleChange}
+          onBlur={handleStockcBlur}
         />
         {errors.stock && <p className="errors">{errors.stock}</p>}
       </section>
 
       <section className="formInputP">
-        <label className="labelP">
-        Condition
-        </label>
-        <input
-          name="condition"
-          id="condition"
-          type="text"
-          className="inputP"
-          value={form.condition}
-          onChange={handleChange}
-        />
-        {errors.stock && <p className="errors">{errors.stock}</p>}
+      <label className="labelP">Select a condition</label>
+        <select onChange={handleChange} onBlur={handleCondBlur} name="condition">
+          <option>Select an option</option>
+          <option>new</option>
+          <option>used</option>
+          </select>
+        {errors.condition && <p className="errors">{errors.condition}</p>}
       </section>
 
       <section className="formInputP">
@@ -132,15 +152,17 @@ const CreateProductFrom = ({ onClose }) => {
           name="description"
           onChange={handleChange}
           value={form.description}
-          onBlur={handleBlur}
+          onBlur={handleDescBlur}
         ></textarea>
         {errors.description && <p className="errors">{errors.description}</p>}
       </section>
 
       {/* {aca va cloudinary} */}
-      <button type="submit" className="productButton">
-        Crear
-      </button>
+      {form.name && form.description && form.category && form.condition && form.img &&
+      form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
+      ?<button type="submit" className="productButton">Create</button>
+      :<span className="errors">Please fill the blanks to create a product</span>}
+       
     </form>
   );
 };

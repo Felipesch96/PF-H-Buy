@@ -1,11 +1,7 @@
 import { useState } from "react";
-import { createCategory } from "../helpers/createCategory";
 import { useDispatch } from "react-redux";
-import {
-  fetchCategories,
-  fetchNewProducts,
-  fetchProducts,
-} from "../redux/thunks/productThunk";
+import { createCategory } from "../helpers/createCategory";
+import { fetchCategories, fetchNewProducts } from "../redux/thunks/productThunk";
 
 export const useForm = (initialForm = {}, formValidations) => {
   const dispatch = useDispatch();
@@ -22,7 +18,6 @@ export const useForm = (initialForm = {}, formValidations) => {
 
   const handleSubmitCategory = (e) => {
     e.preventDefault();
-    console.log(form);
     createCategory(form);
     dispatch(fetchCategories());
   };
@@ -30,15 +25,6 @@ export const useForm = (initialForm = {}, formValidations) => {
   const handleSubmitProduct = (e) => {
     e.preventDefault();
     const { name, img, condition, price, description, category, stock } = form;
-    console.log({
-      name,
-      img,
-      condition,
-      price: Number(price),
-      description,
-      category,
-      stock: Number(stock),
-    });
     dispatch(fetchNewProducts({
       name,
       img,
@@ -48,19 +34,52 @@ export const useForm = (initialForm = {}, formValidations) => {
       category,
       stock: Number(stock),
     }))
-    dispatch(fetchProducts());
+    setForm({
+        name: "",
+        img: "",
+        price: "",
+        description: "",
+        category: "",
+        stock: "",
+        condition: ""
+    })
   };
 
-  const handleBlur = () => {
-    setErrors(formValidations(form));
+  const handleNameBlur = () => {
+    setErrors(formValidations(form.name, "name"));
   };
+  const handlePriceBlur = () => {
+    setErrors(formValidations(form.price, "price"));
+  };
+  const handleDescBlur = () => {
+    setErrors(formValidations(form.description, "description"));
+  };
+  const handleStockcBlur = () => {
+    setErrors(formValidations(form.stock, "stock"));
+  };
+  const handleCondBlur = () => {
+    setErrors(formValidations(form.condition, "condition"));
+  };
+  const handleCatBlur = () => {
+    setErrors(formValidations(form.category, "category"));
+  };
+  const handlePhotoBlur = () => {
+    setErrors(formValidations(form.img, "photo"));
+  };
+
 
   return {
     form,
     errors,
+    handleStockcBlur,
+    handleCondBlur,
+    handlePhotoBlur,
+    handleCatBlur,
+    handlePriceBlur,
+    handleDescBlur,
     handleChange,
     handleSubmitCategory,
     handleSubmitProduct,
-    handleBlur,
+    handleNameBlur,
   };
 };

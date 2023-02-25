@@ -87,7 +87,6 @@ const SellerProfile = () => {
           </div>
           <div class="tab-pane fade" id="nav-account" role="tabpanel" aria-labelledby="nav-account-tab">
             <AccountInfo />
-            {/* la idea es que reciba los datos del usuario */}
           </div>
           <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
             <Wallet />
