@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createCategory } from "../helpers/createCategory";
 import { fetchCategories, fetchNewProducts } from "../redux/thunks/productThunk";
 
-export const useForm = (initialForm = {}, formValidations) => {
+export const useForm = (initialForm = {}, formValidations, categories) => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState(initialForm);
@@ -46,7 +46,7 @@ export const useForm = (initialForm = {}, formValidations) => {
   };
 
   const handleNameBlur = () => {
-    setErrors(formValidations(form.name, "name"));
+    setErrors(formValidations(form.name, "name", categories));
   };
   const handlePriceBlur = () => {
     setErrors(formValidations(form.price, "price"));
