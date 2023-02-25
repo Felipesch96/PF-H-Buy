@@ -22,9 +22,17 @@ const ProductsPage = () => {
         <div class="col-9 col-md-3 filtros">
           <Filters />
         </div>
-        <div class="col-12 col-sm-9">
+        <div class="col-15 col-sm-9">
           {error ? (
-            <h2>{error}</h2>
+            <div class="mt-5">
+              <div class="alert alert-danger" role="alert">
+                <i
+                  class="bi bi-exclamation-triangle-fill"
+                  style={{ fontSize: "30px" }}
+                />
+                " {error}"
+              </div>
+            </div>
           ) : helper.length ? (
             <Cards array={helper} />
           ) : filters.length ? (

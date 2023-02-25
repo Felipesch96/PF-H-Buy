@@ -8,15 +8,15 @@ import {
 } from "../../redux/thunks/productThunk";
 import "./Filter.css";
 
-const Filters = () => {
+const Filters = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
   const { categories, filter } = useSelector((state) => state.product);
   const [filterByCat, setFilterByCat] = useState();
 
   useEffect(() => {
-      setFilterByCat(filter);
-      dispatch(fetchCategories());
-    }, [dispatch, filter]);
+    setFilterByCat(filter);
+    dispatch(fetchCategories());
+  }, [dispatch, filter]);
 
   function handleChangeSearch(e) {
     e.preventDefault();
@@ -24,11 +24,12 @@ const Filters = () => {
   }
 
   function handleOrderInput(e) {
-  dispatch(fetchOrderInFilter(e.target.value));
+    dispatch(fetchOrderInFilter(e.target.value));
   }
 
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
+    // setCurrentPage(1);
   }
 
   return (
