@@ -4,14 +4,9 @@
 }
 
 .home{
-  /* display: flex; */
-  height: 100%;
+  min-height: 100vh;
   background-color: rgb(208, 250, 237);
-  /* height: 100vh; */
-  flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
-  
+  flex-direction: column;  
 }
 
 .grid{

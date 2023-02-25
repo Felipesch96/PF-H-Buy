@@ -8,16 +8,14 @@ import ProfileComponent from './components/views/profiles/profileComponent/Profi
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
 import SignUp from "./components/views/signUp/SignUp";
 import { Login } from "./components/views/profiles/login";
-import "./App.css"
 
-const App =()=>{
+const App = () => {
 
   return (
     <div className="app">
       <Router>
         <NavBar />
         <Switch>
-          {/* a cada componente hay que agregarle padding-top: 8vh; para que quede con la nav fija*/}
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/products" component={ProductsPage} />

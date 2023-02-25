@@ -1,6 +1,6 @@
 .contenedor-detalle{
   background-color: rgb(208, 250, 237);
- 
+  min-height: 100vh; 
 }
 
 .img-detail{
