@@ -20,7 +20,7 @@ const ProfileComponent = () => {
   };
   useEffect(()=>{
     dispatch(fetchCategories())
-      },[]);
+      },[dispatch]);
     
 
   return (

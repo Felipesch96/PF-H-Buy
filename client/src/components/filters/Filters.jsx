@@ -27,17 +27,14 @@ const Filters = () => {
   }
 
   function handleOrderAlphabet(e) {
-    console.log(e.target.value);
     dispatch(fetchOrderAlphabet(e.target.value));
   }
 
   function handleOrderPrice(e) {
-    console.log(e.target.value);
     dispatch(fetchOrderPrice(e.target.value));
   }
 
   function handleOrderScore(e) {
-    console.log(e.target.value);
     dispatch(fetchOrderScore(e.target.value));
   }
 
