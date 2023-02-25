@@ -4,8 +4,6 @@ import {
   fetchCategories,
   fetchClearFilter,
   fetchOrderAlphabet,
-  fetchOrderAlphabeth,
-  fetchOrderInFilter,
   fetchOrderPrice,
   fetchOrderScore,
   fetchSearchInFilter,

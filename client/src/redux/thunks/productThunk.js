@@ -7,7 +7,6 @@ import {
   clearDetail,
   setFilter,
   setError,
-  setFilterdemo,
   orderByName,
   clearFilter,
   orderByPrice,
