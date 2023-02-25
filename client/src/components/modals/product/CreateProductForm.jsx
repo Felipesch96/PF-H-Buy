@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useForm } from "../../../hooks/useForm";
@@ -19,7 +19,7 @@ const formValidations = (form, type) => {
   if (type === "stock" && (form < 1 || !reg.test(form))) {
     errors.stock = "You must provide at least 1 product";
   }
-  if (type === "condition" && (!form || form == "Select an option")) {
+  if (type === "condition" && (!form || form === "Select an option")) {
     errors.condition = "Please select a condition";
   }
   if (type === "category" && (!form || form === "Select an option")) {
@@ -57,18 +57,6 @@ const CreateProductFrom = ({ onClose }) => {
         onClick={() => onClose(false)}
         className="closeIconP"
       />
-      {/* {console.log(form)} */}
-      <section className="formInputP">
-        <label className="labelP">Name your product</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          className="inputP"
-          onBlur={handleNameBlur}
-        />
         <section className="formInputP">
           <label className="labelP">Name your product</label>
           <input
@@ -78,7 +66,7 @@ const CreateProductFrom = ({ onClose }) => {
             value={form.name}
             onChange={handleChange}
             className="inputP"
-            onBlur={handleBlur}
+            onBlur={handleNameBlur}
           />
           {errors.name && <span className="errors">{errors.name}</span>}
         </section>
