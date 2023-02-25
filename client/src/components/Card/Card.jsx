@@ -12,10 +12,14 @@ const Card = (props) => {
       <div class="col-md-12">
         <img 
           src={props.img}
-          class="img-fluid rounded-start mt-2"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src="https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";}}
+          class="img-fluid bg-light img-detail"
           alt="..."
           style={{ height: "230px" }}
         />
+        <hr />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
           <p

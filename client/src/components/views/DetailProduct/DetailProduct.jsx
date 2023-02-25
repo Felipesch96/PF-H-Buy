@@ -12,6 +12,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
+import "./DetailProduct.css";
 import { addToCart } from "../../../redux/slices/cartSlice";
 
 const DetailProduct = () => {
@@ -21,37 +22,46 @@ const DetailProduct = () => {
   
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
-  }, [])
-  
+    return () => {
+      dispatch(clearDetailProduct());
+    };
+  }, [dispatch, id]);
+  const formater = new Intl.NumberFormat("en");
+
   const addElementToCart = () => {
     detailProduct.stock > 0 ? 
     dispatch(addToCart(detailProduct)) : 
     window.alert('there is no product in stock')
  }
-  //   style: "currency",
-  //   currency: "ARS",
-/*   const calification = (item) => {
-    item.prevenDefault();
-    var cont;
-    cont = item.id[0];
-    let nombre = item.id.substring(1);
-    for (let i = 0; i < 5; i++) {
-      if (i < cont) {
-        document.getElementById(i + 1 + nombre).style.color = "orange";
-      } else {
-        document.getElementById(i + 1 + nombre).style.color = "black";
-      }
-    }
-  }; */
+  ///estado local para la calificacion
+  const [value, setValue] = useState(detailProduct.score);
+  // const value = ;
+
+  //
+  const promedio = (detailProduct.score + value) / 2;
+  //
+  const labels = {
+    0.5: "Useless",
+    1: "Useless+",
+    1.5: "Poor",
+    2: "Poor+",
+    2.5: "Ok",
+    3: "Ok+",
+    3.5: "Good",
+    4: "Good+",
+    4.5: "Excellent",
+    5: "Excellent+",
+  };
+
   return (
-    <div className="container">
-      <div class="abs-center m-4">
-        <div class="card center ">
+    <div className="container-fluid p-4 contenedor-detalle">
+      <div class="abs-center">
+        <div class="card center info">
           <div class="row g-10">
-            <div class="col-5 col-sm-4">
+            <div class="col-5 col-sm-4 mb-1">
               <img
                 src={detailProduct.img}
-                class="img-fluid w-100 m-2"
+                class="img-fluid w-100 m-2 img-detail"
                 alt="card-horizontal-image"
               />
             </div>
@@ -59,7 +69,12 @@ const DetailProduct = () => {
               <div class="col-7 col-sm-8">
                 <div class="card-body">
                   <h2 class="card-title">{detailProduct.name}</h2>
-                  <p class="card-text">Stock : {detailProduct.stock}</p>
+                  <span class="card-text">Stock :</span>{" "}
+                  {detailProduct.stock ? (
+                    <span class="text-success">{detailProduct.stock}</span>
+                  ) : (
+                    <span class="text-danger">off</span>
+                  )}
                   <h4
                     class="card-text text-white rounded-2 bg-success p-1 bg-opacity-70"
                     style={{
@@ -68,15 +83,13 @@ const DetailProduct = () => {
                     }}
                   >
                     <i class="bi bi-currency-dollar"></i>
-                    {/* {formater.format(detailProduct.price)} */}
+                    {formater.format(detailProduct.price)}
                   </h4>
+                  <p class="card-text mb-1">
+                    Qualification: {detailProduct.score} ☆
+                  </p>
                   <div class="container">
-                    <p class="card-text mb-1">
-                      Qualification: {detailProduct.score} ☆
-                    </p>
-                    <div class="container">
-                      <StarRating score={detailProduct.score} />
-                    </div>
+                    <StarRating score={detailProduct.score} />
                   </div>
                   <p class="card-text">
                     <span class="text-muted">Last updated 3 mins ago</span>
@@ -96,7 +109,7 @@ const DetailProduct = () => {
               </div>
             </div>
 
-            <nav class="mt-3 nav justify-content-center">
+            <nav class="mt-1 nav justify-content-center pestanas">
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button
                   class="nav-link active"
@@ -199,9 +212,31 @@ const DetailProduct = () => {
               >
                 <p class="card-text text-center m-3">
                   <div class="container">
-                    <span class="text-muted">
-                      No reviews about the product ...
-                    </span>
+                    <Box
+                      sx={{
+                        "& > legend": { mt: 2 },
+                      }}
+                    >
+                      <Typography component="legend">
+                        Califica el Producto:
+                      </Typography>
+                      <Rating
+                        name="simple-controlled"
+                        // value={value}
+                        onChange={(event, newValue) => {
+                          // setValue(newValue);
+                        }}
+                      />
+                      <div>
+                        <Typography component="legend">Puntuacion</Typography>
+                        <Rating
+                          name="read-only"
+                          // value={value} 
+                          readOnly
+                        />
+                      </div>
+                    </Box>
+                    <Button variant="contained">Send</Button>
                   </div>
                 </p>
               </div>

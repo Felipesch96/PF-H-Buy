@@ -1,0 +1,13 @@
+.contenedor-detalle{
+  background-color: rgb(208, 250, 237);
+  min-height: 100vh; 
+}
+
+.img-detail{
+  border: 2px solid rgb(61, 56, 56);
+}
+
+.info{
+  background-color: #d7edfd;
+}
+

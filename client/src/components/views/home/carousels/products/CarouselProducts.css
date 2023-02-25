@@ -4,10 +4,11 @@
   /* align-items: center;
   justify-content: space-between; */
   flex-direction: row;
+  font-size:xx-small;
 }
 
 .contenedor-products button{
-width: 1.5rem;
+width: 2rem;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -27,4 +28,8 @@ align-items: center;
 
 .card-body img{
   height: fit-;
+}
+
+.card-prod-carousel:hover{
+  opacity: 0.5;
 }

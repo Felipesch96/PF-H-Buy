@@ -11,10 +11,10 @@ import { Login } from "./components/views/profiles/login";
 import { ShoppingCart } from "./components/views/shoppingCart";
 import { Shipping } from "./components/views/shipping";
 
-const App =()=>{
+const App = () => {
 
   return (
-    <div>
+    <div className="app">
       <Router>
         <NavBar />
         <Switch>

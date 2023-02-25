@@ -42,3 +42,11 @@ input {
 .navbar-collapse{
 justify-content: space-around;
 }
+
+.route-flag{
+  color: #fff;
+}
+
+.visited-route{
+  color: rgb(134, 71, 71);
+}
