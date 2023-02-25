@@ -2,6 +2,6 @@
 import axios from "axios"
 
 export const editCategory = (category) => {
-    console.log(category)
-    axios.put(`http://localhost:3001/categories/${category.id}`, category)
+            const {REACT_APP_API_URL} = process.env
+    axios.put(`${REACT_APP_API_URL}/categories/${category.id}`, category)
 } 
