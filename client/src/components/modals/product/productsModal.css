@@ -12,7 +12,7 @@
 .showProductModal{
     position: absolute;
     /* min-height: 400px; */
-    max-height: 100vh;
+    max-height: 80vh;
     background-color: #5ec59f ;
     /* top: 15px;
     left: 315px ; */

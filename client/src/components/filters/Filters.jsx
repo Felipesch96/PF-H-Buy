@@ -43,7 +43,6 @@ const Filters = () => {
 
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
-    // setCurrentPage(1);
   }
 
   function clearFilter(e) {
@@ -75,7 +74,11 @@ const Filters = () => {
                 </form>
               ) : null}
             </div>
-            <form onSubmit={clearFilter} class="ml-md-2">
+            <form
+              onSubmit={clearFilter}
+              id="form-filters-combined"
+              class="ml-md-2"
+            >
               <div className="col-lg-12 col-sm-6 col-12">
                 <h6 class="span-1 fw-bold">Categories</h6>
                 <div>
