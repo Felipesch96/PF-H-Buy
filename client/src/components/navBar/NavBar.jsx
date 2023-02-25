@@ -48,7 +48,7 @@ const NavBar = () => {
             <span class="navbar-toggler-icon"></span>
           </button>
           <a href="/">
-          <img src={require("../views/landingPage/media/logoh.png")} style={{width:"50px"}} alt="" />
+          <img src={require("./media/logoh.png")} style={{width:"50px"}} alt="" />
           </a>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
          
