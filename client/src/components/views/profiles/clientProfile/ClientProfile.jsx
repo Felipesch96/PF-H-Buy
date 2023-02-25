@@ -10,7 +10,7 @@ const ClientProfile = () => {
   // const user = useSelector((state) => state.user.userLocal);
   // const favs = useSelector((state) => state.fav.favList);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     if (!favs.length) dispatch(getFavs(user._id));
   }, [favs.length]); */
 
@@ -96,7 +96,12 @@ const ClientProfile = () => {
                         >
                           Favorites (cant)
                         </button>
-                     {/*    <ul class="dropdown-menu">
+                        <ul class="dropdown-menu">
+                          <li>
+                            <span>favorites 1</span>
+                          </li>
+                        </ul>
+                        {/*    <ul class="dropdown-menu">
                           {favs.map((element) => {
                             return (
                               <ul key={element._id}>
