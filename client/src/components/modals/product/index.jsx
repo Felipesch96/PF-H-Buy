@@ -5,7 +5,7 @@ export const ProductModal = ({ onClose }) => {
 
   return (
     <section className="productModal-seller">
-      <CreateProductFrom onClose={onClose}/>
+      <CreateProductFrom onClose={onClose} />
     </section>
   );
 };

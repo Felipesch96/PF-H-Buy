@@ -7,8 +7,11 @@ import {
   clearDetail,
   setFilter,
   setError,
-  setFilterdemo,
   orderByName,
+  clearFilter,
+  orderByPrice,
+  setFilterName,
+  orderByScore,
 } from "../slices/productsSlice";
 
 export const fetchProducts = () => {
@@ -73,7 +76,7 @@ export const fetchSearchProductByCtg = (type) => {
 export const fetchSearchInFilter = (data) => {
   return async function (dispatch) {
     try {
-      dispatch(setFilterdemo(data));
+      dispatch(setFilterName(data));
     } catch (error) {
       dispatch(setError(error.response.data));
       console.log(error.response.data);
@@ -81,10 +84,43 @@ export const fetchSearchInFilter = (data) => {
   };
 };
 
-export const fetchOrderInFilter = (data) => {
+export const fetchOrderAlphabet = (data) => {
   return async function (dispatch) {
     try {
       dispatch(orderByName(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const fetchOrderPrice = (data) => {
+  return async function (dispatch) {
+    try {
+      dispatch(orderByPrice(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const fetchOrderScore = (data) => {
+  return async function (dispatch) {
+    try {
+      dispatch(orderByScore(data));
+    } catch (error) {
+      dispatch(setError(error.response.data));
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const fetchClearFilter = () => {
+  return async function (dispatch) {
+    try {
+      dispatch(clearFilter());
     } catch (error) {
       dispatch(setError(error.response.data));
       console.log(error.response.data);

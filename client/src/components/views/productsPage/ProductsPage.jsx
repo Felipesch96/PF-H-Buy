@@ -7,14 +7,13 @@ import "./ProductsPage.css";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.product.filter);
-  const helper = useSelector((state) => state.product.filterHelper);
-  const products = useSelector((state) => state.product.products);
-  const error = useSelector((state) => state.product.error);
+  const { filter, filterHelper, products, error } = useSelector(
+    (state) => state.product
+  );
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div class="container-fluid text-center pag-prods">
@@ -22,15 +21,29 @@ const ProductsPage = () => {
         <div class="col-9 col-md-3 filtros">
           <Filters />
         </div>
-        <div class="col-12 col-sm-9">
+        <div class="col-15 col-sm-9">
           {error ? (
-            <h2>{error}</h2>
-          ) : helper.length ? (
-            <Cards array={helper} />
-          ) : filters.length ? (
-            <Cards array={filters} />
+            <div class="mt-5">
+              <div class="alert alert-danger" role="alert">
+                <i
+                  class="bi bi-exclamation-triangle-fill"
+                  style={{ fontSize: "30px" }}
+                />
+                " {error}"
+              </div>
+            </div>
+          ) : filterHelper.length ? (
+            <>
+              <Cards array={filterHelper} />
+            </>
+          ) : filter.length ? (
+            <>
+              <Cards array={filter} />
+            </>
           ) : (
-            <Cards array={products} />
+            <>
+              <Cards array={products} />
+            </>
           )}
         </div>
       </div>

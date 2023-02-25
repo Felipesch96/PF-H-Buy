@@ -69,8 +69,19 @@ const CreateProductFrom = ({ onClose }) => {
           className="inputP"
           onBlur={handleNameBlur}
         />
-        {errors.name && <p className="errors">{errors.name}</p>}
-      </section>
+        <section className="formInputP">
+          <label className="labelP">Name your product</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            className="inputP"
+            onBlur={handleBlur}
+          />
+          {errors.name && <span className="errors">{errors.name}</span>}
+        </section>
 
       <section className="formInputP">
         <label  className="labelP">

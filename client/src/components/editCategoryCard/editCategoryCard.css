@@ -6,6 +6,6 @@
     justify-content: center;
 }
 
-.categoryDetails > p {
+.categoryDetails > span {
     margin: 0;
 }

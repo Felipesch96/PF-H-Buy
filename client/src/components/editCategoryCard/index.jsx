@@ -42,7 +42,7 @@ export const EditCategoryCard = ({ categories }) => {
           }}
         />
       ) : (
-        <p onClick={handleOnClickEdit}>{newCategory.name}</p>
+        <span onClick={handleOnClickEdit}>{newCategory.name}</span>
       )}
       <FiEdit2 onClick={() => setEdit(!edit)} />
       {!edit && <MdDelete onClick={() => onDelete(newCategory.id)} />}

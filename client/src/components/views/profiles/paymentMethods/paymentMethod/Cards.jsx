@@ -6,7 +6,7 @@ const Cards = ({ card, type, number, name, expDate }) => {
     <div class="col-md-6">
       <div class="card mb-4 mb-md-0">
         <div class="card-body">
-          <p
+          <span
             class="mb-4"
           >
             <a
@@ -19,28 +19,28 @@ const Cards = ({ card, type, number, name, expDate }) => {
                 `Tarjeta ${card}`
               }
             </a> {type}
-          </p>
-          <p class="mt-4 mb-1" style={{ fontSize: ".77rem;" }}>
+          </span>
+          <span class="mt-4 mb-1" style={{ fontSize: ".77rem" }}>
             {
               `Number: ${number}`
             }
-          </p>
-          <p
+          </span>
+          <span
             class="mt-4 mb-1"
-            style={{ fontSize: ".77rem;" }}
+            style={{ fontSize: ".77rem" }}
           >
             {
               `Name (sam as card): ${name}`
             }
-          </p>
-          <p
+          </span>
+          <span
             class="mt-4 mb-1"
-            style={{ fontSize: ".77rem;" }}
+            style={{ fontSize: ".77rem" }}
           >
             {
               `Exp. date: ${expDate}`
             }
-          </p>
+          </span>
         </div>
         <button>
           edit

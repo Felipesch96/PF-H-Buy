@@ -18,7 +18,7 @@ const Card = (props) => {
         />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
-          <p
+          <span
             class="card-text bg-success text-white rounded-2"
             style={{
               textAlign: "center",
@@ -27,9 +27,9 @@ const Card = (props) => {
             }}
           >
             ${formater.format(props.price)}
-          </p>
+          </span>
           <div class="container">
-            <p class="card-text mb-1">Qualification: {props.score} ☆</p>
+            <span class="card-text mb-1">Qualification: {props.score} ☆</span>
 
             <Rating
               style={{ fontSize: "17px" }}
@@ -40,11 +40,11 @@ const Card = (props) => {
             />
           </div>
 
-          <p class="card-text">Category: {props.category}</p>
+          <span class="card-text">Category: {props.category}</span>
 
-          <p class="card-text">
+          <span class="card-text">
             <small class="text-muted">Published: fecha de creacion del producto</small>
-          </p>
+          </span>
         </div>
       </div>
     </div>

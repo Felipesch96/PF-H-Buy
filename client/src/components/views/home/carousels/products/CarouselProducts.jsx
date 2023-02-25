@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { fetchProducts } from "../../../../../redux/thunks/productThunk";
-import ViewProductButton from "../../../../buttons/ViewPoroduct/ViewProductButton";
-import Card from "../../../../Card/Card";
 import CarouselCard from "./CarouselCard";
 import "./CarouselProducts.css";
 
@@ -14,7 +12,7 @@ const CarouselProducts = () => {
   const { products } = useSelector((state) => state.product);
 
   const [pageCurrent, setPageCurrent] = useState(1);
-  const [cardsPerPage, setCardsPerPage] = useState(6);
+  const [cardsPerPage] = useState(6);
   const indexLastCard = pageCurrent * cardsPerPage;
   const indexFirstCard = indexLastCard - cardsPerPage;
   const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
@@ -22,7 +20,7 @@ const CarouselProducts = () => {
   // const paginado = (page) => {
   //   setPageCurrent(page);
   // };
-  const selectNewImage = (index, images, next = true) => {
+  const selectNewImage = ( next = true) => {
     setTimeout(() => {
       const condition = next
         ? pageCurrent < 2
@@ -63,14 +61,14 @@ const CarouselProducts = () => {
 
       <button class="btn btn-primary box" type="button" onClick={previous}>{"<"}</button>
       <div class="d-flex justify-content-center align-items-center">
-        {cardsCurrent.map((p) => {
+        {cardsCurrent.map((span) => {
           return (
-            <div class="box">
+            <div key={span._id} class="box">
               <CarouselCard
-                _id={p._id}
-                img={p.img}
-                name={p.name}
-                score={p.score}
+                _id={span._id}
+                img={span.img}
+                name={span.name}
+                score={span.score}
               />
             </div>
           );

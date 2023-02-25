@@ -1,44 +1,34 @@
 import { useSelector } from "react-redux";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import "../product/productsModal.css";
-import {DataGrid} from '@mui/x-data-grid';
+import { DataGrid } from "@mui/x-data-grid";
 
 export const ShowProductModal = ({ onClose }) => {
-  const { products, categories } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.product);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 50 },
-    { field: "name", headerName: "Name", width: 150 },
-    { field: "price", headerName: "Price", width: 90 },
+    { field: "id", headerName: "ID" },
+    { field: "name", headerName: "Name" },
+    { field: "price", headerName: "Price" },
   ];
-  const rows = products.map((p) => ({
-    id: p._id,
-    name: p.name,
-    price: p.price
-  }))
+  const rows = products.map((span) => ({
+    id: span._id,
+    name: span.name,
+    price: span.price,
+  }));
 
   return (
     <div className="showProducts-grid">
-      <AiOutlineCloseCircle
-        onClick={() => onClose(false)}
-        className="close"
-      />
-      <div class="container-fluid grid-products">
+      <AiOutlineCloseCircle onClick={() => onClose(false)} className="close" />
+      <div style={{ height: "50vh", width: "60vh" }} class="container-fluid">
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={6}
+          pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection
         />
       </div>
-      {/* <div className="productsList">
-        {products.map((p) => (
-          <div className="productsItem">
-            <EditProductCard products={p} />
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 };
