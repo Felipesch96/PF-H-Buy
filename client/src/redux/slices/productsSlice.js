@@ -144,6 +144,9 @@ export const productsSlice = createSlice({
     setError: (state, { payload }) => {
       state.error = payload;
     },
+    clearDetail: (state) => {
+      state.detailproduct = [];
+    },
   },
 });
 

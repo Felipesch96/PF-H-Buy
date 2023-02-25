@@ -1,14 +1,13 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/views/home/Home";
 import NavBar from "./components/navBar/NavBar";
-import ProductsPage from './components/views/productsPage/ProductsPage';
-import Footer from './components/views/footer/Footer';
-import About from './components/views/about/About';
-import ProfileComponent from './components/views/profiles/profileComponent/ProfileComponent';
+import ProductsPage from "./components/views/productsPage/ProductsPage";
+import Footer from "./components/views/footer/Footer";
+import About from "./components/views/about/About";
+import ProfileComponent from "./components/views/profiles/profileComponent/ProfileComponent";
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
 
-const App =()=>{
-
+const App = () => {
   return (
     <div>
       <Router>
@@ -17,7 +16,7 @@ const App =()=>{
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/products" component={ProductsPage} />
-          <Route exact path='/profile' component={ProfileComponent} />
+          <Route exact path="/profile" component={ProfileComponent} />
           <Route exact path="/products/:id" component={DetailProduct} />
         </Switch>
         <Footer />

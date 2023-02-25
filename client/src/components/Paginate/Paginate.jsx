@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import "./Paginate.css"
+import "./Paginate.css";
 
-const Paginate = ({ currentPage, setCurrentPage, max }) => {
+const Paginate = ({ currentPage, setCurrentPage, cardsPerPage, array }) => {
   const [input, setInput] = useState(1);
+  const pages = Math.ceil(
+    Array.isArray(array) ? array.length / cardsPerPage : 1
+  );
+  // const newArray = Array.isArray(array) ? array : 1;
 
   const nextPage = () => {
     setInput(parseInt(input) + 1);
@@ -25,9 +29,10 @@ const Paginate = ({ currentPage, setCurrentPage, max }) => {
         //este es para verificar que el numero ingresado no sea menor a 1
         parseInt(value < 1) ||
         //este es para verificar que el numero ingresado no sea mayor al numero maximo de paginas
-        parseInt(value) > Math.ceil(max) ||
+        parseInt(value) > Math.ceil(pages) ||
         //este para verificar que coloque solo numeros
-        isNaN(parseInt(value))
+        isNaN(parseInt(value)) ||
+        parseInt(value === " ")
       ) {
         //si se cumple setea en la primer pagina
         setCurrentPage(1);
@@ -66,13 +71,13 @@ const Paginate = ({ currentPage, setCurrentPage, max }) => {
           />
         </div>
         <li>
-          <span class="text">of {max}</span>
+          <span class="text">of {pages}</span>
         </li>
         <li class="page-item">
           <button
             class="btn  btn-primary"
             aria-label="Next"
-            disabled={currentPage === max || currentPage > max}
+            disabled={currentPage === pages || currentPage > pages}
             onClick={nextPage}
           >
             <i class="bi bi-chevron-right"></i>

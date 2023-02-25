@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 // import { Link } from "react-router-dom";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
@@ -8,7 +7,6 @@ import "./ClientProfile.css";
 // import ProfileComponent from "./client/src/components/views/profiles/profileComponent/ProfileComponent";
 
 const ClientProfile = () => {
-  const dispatch = useDispatch();
   // const user = useSelector((state) => state.user.userLocal);
   // const favs = useSelector((state) => state.fav.favList);
 
@@ -77,9 +75,7 @@ const ClientProfile = () => {
                         </button>
                         <ul class="dropdown-menu">
                           <li>
-                            <a class="dropdown-item" href="#">
-                              Purchase 1
-                            </a>
+                            <span>Purchase 1</span>
                           </li>
                         </ul>
                       </div>
@@ -141,19 +137,7 @@ const ClientProfile = () => {
                         </button>
                         <ul class="dropdown-menu">
                           <li>
-                            <a class="dropdown-item" href="#">
-                              Product 1
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Product 2
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Product 3
-                            </a>
+                            <span>Product 1</span>
                           </li>
                         </ul>
                       </div>
@@ -175,21 +159,7 @@ const ClientProfile = () => {
                           Claims (cant)
                         </button>
                         <ul class="dropdown-menu">
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Claim 1
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Claim 2
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Claim 3
-                            </a>
-                          </li>
+                          <span>Claim 1</span>
                         </ul>
                       </div>
                     </span>

@@ -39,6 +39,7 @@ const Filters = () => {
 
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
+    // setCurrentPage(1);
   }
 
   function clearFilter(e) {

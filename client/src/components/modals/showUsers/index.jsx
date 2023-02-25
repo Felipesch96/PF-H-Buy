@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import "./showUsers.css";
-import { EditProductCard } from "../../editProductCard";
 import {DataGrid} from '@mui/x-data-grid';
 
 
