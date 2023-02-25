@@ -17,6 +17,11 @@ const products = mongoose.Schema({
     type: Number,
     require: true,
   },
+  quantity: {
+    type: Number,
+    default: 0,
+    require: false
+  },
   brand: {
     type: String,
   },
@@ -31,7 +36,7 @@ const products = mongoose.Schema({
   },
   stock: {
     type: Number,
-    /* require: true, */
+    require: true, 
   },
   seller_id: {
     type: mongoose.Types.ObjectId,

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
+import {BsCart4} from 'react-icons/bs'
 import { Link, useHistory, useLocation } from "react-router-dom";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
@@ -8,9 +9,13 @@ import "./NavBar.css";
 import { getProductsByName } from "../../redux/thunks/productThunk";
 
 
+
+
 const NavBar = ({ route }) => {
   const dispatch = useDispatch();
+
   const { user, isAuthenticated } = useAuth0();
+  const { amountOfItems} = useSelector(state => state.cart)
   console.log(user);
 
   const [rutaHistorial, setRutaHistorial] = useState({
@@ -103,7 +108,17 @@ const NavBar = ({ route }) => {
             </form>
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
-
+            <li>
+              <div className="shoppingCart">
+                <div className={ amountOfItems === 0 ? "negativeCounter" :"counter"}>{amountOfItems}</div>
+                <BsCart4 className="carIcon" onClick={()=> {
+                  if(amountOfItems === 0){
+                   return window.alert('You dont have any products in the cart')
+                  }
+                   history.push('/shoppingCart') 
+                } }/>
+              </div>
+            </li>
             <li>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
