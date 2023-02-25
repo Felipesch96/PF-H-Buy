@@ -26,7 +26,7 @@ const DetailProduct = () => {
 
   return (
     <div className="container-fluid span-4 contenedor-detalle">
-      <div class="abs-center">
+      <div class="abs-center info">
         <div class="card center ">
           <div class="row g-10">
             <div class="col-5 col-sm-4">
