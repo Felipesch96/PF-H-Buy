@@ -1,0 +1,34 @@
+
+.manageCartProduct{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+}
+
+.remover{
+     width: 20px;
+     height: 20px;
+     padding: 3px;
+     border: none;
+     color: black
+}
+
+.quan{
+    margin: 0;
+}
+
+.quantityModderPlus{
+    color: green;
+    border-radius: 40%;
+    border: none;
+    background-color: none;
+}
+
+.quantityModderDel{
+    border-radius: 40%;
+    border: none;
+    color: red;
+    background-color: transparent
+}

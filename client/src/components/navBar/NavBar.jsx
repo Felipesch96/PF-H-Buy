@@ -108,7 +108,17 @@ const NavBar = ({ route }) => {
             </form>
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
-
+            <li>
+              <div className="shoppingCart">
+                <div className={ amountOfItems === 0 ? "negativeCounter" :"counter"}>{amountOfItems}</div>
+                <BsCart4 className="carIcon" onClick={()=> {
+                  if(amountOfItems === 0){
+                   return window.alert('You dont have any products in the cart')
+                  }
+                   history.push('/shoppingCart') 
+                } }/>
+              </div>
+            </li>
             <li>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
