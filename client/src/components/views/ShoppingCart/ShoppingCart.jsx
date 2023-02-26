@@ -6,8 +6,6 @@ import { removeAll } from "../../../redux/slices/cartSlice";
 import CartCard from "../../CartCard/CartCard";
 import Login from "../../buttons/Login/Login";
 import "./ShoppingCart.css";
-import { useEffect } from "react";
-import { newGoogleUser } from "../../../redux/thunks/userThunk";
 
 
 
@@ -31,10 +29,6 @@ export default function ShoppingCart() {
       quantity: element.quantity,
     }
   });
-
-  useEffect(() => {
-    if (!buyer._id) dispatch(newGoogleUser())
-  },[buyer])
 
   const handleCheckout = async() => {
     if (!buyer._id) return alert ("Please LOGIN");
