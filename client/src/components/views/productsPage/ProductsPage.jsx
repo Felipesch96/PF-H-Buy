@@ -21,7 +21,7 @@ const ProductsPage = () => {
         <div class="col-9 col-md-3 filtros">
           <Filters />
         </div>
-        <div class="col-15 col-sm-9">
+        <div class="col-15 col-sm-9 space-cards">
           {error ? (
             <div class="mt-5">
               <div class="alert alert-danger" role="alert">

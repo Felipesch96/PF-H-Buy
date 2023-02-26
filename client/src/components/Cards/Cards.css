@@ -3,8 +3,7 @@
 }
 .tarjeta {
   border: 1px solid black;
-  background-color: rgb(255, 255, 255);
-  border-radius: 30px;
+  background-color: rgb(255, 255, 255); 
 }
 .tarjeta:hover {
   transition: 0.2s;

@@ -16,8 +16,7 @@ const Card = (props) => {
               "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
           }}
           src={props.img}
-          className="img-detail"
-          class="img-fluid rounded-start bg-light"
+          class="img-fluid img-detail rounded-start bg-light"
           alt="..."
           style={{ height: "230px" }}
         />
