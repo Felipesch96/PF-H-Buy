@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
@@ -8,7 +7,6 @@ import "./ClientProfile.css";
 // import ProfileComponent from "./client/src/components/views/profiles/profileComponent/ProfileComponent";
 
 const ClientProfile = () => {
-  const user = useSelector((state) => state.user.userLocal);
   // const favs = useSelector((state) => state.fav.favList);
 
   /*   useEffect(() => {
