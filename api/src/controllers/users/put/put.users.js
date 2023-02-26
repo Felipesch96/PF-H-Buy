@@ -7,7 +7,7 @@ usersCtrl.updateUser = async (req, res) => {
   const data = req.body;
   try {
     await User.findByIdAndUpdate(id, data);
-    res.status(200).send("updated with success");
+    res.status(200).send("updated successfully");
   } catch (error) {
     res.status(400).send(error.message);
   }

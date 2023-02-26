@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
-import {BsCart4} from 'react-icons/bs'
 import { Link, useHistory, useLocation } from "react-router-dom";
-import Login from "../buttons/Login/Login";
+import { BsCart4 } from "react-icons/bs";
+import { useLocalStorage } from "../../customHooks/UseLocalStore";
+import { fetchSearch } from "../../redux/thunks/productThunk"; import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
 import { getProductsByName } from "../../redux/thunks/productThunk";
 
 
-
-
 const NavBar = ({ route }) => {
   const dispatch = useDispatch();
-
-  const { user, isAuthenticated } = useAuth0();
-  const { amountOfItems} = useSelector(state => state.cart)
-  console.log(user);
+  const { isAuthenticated } = useAuth0();
+  const [text, setText] = useLocalStorage("text", "");
 
   const [rutaHistorial, setRutaHistorial] = useState({
     home: false,
@@ -36,6 +33,7 @@ const NavBar = ({ route }) => {
     if (location.pathname === "/about") setRutaHistorial({ ...rutaHistorial, about: true });
   }, [location.pathname])
 
+  const { amountOfItems } = useSelector((state) => state.cart);
   // const user = useSelector((state) => state.user.user)
   // console.log(user)
   const [searchValue, setsearchValue] = useState(false);
@@ -46,7 +44,7 @@ const NavBar = ({ route }) => {
 
   function submitSearch(e) {
     e.preventDefault();
-    dispatch(getProductsByName(searchValue));
+    dispatch(fetchSearch(text));
   }
 
   const [serachNavStorage, setSearchNavStorage] = useState("");
@@ -60,17 +58,14 @@ const NavBar = ({ route }) => {
     getProductsByName(serachNavStorage)
   }
 
-  return (<div>
+  return (
     <nav class="navbar navbar-expand-lg border-bottom barra-navegador"  >
-      <div class="container-fluid d-flex justify-content-center ">
+      <div class="container-fluid d-flex justify-content-center">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div>
-          <Link className="lugar" to="/">
-            <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
-          </Link>
-        </div>
+
+        <img src={require("./media/logoh.png")} style={{ width: "50px" }} alt="" />
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
@@ -110,13 +105,13 @@ const NavBar = ({ route }) => {
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
               <div className="shoppingCart">
-                <div className={ amountOfItems === 0 ? "negativeCounter" :"counter"}>{amountOfItems}</div>
-                <BsCart4 className="carIcon" onClick={()=> {
-                  if(amountOfItems === 0){
-                   return window.alert('You dont have any products in the cart')
+                <div className={amountOfItems === 0 ? "negativeCounter" : "counter"}>{amountOfItems}</div>
+                <BsCart4 className="carIcon" onClick={() => {
+                  if (amountOfItems === 0) {
+                    return window.alert('You dont have any products in the cart')
                   }
-                   history.push('/shoppingCart') 
-                } }/>
+                  history.push('/shoppingCart')
+                }} />
               </div>
             </li>
             <li>
@@ -149,7 +144,6 @@ const NavBar = ({ route }) => {
         </div>
       </div>
     </nav>
-  </div>
   )
 };
 

@@ -52,9 +52,9 @@ export const EditProductCard = ({ products }) => {
           }}
         />
       ) : (
-        <p onClick={handleOnClickEdit} id="name">
+        <span onClick={handleOnClickEdit} id="name">
           {newProduct.name}
-        </p>
+        </span>
       )}
       {/* {selected.description ? (
         <input
@@ -68,9 +68,9 @@ export const EditProductCard = ({ products }) => {
           }}
         />
       ) : (
-        <p onClick={handleOnClickEdit} id="description">
+        <span onClick={handleOnClickEdit} id="description">
           {newProduct.description}
-        </p>
+        </span>
       )} */}
       {selected.brand ? (
         <input
@@ -84,9 +84,9 @@ export const EditProductCard = ({ products }) => {
           }}
         />
       ) : (
-        <p onClick={handleOnClickEdit} id="brand">
+        <span onClick={handleOnClickEdit} id="brand">
           {newProduct.brand}
-        </p>
+        </span>
       )}
       {selected.price ? (
         <input
@@ -100,9 +100,9 @@ export const EditProductCard = ({ products }) => {
           }}
         />
       ) : (
-        <p onClick={handleOnClickEdit} id="price">
+        <span onClick={handleOnClickEdit} id="price">
           {newProduct.price}
-        </p>
+        </span>
       )}
       {selected.stock ? (
         <input
@@ -116,9 +116,9 @@ export const EditProductCard = ({ products }) => {
           }}
         />
       ) : (
-        <p onClick={handleOnClickEdit} id="stock">
+        <span onClick={handleOnClickEdit} id="stock">
           {newProduct.stock}
-        </p>
+        </span>
       )}
       <FiEdit2 onClick={() => setEdit(!edit)} />
       {!edit && <MdDelete onClick={() => onDelete(newProduct.id)} />}

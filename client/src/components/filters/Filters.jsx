@@ -2,138 +2,154 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchCategories,
-  fetchProducts,
-  fetchSearch,
+  fetchClearFilter,
+  fetchOrderAlphabet,
+  fetchOrderPrice,
+  fetchOrderScore,
+  fetchSearchInFilter,
   fetchSearchProductByCtg,
-  getProductsByOrder,
 } from "../../redux/thunks/productThunk";
-import "./Filter.css"
+import "./Filter.css";
 
 const Filters = () => {
   const dispatch = useDispatch();
   const { categories, filter } = useSelector((state) => state.product);
-  const [searchValue, setsearchValue] = useState(false);
-  const [filterByCat, setFilterByCat] = useState();
-  const [order, setOrder] = useState();
+
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setFilterByCat(filter);
     dispatch(fetchCategories());
-  }, [dispatch, filter]);
-
-  const productByName = useSelector((state) => state.product.filtered);
-  // console.log(productByName);
-
-  async function submitSearch(e) {
-    e.preventDefault();
-    dispatch(fetchSearch(searchValue));
-  }
+  }, [dispatch]);
 
   function handleChangeSearch(e) {
-    setsearchValue(e.target.value);
+    e.preventDefault();
+    dispatch(fetchSearchInFilter(search));
   }
 
-  function handleOrderInput(e) {
-    // dispatch(getProductsByOrder(e.target.value));
+  function handleOrderAlphabet(e) {
+    dispatch(fetchOrderAlphabet(e.target.value));
   }
+
+  function handleOrderPrice(e) {
+    dispatch(fetchOrderPrice(e.target.value));
+  }
+
+  function handleOrderScore(e) {
+    dispatch(fetchOrderScore(e.target.value));
+  }
+
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
   }
 
-  // function handleName(e) {
-  //   e.preventDefault();
-  //   if (filterByCat) {
-  //     filter.filter((f) => f.name === e.target.value);
-  //   } else {
-  //     dispatch(fetchSearch(e.target.value));
-  //   }
-  // }
+  function clearFilter(e) {
+    e.preventDefault();
+    dispatch(fetchClearFilter());
+    e.target.reset();
+  }
+
   return (
     <div>
       <div
         id="sidebar"
         className="col-12 d-flex flex-column border max-height-sidebar py-2 text-center rounded mb-4 contenedor-filtros"
       >
-        {/* <h2 className="text-center mb-4 text-info fw-bold"></h2> */}
         <div className="row">
           <div className="col-lg-12 col-sm-6 col-12">
-            <h6 class="p-1 border-bottom fw-bold">Categories</h6>
-            <div>
-              {categories?.map((c) => {
-                return (
-                  <div>
-                    <input
-                      type="radio"
-                      name="categories"
-                      value={c.name}
-                      onChange={handleChangeType}
-                    />
-                    <label htmlFor="categories">{c.name}</label>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="col-lg-12 col-sm-6 col-12">
-            <div>
-              <h6 class="p-1 border-bottom fw-bold">Filter By</h6>
-
-              <div class="d-flex justify-content-center">
-                <div>
-                  <form onSubmit={submitSearch}>
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Search by name"
-                      name="filter-by-name"
-                      autoComplete="off"
-                      onChange={handleChangeSearch}
-                    />
-                    <input
-                      className="button--submit"
-                      value="Search"
-                      type="submit"
-                    />
-                  </form>
-                </div>
-
-                <ul class="list-group">
-                  {/* <li class="list-group-item list-group-item-action mb-2 rounded"><a href="#">
-									<span class="fa fa-circle pr-1" id="men"></span>Word
-								</a></li> */}
-                </ul>
-              </div>
-
-              <div class="">
-                {/* <h6 className="border-bottom">Cost</h6> */}
-                <form class="ml-md-2 ">
-                  <div class="form-inline border rounded p-sm-2 my-2">
-                    <input
-                      type="radio"
-                      name="type"
-                      value="A-Z"
-                      id="higher"
-                      onChange={handleOrderInput}
-                    />
-                    <label for="higher" class="pl-1 pt-sm-0 pt-1">
-                      &nbsp;A-Z
-                    </label>
-                  </div>
-                  <div class="form-inline border rounded p-sm-2 my-2">
-                    <input
-                      type="radio"
-                      name="type"
-                      value="Z-A"
-                      id="order"
-                      onChange={handleOrderInput}
-                    />
-                    <label for="lower" class="pl-1 pt-sm-0 pt-1">
-                      &nbsp;Z-A
-                    </label>
-                  </div>
+            <div class="d-flex justify-content-center">
+              {filter.length ? (
+                <form onSubmit={(e) => handleChangeSearch(e)}>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Search by name"
+                    name="filter-by-name"
+                    autoComplete="off"
+                    onClick={(e) => setSearch(e.target.value)}
+                  />
+                  <button type="submit">search</button>
                 </form>
-              </div>
+              ) : null}
             </div>
+            <form
+              onSubmit={clearFilter}
+              id="form-filters-combined"
+              class="ml-md-2"
+            >
+              <div className="col-lg-12 col-sm-6 col-12">
+                <h6 class="span-1 fw-bold">Categories</h6>
+                <div>
+                  {categories?.map((c) => {
+                    return (
+                      <div key={c._id}>
+                        <input
+                          type="radio"
+                          name="categories"
+                          value={c.name}
+                          onClick={handleChangeType}
+                        />
+                        <label htmlFor="categories">{c.name}</label>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="A-Z"
+                  id="higher"
+                  onClick={handleOrderAlphabet}
+                />
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;A-Z</label>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="Z-A"
+                  id="order"
+                  onClick={handleOrderAlphabet}
+                />
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
+              </div>
+
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="higher_price"
+                  id="order"
+                  onClick={handleOrderPrice}
+                />
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;maximum score</label>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="lower_price"
+                  id="order"
+                  onClick={handleOrderPrice}
+                />
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;lower price</label>
+              </div>
+              <div class="form-inline border rounded span-sm-2 my-2">
+                <input
+                  type="radio"
+                  name="type"
+                  value="maximum_score"
+                  id="order"
+                  onClick={handleOrderScore}
+                />
+
+                <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
+              </div>
+              {filter.length ? (
+                <button type="submit">Reset Filters</button>
+              ) : null}
+            </form>
           </div>
         </div>
       </div>

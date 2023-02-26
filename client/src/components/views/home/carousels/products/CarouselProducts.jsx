@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { fetchProducts } from "../../../../../redux/thunks/productThunk";
-import ViewProductButton from "../../../../buttons/ViewPoroduct/ViewProductButton";
-import Card from "../../../../Card/Card";
 import CarouselCard from "./CarouselCard";
 import "./CarouselProducts.css";
 
 
 // const CarouselProducts = () => {
 //   // se le podria pasar los productos por params 
-  // const dispatch = useDispatch();
+// const dispatch = useDispatch();
 
-  // const { products } = useSelector((state) => state.product);
-  
-  //   const [pageCurrent, setPageCurrent] = useState(1);
-  //   const [cardsPerPage, setCardsPerPage] = useState(6);
-  //   const indexLastCard = pageCurrent * cardsPerPage;
-  //   const indexFirstCard = indexLastCard - cardsPerPage;
-  // const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
+// const { products } = useSelector((state) => state.product);
+
+//   const [pageCurrent, setPageCurrent] = useState(1);
+//   const [cardsPerPage, setCardsPerPage] = useState(6);
+//   const indexLastCard = pageCurrent * cardsPerPage;
+//   const indexFirstCard = indexLastCard - cardsPerPage;
+// const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
 
 //   // const paginado = (page) => {
 //   //   setPageCurrent(page);
@@ -100,24 +98,58 @@ const CarouselProducts = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true, // Reproduce el carrusel automáticamente
-    autoplaySpeed: 3000 
+    autoplaySpeed: 3000
+  }
+  const [pageCurrent, setPageCurrent] = useState(1);
+  const [cardsPerPage, setCardsPerPage] = useState(6);
+  const indexLastCard = pageCurrent * cardsPerPage;
+  const indexFirstCard = indexLastCard - cardsPerPage;
+  const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
+
+  // const paginado = (page) => {
+  //   setPageCurrent(page);
+  // };
+  const selectNewImage = (next = true) => {
+    setTimeout(() => {
+      const condition = next
+        ? pageCurrent < 2
+        : pageCurrent > 1;
+      const nextIndex = next
+        ? condition
+          ? pageCurrent + 1
+          : 1
+        : condition
+          ? pageCurrent - 1
+          : 2;
+      setPageCurrent(products[nextIndex]);
+      setPageCurrent(nextIndex);
+    }, 500);
   };
 
   return (
-    <Slider {...settings}>
-      {total.map((p) => {
+    // <Slider {...settings}>
+    //   {total.map((p) => {
+    // <div className="d-grid gap-3 d-flex contenedor-products">
+    <div>
+      <button class="btn btn-primary box" type="button" 
+      // onClick={previous}
+      >{"<"}</button>
+      <div class="d-flex justify-content-center align-items-center">
+        {cardsCurrent.map((span) => {
           return (
-            <div class="box">
+            <div key={span._id} class="box">
               <CarouselCard
-                _id={p._id}
-                img={p.img}
-                name={p.name}
-                score={p.score}
+                _id={span._id}
+                img={span.img}
+                name={span.name}
+                score={span.score}
               />
             </div>
           );
         })}
-    </Slider>
+      </div>
+      {/* </Slider> */ }
+    </div>
   );
 };
 

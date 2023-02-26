@@ -1,88 +1,91 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCategories } from "../../../../redux/thunks/productThunk";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
-import { useAuth0 } from "@auth0/auth0-react";
-import { newUser } from "../../../../redux/thunks/userThunk";
-import "./profileComponent.css"
-
+import "./profileComponent.css";
 
 const ProfileComponent = () => {
-  const dispatch = useDispatch()
-  const { user } = useAuth0();
-
-  const isSeller = 1;
-  const isAdmin = 1;
-  const [userType, setUserType] = useState("buyer");
+  const dispatch = useDispatch();
+  const userLocal = useSelector((state) => state.user.userLocal);
+  const [userType, setUserType] = useState("Buyer");
 
   const buyerButton = () => {
-    setUserType("buyer");
+    setUserType("Buyer");
   };
 
   const sellerButton = () => {
-    setUserType("seller");
+    setUserType("Seller");
   };
-
-  const adminButton = () => {
-    setUserType("admin");
-  };
-
-  useEffect(() => {
-    if (user) dispatch(newUser(user))
-  }, [dispatch, user])
+  useEffect(()=>{
+    dispatch(fetchCategories())
+      },[dispatch]);
+    
 
   return (
     <div class="container-fluid pagina-perfiles">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
-          <div class={userType === "admin" ? "card perfil-admin-contenedor" : userType === "buyer" ? "card perfil-buyer-contenedor" : "card perfil-seller-contenedor"}>
+          <div
+            class={
+              userLocal.isAdmin
+                ? "card perfil-admin-contenedor"
+                : userType === "Buyer"
+                ? "card perfil-buyer-contenedor"
+                : "card perfil-seller-contenedor"
+            }
+          >
             <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid" style={{ width: "150px;" }} />
-              <h5 class="my-3 buttons-card-profile">{`${user?.given_name} ${user.family_name}`}</h5>
-              <p class="text-muted mb-1">{user?.userType} aca deberia ir el userType</p>
+              <img
+                src={userLocal.image}
+                alt="avatar"
+                class="rounded-circle img-fluid"
+                style={{ width: "150px" }}
+              />
+              <h5 class="my-3 buttons-card-profile">
+                {userLocal.lastName
+                  ? `${userLocal?.name} ${userLocal.lastName}`
+                  : `${userLocal?.name}`}
+              </h5>
+              <span class="text-muted mb-1">
+                {userLocal.isAdmin ? <h3>Admin</h3> : <h3>{userType}</h3>}
+              </span>
               <div class="d-flex justify-content-center mb-2">
-                {isSeller && userType !== "buyer" ? <button
-                  type="button"
-                  class="btn btn-outline-light ms-1"
-                  onClick={() => buyerButton()}
-                >
-                  Buyer
-                </button> : null}
-                {isSeller && userType !== "seller" ? <button
-                  type="button"
-                  class="btn btn-outline-light ms-1"
-                  onClick={() => sellerButton()}
-                >
-                  Seller
-                </button> : null}
-                {isAdmin && userType !== "admin" ? <button
-                  type="button"
-                  class="btn btn-outline-light ms-1"
-                  onClick={() => adminButton()}
-                >
-                  Admin
-                </button> : null}
+                {!userLocal.isAdmin && userType !== "Buyer" ? (
+                  <button
+                    type="button"
+                    class="btn btn-outline-light ms-1"
+                    onClick={() => buyerButton()}
+                  >
+                    Switch to buyer
+                  </button>
+                ) : null}
+                {!userLocal.isAdmin && userType !== "Seller" ? (
+                  <button
+                    type="button"
+                    class="btn btn-outline-light ms-1"
+                    onClick={() => sellerButton()}
+                  >
+                    Switch to seller
+                  </button>
+                ) : null}
               </div>
             </div>
           </div>
-
         </div>
         <div class="col-lg-6 col-md-6 contenedor-perfiles">
-
-          {
-            userType === "buyer"
-              ? <ClientProfile />
-              : userType === "seller"
-                ? <SellerProfile />
-                : <AdminBoard />
-          }
-
+          {userLocal.isAdmin ? (
+            <AdminBoard />
+          ) : userType === "Seller" ? (
+            <SellerProfile />
+          ) : (
+            <ClientProfile />
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ProfileComponent;

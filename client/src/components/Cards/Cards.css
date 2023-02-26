@@ -1,13 +1,11 @@
-.ver-produto{
+.ver-produto {
   padding-bottom: 5px;
 }
-.tarjeta{
+.tarjeta {
   border: 1px solid black;
-  background-color: rgb(255, 255, 255);
-  border-radius: 30px;
+  background-color: rgb(255, 255, 255); 
 }
-.tarjeta:hover{
+.tarjeta:hover {
   transition: 0.2s;
   box-shadow: 8px 5px 15px black;
 }
-

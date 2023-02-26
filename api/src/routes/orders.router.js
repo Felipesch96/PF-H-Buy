@@ -1,8 +1,6 @@
 const { Router } = require("express");
+const { newOrder } = require("../controllers/orders/post/order.post");
 const router = Router();
-
-const {newOrder} = require('../controllers/orders/post/post.orders')
-
 
 router.post('/', newOrder)
 

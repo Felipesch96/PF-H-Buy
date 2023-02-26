@@ -36,24 +36,26 @@ const products = mongoose.Schema({
   },
   stock: {
     type: Number,
-    require: true, 
   },
   seller_id: {
     type: mongoose.Types.ObjectId,
     ref: "Users",
-    /* require: true, */
+    require: true,
   },
   category: {
     type: String,
+    require: true,
   },
   isActive: {
     type: Boolean,
     default: true,
+    require: true,
   },
   condition: {
     type: String,
     enum: ["new", "used"],
     default: "new",
+    require: true,
   },
   created: {
     type: Date,
