@@ -8,12 +8,14 @@ import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import "./NavBar.css";
+import { CartModal } from "../modals/cart";
 
 const NavBar = () => {
+  const [isClicked, setIsClicked] = useState(false)
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
-
+  console.log(isClicked)
   const [rutaHistorial, setRutaHistorial] = useState({
     home: false,
     products: false,
@@ -132,16 +134,13 @@ const NavBar = () => {
                   </div>
                   <BsCart4
                     className="carIcon"
-                    onClick={() => {
-                      if (amountOfItems === 0) {
-                        return window.alert(
-                          "You dont have any products in the cart"
-                        );
-                      }
-                      history.push("/shoppingCart");
-                    }}
+                    onClick={() => setIsClicked(!isClicked) }
                   />
+                   {
+                      isClicked && <CartModal/>
+                   }
                 </div>
+              
               </li>
               <li>
                 <div class="btn-group">
