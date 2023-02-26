@@ -6,5 +6,6 @@ const router = Router();
 router.post('/', newOrder)
 
 router.get('/', ordersHistory)
+router.get('/:id', ordersHistory)
 
 module.exports = router

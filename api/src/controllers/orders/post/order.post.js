@@ -9,9 +9,9 @@ orderCtrl.newOrder = async (req, res) => {
   try {
     const newOrder = new Order({
         buyer_id: data.buyer,
-        items: data.cartItems,
+        items: data.cartItems, //id del item, cantidad, precio unitario y a quien corresponde (seller_id)
         // shippingAddress: data.shippingAddress,
-        totalPrice: data.totalPrice,
+        totalPrice: data.totalPrice, //redundante
       });
     await newOrder.save();
     data.cartItems.map(async (element) => {
