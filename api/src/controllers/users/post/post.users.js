@@ -2,7 +2,8 @@ const User = require("../../../schemas/Users");
 const bcryptjs = require("bcryptjs");
 const Users = require("../../../schemas/Users");
 const jwt = require("../../../helpers/createJwt");
-
+const transporter = require("../../../config/mailer");
+const { EMAIL_ADMIN } = process.env;
 const usersCtrl = {};
 
 usersCtrl.loginUser = async (req, res) => {
@@ -56,10 +57,16 @@ usersCtrl.createNewUserByGoogle = async (req, res) => {
     } else {
       const newUser = await User(req.body);
       await newUser.save();
+      await transporter.sendMail({
+        from: `Henry App <${EMAIL_ADMIN}>`, // sender address
+        to: email, // list of receivers
+        subject: "Henry App", // Subject line
+        html: `<b>Welcome To H-Buy</b><a href="http://localhost:3000/">http://localhost:3000/</a>`,
+      });
       res.status(200).send(newUser);
     }
   } catch (error) {
-    res.status(400).send(error.message);
+    console.log(error);
   }
 };
 module.exports = usersCtrl;
