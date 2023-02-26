@@ -4,10 +4,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
 import "./ShoppingCart.css";
 import CartCard from "../../CartCard/CartCard";
+import Login from "../../buttons/Login/Login";
 
 export default function ShoppingCart() {
   const { amountOfItems, cartList } = useSelector((state) => state.cart);
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const history = useHistory();
   const dispatch = useDispatch();
   const getTotal = () => {
@@ -43,9 +44,16 @@ export default function ShoppingCart() {
       <section className="cartOrder">
         <h4>{amountOfItems} items </h4>
         <h4>Total: {getTotal()}</h4>
-        <button className="checkoutButton" onClick={handleCheckout}>
-          Proceed to checkout
-        </button>
+        {user && isAuthenticated ? (
+          <button className="checkoutButton" onClick={handleCheckout}>
+            buy my products
+          </button>
+        ) : (
+          <>
+            <span>Please Login And Verify Your Acount</span>{" "}
+            <Login message="Login" />
+          </>
+        )}
       </section>
     </main>
   );

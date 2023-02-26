@@ -60,40 +60,6 @@ const NavBar = () => {
                   About
                 </Link>
               </li>
-              <li className="nav-item"></li>
-              <li>
-                <div class="btn-group">
-                  <button
-                    type="button"
-                    class="btn btn-primary dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="bi bi-person-square"></i>
-                  </button>
-                  {isAuthenticated ? (
-                    <ul class="dropdown-menu justify-content-center">
-                      <li>
-                        <Link className="nav-link mt-1" to="/profile">
-                          Profile
-                        </Link>
-                      </li>
-                      <li>
-                        <hr class="dropdown-divider" />
-                      </li>
-                      <li>
-                        <Logout />
-                      </li>
-                    </ul>
-                  ) : (
-                    <ul class="dropdown-menu justify-content-center">
-                      <li>
-                        <Login />
-                      </li>
-                    </ul>
-                  )}
-                </div>
-              </li>
             </ul>
             <div>
               <form
@@ -169,7 +135,7 @@ const NavBar = () => {
                   ) : (
                     <ul class="dropdown-menu justify-content-center">
                       <li>
-                        <Login />
+                        <Login message="Login" />
                       </li>
                     </ul>
                   )}
