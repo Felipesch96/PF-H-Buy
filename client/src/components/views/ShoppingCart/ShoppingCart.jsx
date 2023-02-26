@@ -9,10 +9,12 @@ import "./ShoppingCart.css";
 import { useEffect } from "react";
 import { newGoogleUser } from "../../../redux/thunks/userThunk";
 
+
+
 export default function ShoppingCart() {
-  const history = useHistory();
-  const { isAuthenticated, user } = useAuth0();
   const { amountOfItems, cartList } = useSelector((state) => state.cart);
+  const { user, isAuthenticated } = useAuth0();
+  const history = useHistory();
   const buyer = useSelector((state) => state.user.userLocal);
   const dispatch = useDispatch();
   const getTotal = () => {
