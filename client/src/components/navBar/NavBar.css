@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
   background-color: rgb(21, 109, 160);
   display: flex;
   flex-direction: column;
@@ -7,15 +7,13 @@ input {
   max-width: 250px;
 }
 
-.shoppingCart{
+.shoppingCart {
   position: relative;
   width: 50px;
   height: 50px;
-  
 }
-.negativeCounter{
-  
-  background-color: #FF4742;
+.negativeCounter {
+  background-color: #ff4742;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +27,7 @@ input {
   top: 0;
   right: 0;
 }
-.counter{
+.counter {
   background-color: green;
   display: flex;
   justify-content: center;
@@ -44,25 +42,30 @@ input {
   top: 0;
   right: 0;
 }
-.carIcon{
+.carIcon {
   margin: 0;
   height: 35px;
   width: 35px;
 }
-@media screen and (max-width: 767px){
+
+@media screen and (max-width: 767px) {
   .clase-logo {
     display: none;
   }
 }
 
-.navbar-collapse{
-justify-content: space-around;
+.navbar-collapse {
+  justify-content: space-around;
 }
 
-.route-flag{
+.route-flag {
   color: #fff;
 }
 
-.visited-route{
+.visited-route {
   color: rgb(134, 71, 71);
+}
+
+.route-hover:hover {
+  color: rgb(159, 217, 250);
 }

@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import { fetchSearch } from "../../redux/thunks/productThunk";
@@ -13,8 +13,27 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
-  const { amountOfItems } = useSelector((state) => state.cart);
+
+  const [rutaHistorial, setRutaHistorial] = useState({
+    home: false,
+    products: false,
+    about: false,
+  });
+
+  const location = useLocation();
+
   const history = useHistory();
+
+  useEffect(() => {
+    if (location.pathname === "/")
+      setRutaHistorial({ ...rutaHistorial, home: true });
+    if (location.pathname === "/products")
+      setRutaHistorial({ ...rutaHistorial, products: true });
+    if (location.pathname === "/about")
+      setRutaHistorial({ ...rutaHistorial, about: true });
+  }, [location, rutaHistorial]);
+
+  const { amountOfItems } = useSelector((state) => state.cart);
 
   function submitSearch(e) {
     e.preventDefault();
@@ -46,19 +65,40 @@ const NavBar = () => {
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/">
+                <a
+                  className={
+                    location.pathname === "/"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                  href="/"
+                >
                   Home
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/products">
+                <a
+                  className={
+                    location.pathname === "/products"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                  href="/products"
+                >
                   Products
-                </Link>
+                </a>
               </li>
               <li className="nav-item">
-                <Link className="nav-link mt-1" to="/about">
+                <a
+                  className={
+                    location.pathname === "/about"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                  href="/about"
+                >
                   About
-                </Link>
+                </a>
               </li>
             </ul>
             <div>
@@ -111,7 +151,7 @@ const NavBar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-person-square"></i>
+                    <i class="bi bi-person-square" />
                   </button>
                   {isAuthenticated ? (
                     <ul class="dropdown-menu dropdown-menu-end justify-content-center">
