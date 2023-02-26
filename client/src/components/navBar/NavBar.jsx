@@ -31,7 +31,7 @@ const NavBar = () => {
       setRutaHistorial({ ...rutaHistorial, products: true });
     if (location.pathname === "/about")
       setRutaHistorial({ ...rutaHistorial, about: true });
-  }, [location, rutaHistorial]);
+  }, [location.pathname]);
 
   const { amountOfItems } = useSelector((state) => state.cart);
 
