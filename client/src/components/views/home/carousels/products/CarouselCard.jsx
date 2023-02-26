@@ -4,8 +4,9 @@ import Rating from "@mui/material/Rating";
 
 const CarouselCard = (props) => {
   return (
-    <Link class="card card-prod-carousel" to={`/products/${props._id}`}>
+    <Link class="card card-prod-carousel text-center" to={`/products/${props._id}`}>
       <div class="card-body">
+        <p class="badge bg-primary text-wrap">{props.name}</p><br />
         <span class="card-title">{props.name}</span>
         <Rating
           style={{ fontSize: "17px" }}
@@ -14,11 +15,13 @@ const CarouselCard = (props) => {
           precision={0.5}
           readOnly
         />
+        <hr />
         <img
           src={props.img}
-          class="img-fluid rounded-start mt-2"
+          class="img-fluid"
           alt="..."
-          style={{ height: "100px" }}
+          style={{ maxHeight: "100px",display: "block",
+          margin: "auto"}}
         />
       </div>
     </Link>

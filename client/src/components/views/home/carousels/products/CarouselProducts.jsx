@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../../../../../redux/thunks/productThunk";
 import CarouselCard from "./CarouselCard";
 import "./CarouselProducts.css";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const CarouselProducts = () => {
-  // se le podria pasar los productos por params 
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.product);
@@ -17,21 +18,16 @@ const CarouselProducts = () => {
   const indexFirstCard = indexLastCard - cardsPerPage;
   const cardsCurrent = products?.slice(indexFirstCard, indexLastCard);
 
-  // const paginado = (page) => {
-  //   setPageCurrent(page);
-  // };
-  const selectNewImage = ( next = true) => {
+  const selectNewImage = (next = true) => {
     setTimeout(() => {
-      const condition = next
-        ? pageCurrent < 2
-        : pageCurrent > 1;
+      const condition = next ? pageCurrent < 2 : pageCurrent > 1;
       const nextIndex = next
         ? condition
           ? pageCurrent + 1
           : 1
         : condition
-          ? pageCurrent - 1
-          : 2;
+        ? pageCurrent - 1
+        : 2;
       setPageCurrent(products[nextIndex]);
       setPageCurrent(nextIndex);
     }, 500);
@@ -53,13 +49,13 @@ const CarouselProducts = () => {
 
   useEffect(() => {
     dispatch(fetchProducts());
-    // dispatch(fetchCategories());
   }, [dispatch]);
 
   return (
     <div className="d-grid gap-3 d-flex contenedor-products">
-
-      <button class="btn btn-primary box" type="button" onClick={previous}>{"<"}</button>
+      <button class="btn btn-primary box" type="button" onClick={previous}>
+        {"<"}
+      </button>
       <div class="d-flex justify-content-center align-items-center">
         {cardsCurrent.map((span) => {
           return (
@@ -74,9 +70,11 @@ const CarouselProducts = () => {
           );
         })}
       </div>
-      <button class="btn btn-primary box" type="button" onClick={next}>{">"}</button>
+      <button class="btn btn-primary box" type="button" onClick={next}>
+        {">"}
+      </button>
     </div>
-  )
+  );
 };
 
 export default CarouselProducts;
