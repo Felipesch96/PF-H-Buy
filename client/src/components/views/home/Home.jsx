@@ -44,7 +44,7 @@ const Home = () => {
     }
   }
 
-  const selectNewImage = ( images, next = true) => {
+  const selectNewImage = (images, next = true) => {
     setTimeout(() => {
       const condition = next
         ? selectedIndex < images.length - 1
@@ -54,8 +54,8 @@ const Home = () => {
           ? selectedIndex + 1
           : 0
         : condition
-        ? selectedIndex - 1
-        : images.length - 1;
+          ? selectedIndex - 1
+          : images.length - 1;
       setSelectedIndex(nextIndex);
     }, 500);
   };
@@ -64,24 +64,30 @@ const Home = () => {
     <div className="home">
       <div className="carousel-banner">
         <a href="/products">
-        <CarouselBanner />
+          <CarouselBanner />
         </a>
       </div>
       <hr />
       <br />
-      <h1 className="text-center">Recomendados</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts />
+      <div>
+        <h1 className="text-center">Recomendados</h1>
+        <div class="container-fluid carousel-productos">
+          <CarouselProducts />
+        </div>
       </div>
       <hr />
-      <h1 className="text-center">Segun tus ultimas busquedas</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts />
+      <div>
+        <h1 className="text-center">Segun tus ultimas busquedas</h1>
+        <div class="container-fluid carousel-productos">
+          <CarouselProducts />
+        </div>
       </div>
       <hr />
-      <h1 className="text-center">Lo mas vendido</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts />
+      <div>
+        <h1 className="text-center">Lo mas vendido</h1>
+        <div class="container-fluid carousel-productos">
+          <CarouselProducts />
+        </div>
       </div>
       <hr />
       <div className="text-center">
