@@ -60,7 +60,11 @@ export default function ShoppingCart() {
             />
           ))}
         </ul>
-        <button className="clearCart" onClick={() => dispatch(removeAll())}>
+        <button className="clearCart" onClick={() => {
+          dispatch(removeAll())
+          history.push('/products')
+          
+          }}>
           Remove All
         </button>
       </section>
