@@ -15,7 +15,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
-  console.log(isClicked)
   const [rutaHistorial, setRutaHistorial] = useState({
     home: false,
     products: false,

@@ -1,13 +1,12 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import CartCard from "../../CartCard/CartCard";
-import {  useHistory } from "react-router-dom";
-import './cartModal.css'
 import { ModalCartCard } from '../../modalCartCard';
+import './cartModal.css';
 
 export const CartModal = () => {
    const {cartList, amountOfItems} = useSelector(state => state.cart)
    const history = useHistory()
-   console.log(cartList)
     return(
         amountOfItems > 0 ? 
         <div className='cartModal'>
