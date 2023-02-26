@@ -7,7 +7,7 @@ import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
-import { CartModal } from "../modals/cart";
+import { CartModal } from "../modals/cart/index";
 import "./NavBar.css";
 
 const NavBar = () => {
