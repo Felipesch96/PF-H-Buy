@@ -2,6 +2,7 @@ import { useForm } from "../../../hooks/useForm"
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import './categoryModal.css'
 import { useSelector } from "react-redux"
+import MyComponente from "../../alerts/Alert2"
 
 
 const formValidations = (form, type, categories) => {
@@ -35,6 +36,7 @@ export const CategoryModal = ({ onClose }) => {
 				form.name?
 				<button type="submit" className="categoryButton">Crear</button>
 				:<p className="errors">Please fill the blank</p>}
+				<MyComponente/>
 			</form>
 		</section>
 

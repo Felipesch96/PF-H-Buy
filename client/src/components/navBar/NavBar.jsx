@@ -70,17 +70,17 @@ const NavBar = ({ route }) => {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li className="nav-item">
-              <a className={location.pathname === "/" ? "nav-link mt-1 route-flag" : "nav-link mt-1"} href="/">
+              <a className={location.pathname === "/" ? "nav-link mt-1 route-flag route-hover" : "nav-link mt-1 route-hover"} href="/">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className={location.pathname === "/products" ? "nav-link mt-1 route-flag" : "nav-link mt-1"} href="/products">
+              <a className={location.pathname === "/products" ? "nav-link mt-1 route-flag route-hover" : "nav-link mt-1 route-hover"} href="/products">
                 Products
               </a>
             </li>
             <li className="nav-item">
-              <a className={location.pathname === "/about" ? "nav-link mt-1 route-flag" : "nav-link mt-1"} href="/about">
+              <a className={location.pathname === "/about" ? "nav-link mt-1 route-flag route-hover" : "nav-link mt-1 route-hover"} href="/about">
                 About
               </a>
             </li>

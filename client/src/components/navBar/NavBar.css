@@ -24,3 +24,8 @@ justify-content: space-around;
 .visited-route{
   color: rgb(134, 71, 71);
 }
+
+.route-hover:hover{
+  color: rgb(159, 217, 250);
+
+}

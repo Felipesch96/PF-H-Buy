@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeAll } from "../../../redux/slices/cartSlice";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useHistory } from "react-router-dom";
-import "./ShoppingCart.css";
-import {CartCard} from "../../cartCard/CartCard";
+import "./shoppingCart.css";
+import {CartCard} from "../../CartCard/CartCard";
 
 export default function ShoppingCart() {
   const { amountOfItems, cartList } = useSelector((state) => state.cart);

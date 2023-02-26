@@ -157,7 +157,7 @@ const DetailProduct = () => {
               role="tabpanel"
               aria-labelledby="nav-description-tab"
             >
-              <span class="card-text text-center m-3">
+              <span class="card-text text-center m-3 d-flex justify-content-center">
                 {detailProduct.description}
               </span>
             </div>
@@ -210,7 +210,7 @@ const DetailProduct = () => {
               role="tabpanel"
               aria-labelledby="nav-review-tab"
             >
-              <p class="card-text text-center m-3">
+              <p class="card-text text-center m-3 ">
                 <div class="container">
                   <Box
                     sx={{

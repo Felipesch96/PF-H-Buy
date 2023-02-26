@@ -6,9 +6,8 @@ import Footer from "./components/views/footer/Footer";
 import About from "./components/views/about/About";
 import ProfileComponent from "./components/views/profiles/profileComponent/ProfileComponent";
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
-import ShoppingCart from "./components/views/shoppingCart/ShoppingCart";
-import Shipping from "./components/views/shipping/Shipping";
-
+import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
+import Shipping from "./components/views/Shipping/Shipping";
 
 const App = () => {
   return (

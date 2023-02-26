@@ -126,13 +126,31 @@ const CarouselProducts = () => {
     }, 500);
   };
 
+  const previous = () => {
+    selectNewImage(pageCurrent, products, false);
+  };
+  const next = () => {
+    selectNewImage(pageCurrent, products);
+  };
+
+  useEffect(() => {
+    const reloj = setInterval(() => {
+      selectNewImage(pageCurrent, products);
+    }, 2500);
+    return () => clearInterval(reloj);
+  });
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    // dispatch(fetchCategories());
+  }, [dispatch]);
+
   return (
-    // <Slider {...settings}>
-    //   {total.map((p) => {
-    // <div className="d-grid gap-3 d-flex contenedor-products">
-    <div>
-      <button class="btn btn-primary box" type="button" 
-      // onClick={previous}
+    <div className="d-grid gap-3 d-flex contenedor-products">
+      {/* <Slider {...settings}>
+      {total.map((p) => { */}
+      <button class="btn btn-primary box" type="button"
+        onClick={previous}
       >{"<"}</button>
       <div class="d-flex justify-content-center align-items-center">
         {cardsCurrent.map((span) => {
@@ -148,7 +166,8 @@ const CarouselProducts = () => {
           );
         })}
       </div>
-      {/* </Slider> */ }
+      <button class="btn btn-primary box" type="button" onClick={next}>{">"}</button>
+      {/* </Slider> */}
     </div>
   );
 };
