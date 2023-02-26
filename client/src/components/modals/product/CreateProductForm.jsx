@@ -38,7 +38,7 @@ const initialForm = {
   description: "",
   category: "",
   stock: "",
-  condition: ""
+  condition: "",
 };
 
 
@@ -48,7 +48,7 @@ const CreateProductFrom = ({ onClose }) => {
     useForm(initialForm, formValidations);
 
     const categories = useSelector((state) => state.product.categories)
-
+    
 
 
   return (

@@ -35,8 +35,6 @@ export const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, { payload }) => {
-      console.log("lo que llega", payload);
-      console.log(state.cartList.filter((item) => item._id !== payload.id));
       state.cartList = state.cartList.filter((item) => item._id !== payload.id);
       state.amountOfItems =
         state.amountOfItems - payload.quantity >= 0

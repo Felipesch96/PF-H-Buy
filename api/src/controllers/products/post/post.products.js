@@ -22,6 +22,7 @@ productsCtrl.createNewProduct = async (req, res) => {
     } */
     
     if (data.name.trim().length && data.description.trim().length) {
+      console.log(data);
       const newProduct = new Product(data);
       await newProduct.save();
       res.status(200).send(newProduct);

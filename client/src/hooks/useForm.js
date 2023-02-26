@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createCategory } from "../helpers/createCategory";
 import { fetchCategories, fetchNewProducts } from "../redux/thunks/productThunk";
 
 export const useForm = (initialForm = {}, formValidations, categories) => {
   const dispatch = useDispatch();
+  const { userLocal } = useSelector((state) => state.user)
 
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState([]);
@@ -33,6 +34,7 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
       description,
       category,
       stock: Number(stock),
+      seller_id: userLocal._id
     }))
     setForm({
         name: "",
