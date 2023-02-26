@@ -24,14 +24,14 @@ const NavBar = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    if (location.pathname === "/")
-      setRutaHistorial({ ...rutaHistorial, home: true });
-    if (location.pathname === "/products")
-      setRutaHistorial({ ...rutaHistorial, products: true });
-    if (location.pathname === "/about")
-      setRutaHistorial({ ...rutaHistorial, about: true });
-  }, [location, rutaHistorial]);
+  // useEffect(() => {
+  //   if (location.pathname === "/")
+  //     setRutaHistorial({ ...rutaHistorial, home: true });
+  //   if (location.pathname === "/products")
+  //     setRutaHistorial({ ...rutaHistorial, products: true });
+  //   if (location.pathname === "/about")
+  //     setRutaHistorial({ ...rutaHistorial, about: true });
+  // }, [location, rutaHistorial]);
 
   const { amountOfItems } = useSelector((state) => state.cart);
 
