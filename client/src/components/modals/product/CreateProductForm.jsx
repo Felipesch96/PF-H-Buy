@@ -1,6 +1,9 @@
 import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useForm } from "../../../hooks/useForm";
+import MyComponent from "../../alerts/Alert";
+
+
 const formValidations = (form) => {
 
 let errors = {};
@@ -146,9 +149,7 @@ const CreateProductFrom = ({ onClose }) => {
         </section> */}
 
         {/* {aca va cloudinary} */}
-        <button type="submit" className="productButton">
-          Crear
-        </button>
+        <MyComponent/>
       </form>
   )
 };

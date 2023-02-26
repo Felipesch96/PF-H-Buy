@@ -1,6 +1,7 @@
 import { useForm } from "../../../hooks/useForm"
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import './categoryModal.css'
+import MyComponente from "../../alerts/Alert2"
 
 
 const formValidations = (form) => {
@@ -28,7 +29,7 @@ export const CategoryModal = ({ onClose }) => {
 					<input type="text" id="name" name="name" value={form.name} onChange={handleChange} onBlur={handleBlur} className="input" />
 					{errors.name && <p className="errors">{errors.name}</p>}
 				</section>
-				<button type="submit" className="categoryButton" disabled={errors.length > 0}>Crear</button>
+				<MyComponente/>
 			</form>
 		</section>
 
