@@ -34,7 +34,7 @@ export default function ShoppingCart() {
 
   useEffect(() => {
     if (!buyer._id) dispatch(newGoogleUser())
-  },[buyer])
+  },[buyer, dispatch])
 
   const handleCheckout = async() => {
     if (!buyer._id) return alert ("Please LOGIN");
