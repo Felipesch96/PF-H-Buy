@@ -63,11 +63,23 @@ const Home = () => {
   return (
     <div className="home">
       <div className="carousel-banner">
+        <a href="/products">
         <CarouselBanner />
+        </a>
       </div>
       <hr />
       <br />
       <h1 className="text-center">Recomendados</h1>
+      <div class="container-fluid carousel-productos">
+        <CarouselProducts />
+      </div>
+      <hr />
+      <h1 className="text-center">Segun tus ultimas busquedas</h1>
+      <div class="container-fluid carousel-productos">
+        <CarouselProducts />
+      </div>
+      <hr />
+      <h1 className="text-center">Lo mas vendido</h1>
       <div class="container-fluid carousel-productos">
         <CarouselProducts />
       </div>
