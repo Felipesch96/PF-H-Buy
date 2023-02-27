@@ -53,107 +53,108 @@ const CreateProductFrom = ({ onClose }) => {
 
 
   return (
-    <form onSubmit={handleSubmitProduct} className="formContainerP">
-      <AiOutlineCloseCircle
-        onClick={() => onClose(false)}
-        className="closeIconP"
-      />
+    <div>
+      <form onSubmit={handleSubmitProduct} className="formContainerP">
+        <AiOutlineCloseCircle
+          onClick={() => onClose(false)}
+          className="closeIconP"
+        />
+          <section className="formInputP">
+            <label className="labelP">Name your product</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              className="inputP"
+              onBlur={handleNameBlur}
+            />
+            {errors.name && <span className="errors">{errors.name}</span>}
+          </section>
+
         <section className="formInputP">
-          <label className="labelP">Name your product</label>
+          <label  className="labelP">
+            Add a Price
+          </label>
           <input
+            name="price"
+            id="price"
             type="text"
-            id="name"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
             className="inputP"
-            onBlur={handleNameBlur}
+            value={form.price}
+            onChange={handleChange}
+            onBlur={handlePriceBlur}
           />
-          {errors.name && <span className="errors">{errors.name}</span>}
+          {errors.price && <p className="errors">{errors.price}</p>}
         </section>
 
-      <section className="widget">
-        <UploadWidget/>
 
-        
-      </section>
 
-      <section className="formInputP">
-        <label  className="labelP">
-          Add a Price
-        </label>
-        <input
-          name="price"
-          id="price"
-          type="text"
-          className="inputP"
-          value={form.price}
-          onChange={handleChange}
-          onBlur={handlePriceBlur}
-        />
-        {errors.price && <p className="errors">{errors.price}</p>}
-      </section>
-
-      <section className="formInputP">
-        <label className="labelP">Select a category</label>
-        <select onChange={handleChange} onBlur={handleCatBlur} name="category">
-          <option>Select an option</option>
-          {categories.map((element) => {
-            return(
-              <option key={element._id}>{element.name}</option>
-            )
-          })}
-        </select>
-        {errors.category && <p className="errors">{errors.category}</p>}
-      </section>
-
-      <section className="formInputP">
-        <label className="labelP">
-          Stock
-        </label>
-        <input
-          name="stock"
-          id="stock"
-          type="text"
-          className="inputP"
-          value={form.stock}
-          onChange={handleChange}
-          onBlur={handleStockcBlur}
-        />
-        {errors.stock && <p className="errors">{errors.stock}</p>}
-      </section>
-
-      <section className="formInputP">
-      <label className="labelP">Select a condition</label>
-        <select onChange={handleChange} onBlur={handleCondBlur} name="condition">
-          <option>Select an option</option>
-          <option>new</option>
-          <option>used</option>
+        <section className="formInputP">
+          <label className="labelP">Select a category</label>
+          <select onChange={handleChange} onBlur={handleCatBlur} name="category">
+            <option>Select an option</option>
+            {categories.map((element) => {
+              return(
+                <option key={element._id}>{element.name}</option>
+              )
+            })}
           </select>
-        {errors.condition && <p className="errors">{errors.condition}</p>}
-      </section>
+          {errors.category && <p className="errors">{errors.category}</p>}
+        </section>
 
-      <section className="formInputP">
-        <label className="labelP">
-          Describe your product
-        </label>
-        <textarea
-          id="resume"
-          name="description"
-          onChange={handleChange}
-          value={form.description}
-          onBlur={handleDescBlur}
-        ></textarea>
-        {errors.description && <p className="errors">{errors.description}</p>}
-      </section>
+        <section className="formInputP">
+          <label className="labelP">
+            Stock
+          </label>
+          <input
+            name="stock"
+            id="stock"
+            type="text"
+            className="inputP"
+            value={form.stock}
+            onChange={handleChange}
+            onBlur={handleStockcBlur}
+          />
+          {errors.stock && <p className="errors">{errors.stock}</p>}
+        </section>
 
-      {/* {aca va cloudinary} */}
-      {form.name && form.description && form.category && form.condition &&
-      form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
-      ?<button type="submit" className="productButton">Create</button>
-      :<span className="errors">Please fill the blanks to create a product</span>}
-       
-    </form>
+        <section className="formInputP">
+        <label className="labelP">Select a condition</label>
+          <select onChange={handleChange} onBlur={handleCondBlur} name="condition">
+            <option>Select an option</option>
+            <option>new</option>
+            <option>used</option>
+            </select>
+          {errors.condition && <p className="errors">{errors.condition}</p>}
+        </section>
+
+        <section className="formInputP">
+          <label className="labelP">
+            Describe your product
+          </label>
+          <textarea
+            id="resume"
+            name="description"
+            onChange={handleChange}
+            value={form.description}
+            onBlur={handleDescBlur}
+          ></textarea>
+          {errors.description && <p className="errors">{errors.description}</p>}
+        </section>
+
+        {/* {aca va cloudinary} */}
+        {form.name && form.description && form.category && form.condition &&
+        form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
+        ?<button type="submit" className="productButton">Create</button>
+        :<span className="errors">Please fill the blanks to create a product</span>}
+        
+      </form>
+      <span className="widget">
+        <UploadWidget/>        
+      </span>
+    </div>
   );
 };
 

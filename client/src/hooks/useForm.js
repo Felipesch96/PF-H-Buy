@@ -24,7 +24,7 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
   };
 
   const handleSubmitProduct = (e) => {
-    console.log("ACA MOGUL");
+    console.log("ESTOY ACA");
     e.preventDefault();
     const { name, img, condition, price, description, category, stock } = form;
     dispatch(fetchNewProducts({
