@@ -1,10 +1,26 @@
 import React from "react";
 import Rating from "@mui/material/Rating";
+import FavoriteButton from "../Favorites/Favorites";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
+import Swal from 'sweetalert2'
 
 import "./Card.css";
 const Card = (props) => {
+  const detailProduct = useSelector((state) => state.product.detailproduct);
+  const dispatch = useDispatch();
   const formater = new Intl.NumberFormat("en");
   //comentariosss
+  const addElementToCart = () => {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Producto agregado al carrito.',
+      showConfirmButton: false,
+      timer: 1500
+    })
+      dispatch(addToCart(detailProduct))
+  };
 
   return (
     <div class="row g-0 tarjeta">
@@ -52,6 +68,14 @@ const Card = (props) => {
               Published: fecha de creacion del producto
             </small>
           </span>
+          <div class="d-grid gap-2 d-md-block">
+            <button
+            onClick={addElementToCart}
+              class="btn btn-primary bi bi-cart-plus-fill m-2"
+              type="button"
+            ></button>
+            <FavoriteButton />
+          </div>
         </div>
       </div>
     </div>

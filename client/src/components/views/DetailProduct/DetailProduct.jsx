@@ -14,7 +14,8 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import "./DetailProduct.css";
 import { addToCart } from "../../../redux/slices/cartSlice";
-import AlertaCarrito from "../../alerts/AlertCarrito";
+import Swal from 'sweetalert2'
+
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -30,9 +31,14 @@ const DetailProduct = () => {
   const formater = new Intl.NumberFormat("en");
 
   const addElementToCart = () => {
-    detailProduct.stock > 0
-      ? dispatch(addToCart(detailProduct))
-      : window.alert("there is no product in stock");
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Producto agregado al carrito.',
+      showConfirmButton: false,
+      timer: 1500
+    })
+      dispatch(addToCart(detailProduct))
   };
   /*   ///estado local para la calificacion
     const [value, setValue] = useState(detailProduct.score);
@@ -101,11 +107,19 @@ const DetailProduct = () => {
                 <a href="#" class="btn btn-success bi bi-handbag-fill m-3 ">
                   <span class="p-1" onClick={addElementToCart}>Buy product </span>
                 </a>
-                <a href="#" class="btn btn-primary m-3">
-                  <AlertaCarrito/>
+                <a href="#" class="">
+                <button onClick={addElementToCart} className="btn btn-primary bi bi-cart-plus-fill m-3">Agregar al carrito</button>
                 </a>
                 <a href="#">
-                  <FavoriteButton class="fa-regular fa-heart" />
+                  <FavoriteButton class="fa-regular fa-heart" onClick={()=>{
+                        Swal.fire({
+                          position: 'top-end',
+                          icon: 'success',
+                          title: 'Producto agregado a favoritos.',
+                          showConfirmButton: false,
+                          timer: 1500
+                        })
+                  }} />
                 </a>
               </div>
             </div>

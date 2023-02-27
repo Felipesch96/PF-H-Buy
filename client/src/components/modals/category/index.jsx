@@ -2,8 +2,7 @@ import { useForm } from "../../../hooks/useForm"
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import './categoryModal.css'
 import { useSelector } from "react-redux"
-import MyComponente from "../../alerts/Alert2"
-
+import Swal from "sweetalert2"
 
 const formValidations = (form, type, categories) => {
 	
@@ -34,8 +33,15 @@ export const CategoryModal = ({ onClose }) => {
 				{errors.name
 				?<p className="errors">{errors.name}</p>:
 				form.name?
-				<MyComponente/>
-				// <button type="submit" className="categoryButton">Crear</button>
+				<button type="submit" className="categoryButton" onClick={()=>{
+					Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: 'Categoría creada.',
+						showConfirmButton: false,
+						timer: 1500
+					  })
+				}}>Crear</button>
 				:<p className="errors">Please fill the blank</p>}
 			</form>
 		</section>

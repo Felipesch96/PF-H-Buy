@@ -3,6 +3,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useForm } from "../../../hooks/useForm";
 import MyComponent from "../../alerts/Alert";
+import Swal from "sweetalert2";
 
 
 
@@ -164,10 +165,17 @@ const CreateProductFrom = ({ onClose }) => {
         {
           form.name && form.description && form.category && form.condition && form.img &&
             form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
-            ? <button type="submit" className="productButton">Create</button>
+            ? <button type="submit" className="productButton" onClick={()=>{
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Producto creado.',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }}>Create</button>
             : <span className="errors">Please fill the blanks to create a product</span>
           }
-          <MyComponent />
         {/* {aca va cloudinary} */}
       </form >
     </div >

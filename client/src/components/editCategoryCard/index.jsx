@@ -5,6 +5,8 @@ import { useState } from "react";
 import "./editCategoryCard.css";
 import { editCategory } from "../../helpers/editCategory";
 import { deleteCategory } from "../../helpers/deleteCategory";
+import Swal from "sweetalert2";
+
 
 export const EditCategoryCard = ({ categories }) => {
   const [edit, setEdit] = useState(false);
@@ -23,12 +25,26 @@ export const EditCategoryCard = ({ categories }) => {
   };
 
   const onDelete = (id) => {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Categoría eliminada.',
+      showConfirmButton: false,
+      timer: 1500
+    })
     deleteCategory(id);
   };
   const submitChanges = (e) => {
     e.preventDefault();
     editCategory(newCategory);
     setEdit(false);
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Categoría modificada.',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
   return (
     <div className="categoryDetails">
