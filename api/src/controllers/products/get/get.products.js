@@ -4,7 +4,10 @@ const Product = require("../../../schemas/Products");
 const productsCtrl = {};
 
 productsCtrl.getProducts = async (req, res) => {
-  const { name, category, priceMin, priceMax, brand, condition } = req.query;
+
+  const products = await Product.find();
+  
+  const { name, category, priceMin, priceMax, brand, condition, order } = req.query;
   try {
     if (name || category || (priceMin && priceMax) || brand || condition) {
       if (category && typeof category === "string") {
