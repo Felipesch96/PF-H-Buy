@@ -14,6 +14,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import "./DetailProduct.css";
 import { addToCart } from "../../../redux/slices/cartSlice";
+import AlertaCarrito from "../../alerts/AlertCarrito";
 
 const DetailProduct = () => {
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const DetailProduct = () => {
                   <span class="p-1" onClick={addElementToCart}>Buy product </span>
                 </a>
                 <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
-                  <span onClick={addElementToCart} class="p-1">Add to Cart </span>
+                  <AlertaCarrito/>
                 </a>
                 <a href="#">
                   <FavoriteButton class="fa-regular fa-heart" />
