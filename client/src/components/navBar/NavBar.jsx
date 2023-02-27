@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
@@ -23,8 +23,6 @@ const NavBar = () => {
 
   const location = useLocation();
 
-  const history = useHistory();
-
   useEffect(() => {
     if (location.pathname === "/")
       setRutaHistorial({ ...rutaHistorial, home: true });
@@ -32,7 +30,7 @@ const NavBar = () => {
       setRutaHistorial({ ...rutaHistorial, products: true });
     if (location.pathname === "/about")
       setRutaHistorial({ ...rutaHistorial, about: true });
-  }, [location.pathname]);
+  }, [location.pathname, rutaHistorial]);
 
   const { amountOfItems } = useSelector((state) => state.cart);
 

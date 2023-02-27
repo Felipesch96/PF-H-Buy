@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import CartCard from "../../CartCard/CartCard";
 import { ModalCartCard } from '../../modalCartCard';
 import './cartModal.css';
 

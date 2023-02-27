@@ -119,9 +119,9 @@ const Filters = () => {
                 <input
                   type="radio"
                   name="type"
-                  value="higher_price"
+                  value="maximum_score"
                   id="order"
-                  onClick={handleOrderPrice}
+                  onClick={handleOrderScore}
                 />
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;maximum score</label>
               </div>
@@ -139,9 +139,9 @@ const Filters = () => {
                 <input
                   type="radio"
                   name="type"
-                  value="maximum_score"
+                  value="higher_price"
                   id="order"
-                  onClick={handleOrderScore}
+                  onClick={handleOrderPrice}
                 />
 
                 <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
