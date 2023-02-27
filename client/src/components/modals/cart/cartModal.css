@@ -1,0 +1,39 @@
+.cartModal {
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 220px;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.cartModalCardsList{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    max-height: 90px;
+    
+}
+
+.itemN{
+    font-size: 16px;
+}
+
+.goCart{
+    font-size: 16px;
+    padding: 11px;
+    display: flex;
+    height: 20px;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    background-color: #d0faed;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}

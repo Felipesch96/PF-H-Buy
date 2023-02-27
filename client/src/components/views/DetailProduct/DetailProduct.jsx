@@ -1,11 +1,9 @@
 import React from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchDetailProduct,
-  clearDetailProduct,
-} from "../../../redux/thunks/productThunk";
+import { fetchDetailProduct, clearDetailProduct } from "../../../redux/thunks/productThunk";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 import { Button } from "@mui/material";
@@ -19,6 +17,8 @@ const DetailProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const detailProduct = useSelector((state) => state.product.detailproduct);
+  const cart = useSelector((state) => state.cart.cartList)
+  const thisProduct = cart.find((element) => element._id === detailProduct._id);
 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
@@ -29,9 +29,21 @@ const DetailProduct = () => {
   const formater = new Intl.NumberFormat("en");
 
   const addElementToCart = () => {
-    detailProduct.stock > 0
-      ? dispatch(addToCart(detailProduct))
-      : window.alert("there is no product in stock");
+    if (thisProduct){
+      if (detailProduct.stock > thisProduct.quantity){
+        dispatch(addToCart(detailProduct));
+        window.alert("Another one");
+      } else {
+        window.alert("No more products available");
+      }
+    } else {
+      if (detailProduct.stock > 0){
+        dispatch(addToCart(detailProduct));
+        window.alert("Added to cart");
+      } else {
+        window.alert("Not in stock");
+      }
+    }    
   };
   /*   ///estado local para la calificacion
     const [value, setValue] = useState(detailProduct.score);

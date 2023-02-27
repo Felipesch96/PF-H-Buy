@@ -1,12 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { EditUserCard } from "../../../editUserCard";
+
 
 const AccountInfo = () => {
 
 const {userLocal} = useSelector((state) => state.user);
+const {userById} = useSelector((state) => state.user);
+
+
+
 
   return (
     <div>
+      {console.log(userById)}
       <div class="card mb-4">
         <div class="card-body">
           <div class="row">
@@ -50,6 +57,8 @@ const {userLocal} = useSelector((state) => state.user);
           </div>
         </div>
       </div>
+      <EditUserCard/>
+      
     </div>
   );
 };
