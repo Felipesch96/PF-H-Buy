@@ -11,8 +11,8 @@ import { CartModal } from "../modals/cart/index";
 import "./NavBar.css";
 
 const NavBar = () => {
-  const history = useHistory()
-  const [isClicked, setIsClicked] = useState(false)
+  const history = useHistory();
+  const [isClicked, setIsClicked] = useState(false);
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
@@ -38,7 +38,7 @@ const NavBar = () => {
   function submitSearch(e) {
     e.preventDefault();
     dispatch(fetchSearch(text));
-    history.push("/products")
+    history.push("/products");
   }
 
   return (
@@ -133,13 +133,10 @@ const NavBar = () => {
                   </div>
                   <BsCart4
                     className="carIcon"
-                    onClick={() => setIsClicked(!isClicked) }
+                    onClick={() => setIsClicked(!isClicked)}
                   />
-                   {
-                      isClicked && <CartModal/>
-                   }
+                  {isClicked && <CartModal />}
                 </div>
-              
               </li>
               <li>
                 <div class="btn-group">
