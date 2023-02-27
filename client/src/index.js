@@ -7,15 +7,15 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store";
 import { PersistGate } from 'redux-persist/integration/react';
-const {DOMAIN_AUTH0,CLIENT_ID_AUTH0} = process.env
+const {REACT_APP_CLIENT_ID_AUTH0, REACT_APP_DOMAIN_AUTH0} = process.env
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Provider store={store}>
       <Auth0Provider
-        domain={DOMAIN_AUTH0}
-        clientId={CLIENT_ID_AUTH0}
+        domain={REACT_APP_DOMAIN_AUTH0}
+        clientId={REACT_APP_CLIENT_ID_AUTH0}
         authorizationParams={{
           redirect_uri: window.location.origin,
         }}
