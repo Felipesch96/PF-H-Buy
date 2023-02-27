@@ -21,6 +21,8 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     e.preventDefault();
     createCategory(form);
     dispatch(fetchCategories());
+    setForm({ name: "" });
+    alert ("Categoria creada con éxito")
   };
 
   const handleSubmitProduct = (e) => {
@@ -45,6 +47,7 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
         stock: "",
         condition: ""
     })
+    alert("Producto creado con éxito")
   };
 
   const handleNameBlur = () => {

@@ -31,6 +31,8 @@ const NavBar = () => {
       setRutaHistorial({ ...rutaHistorial, products: true });
     if (location.pathname === "/about")
       setRutaHistorial({ ...rutaHistorial, about: true });
+    if (location.pathname === "/shoppingCart")
+    setIsClicked(false)
   }, [location.pathname]);
 
   const { amountOfItems } = useSelector((state) => state.cart);
@@ -138,6 +140,7 @@ const NavBar = () => {
                    {
                       isClicked && <CartModal/>
                    }
+                  
                 </div>
               
               </li>

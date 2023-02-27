@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../../redux/slices/cartSlice";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaTrashAlt } from "react-icons/fa";
 import './modalCards.css'
 export const ModalCartCard = ({name, quantity, id}) => {
     const dispatch = useDispatch();
@@ -19,16 +19,22 @@ export const ModalCartCard = ({name, quantity, id}) => {
             +
             </button>
             <p className="mQuan">{quantity}</p>
-            <button
+            {quantity > 1 
+            ? <button
             className="modalButtonsMinus"
             onClick={() => dispatch(decrementQuantity(id))}
             >
             -
             </button>
-            <FaTrash
-        className="remover"
-        onClick={() => dispatch(removeFromCart({ id, quantity }))}
-      />
+            : <FaTrash
+            className="remover"
+            onClick={() => dispatch(removeFromCart({ id, quantity }))}
+          />}
+          {quantity > 1? <FaTrashAlt
+            className="remover"
+            onClick={() => dispatch(removeFromCart({ id, quantity }))}
+          /> : null}
+            
         </div>
     )
 }

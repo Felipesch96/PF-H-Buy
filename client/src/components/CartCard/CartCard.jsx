@@ -5,7 +5,7 @@ import {
   removeFromCart,
 } from "../../redux/slices/cartSlice";
 import axios from "axios";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaTrashAlt } from "react-icons/fa";
 import "./CartCard.css";
 
 export default function CartCard({ name, id, quantity, price }) {
@@ -26,17 +26,24 @@ export default function CartCard({ name, id, quantity, price }) {
           +
         </button>
         <p className="quan">{quantity}</p>
-        <button
+        {quantity > 1 
+        ? <button
           className="quantityModderDel"
           onClick={() => dispatch(decrementQuantity(id))}
         >
           -
         </button>
-      </div>
-      <FaTrash
+        : <FaTrash
         className="remover"
         onClick={() => dispatch(removeFromCart({ id, quantity }))}
-      />
+      />}
+      </div>
+      {quantity > 1 ? <FaTrashAlt
+        className="remover"
+        onClick={() => dispatch(removeFromCart({ id, quantity }))}
+      /> : null}
+      
     </main>
   );
 }
+  
