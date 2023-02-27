@@ -4,6 +4,7 @@ import { fetchCategories } from "../../../../redux/thunks/productThunk";
 import { AdminBoard } from "../adminBoard/index";
 import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
+import { fetchUserById } from "../../../../redux/thunks/userThunk";
 import "./profileComponent.css";
 
 const ProfileComponent = () => {
@@ -20,7 +21,10 @@ const ProfileComponent = () => {
   };
   useEffect(()=>{
     dispatch(fetchCategories())
-      },[dispatch]);
+    dispatch(fetchUserById(userLocal._id))
+      },[dispatch, userLocal._id]);
+
+
     
 
   return (

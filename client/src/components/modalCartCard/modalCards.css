@@ -1,0 +1,49 @@
+.modalCards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+}
+
+.modalButtonsPlus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10px;
+    width: 5px;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #146da1;
+    border: none;
+    color: white;
+    font-weight: 700;
+}
+
+.modalButtonsMinus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12px;
+    width: 5px;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    background-color: #1a8754;
+    color: white;
+    font-weight: 700;
+}
+
+.mQuan{
+    margin: 0;
+}
+
+.itemN{
+    margin: 0;
+}

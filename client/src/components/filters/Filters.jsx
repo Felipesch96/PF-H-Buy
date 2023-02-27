@@ -129,7 +129,6 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   />
                   <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
                 </div>
-
                 <div class="form-inline border rounded span-sm-2 my-2">
                   <input
                     type="radio"
@@ -154,7 +153,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="higher price"
+                    value="higher_price"
                     id="order"
                     onClick={handleOrderPrice}
                   />
