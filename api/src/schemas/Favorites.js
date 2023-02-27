@@ -5,10 +5,11 @@ const favorites = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Users",
   },
-  products: {
+  product_id: {
     type: mongoose.Types.ObjectId,
     ref: "Products",
   },
+
 });
 
 module.exports = mongoose.model("Favorites", favorites);

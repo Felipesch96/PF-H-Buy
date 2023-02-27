@@ -5,22 +5,24 @@ const users = mongoose.Schema({
     type: String,
     require: true,
   },
-  lastname: {
+  lastName: {
     type: String,
-    require: true,
   },
   email: {
     type: String,
     require: true,
   },
+  image: {
+    type: String,
+  },
   password: {
     type: String,
-    require: true,
   },
-  userType: {
+  phone: {
     type: String,
-    enum: ["buyer", "seller", "admin"],
-    default: "buyer",
+  },
+  address: {
+    type: String,
   },
   isActive: {
     type: Boolean,
@@ -29,6 +31,10 @@ const users = mongoose.Schema({
   addressID: {
     type: mongoose.Types.ObjectId,
     ref: "Address",
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
 });
 

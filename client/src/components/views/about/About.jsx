@@ -1,4 +1,3 @@
-import avatar from "./media/avatar.jpg";
 import linkedin from "./media/linkedin.png";
 import github from "./media/github.png";
 import styles from "./landingPage.module.css";
@@ -92,8 +91,8 @@ const About = () => {
       <div className="bg-success-subtle">
         <h1 className="text-center">TEAM</h1>
         <div
-          className="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 rounded float-start"
-          style={{ textAlign: "center" }}
+          className="row row-cols-2 row-cols-lg-4 g-2 g-lg-3 rounded  text-center"
+          
         >
           <div>
             <img
@@ -216,9 +215,7 @@ const About = () => {
             </a>
           </div>
         </div>
-        <h1 className="text-center">
-          -<hr />
-        </h1>
+          <br />-
       </div>
     </div>
   );
