@@ -24,7 +24,7 @@ const Cards = ({ array }) => {
   return (
     <div class="container">
       <div class="row justify-content-start">
-        <div class="mt-4 col-3 ">
+        <div class="mt-4 col-3 filtros">
           <Filters setCurrentPage={setCurrentPage} setInput={setInput} />
         </div>
         {/* <span>PAGE: {currentPage}</span> */}
