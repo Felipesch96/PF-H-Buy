@@ -5,6 +5,7 @@ export const usersSlice = createSlice({
   initialState: {
     users: [],
     userLocal: {},
+    userById: {},
   },
   reducers: {
     setUsers: (state, { payload }) => {
@@ -19,8 +20,12 @@ export const usersSlice = createSlice({
     setCleanUser: (state) => {
       state.userLocal = {};
     },
+    setUserById: (state) => {
+      state.userById = {};
+    },
+    
   },
 });
 
-export const { setUsers, setCleanUser, setUser, orderByName, setLogedUser } =
+export const { setUsers, setCleanUser, setUser, orderByName, setLogedUser, setUserById } =
   usersSlice.actions;

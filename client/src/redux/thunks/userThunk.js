@@ -1,10 +1,17 @@
 import axios from "axios";
-import { setUsers, setUser, setCleanUser } from "../slices/usersSlice";
+import { setUsers, setUser, setCleanUser, setUserById } from "../slices/usersSlice";
 
 export const fetchUsers = () => {
   return async (dispatch) => {
     const { data } = await axios.get("http://localhost:3001/users");
     dispatch(setUsers(data));
+  };
+};
+
+export const fetchUserById = (id) => {
+  return async (dispatch) => {
+    const { data } = await axios.get(`http://localhost:3001/users/${id}`);
+    dispatch(setUserById(data));
   };
 };
 
