@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
@@ -11,6 +11,7 @@ import { CartModal } from "../modals/cart/index";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const history = useHistory()
   const [isClicked, setIsClicked] = useState(false)
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
@@ -37,6 +38,7 @@ const NavBar = () => {
   function submitSearch(e) {
     e.preventDefault();
     dispatch(fetchSearch(text));
+    history.push("/products")
   }
 
   return (
@@ -115,7 +117,7 @@ const NavBar = () => {
                   onChange={(e) => setText(e.target.value)}
                 />
                 <button class="btn btn-outline-success" type="submit">
-                  <Link to="/products">Search</Link>
+                  Search
                 </button>
               </form>
             </div>
