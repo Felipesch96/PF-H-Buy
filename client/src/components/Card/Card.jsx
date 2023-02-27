@@ -7,7 +7,7 @@ const Card = (props) => {
   //comentariosss
 
   return (
-    <div class="row g-0 tarjeta">
+    <div class="row g-0 tarjeta rounded-2">
       <div class="col-md-12">
         <img
           onError={({ currentTarget }) => {
@@ -16,19 +16,15 @@ const Card = (props) => {
               "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
           }}
           src={props.img}
-          class="img-fluid img-detail rounded-start bg-light"
+          class="img-fluid img-detail rounded-2 border bg-light"
           alt="..."
-          style={{ height: "230px" }}
+          style={{ height: "230px", width: "200px" }}
         />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
           <span
-            class="card-text bg-success text-white rounded-2"
-            style={{
-              textAlign: "center",
-              display: "inline-block",
-              padding: "3px",
-            }}
+            class="card-text bg-success text-white rounded-1 p-1"
+            style={{ fontSize: "20px" }}
           >
             ${formater.format(props.price)}
           </span>
@@ -46,11 +42,11 @@ const Card = (props) => {
 
           <span class="card-text">Category: {props.category}</span>
 
-          <span class="card-text">
+          <p class="card-text">
             <small class="text-muted">
               Published: fecha de creacion del producto
             </small>
-          </span>
+          </p>
         </div>
       </div>
     </div>

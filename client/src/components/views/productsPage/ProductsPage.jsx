@@ -17,36 +17,29 @@ const ProductsPage = () => {
 
   return (
     <div class="container-fluid text-center pag-prods">
-      <div class="row">
-        <div class="col-9 col-md-3 filtros">
-          <Filters />
+      {error ? (
+        <div class="mt-5">
+          <div class="alert alert-danger" role="alert">
+            <i
+              class="bi bi-exclamation-triangle-fill"
+              style={{ fontSize: "30px" }}
+            />
+            " {error}"
+          </div>
         </div>
-        <div class="col-15 col-sm-9 space-cards">
-          {error ? (
-            <div class="mt-5">
-              <div class="alert alert-danger" role="alert">
-                <i
-                  class="bi bi-exclamation-triangle-fill"
-                  style={{ fontSize: "30px" }}
-                />
-                " {error}"
-              </div>
-            </div>
-          ) : filterHelper.length ? (
-            <>
-              <Cards array={filterHelper} />
-            </>
-          ) : filter.length ? (
-            <>
-              <Cards array={filter} />
-            </>
-          ) : (
-            <>
-              <Cards array={products} />
-            </>
-          )}
-        </div>
-      </div>
+      ) : filterHelper.length ? (
+        <>
+          <Cards array={filterHelper} />
+        </>
+      ) : filter.length ? (
+        <>
+          <Cards array={filter} />
+        </>
+      ) : (
+        <>
+          <Cards array={products} />
+        </>
+      )}
     </div>
   );
 };

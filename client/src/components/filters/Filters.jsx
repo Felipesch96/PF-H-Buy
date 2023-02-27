@@ -11,7 +11,7 @@ import {
 } from "../../redux/thunks/productThunk";
 import "./Filter.css";
 
-const Filters = () => {
+const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
   const { categories, filter } = useSelector((state) => state.product);
 
@@ -24,28 +24,40 @@ const Filters = () => {
   function handleChangeSearch(e) {
     e.preventDefault();
     dispatch(fetchSearchInFilter(search));
+    setCurrentPage(1);
+    setInput(1);
   }
 
   function handleOrderAlphabet(e) {
     dispatch(fetchOrderAlphabet(e.target.value));
+    setCurrentPage(1);
+    setInput(1);
   }
 
   function handleOrderPrice(e) {
     dispatch(fetchOrderPrice(e.target.value));
+    setCurrentPage(1);
+    setInput(1);
   }
 
   function handleOrderScore(e) {
     dispatch(fetchOrderScore(e.target.value));
+    setCurrentPage(1);
+    setInput(1);
   }
 
   function handleChangeType(e) {
     dispatch(fetchSearchProductByCtg(e.target.value));
+    setCurrentPage(1);
+    setInput(1);
   }
 
   function clearFilter(e) {
     e.preventDefault();
     dispatch(fetchClearFilter());
     e.target.reset();
+    setCurrentPage(1);
+    setInput(1);
   }
 
   return (
@@ -67,7 +79,9 @@ const Filters = () => {
                     autoComplete="off"
                     onClick={(e) => setSearch(e.target.value)}
                   />
-                  <button type="submit">search</button>
+                  <button class="mt-1 btn btn-primary btn-sm" type="submit">
+                    search
+                  </button>
                 </form>
               ) : null}
             </div>
@@ -76,7 +90,7 @@ const Filters = () => {
               id="form-filters-combined"
               class="ml-md-2"
             >
-              <div className="col-lg-12 col-sm-6 col-12">
+              <div className="col-lg-12 col-sm-6 col-12 mt-3 rounded-2 filterCategories">
                 <h6 class="span-1 fw-bold">Categories</h6>
                 <div>
                   {categories?.map((c) => {
@@ -94,60 +108,64 @@ const Filters = () => {
                   })}
                 </div>
               </div>
-              <div class="form-inline border rounded span-sm-2 my-2">
-                <input
-                  type="radio"
-                  name="type"
-                  value="A-Z"
-                  id="higher"
-                  onClick={handleOrderAlphabet}
-                />
-                <label class="pl-1 pt-sm-0 pt-1">&nbsp;A-Z</label>
-              </div>
-              <div class="form-inline border rounded span-sm-2 my-2">
-                <input
-                  type="radio"
-                  name="type"
-                  value="Z-A"
-                  id="order"
-                  onClick={handleOrderAlphabet}
-                />
-                <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
-              </div>
+              <div class="mt-3 rounded-2 orders">
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="A-Z"
+                    id="higher"
+                    onClick={handleOrderAlphabet}
+                  />
+                  <label class="pl-1 pt-sm-0 pt-1">&nbsp;A-Z</label>
+                </div>
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="Z-A"
+                    id="order"
+                    onClick={handleOrderAlphabet}
+                  />
+                  <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
+                </div>
 
-              <div class="form-inline border rounded span-sm-2 my-2">
-                <input
-                  type="radio"
-                  name="type"
-                  value="higher_price"
-                  id="order"
-                  onClick={handleOrderPrice}
-                />
-                <label class="pl-1 pt-sm-0 pt-1">&nbsp;maximum score</label>
-              </div>
-              <div class="form-inline border rounded span-sm-2 my-2">
-                <input
-                  type="radio"
-                  name="type"
-                  value="lower_price"
-                  id="order"
-                  onClick={handleOrderPrice}
-                />
-                <label class="pl-1 pt-sm-0 pt-1">&nbsp;lower price</label>
-              </div>
-              <div class="form-inline border rounded span-sm-2 my-2">
-                <input
-                  type="radio"
-                  name="type"
-                  value="maximum_score"
-                  id="order"
-                  onClick={handleOrderScore}
-                />
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="higher_price"
+                    id="order"
+                    onClick={handleOrderPrice}
+                  />
+                  <label class="pl-1 pt-sm-0 pt-1">&nbsp;maximum score</label>
+                </div>
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="lower_price"
+                    id="order"
+                    onClick={handleOrderPrice}
+                  />
+                  <label class="pl-1 pt-sm-0 pt-1">&nbsp;lower price</label>
+                </div>
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="maximum_score"
+                    id="order"
+                    onClick={handleOrderScore}
+                  />
 
-                <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
+                  <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
+                </div>
               </div>
               {filter.length ? (
-                <button type="submit">Reset Filters</button>
+                <button class="btn btn-warning btn-sm" type="submit">
+                  Reset Filters
+                </button>
               ) : null}
             </form>
           </div>
