@@ -5,7 +5,7 @@ import CarouselCard from "./CarouselCard";
 import "./CarouselProducts.css";
 
 
-// const CarouselProducts = () => {
+// const CarouselProducts2 = () => {
 //   // se le podria pasar los productos por params 
 // const dispatch = useDispatch();
 
@@ -79,16 +79,16 @@ import "./CarouselProducts.css";
 //   )
 // };
 
-// export default CarouselProducts;
+// export default CarouselProducts2;
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const CarouselProducts = () => {
+const CarouselProducts2 = () => {
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.product);
-  const total = products?.slice(0, 10);
+  const total = products?.slice(10, 20);
 
 
   const settings = {
@@ -158,4 +158,4 @@ const CarouselProducts = () => {
   );
 };
 
-export default CarouselProducts;
+export default CarouselProducts2;

@@ -7,7 +7,7 @@ const CarouselCard = (props) => {
     <Link class="card card-prod-carousel text-center" to={`/products/${props._id}`}>
       <div class="card-body">
         <p class="badge bg-primary text-wrap">{props.name}</p><br />
-        <span class="card-title">{props.name}</span>
+        <span class="card-title" style={{ fontSize: "12px" }}>{props.name}</span><br />
         <Rating
           style={{ fontSize: "17px" }}
           name="half-rating-read"
