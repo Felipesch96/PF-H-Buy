@@ -33,7 +33,7 @@ export default function CartCard({ name, id, quantity, price }) {
         >
           -
         </button>
-        : <FaTrash
+        : <FaTrashAlt
         className="remover"
         onClick={() => dispatch(removeFromCart({ id, quantity }))}
       />}

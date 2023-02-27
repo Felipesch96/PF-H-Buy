@@ -26,7 +26,7 @@ export const ModalCartCard = ({name, quantity, id}) => {
             >
             -
             </button>
-            : <FaTrash
+            : <FaTrashAlt
             className="remover"
             onClick={() => dispatch(removeFromCart({ id, quantity }))}
           />}
