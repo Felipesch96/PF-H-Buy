@@ -17,12 +17,10 @@ const UploadWidget = () => {
             // }
             aux = 1;
         })}
-    }, [aux]);
-
-    const handleClickAux = widgetRef.current?.open()
+    }, [aux])
 
     return (
-        <button onClick= {handleClickAux}>
+        <button onClick= {() => widgetRef.current.open()}>
             Upload your image
         </button>
     )
