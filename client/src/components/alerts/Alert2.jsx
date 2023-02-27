@@ -13,6 +13,9 @@ class MyComponente extends React.Component {
 
   handleAlert = () => {
     this.setState({ showAlert: true });
+    setTimeout(() => {
+      this.setState({ showAlert: false });
+    }, 1500);
   }
 
   handleConfirm = () => {
@@ -26,7 +29,7 @@ class MyComponente extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleAlert} type="submit" className="productButton">Crear</button>
+        <button onClick={this.handleAlert} type="submit">Crear</button>
         {this.state.showAlert &&
           <SweetAlert
             success

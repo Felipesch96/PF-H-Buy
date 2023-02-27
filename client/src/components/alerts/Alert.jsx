@@ -13,6 +13,9 @@ class MyComponent extends React.Component {
 
   handleAlert = () => {
     this.setState({ showAlert: true });
+    setTimeout(() => {
+      this.setState({ showAlert: false });
+    }, 1500);
   }
 
   handleConfirm = () => {

@@ -101,7 +101,7 @@ const DetailProduct = () => {
                 <a href="#" class="btn btn-success bi bi-handbag-fill m-3 ">
                   <span class="p-1" onClick={addElementToCart}>Buy product </span>
                 </a>
-                <a href="#" class="btn btn-primary bi bi-cart-plus-fill m-3">
+                <a href="#" class="btn btn-primary m-3">
                   <AlertaCarrito/>
                 </a>
                 <a href="#">

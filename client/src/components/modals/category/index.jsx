@@ -34,9 +34,9 @@ export const CategoryModal = ({ onClose }) => {
 				{errors.name
 				?<p className="errors">{errors.name}</p>:
 				form.name?
-				<button type="submit" className="categoryButton">Crear</button>
-				:<p className="errors">Please fill the blank</p>}
 				<MyComponente/>
+				// <button type="submit" className="categoryButton">Crear</button>
+				:<p className="errors">Please fill the blank</p>}
 			</form>
 		</section>
 

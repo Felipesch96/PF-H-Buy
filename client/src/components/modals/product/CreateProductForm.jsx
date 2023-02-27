@@ -162,13 +162,12 @@ const CreateProductFrom = ({ onClose }) => {
 
         {/* {aca va cloudinary} */}
         {
-          form.name && form.description && form.category && form.condition && form.img &&
-            form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
-            ? <button type="submit" className="productButton">Create</button>
-            : <span className="errors">Please fill the blanks to create a product</span>
+          form.name && form.description && form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
+            ?<MyComponent />
+            :<MyComponent/>
         }
         {/* {aca va cloudinary} */}
-        <MyComponent />
+        {/* <button type="submit" className="productButton">Create</button> */}
       </form >
     </div >
   );
