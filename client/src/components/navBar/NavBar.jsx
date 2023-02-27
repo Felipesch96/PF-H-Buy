@@ -1,19 +1,20 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
+import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { BsCart4 } from "react-icons/bs";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
+import { CartModal } from "../modals/cart/index";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const [isClicked, setIsClicked] = useState(false)
   const dispatch = useDispatch();
   const { isAuthenticated } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
-
   const [rutaHistorial, setRutaHistorial] = useState({
     home: false,
     products: false,
@@ -132,16 +133,13 @@ const NavBar = () => {
                   </div>
                   <BsCart4
                     className="carIcon"
-                    onClick={() => {
-                      if (amountOfItems === 0) {
-                        return window.alert(
-                          "You dont have any products in the cart"
-                        );
-                      }
-                      history.push("/shoppingCart");
-                    }}
+                    onClick={() => setIsClicked(!isClicked) }
                   />
+                   {
+                      isClicked && <CartModal/>
+                   }
                 </div>
+              
               </li>
               <li>
                 <div class="btn-group">

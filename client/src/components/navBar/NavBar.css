@@ -69,3 +69,8 @@ input {
 .route-hover:hover {
   color: rgb(159, 217, 250);
 }
+
+.modalPosition {
+  position: relative;
+  
+}
