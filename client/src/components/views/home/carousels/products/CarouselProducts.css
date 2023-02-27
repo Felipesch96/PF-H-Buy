@@ -1,9 +1,9 @@
-
 .contenedor-products{
   border: 1px solid black;
   height: fit-content;
-  /* align-items: center;
-  justify-content: space-between; */
+  /* display: flex; */
+  /* align-items: center; */
+  justify-content: space-between;
   flex-direction: row;
   font-size:xx-small;
 }
@@ -31,6 +31,18 @@ align-items: center;
   height: fit-;
 }
 
+.card-prod-carousel{
+  width: fit-content;
+}
+
 .card-prod-carousel:hover{
   opacity: 0.5;
+}
+
+.fila-products{
+  display: grid;
+  gap: 0.5rem;
+  grid-auto-flow: column;
+  /* grid-auto-columns: 20%; */
+  overflow-x: auto;
 }

@@ -29,8 +29,8 @@ const CarouselProducts = () => {
           ? pageCurrent + 1
           : 1
         : condition
-        ? pageCurrent - 1
-        : 2;
+          ? pageCurrent - 1
+          : 2;
       setPageCurrent(products[nextIndex]);
       setPageCurrent(nextIndex);
     }, 500);
@@ -62,10 +62,13 @@ const CarouselProducts = () => {
       <button class="btn btn-primary box" type="button" onClick={previous}>
         {"<"}
       </button>
-      <div class="d-flex justify-content-center align-items-center">
+      {/* <div class="container"> */}
+      <div className="fila-products">
+        {/* <div class="row"> */}
+
         {cardsCurrent.map((span) => {
           return (
-            <div key={span._id} class="box">
+            <div key={span._id} class="col">
               <CarouselCard
                 _id={span._id}
                 img={span.img}
@@ -76,6 +79,7 @@ const CarouselProducts = () => {
           );
         })}
       </div>
+      {/* </div> */}
       <button class="btn btn-primary box" type="button" onClick={next}>
         {">"}
       </button>

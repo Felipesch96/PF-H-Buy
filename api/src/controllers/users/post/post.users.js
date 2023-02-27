@@ -14,10 +14,11 @@ usersCtrl.createNewUserByGoogle = async (req, res) => {
       const newUser = await User(req.body);
       await newUser.save();
       await transporter.sendMail({
-        from: `Henry App <${EMAIL_ADMIN}>`, // sender address
+        from: `H-Buy<${EMAIL_ADMIN}>`, // sender address
         to: email, // list of receivers
-        subject: "Henry App", // Subject line
-        html: `<b>Welcome To H-Buy</b><a href="http://localhost:3000/">http://localhost:3000/</a>`,
+        subject: "Bienvenido a esta hermosa comunidad!", // Subject line
+        html: `<h1><b>Te damos la bienvenida!</b></h1>
+        <p>Gracias por elegirnos! ya podes comprar y vender lo que quieras donde quieras.</p>`,
       });
       res.status(200).send(newUser);
     }
