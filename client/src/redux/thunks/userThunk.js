@@ -1,8 +1,5 @@
 import axios from "axios";
-import {
-  setUsers,
-  setUser,
-} from "../slices/usersSlice";
+import { setUsers, setUser, setCleanUser } from "../slices/usersSlice";
 
 export const fetchUsers = () => {
   return async (dispatch) => {
@@ -19,6 +16,16 @@ export const newGoogleUser = (payload) => {
         payload
       );
       dispatch(setUser(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const cleanUser = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setCleanUser());
     } catch (error) {
       console.log(error);
     }

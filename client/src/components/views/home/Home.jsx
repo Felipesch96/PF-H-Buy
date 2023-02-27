@@ -44,7 +44,7 @@ const Home = () => {
     }
   }
 
-  const selectNewImage = ( images, next = true) => {
+  const selectNewImage = (images, next = true) => {
     setTimeout(() => {
       const condition = next
         ? selectedIndex < images.length - 1
@@ -64,7 +64,7 @@ const Home = () => {
     <div className="home">
       <div className="carousel-banner">
         <a href="/products">
-        <CarouselBanner />
+          <CarouselBanner />
         </a>
       </div>
       <hr />
