@@ -2,6 +2,7 @@ import React from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useForm } from "../../../hooks/useForm";
+import UploadWidget from "../../cloudinary/widget";
 
 const formValidations = (form, type) => {
   const reg = new RegExp('^[0-9]*$');
@@ -71,20 +72,10 @@ const CreateProductFrom = ({ onClose }) => {
           {errors.name && <span className="errors">{errors.name}</span>}
         </section>
 
-      <section className="formInputP">
-        <label  className="labelP">
-          Add a photo
-        </label>
-        <input
-          name="img"
-          id="img"
-          type="text"
-          className="inputP"
-          value={form.img}
-          onChange={handleChange}
-          onBlur={handlePhotoBlur}
-        />
-        {errors.photo && <p className="errors">{errors.photo}</p>}
+      <section className="widget">
+        <UploadWidget/>
+
+        
       </section>
 
       <section className="formInputP">
@@ -157,7 +148,7 @@ const CreateProductFrom = ({ onClose }) => {
       </section>
 
       {/* {aca va cloudinary} */}
-      {form.name && form.description && form.category && form.condition && form.img &&
+      {form.name && form.description && form.category && form.condition &&
       form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
       ?<button type="submit" className="productButton">Create</button>
       :<span className="errors">Please fill the blanks to create a product</span>}
