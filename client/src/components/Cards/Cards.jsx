@@ -51,6 +51,7 @@ const Cards = ({ array }) => {
                           price={element.price}
                           score={element.score}
                           category={element.category}
+                          created={element.created}
                         />
                         <div class="ver-produto">
                           <Link to={`/products/${element._id}`}>
