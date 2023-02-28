@@ -1,30 +1,41 @@
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/views/home/Home";
 import NavBar from "./components/navBar/NavBar";
-import ProductsPage from "./components/views/productsPage/ProductsPage";
-import Footer from "./components/views/footer/Footer";
-import About from "./components/views/about/About";
-import ProfileComponent from "./components/views/profiles/profileComponent/ProfileComponent";
-import DetailProduct from "./components/views/DetailProduct/DetailProduct";
-import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
-import Shipping from "./components/views/Shipping/Shipping";
-
+import Loader from "./components/Loaders/LoaderProducts/LoadersProducts";
+const Home = lazy(() => import("./components/views/home/Home"));
+const About = lazy(() => import("./components/views/about/About"));
+const ProductsPage = lazy(() =>
+  import("./components/views/productsPage/ProductsPage")
+);
+const DetailProduct = lazy(() =>
+  import("./components/views/DetailProduct/DetailProduct")
+);
+const Footer = lazy(() => import("./components/views/footer/Footer"));
+const ProfileComponent = lazy(() =>
+  import("./components/views/profiles/profileComponent/ProfileComponent")
+);
+const ShoppingCart = lazy(() =>
+  import("./components/views/ShoppingCart/ShoppingCart")
+);
+const Shipping = lazy(() => import("./components/views/Shipping/Shipping"));
 
 const App = () => {
   return (
     <div>
       <Router>
-        <NavBar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/products" component={ProductsPage} />
-          <Route exact path="/profile" component={ProfileComponent} />
-          <Route exact path="/products/:id" component={DetailProduct} />
-          <Route exact path="/shoppingCart" component={ShoppingCart} />
-          <Route exact path="/shipping" component={Shipping} />
-        </Switch>
-        <Footer />
+        <Suspense fallback={<Loader />}>
+          <NavBar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/products" component={ProductsPage} />
+            <Route exact path="/products/:id" component={DetailProduct} />
+            <Route exact path="/profile" component={ProfileComponent} />
+            <Route exact path="/shoppingCart" component={ShoppingCart} />
+            <Route exact path="/shipping" component={Shipping} />
+          </Switch>
+          <Footer />
+        </Suspense>
       </Router>
     </div>
   );

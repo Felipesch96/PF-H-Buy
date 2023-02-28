@@ -3,7 +3,7 @@
     background-color: rgb(255, 255, 255);
 }
 .tarjeta:hover{
-    box-shadow: 8px 5px 10px rgb(246, 141, 141);
+    box-shadow: 8px 5px 10px rgb(5, 5, 5);
 }
 .img-detail{
     margin-top: 5px;
