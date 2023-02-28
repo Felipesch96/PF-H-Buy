@@ -17,12 +17,12 @@ const cloudCtrl = {};
 cloudCtrl.uploadImg = async (req, res) => {
   try {
     const { image } = req.body;
-    console.log(image);
+    // console.log(image);
     const uploadResponse = await cloudinary.uploader.upload(image, {
       upload_preset: "henrybuy"
     });
     console.log(uploadResponse);
-    res.json({ msg: "Image successfully uploaded" })
+    res.send(uploadResponse);
   } catch (error) {
     console.log(error);
   }

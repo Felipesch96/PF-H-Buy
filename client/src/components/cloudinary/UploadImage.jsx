@@ -5,6 +5,11 @@ import axios from "axios";
 export default function UploadImage() {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
+  const [cloudResponse, setCloudResponse] = useState();
+  const [prodImg, setProdImg] = useState();
+
+
+  // product.img = prodImg
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -26,12 +31,17 @@ export default function UploadImage() {
     axios
       .post("http://localhost:3001/cloud", { image: base64 })
       .then((res) => {
-        setUrl(res.data);
+        setCloudResponse(res.data);
+        console.log(cloudResponse);
+        setUrl(res.data.secure_url);
+        console.log(url);
+        setProdImg({ public_id: res.data.public_id, secure_url: res.data.secure_url })
+        console.log(prodImg);
         alert("Image uploaded Succesfully");
       })
       .then(() => setLoading(false))
       .catch(console.log);
-  }
+  };
 
   function uploadMultipleImages(images) {
     setLoading(true);
@@ -43,18 +53,19 @@ export default function UploadImage() {
       })
       .then(() => setLoading(false))
       .catch(console.log);
-  }
+  };
 
   const uploadImage = async (event) => {
+    // event.preventDefault()
     const files = event.target.files;
     console.log(files.length);
     console.log(files[0]);
     if (files.length === 1) {
       const base64 = await convertBase64(files[0]);
       // console.log(base64);
-      uploadSingleImage(base64);
-      return;
-    }
+      const imagenSubida = uploadSingleImage(base64);
+      return imagenSubida;
+    };
 
     const base64s = [];
     for (var i = 0; i < files.length; i++) {
@@ -102,13 +113,14 @@ export default function UploadImage() {
             className="hidden"
             multiple
           />
+          {/* <button onClick={uploadImage}>upload</button> */}
         </label>
       </div>
     );
-  }
+  };
 
   return (
-    <div className="flex justify-center flex-col m-8 ">
+    <div class="flex justify-center flex-col m-8 mb-5">
       <div>
         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
           Upload Photo
@@ -117,9 +129,9 @@ export default function UploadImage() {
       <div>
         {url && (
           <div>
-            Access you file at{" "}
+            Access you file at
             <a href={url} target="_blank" rel="noopener noreferrer">
-              {url}
+              {` ${url}`}
             </a>
           </div>
         )}
@@ -127,13 +139,15 @@ export default function UploadImage() {
       <div>
         {loading ? (
           <div className="flex items-center justify-center">
-            {/* <img src={assets} />{" "} */}
             <p>Is loanding.........</p>
           </div>
         ) : (
           <UploadInput />
         )}
       </div>
+      <div>
+
+      </div>
     </div>
   );
-}
+};

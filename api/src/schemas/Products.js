@@ -6,8 +6,12 @@ const products = mongoose.Schema({
     require: true,
   },
   img: {
-    type: String,
-    require: true,
+    public_id: {
+      type: String,
+    },
+    secure_url: {
+      type: String
+    },
   },
   description: {
     type: String,

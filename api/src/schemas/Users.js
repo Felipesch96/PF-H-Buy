@@ -15,12 +15,16 @@ const users = mongoose.Schema({
   image: {
     type: String,
   },
+  productsImages: {
+
+  },
   password: {
     type: String,
   },
   phone: {
     type: String,
   },
+  
   address: {
     type: String,
   },

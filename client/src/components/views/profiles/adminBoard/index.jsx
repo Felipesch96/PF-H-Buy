@@ -14,6 +14,7 @@ import {
 } from "../../../../redux/thunks/productThunk";
 
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
+import UploadImagesModal from "../../../modals/images/UploadImagesModal";
 
 export const AdminBoard = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export const AdminBoard = () => {
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
+  const [uploadImage, setUploadImage] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
@@ -41,9 +43,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(true);
               setProductModal(false);
+              setUploadImage(false);
               setShowProducts(false);
               setShowCategories(false);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Create Categories
@@ -53,9 +56,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(true);
+              setUploadImage(false);
               setShowProducts(false);
               setShowCategories(false);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Create Product
@@ -65,9 +69,23 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(false);
+              setUploadImage(true);
+              setShowProducts(false);
+              setShowCategories(false);
+              setShowUsers(false);
+            }}
+          >
+            Upload Images
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setProductModal(false);
+              setUploadImage(false);
               setShowCategories(true);
               setShowProducts(false);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Show categories
@@ -77,9 +95,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(false);
+              setUploadImage(false);
               setShowCategories(false);
               setShowProducts(true);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Show products
@@ -89,9 +108,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(false);
+              setUploadImage(false);
               setShowCategories(false);
               setShowProducts(false);
-              setShowUsers(true)
+              setShowUsers(true);
             }}
           >
             Show users
@@ -102,6 +122,8 @@ export const AdminBoard = () => {
         {categoryModal && <CategoryModal onClose={setCategoryModal} />}
 
         {productModal && <ProductModal onClose={setProductModal} />}
+
+        {uploadImage && <UploadImagesModal onClose={setUploadImage} />}
 
         {showCategories && <ShowCategoriesModal onClose={setShowCategories} />}
 
