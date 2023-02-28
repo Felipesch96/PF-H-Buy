@@ -9,6 +9,7 @@ const ImagesModal = ({ onClose }) => {
   const [url, setUrl] = useState("");
   const [cloudResponse, setCloudResponse] = useState();
   const [prodImg, setProdImg] = useState();
+  const [cargada, setCargada] = useState(false);
 
 
   // product.img = prodImg
@@ -37,8 +38,9 @@ const ImagesModal = ({ onClose }) => {
         console.log(cloudResponse);
         setUrl(res.data.secure_url);
         console.log(url);
-        setProdImg({ public_id: res.data.public_id, secure_url: res.data.secure_url })
+        setProdImg({ public_id: res.data.public_id, secure_url: res.data.secure_url });
         console.log(prodImg);
+        setCargada(true);
         alert("Image uploaded Succesfully");
       })
       .then(() => setLoading(false))
@@ -61,23 +63,20 @@ const ImagesModal = ({ onClose }) => {
 
   return (
     <div className="images-modal-container">
-      <form onSubmit={()=>uploadImage()} className="formContainerP">
+      <form onSubmit={() => uploadImage()} className="formContainerP">
         <AiOutlineCloseCircle
           onClick={() => onClose(false)}
           className="closeIconP"
         />
         <div>
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-            Upload Photo
+            Upload Image
           </h2>
         </div>
         <div>
           {url && (
             <div>
-              Access you file at
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                {` ${url}`}
-              </a>
+              <img src={url} alt="" />
             </div>
           )}
         </div>
@@ -91,20 +90,25 @@ const ImagesModal = ({ onClose }) => {
               <label
                 htmlFor="dropzone-file"
               >
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">Click to upload</span> or drag and
-                  drop
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  SVG, PNG, JPG or GIF (MAX. 800x400px)
-                </p>
-                <input
-                  onChange={uploadImage}
-                  id="dropzone-file"
-                  type="file"
-                  className="hidden"
-                  multiple
-                />
+                <div>
+                  {
+                    cargada
+                      ? <p>Image uploaded</p>
+                      : <div>
+                        <input
+                          onChange={uploadImage}
+                          id="dropzone-file"
+                          type="file"
+                          className="hidden"
+                          multiple
+                        />
+                        <p className="tipos-archivo">
+                          SVG, PNG, JPG or GIF (MAX. 800x400px)
+                        </p>
+                      </div>
+                  }
+                </div>
+
                 {/* <button onClick={uploadImage}>upload</button> */}
               </label>
             </div>
