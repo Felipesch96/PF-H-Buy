@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Filters from "../../filters/Filters";
 import Cards from "../../Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../redux/thunks/productThunk";

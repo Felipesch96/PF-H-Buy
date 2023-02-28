@@ -1,13 +1,29 @@
-import React from "react";
 import Rating from "@mui/material/Rating";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { addToCart } from "../../redux/slices/cartSlice";
+import FavoriteButton from "../Favorites/Favorites";
 
 import "./Card.css";
 const Card = (props) => {
+  const detailProduct = useSelector((state) => state.product.detailproduct);
+  const dispatch = useDispatch();
   const formater = new Intl.NumberFormat("en");
-  //comentariosss
+
+  const addElementToCart = () => {
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Producto agregado al carrito.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    dispatch(addToCart(detailProduct));
+  };
 
   return (
-    <div class="row g-0 tarjeta rounded-2">
+    <div class="row g-0 tarjeta">
       <div class="col-md-12">
         <img
           onError={({ currentTarget }) => {
@@ -16,15 +32,20 @@ const Card = (props) => {
               "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
           }}
           src={props.img}
-          class="img-fluid img-detail rounded-2 border bg-light"
+          class="img-fluid img-detail rounded-start bg-light"
           alt="..."
-          style={{ height: "230px", width: "200px" }}
+          style={{ height: "230px" }}
         />
+        <hr />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
           <span
-            class="card-text bg-success text-white rounded-1 p-1"
-            style={{ fontSize: "20px" }}
+            class="card-text bg-success text-white rounded-2"
+            style={{
+              textAlign: "center",
+              display: "inline-block",
+              padding: "3px",
+            }}
           >
             ${formater.format(props.price)}
           </span>
@@ -42,11 +63,19 @@ const Card = (props) => {
 
           <span class="card-text">Category: {props.category}</span>
 
-          <p class="card-text">
+          <span class="card-text">
             <small class="text-muted">
               Published: fecha de creacion del producto
             </small>
-          </p>
+          </span>
+          <div class="d-grid gap-2 d-md-block">
+            <button
+              onClick={addElementToCart}
+              class="btn btn-primary bi bi-cart-plus-fill m-2"
+              type="button"
+            ></button>
+            <FavoriteButton />
+          </div>
         </div>
       </div>
     </div>
