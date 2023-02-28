@@ -7,12 +7,13 @@ import {
 import axios from "axios";
 import { FaTrash } from "react-icons/fa";
 import "./CartCard.css";
+const {REACT_APP_API_URL} = process.env
 
 export default function CartCard({ name, id, quantity, price }) {
   const dispatch = useDispatch();
   const updateCart = async () => {
     const cant = { quantity: quantity };
-    const { data } = await axios.put(`http://localhost:3001/cart/${id}`, cant);
+    const { data } = await axios.put(`${REACT_APP_API_URL}/cart/${id}`, cant);
     if (data === "Out of stock")
       return window.alert("No more product in stock");
     dispatch(incrementQuantity(id));

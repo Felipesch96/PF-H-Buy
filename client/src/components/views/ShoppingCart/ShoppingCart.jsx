@@ -6,6 +6,7 @@ import { removeAll } from "../../../redux/slices/cartSlice";
 import CartCard from "../../CartCard/CartCard";
 import Login from "../../buttons/Login/Login";
 import "./ShoppingCart.css";
+const {REACT_APP_API_URL} = process.env
 
 
 
@@ -37,8 +38,9 @@ export default function ShoppingCart() {
       buyer : buyer._id,
       cartItems: productList,
       totalPrice: total, 
+      
     }
-    await axios.post(`http://localhost:3001/orders/`, data);    
+    await axios.post(`${REACT_APP_API_URL}/orders/`, data);    
     dispatch(removeAll());
     history.push("/");
     alert("COMPRA REALIZADA CON EXITO");

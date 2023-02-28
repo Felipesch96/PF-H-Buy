@@ -129,7 +129,6 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   />
                   <label class="pl-1 pt-sm-0 pt-1">&nbsp;Z-A</label>
                 </div>
-
                 <div class="form-inline border rounded span-sm-2 my-2">
                   <input
                     type="radio"

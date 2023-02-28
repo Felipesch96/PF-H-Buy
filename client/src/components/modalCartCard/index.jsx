@@ -3,11 +3,12 @@ import axios from "axios";
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../../redux/slices/cartSlice";
 import { FaTrash } from "react-icons/fa";
 import './modalCards.css'
+const {REACT_APP_API_URL} = process.env
 export const ModalCartCard = ({name, quantity, id}) => {
     const dispatch = useDispatch();
     const updateCart = async () => {
     const cant = { quantity: quantity };
-    const { data } = await axios.put(`http://localhost:3001/cart/${id}`, cant);
+    const { data } = await axios.put(`${REACT_APP_API_URL}/cart/${id}`, cant);
     if (data === "Out of stock")
       return window.alert("No more product in stock");
     dispatch(incrementQuantity(id));
