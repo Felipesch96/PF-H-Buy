@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../../../redux/thunks/productThunk";
 import CarouselCard from "./CarouselCard";
 import "./CarouselProducts.css";
@@ -81,8 +81,8 @@ import "./CarouselProducts.css";
 
 // export default CarouselProducts;
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 
 const CarouselProducts = () => {
   const dispatch = useDispatch();
@@ -147,13 +147,13 @@ const CarouselProducts = () => {
                 img={p.img}
                 name={p.name}
                 score={p.score}
+                price={p.price}
               />
             </div>
           );
         })}
       </Slider>
       <br />
-
     </div>
   );
 };

@@ -147,6 +147,7 @@ const CarouselProducts3 = () => {
                 img={p.img}
                 name={p.name}
                 score={p.score}
+                price={p.price}
               />
             </div>
           );

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import CarouselProducts from "./carousels/products/CarouselProducts";
+import CarouselProducts2 from "./carousels/products/CarouselProducts2";
+import CarouselProducts3 from "./carousels/products/CarouselProducts3";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +46,7 @@ const Home = () => {
     }
   }
 
-  const selectNewImage = (images, next = true) => {
+  const selectNewImage = ( images, next = true) => {
     setTimeout(() => {
       const condition = next
         ? selectedIndex < images.length - 1
@@ -54,8 +56,8 @@ const Home = () => {
           ? selectedIndex + 1
           : 0
         : condition
-          ? selectedIndex - 1
-          : images.length - 1;
+        ? selectedIndex - 1
+        : images.length - 1;
       setSelectedIndex(nextIndex);
     }, 500);
   };
@@ -64,30 +66,24 @@ const Home = () => {
     <div className="home">
       <div className="carousel-banner">
         <a href="/products">
-          <CarouselBanner />
+        <CarouselBanner />
         </a>
       </div>
       <hr />
       <br />
-      <div>
-        <h1 className="text-center">Recomendados</h1>
-        <div class="container-fluid carousel-productos">
-          <CarouselProducts />
-        </div>
+      <h1 className="text-center">Recomendados</h1>
+      <div class="container-fluid carousel-productos">
+        <CarouselProducts />
       </div>
       <hr />
-      <div>
-        <h1 className="text-center">Segun tus ultimas busquedas</h1>
-        <div class="container-fluid carousel-productos">
-          <CarouselProducts />
-        </div>
+      <h1 className="text-center">Segun tus ultimas busquedas</h1>
+      <div class="container-fluid carousel-productos">
+        <CarouselProducts2 />
       </div>
       <hr />
-      <div>
-        <h1 className="text-center">Lo mas vendido</h1>
-        <div class="container-fluid carousel-productos">
-          <CarouselProducts />
-        </div>
+      <h1 className="text-center">Lo mas vendido</h1>
+      <div class="container-fluid carousel-productos">
+        <CarouselProducts3 />
       </div>
       <hr />
       <div className="text-center">
