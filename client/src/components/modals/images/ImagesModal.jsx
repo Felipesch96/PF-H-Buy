@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from "axios";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import "./UploadImagesModal.css";
 
-
-const UploadImagesModal = ({ onClose }) => {
+const ImagesModal = ({ onClose }) => {
 
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
@@ -46,6 +45,7 @@ const UploadImagesModal = ({ onClose }) => {
       .catch(console.log);
   };
 
+
   const uploadImage = async (event) => {
     // event.preventDefault()
     const files = event.target.files;
@@ -60,7 +60,7 @@ const UploadImagesModal = ({ onClose }) => {
   };
 
   return (
-    <div className='images-modal'>
+    <div className="images-modal-container">
       <form onSubmit={()=>uploadImage()} className="formContainerP">
         <AiOutlineCloseCircle
           onClick={() => onClose(false)}
@@ -117,4 +117,4 @@ const UploadImagesModal = ({ onClose }) => {
   );
 };
 
-export default UploadImagesModal;
+export default ImagesModal;

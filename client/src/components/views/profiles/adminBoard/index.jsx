@@ -15,6 +15,7 @@ import {
 
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
 import UploadImagesModal from "../../../modals/images/UploadImagesModal";
+import ImagesModal from "../../../modals/images/ImagesModal";
 
 export const AdminBoard = () => {
   const dispatch = useDispatch();
@@ -118,12 +119,12 @@ export const AdminBoard = () => {
           </button>
         </section>
       </section>
-      <div>
+      <div className="modals">
         {categoryModal && <CategoryModal onClose={setCategoryModal} />}
 
         {productModal && <ProductModal onClose={setProductModal} />}
 
-        {uploadImage && <UploadImagesModal onClose={setUploadImage} />}
+        {uploadImage && <ImagesModal onClose={setUploadImage} />}
 
         {showCategories && <ShowCategoriesModal onClose={setShowCategories} />}
 
