@@ -85,11 +85,16 @@ const ImagesModal = ({ onClose }) => {
           )}
         </div>
         <div>
-          {loading ? (
+        { url ? (
             <div className="flex items-center justify-center">
-              <p>Is loanding.........</p>
+              <p>Imagen cargada</p>
             </div>
-          ) : (
+          ) : loading
+            ? (
+              <div className="flex items-center justify-center">
+                <p>Is loanding.........</p>
+              </div>
+            ) : (
             <div className="flex items-center justify-center w-full">
               <label
                 htmlFor="dropzone-file"
