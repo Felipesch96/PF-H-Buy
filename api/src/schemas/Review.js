@@ -5,10 +5,10 @@ const reviewSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Products",
       },
-    user_id: {
-        type: mongoose.Types.ObjectId,
-        ref: "Users",
-      },
+    // user_id: {
+    //     type: mongoose.Types.ObjectId,
+    //     ref: "Users",
+    //   },
     comment: {
         type: String,
     },
