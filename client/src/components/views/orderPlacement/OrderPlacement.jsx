@@ -6,6 +6,7 @@ export const OrderPlacement = () => {
     const tax = totalItemsPrice * 0.15
     const shippingPrice = 10
     const finalPrice = tax + shippingPrice + totalItemsPrice
+    
     return(
         <main className="orderInfo">
             <section>

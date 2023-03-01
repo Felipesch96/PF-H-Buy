@@ -37,9 +37,9 @@ export default function ShoppingCart() {
       cartItems: productList,
       totalPrice: total,
     };
-    await axios.post(`http://localhost:3001/orders/`, data);
+    //await axios.post(`http://localhost:3001/orders/`, data);
     dispatch(removeAll());
-    history.push("/");
+    history.push("/shipping");
   };
 
   return (

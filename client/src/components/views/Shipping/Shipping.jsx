@@ -78,7 +78,7 @@ export default function Shipping() {
             onChange={handleChange}
           />
         </section>
-        <button className="shippingButton" type="submit">Continue</button>
+        <button onClick={handleShipmentSubmit} className="shippingButton" type="submit">Continue</button>
       </form>
     </div>
   );
