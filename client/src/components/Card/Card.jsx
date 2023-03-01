@@ -1,59 +1,9 @@
 import Rating from "@mui/material/Rating";
-import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { addToCart } from "../../redux/slices/cartSlice";
-import React, { useEffect } from "react";
-import FavoriteButton from "../Favorites/Favorites";
-
-import { useParams } from "react-router-dom";
-
+import React from "react";
 
 import "./Card.css";
 const Card = (props) => {
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const detailProduct = useSelector((state) => state.product.detailproduct);
-  const cart = useSelector((state) => state.cart.cartList);
-  const thisProduct = cart.find((element) => element._id === detailProduct._id);
   const formater = new Intl.NumberFormat("en");
-
-
-  const addElementToCart = () => {
-    if (thisProduct) {
-      if (detailProduct.stock > thisProduct.quantity) {
-        dispatch(addToCart(detailProduct));
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Producto agregado al carrito.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        window.alert("No more products available");
-      }
-    } else {
-      if (detailProduct.stock >= 0) {
-        dispatch(addToCart(detailProduct));
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Producto agregado al carrito.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Producto sin stock.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        console.log(detailProduct.stock)
-      }
-    }
-  };
 
   return (
     <div class="row g-0 tarjeta">
@@ -101,13 +51,6 @@ const Card = (props) => {
               Published: fecha de creacion del producto
             </small>
           </span>
-          <div class="d-grid gap-2 d-md-block">
-          <button
-                onClick={addElementToCart}
-                className="btn btn-primary bi bi-cart-plus-fill m-3">
-              </button>
-            <FavoriteButton />
-          </div>
         </div>
       </div>
     </div>

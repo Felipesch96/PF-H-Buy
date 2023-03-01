@@ -34,6 +34,7 @@ const DetailProduct = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
         dispatch(addToCart(detailProduct));
+        console.log(detailProduct)
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -55,7 +56,7 @@ const DetailProduct = () => {
           timer: 1500,
         });
       } else {
-        Swal.fire({
+                Swal.fire({
           position: "top-end",
           icon: "error",
           title: "Producto sin stock.",

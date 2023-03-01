@@ -10,8 +10,8 @@ export const CartModal = () => {
   const alert=()=>{
     Swal.fire({
       position: "top-end",
-      icon: "success",
-      title: "Producto agregado al carrito.",
+      icon: "error",
+      title: "No tienes ningun producto en carrito.",
       showConfirmButton: false,
       timer: 1500,
     })
