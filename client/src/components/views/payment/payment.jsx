@@ -24,19 +24,16 @@ export default function Payment() {
       // con el preferenceId en mano, inyectamos el script de mercadoPago
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = 'https://sdk.mercadopago.com/js/v2';
+      script.src = 'https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js';
       script.setAttribute('data-preference-id', preferenceId);
       const form = document.getElementById(FORM_ID);
-      console.log(form);
       form.appendChild(script);
     }
   }, [preferenceId]);
 
   return (
     <div>
-        <div>MIERDA</div>
         <form id={FORM_ID} method="GET">
-            <button type='submit'>culo</button>
         </form>
     </div>
     

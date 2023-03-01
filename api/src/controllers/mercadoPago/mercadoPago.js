@@ -18,7 +18,7 @@ const newPayment = async (req, res) => {
     let preference = {
       items: items,
       back_urls: {
-        "success": "http://localhost3000/payment"
+        "success": "http://localhost:3000/payment"
       },
       auto_return: "approved",
     };
