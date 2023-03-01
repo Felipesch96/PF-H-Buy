@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import './orderPlacement.css'
+import Payment from "../payment/payment"
 export const OrderPlacement = () => {
     const {cartList, shippingInfo, paymentMethod, totalItemsPrice} = useSelector(state => state.cart)
     const tax = totalItemsPrice * 0.15
@@ -47,7 +48,7 @@ export const OrderPlacement = () => {
                     <p>Total Price {finalPrice}</p>
                  
                 </div>
-                <button>Complete order</button>
+                <Payment/>
             </section>
             
         </main>
