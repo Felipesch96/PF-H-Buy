@@ -5,7 +5,15 @@ export const cartSlice = createSlice({
   initialState: {
     cartList: [],
     amountOfItems: 0,
-    shippingInfo: {},
+    shippingInfo: {
+      // fullname:'',
+      // address: '',
+      // postalCode: '',
+      // country: '',
+      // city: ''
+    },
+    paymentMethod : {},
+    totalItemsPrice: 0 
   },
   reducers: {
     addToCart: (state, { payload }) => {
@@ -46,8 +54,13 @@ export const cartSlice = createSlice({
       state.amountOfItems = 0;
     },
     setShipping: (state, { payload }) => {
+      console.log('llego')
+      console.log(payload)
       state.shippingInfo = payload;
     },
+    setPrice: (state, {payload}) => {
+      state.totalItemsPrice = payload
+    }
   },
 });
 
@@ -58,4 +71,5 @@ export const {
   removeFromCart,
   removeAll,
   setShipping,
+  setPrice
 } = cartSlice.actions;

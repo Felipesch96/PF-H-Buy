@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { removeAll } from "../../../redux/slices/cartSlice";
+import { removeAll, setPrice } from "../../../redux/slices/cartSlice";
 import CartCard from "../../CartCard/CartCard";
 import Login from "../../buttons/Login/Login";
 import "./ShoppingCart.css";
@@ -20,6 +20,7 @@ export default function ShoppingCart() {
     cartList.forEach((item) => {
       totalPrice += item.price * item.quantity;
     });
+    dispatch(setPrice(totalPrice))
     return totalPrice;
   };
 

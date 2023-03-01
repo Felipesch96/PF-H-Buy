@@ -1,6 +1,8 @@
 import { useForm } from "../../../hooks/useForm";
 import { useHistory } from "react-router-dom";
-
+import './shipping.css'
+import { setShipping } from "../../../redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 const initialForm = {
   fullname: "",
   country: "",
@@ -11,16 +13,20 @@ const initialForm = {
 export default function Shipping() {
   const { form, handleChange } = useForm(initialForm);
   const history = useHistory();
+  const dispatch = useDispatch()
   const handleShipmentSubmit = (e) => {
     e.preventDefault();
-    history.push("/payment");
+    dispatch(setShipping(form))
+    history.push("/orderPlacement");
   };
   return (
-    <div>
-      <form onSubmit={handleShipmentSubmit}>
-        <section>
+    <div className="shippingFormContainer">
+      <h1>Your address</h1>
+      <form className="shippingForm" onSubmit={handleShipmentSubmit}>
+        <section className="shippingSection">
           <label htmlFor="fullname">Fullname</label>
           <input
+          className="shippingInput"
             type="text"
             name="fullname"
             id="fullname"
@@ -28,9 +34,10 @@ export default function Shipping() {
             onChange={handleChange}
           />
         </section>
-        <section>
+        <section className="shippingSection">
           <label htmlFor="country">Country</label>
           <input
+          className="shippingInput"
             type="text"
             name="country"
             id="country"
@@ -38,9 +45,10 @@ export default function Shipping() {
             onChange={handleChange}
           />
         </section>
-        <section>
+        <section className="shippingSection">
           <label htmlFor="city">City</label>
           <input
+          className="shippingInput"
             type="text"
             name="city"
             id="city"
@@ -48,9 +56,10 @@ export default function Shipping() {
             onChange={handleChange}
           />
         </section>
-        <section>
+        <section className="shippingSection">
           <label htmlFor="address">Address</label>
           <input
+          className="shippingInput"
             type="text"
             name="address"
             id="address"
@@ -58,9 +67,10 @@ export default function Shipping() {
             onChange={handleChange}
           />
         </section>
-        <section>
+        <section className="shippingSection">
           <label htmlFor="postal">Postal code</label>
           <input
+          className="shippingInput"
             type="text"
             name="postal"
             id="postal"
@@ -68,7 +78,7 @@ export default function Shipping() {
             onChange={handleChange}
           />
         </section>
-        <button type="submit">Continue</button>
+        <button className="shippingButton" type="submit">Continue</button>
       </form>
     </div>
   );

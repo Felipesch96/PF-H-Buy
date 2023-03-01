@@ -8,6 +8,7 @@ import ProfileComponent from "./components/views/profiles/profileComponent/Profi
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
 import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
 import Shipping from "./components/views/Shipping/Shipping";
+import { OrderPlacement } from "./components/views/orderPlacement/OrderPlacement";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route exact path="/products/:id" component={DetailProduct} />
           <Route exact path="/shoppingCart" component={ShoppingCart} />
           <Route exact path="/shipping" component={Shipping} />
+          <Route exact path="/orderPlacement" component={OrderPlacement} />
         </Switch>
         <Footer />
       </Router>
