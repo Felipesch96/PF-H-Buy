@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/views/home/Home";
 import NavBar from "./components/navBar/NavBar";
-import ProductsPage from "./components/views/productsPage/ProductsPage";
-import Footer from "./components/views/footer/Footer";
 import About from "./components/views/about/About";
-import ProfileComponent from "./components/views/profiles/profileComponent/ProfileComponent";
 import DetailProduct from "./components/views/DetailProduct/DetailProduct";
-import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
+import Footer from "./components/views/footer/Footer";
+import Home from "./components/views/home/Home";
+import Payment from "./components/views/payment/payment";
+import ProductsPage from "./components/views/productsPage/ProductsPage";
+import ProfileComponent from "./components/views/profiles/profileComponent/ProfileComponent";
 import Shipping from "./components/views/Shipping/Shipping";
+import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route exact path="/products/:id" component={DetailProduct} />
           <Route exact path="/shoppingCart" component={ShoppingCart} />
           <Route exact path="/shipping" component={Shipping} />
+          <Route exact path="/payment" component={Payment} />
         </Switch>
         <Footer />
       </Router>

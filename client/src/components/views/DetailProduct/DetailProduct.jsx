@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import { addToCart } from "../../../redux/slices/cartSlice";
 import {
   clearDetailProduct,
-  fetchDetailProduct,
+  fetchDetailProduct
 } from "../../../redux/thunks/productThunk";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
@@ -41,7 +41,6 @@ const DetailProduct = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        dispatch(addToCart(detailProduct));
       } else {
         window.alert("No more products available");
       }
@@ -55,7 +54,6 @@ const DetailProduct = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        dispatch(addToCart(detailProduct));
       } else {
         window.alert("Not in stock");
       }
