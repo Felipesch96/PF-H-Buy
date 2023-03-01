@@ -5,10 +5,12 @@ import "./Card.css";
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
   //comentariosss
+  const date = props.created;
+  const formatDate = moment(date).utc().format("MMMM Do, YYYY");
 
   return (
     <div class="row g-0 tarjeta rounded-2">
-      <div class="col-md-12">
+      <div class="col-md-14">
         <img
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
@@ -18,7 +20,7 @@ const Card = (props) => {
           src={props.img}
           class="img-fluid img-detail rounded-2 border bg-light"
           alt="..."
-          style={{ height: "230px", width: "200px" }}
+          style={{ height: "230px", width: "250px" }}
         />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
@@ -43,9 +45,7 @@ const Card = (props) => {
           <span class="card-text">Category: {props.category}</span>
 
           <p class="card-text">
-            <small class="text-muted">
-              Published: fecha de creacion del producto
-            </small>
+            <small class="text-muted">Published: {formatDate}</small>
           </p>
         </div>
       </div>

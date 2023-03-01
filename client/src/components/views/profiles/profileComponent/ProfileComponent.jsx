@@ -6,9 +6,11 @@ import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
 import { fetchUserById } from "../../../../redux/thunks/userThunk";
 import "./profileComponent.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfileComponent = () => {
   const dispatch = useDispatch();
+  const { user, loginWithRedirect } = useAuth0();
   const userLocal = useSelector((state) => state.user.userLocal);
   const [userType, setUserType] = useState("Buyer");
 
@@ -19,15 +21,12 @@ const ProfileComponent = () => {
   const sellerButton = () => {
     setUserType("Seller");
   };
-  useEffect(()=>{
-    dispatch(fetchCategories())
-    dispatch(fetchUserById(userLocal._id))
-      },[dispatch, userLocal._id]);
+  useEffect(() => {
+    dispatch(fetchCategories());
+    dispatch(fetchUserById(userLocal._id));
+  }, [dispatch, userLocal._id]);
 
-
-    
-
-  return (
+  return user ? (
     <div class="container-fluid pagina-perfiles">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-6">
@@ -89,6 +88,8 @@ const ProfileComponent = () => {
         </div>
       </div>
     </div>
+  ) : (
+    loginWithRedirect()
   );
 };
 
