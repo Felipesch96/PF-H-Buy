@@ -1,36 +1,112 @@
-import React from "react";
+import Rating from "@mui/material/Rating";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import { addToCart } from "../../redux/slices/cartSlice";
+import React, { useEffect } from "react";
+import FavoriteButton from "../Favorites/Favorites";
+
+import { useParams } from "react-router-dom";
+
+
 import "./Card.css";
 const Card = (props) => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const detailProduct = useSelector((state) => state.product.detailproduct);
+  const cart = useSelector((state) => state.cart.cartList);
+  const thisProduct = cart.find((element) => element._id === detailProduct._id);
   const formater = new Intl.NumberFormat("en");
 
-  return (
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-12">
-          <img
-            src={props.img}
-            class="img-fluid rounded-start mt-2"
-            alt="..."
-            style={{ height: "230px" }}
-          />
-          <div class="card-body">
-            <h5 class="card-title">{props.name}</h5>
-            <p
-              class="card-text bg-success text-white rounded-2"
-              style={{
-                textAlign: "center",
-                display: "inline-block",
-                padding: "3px",
-              }}
-            >
-              ${formater.format(props.price)}
-            </p>
-            <p class="card-text">Qualification: {props.score} ☆</p>
-            <p class="card-text">Category: {props.category}</p>
 
-            <p class="card-text">
-              <small class="text-muted">Last updated 3 mins ago</small>
-            </p>
+  const addElementToCart = () => {
+    if (thisProduct) {
+      if (detailProduct.stock > thisProduct.quantity) {
+        dispatch(addToCart(detailProduct));
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Producto agregado al carrito.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        window.alert("No more products available");
+      }
+    } else {
+      if (detailProduct.stock >= 0) {
+        dispatch(addToCart(detailProduct));
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Producto agregado al carrito.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Producto sin stock.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        console.log(detailProduct.stock)
+      }
+    }
+  };
+
+  return (
+    <div class="row g-0 tarjeta">
+      <div class="col-md-12">
+        <img
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null; // prevents looping
+            currentTarget.src =
+              "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
+          }}
+          src={props.img}
+          class="img-fluid img-detail rounded-start bg-light"
+          alt="..."
+          style={{ height: "230px" }}
+        />
+        <hr />
+        <div class="card-body">
+          <h5 class="card-title">{props.name}</h5>
+          <span
+            class="card-text bg-success text-white rounded-2"
+            style={{
+              textAlign: "center",
+              display: "inline-block",
+              padding: "3px",
+            }}
+          >
+            ${formater.format(props.price)}
+          </span>
+          <div class="container">
+            <span class="card-text mb-1">Qualification: {props.score} ☆</span>
+
+            <Rating
+              style={{ fontSize: "17px" }}
+              name="half-rating-read"
+              value={props.score}
+              precision={0.5}
+              readOnly
+            />
+          </div>
+
+          <span class="card-text">Category: {props.category}</span>
+
+          <span class="card-text">
+            <small class="text-muted">
+              Published: fecha de creacion del producto
+            </small>
+          </span>
+          <div class="d-grid gap-2 d-md-block">
+          <button
+                onClick={addElementToCart}
+                className="btn btn-primary bi bi-cart-plus-fill m-3">
+              </button>
+            <FavoriteButton />
           </div>
         </div>
       </div>

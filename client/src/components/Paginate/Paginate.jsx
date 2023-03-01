@@ -1,74 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
+import "./Paginate.css";
 
-const Paginate = (props) => {
-  const numbers = [];
+const Paginate = ({
+  currentPage,
+  setCurrentPage,
+  cardsPerPage,
+  input,
+  setInput,
+  array,
+}) => {
+  const pages = Math.ceil(
+    Array.isArray(array) ? array.length / cardsPerPage : 1
+  );
+  // const [input, setInput] = useState(1);
+  // const newArray = Array.isArray(array) ? array : 1;
 
-  for (let i = 0; i < Math.ceil(props.products / props.cardsPerPage); i++) {
-    numbers.push(i + 1);
-  }
+  const nextPage = () => {
+    setInput(parseInt(input) + 1);
+    setCurrentPage(parseInt(currentPage) + 1);
+  };
 
-  // handler buttom prev y next
-  const prev = (e) => {
-    e.preventDefault();
-    if (props.pageCurrent <= 1) {
-      props.paginado(1);
-    } else {
-      props.paginado(props.pageCurrent - 1);
+  const LastPage = () => {
+    setInput(parseInt(input) - 1);
+    setCurrentPage(parseInt(currentPage) - 1);
+  };
+
+  //vendria a ser el condicional para hababilitar o no el input
+  const onKeyDown = (e) => {
+    const value = e.target.value;
+
+    //este numero de key vendria siendo la tecla enter enter
+    if (e.keyCode === 13) {
+      setCurrentPage(parseInt(value));
+      if (
+        //este es para verificar que el numero ingresado no sea menor a 1
+        parseInt(value < 1) ||
+        //este es para verificar que el numero ingresado no sea mayor al numero maximo de paginas
+        parseInt(value) > Math.ceil(pages) ||
+        //este para verificar que coloque solo numeros
+        isNaN(parseInt(value))
+        // || input.length > pages
+      ) {
+        //si se cumple setea en la primer pagina
+        setCurrentPage(1);
+        setInput(1);
+      } else {
+        setCurrentPage(parseInt(value));
+      }
     }
   };
-  const next = (e) => {
-    e.preventDefault();
-    if (props.products < 8) return;
-    else {
-      props.paginado(props.pageCurrent + 1);
-    }
+
+  const onChange = (e) => {
+    setInput(e.target.value);
   };
-  //
 
   return (
-    <nav aria-label="Search results pages">
-      <ul class="pagination justify-content-center">
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          style={{ marginRight: "1px" }}
-          onClick={(e) => {
-            prev(e);
-          }}
-          disabled={props.pageCurrent <= 1}
-        >
-          &laquo;
-        </button>
-
-        {numbers?.map((page) => {
-          return (
-            <li
-              class="page-item"
-              key={page}
-              onClick={() => {
-                props.paginado(page);
-              }}
-            >
-              <div className={page === props.pageCurrent ? "active" : ""}>
-                <a class="page-link" href="#">
-                  {page}
-                </a>
-              </div>
-            </li>
-          );
-        })}
-
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          style={{ marginLeft: "1px" }}
-          onClick={(e) => {
-            next(e);
-          }}
-          disabled={props.cardsCurrent < props.cardsPerPage}
-        >
-          &raquo;
-        </button>
+    <nav aria-label="Search results pages ">
+      <ul class="pagination justify-content-center align-items-center">
+        <li class="page-item ">
+          <button
+            class="btn btn-primary"
+            aria-label="Previous"
+            disabled={currentPage === 1 || currentPage < 1}
+            onClick={LastPage}
+          >
+            <i class="bi bi-chevron-left"></i>
+          </button>
+        </li>
+        <div>
+          <input
+            style={{ width: "40px" }}
+            class="form-control "
+            onChange={onChange}
+            onKeyDown={(e) => onKeyDown(e)}
+            value={input} // > pages ? 1 : input
+            autoComplete="off"
+          />
+          {/* <span class="text">Page: {currentPage}</span> */}
+        </div>
+        <li>
+          <span class="text">of {pages}</span>
+        </li>
+        <li class="page-item">
+          <button
+            class="btn  btn-primary"
+            aria-label="Next"
+            disabled={currentPage === pages || currentPage > pages}
+            onClick={nextPage}
+          >
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </li>
       </ul>
     </nav>
   );

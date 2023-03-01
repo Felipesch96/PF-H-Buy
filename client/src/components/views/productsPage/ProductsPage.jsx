@@ -1,30 +1,46 @@
-import React from "react";
-import Filters from "../../filters/Filters";
+import React, { useEffect } from "react";
 import Cards from "../../Cards/Cards";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../../redux/thunks/productThunk";
+import "./ProductsPage.css";
 
 const ProductsPage = () => {
+  const dispatch = useDispatch();
+  const { filter, filterHelper, products, error } = useSelector(
+    (state) => state.product
+  );
 
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-	return (
-		<div>
-			<section class="productsPage">
-				<div class="container-fluid text-center">
-					<div class="row">
-						<div class="col-12 col-md-3 ">
-							<Filters />
-
-						</div>
-						<div class="col-8">
-						<Cards />
-
-						</div>
-
-					</div>
-				</div>
-
-			</section>
-		</div>
-	)
+  return (
+    <div class="container-fluid text-center pag-prods">
+      {error ? (
+        <div class="mt-5">
+          <div class="alert alert-danger" role="alert">
+            <i
+              class="bi bi-exclamation-triangle-fill"
+              style={{ fontSize: "30px" }}
+            />
+            " {error}"
+          </div>
+        </div>
+      ) : filterHelper.length ? (
+        <>
+          <Cards array={filterHelper} />
+        </>
+      ) : filter.length ? (
+        <>
+          <Cards array={filter} />
+        </>
+      ) : (
+        <>
+          <Cards array={products} />
+        </>
+      )}
+    </div>
+  );
 };
 
 export default ProductsPage;

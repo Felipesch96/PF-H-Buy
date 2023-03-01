@@ -3,14 +3,24 @@ const User = require("../../../schemas/Users");
 const usersCtrl = {};
 
 usersCtrl.getUsers = async (req, res) => {
-  const name = req.query.name;
+  const { name, email } = req.query;
   try {
-    if (!name) {
+    if (email) {
+      
+      const userByEmail = await User.find({ email: email && new RegExp(email) });
+      userByEmail.length
+      ? res.status(200).send(userByEmail)
+      : res.status(400).send({ error: `No user found with that email` });
+    
+    } else if (!name) {
+      
       const allUsers = await User.find();
       allUsers.length
         ? res.status(200).send(allUsers)
         : res.status(202).send({ error: `There are no users in the DataBase` });
+
     } else {
+      
       const allUsers = await User.find();
       const userByName = allUsers.filter((element) =>
         element.name
@@ -33,30 +43,11 @@ usersCtrl.getUsers = async (req, res) => {
 usersCtrl.usersById = async (req, res) => {
   const { id } = req.params;
   try {
-    const useById = await User.findById(id);
-    res.status(200).send(useById);
+    const userById = await User.findById(id);
+    res.status(200).send(userById);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
 };
 
-usersCtrl.userByEmail = async (req, res) => {
-  const {email} = req.body;
-  try {
-    const userByEmail = await findOne({where: email});
-    res.send(userByEmail);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
-usersCtrl.getUser = async (req, res) =>{
-  try {
-    const userByEmail = await findOne({where: email});
-    res.send(userByEmail);
-  } catch (error) {
-    console.log(error);
-  }
-};
 module.exports = usersCtrl;

@@ -1,3 +1,14 @@
-card mb-3{
-    background-color: aqua;
+.tarjeta{
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
 }
+.tarjeta:hover{
+    box-shadow: 8px 5px 10px rgb(249, 249, 249);
+}
+.img-detail{
+    margin-top: 5px;
+    height: 95%;
+    width: 95%;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.323);
+
+  }

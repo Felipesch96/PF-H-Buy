@@ -1,0 +1,35 @@
+.contenedor-products{
+  border: 1px solid black;
+  height: fit-content;
+  /* align-items: center;
+  justify-content: space-between; */
+  flex-direction: row;
+  font-size:xx-small;
+}
+
+.contenedor-products button{
+width: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.grid{
+  /* width: 100%; */
+  display: grid;
+
+  
+}
+
+.tarjeta{
+  height: fit-content;
+  margin: 5px;
+}
+
+.card-body img{
+  height: fit-;
+}
+
+.card-prod-carousel:hover{
+  opacity: 0.5;
+}

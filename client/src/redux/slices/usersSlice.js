@@ -4,31 +4,28 @@ export const usersSlice = createSlice({
   name: "userSlice",
   initialState: {
     users: [],
-    user: {}
+    userLocal: {},
+    userById: {},
   },
   reducers: {
     setUsers: (state, { payload }) => {
       state.users = payload;
     },
     setUser: (state, { payload }) => {
-      state.user = payload
+      state.userLocal = payload;
     },
     setLogedUser: (state, { payload }) => {
-      state.user = payload
+      state.userLocal = payload;
     },
-    orderByName: (state, { payload }) => {
-      payload === "A-Z"
-        ? (state.users = [...state.users].sort((a, b) => a.name - b.name))
-        : (state.users = [...state.users].sort(
-            (a, b) => b.name - a.name
-          ));
-    }
+    setCleanUser: (state) => {
+      state.userLocal = {};
+    },
+    setUserById: (state) => {
+      state.userById = {};
+    },
+    
   },
 });
 
-export const {
-  setUsers,
-  setUser,
-  orderByName,
-  setLogedUser,
-} = usersSlice.actions;
+export const { setUsers, setCleanUser, setUser, orderByName, setLogedUser, setUserById } =
+  usersSlice.actions;
