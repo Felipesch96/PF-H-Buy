@@ -50,3 +50,4 @@ export default function CartCard({ name, id, quantity, price }) {
     </main>
   );
 }
+  

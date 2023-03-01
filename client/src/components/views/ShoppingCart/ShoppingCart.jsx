@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addOrderId, removeAll } from "../../../redux/slices/cartSlice";
+import { addOrderId, removeAll, setPrice } from "../../../redux/slices/cartSlice";
 import Login from "../../buttons/Login/Login";
 import CartCard from "../../CartCard/CartCard";
 import "./ShoppingCart.css";
@@ -19,6 +19,7 @@ export default function ShoppingCart() {
     cartList.forEach((item) => {
       totalPrice += item.price * item.quantity;
     });
+    dispatch(setPrice(totalPrice))
     return totalPrice;
   };
 
@@ -39,7 +40,7 @@ export default function ShoppingCart() {
     };
     const response = await axios.post(`${REACT_APP_API_URL}/orders/`, data);
     dispatch(addOrderId(response.data.newOrder?._id));
-    history.push(`/payment`);
+    history.push(`/shipping`);
   };
 
   return (

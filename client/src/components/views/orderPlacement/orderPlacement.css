@@ -1,0 +1,12 @@
+.orderInfo{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    padding: 20px;
+
+}
+
+.finalOrderItems{
+    display: flex;
+    gap: 10px;
+}

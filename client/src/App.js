@@ -9,6 +9,7 @@ import ProductsPage from "./components/views/productsPage/ProductsPage";
 import ProfileComponent from "./components/views/profiles/profileComponent/ProfileComponent";
 import Shipping from "./components/views/Shipping/Shipping";
 import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
+import { OrderPlacement } from "./components/views/orderPlacement/OrderPlacement";
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
           <Route exact path="/products/:id" component={DetailProduct} />
           <Route exact path="/shoppingCart" component={ShoppingCart} />
           <Route exact path="/shipping" component={Shipping} />
+          <Route exact path="/orderPlacement" component={OrderPlacement} />
           <Route path="/payment" component={Payment} />
         </Switch>
         <Footer />
