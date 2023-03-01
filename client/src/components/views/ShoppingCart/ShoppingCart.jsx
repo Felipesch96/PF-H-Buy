@@ -3,11 +3,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { removeAll, setPrice } from "../../../redux/slices/cartSlice";
-import CartCard from "../../CartCard/CartCard";
 import Login from "../../buttons/Login/Login";
+import CartCard from "../../CartCard/CartCard";
 import "./ShoppingCart.css";
-
-
 
 export default function ShoppingCart() {
   const { amountOfItems, cartList } = useSelector((state) => state.cart);
@@ -28,22 +26,20 @@ export default function ShoppingCart() {
     return {
       product: element._id,
       quantity: element.quantity,
-    }
+    };
   });
 
-  const handleCheckout = async() => {
-    if (!buyer._id) return alert ("Please LOGIN");
+  const handleCheckout = async () => {
+    if (!buyer._id) return alert("Please LOGIN");
     const total = getTotal();
     const data = {
-      buyer : buyer._id,
+      buyer: buyer._id,
       cartItems: productList,
-      totalPrice: total, 
-    }
-    await axios.post(`http://localhost:3001/orders/`, data);    
+      totalPrice: total,
+    };
+    await axios.post(`http://localhost:3001/orders/`, data);
     dispatch(removeAll());
     history.push("/");
-    alert("COMPRA REALIZADA CON EXITO");
-
   };
 
   return (
@@ -61,13 +57,17 @@ export default function ShoppingCart() {
             />
           ))}
         </ul>
-        {<button className="clearCart" onClick={() => {
-          dispatch(removeAll())
-          history.push('/products')
-          
-          }}>
-          Remove All
-        </button>}
+        {
+          <button
+            className="clearCart"
+            onClick={() => {
+              dispatch(removeAll());
+              history.push("/products");
+            }}
+          >
+            Remove All
+          </button>
+        }
       </section>
       <section className="cartOrder">
         <h4>{amountOfItems} items </h4>
@@ -83,6 +83,7 @@ export default function ShoppingCart() {
           </>
         )}
       </section>
+        
     </main>
   );
 }

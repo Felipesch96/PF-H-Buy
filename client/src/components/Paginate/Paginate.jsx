@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import "./Paginate.css";
 
-const Paginate = ({ currentPage, setCurrentPage, cardsPerPage, array }) => {
-  const [input, setInput] = useState(1);
+const Paginate = ({
+  currentPage,
+  setCurrentPage,
+  cardsPerPage,
+  input,
+  setInput,
+  array,
+}) => {
   const pages = Math.ceil(
     Array.isArray(array) ? array.length / cardsPerPage : 1
   );
+  // const [input, setInput] = useState(1);
   // const newArray = Array.isArray(array) ? array : 1;
 
   const nextPage = () => {
@@ -31,8 +38,8 @@ const Paginate = ({ currentPage, setCurrentPage, cardsPerPage, array }) => {
         //este es para verificar que el numero ingresado no sea mayor al numero maximo de paginas
         parseInt(value) > Math.ceil(pages) ||
         //este para verificar que coloque solo numeros
-        isNaN(parseInt(value)) ||
-        parseInt(value === " ")
+        isNaN(parseInt(value))
+        // || input.length > pages
       ) {
         //si se cumple setea en la primer pagina
         setCurrentPage(1);
@@ -66,9 +73,10 @@ const Paginate = ({ currentPage, setCurrentPage, cardsPerPage, array }) => {
             class="form-control "
             onChange={onChange}
             onKeyDown={(e) => onKeyDown(e)}
-            value={input}
+            value={input} // > pages ? 1 : input
             autoComplete="off"
           />
+          {/* <span class="text">Page: {currentPage}</span> */}
         </div>
         <li>
           <span class="text">of {pages}</span>

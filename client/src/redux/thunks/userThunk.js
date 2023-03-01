@@ -1,16 +1,18 @@
 import axios from "axios";
 import { setUsers, setUser, setCleanUser, setUserById } from "../slices/usersSlice";
 
+const {REACT_APP_API_URL} = process.env
+console.log(REACT_APP_API_URL)
 export const fetchUsers = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("http://localhost:3001/users");
+    const { data } = await axios.get(`${REACT_APP_API_URL}/users`);
     dispatch(setUsers(data));
   };
 };
 
 export const fetchUserById = (id) => {
   return async (dispatch) => {
-    const { data } = await axios.get(`http://localhost:3001/users/${id}`);
+    const { data } = await axios.get(`${REACT_APP_API_URL}/users/${id}`);
     dispatch(setUserById(data));
   };
 };
@@ -19,7 +21,7 @@ export const newGoogleUser = (payload) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3001/users/google",
+        `${REACT_APP_API_URL}/users/google`,
         payload
       );
       dispatch(setUser(data));

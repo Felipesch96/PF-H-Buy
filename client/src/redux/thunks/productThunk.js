@@ -13,11 +13,14 @@ import {
   setFilterName,
   orderByScore,
 } from "../slices/productsSlice";
+const {REACT_APP_API_URL} = process.env
+
+console.log(REACT_APP_API_URL)
 
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/products");
+      const { data } = await axios.get(`${REACT_APP_API_URL}/products`);
       dispatch(setProducts(data));
     } catch (error) {
       dispatch(setError(error.response.data));
@@ -28,7 +31,7 @@ export const fetchProducts = () => {
 export const fetchNewProducts = (form) => {
   return async (dispatch) => {
     try {
-      await axios.post("http://localhost:3001/products", form);
+      await axios.post(`${REACT_APP_API_URL}/products`, form);
     } catch (error) {
       dispatch(setError(error.response.data));
     }
@@ -38,7 +41,7 @@ export const fetchNewProducts = (form) => {
 export const fetchCategories = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/categories");
+      const { data } = await axios.get(`${REACT_APP_API_URL}/categories`);
       dispatch(setCategories(data));
     } catch (error) {
       dispatch(setError(error.message));
@@ -50,7 +53,7 @@ export const fetchSearch = (value) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/products?name=${value}`
+        `${REACT_APP_API_URL}/products?name=${value}`
       );
       dispatch(setFilter(data));
     } catch (error) {
@@ -63,7 +66,7 @@ export const fetchSearchProductByCtg = (type) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/products?category=${type}`
+        `${REACT_APP_API_URL}/products?category=${type}`
       );
       dispatch(setFilter(data));
     } catch (error) {
@@ -131,7 +134,7 @@ export const fetchClearFilter = () => {
 export const fetchDetailProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+      const { data } = await axios.get(`${REACT_APP_API_URL}/products/${id}`);
       dispatch(detailProduct(data));
     } catch (error) {
       dispatch(setError(error.message));
@@ -148,9 +151,7 @@ export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1
   return async function (dispatch) {
     try {
-      let productsByName = await axios.get(
-        `http://localhost:3001/products?name=${name}`
-      );
+      let productsByName = await axios.get(`${REACT_APP_API_URL}/products?name=${name}`, {});
       dispatch(setProducts(productsByName));
     } catch (error) {
       dispatch(setError(error.message));
@@ -161,11 +162,8 @@ export function getProductsByName(name) {
 export function getProductsByOrder(order) {
   return async function (dispatch) {
     try {
-      let productsByOrder = await axios.get(
-        `http://localhost:3001/products?order=${order}`,
-        {}
-      );
-      return dispatch(setProducts(productsByOrder));
+      let productsByOrder = await axios.get(`${REACT_APP_API_URL}/products?order=${order}`, {});
+      return dispatch(setProducts(productsByOrder))
     } catch (error) {
       dispatch(setError(error.message));
     }
