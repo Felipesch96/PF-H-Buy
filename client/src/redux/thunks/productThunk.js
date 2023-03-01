@@ -13,7 +13,10 @@ import {
   setFilterName,
   orderByScore,
 } from "../slices/productsSlice";
-        const {REACT_APP_API_URL} = process.env
+const {REACT_APP_API_URL} = process.env
+
+console.log(REACT_APP_API_URL)
+
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
