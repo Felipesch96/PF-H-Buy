@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import "./UploadImagesModal.css";
+import "./ImagesModal.css";
 
 const ImagesModal = ({ onClose }) => {
 
@@ -10,7 +11,8 @@ const ImagesModal = ({ onClose }) => {
   const [cloudResponse, setCloudResponse] = useState();
   const [prodImg, setProdImg] = useState();
   const [cargada, setCargada] = useState(false);
-
+  const { userLocal } = useSelector((state) => state.user);
+  console.log(userLocal);
 
   // product.img = prodImg
 
@@ -41,6 +43,8 @@ const ImagesModal = ({ onClose }) => {
         setProdImg({ public_id: res.data.public_id, secure_url: res.data.secure_url });
         console.log(prodImg);
         setCargada(true);
+        userLocal.productImages.push(prodImg);
+        console.log(userLocal);
         alert("Image uploaded Succesfully");
       })
       .then(() => setLoading(false))

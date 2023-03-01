@@ -14,7 +14,6 @@ import {
 } from "../../../../redux/thunks/productThunk";
 
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
-import UploadImagesModal from "../../../modals/images/UploadImagesModal";
 import ImagesModal from "../../../modals/images/ImagesModal";
 
 export const AdminBoard = () => {
