@@ -30,7 +30,7 @@ const ProductsPage = () => {
         <>
           <Cards array={filterHelper} />
         </>
-      ) : filter.length ? (
+      ) : filter?.length ? (
         <>
           <Cards array={filter} />
         </>
