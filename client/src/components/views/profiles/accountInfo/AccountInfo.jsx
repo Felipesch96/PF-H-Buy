@@ -1,61 +1,66 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+import { EditUserCard } from "../../../editUserCard";
+
 
 const AccountInfo = () => {
 
-  const [usuario, setUsuario] = useState(
-    {
-      name: "pepito",
-      surname: "pindonga",
-      email: "pepito@gmail.com",
-      phone: "** **** **23",
-      adress: "calle falsa 123"
-    }
-  );
+const {userLocal} = useSelector((state) => state.user);
+const {userById} = useSelector((state) => state.user);
+
+
+
 
   return (
     <div>
-
+      {console.log(userById)}
       <div class="card mb-4">
         <div class="card-body">
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">Full Name</p>
+              <span class="mb-0">Full Name</span>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{`${usuario.name} ${usuario.surname}`}</p>
+              <span class="text-muted mb-0">
+                {userLocal.lastName
+                  ? `${userLocal?.name} ${userLocal.lastName}`
+                  : `${userLocal.name}`}
+              </span>
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">Email</p>
+              <span class="mb-0">Email</span>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.email}</p>
+              <span class="text-muted mb-0">{userLocal.email}</span>
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">Phone</p>
+              <span class="mb-0">Phone</span>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.phone}</p>
+              <span class="text-muted mb-0">{userLocal.phone}</span>
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-sm-3">
-              <p class="mb-0">Address</p>
+              <span class="mb-0">Address</span>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{usuario.adress}</p>
+              <span class="text-muted mb-0">{userLocal.address}</span>
             </div>
           </div>
         </div>
       </div>
+      <EditUserCard/>
+      
     </div>
-  )
+  );
 };
 
 export default AccountInfo;

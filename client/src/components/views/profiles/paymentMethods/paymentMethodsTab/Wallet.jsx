@@ -1,34 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import NewPaymentMethod from "../newPaymentMethod/NewPaymentMethod";
 import PaymentMethod from "../paymentMethod/Cards";
 
-
 const Wallet = () => {
-
   // un map por de metodos de pago
 
-  const [wallet, setWallet] = useState([
-    {
-      card: "Visa",
-      type: "credit",
-      number: "**** **** **** 1234",
-      securityCode: "****",
-      name: "pepito pindonga",
-      expDate: "00/00"
-    }
-  ]);
+  const wallet = {
+    card: "Visa",
+    type: "credit",
+    number: "**** **** **** 1234",
+    securityCode: "****",
+    name: "pepito pindonga",
+    expDate: "00/00",
+  };
 
   return (
     <div class="container payments">
       <div class="row">
         <div>
-          {
-            wallet?.map(pm => {
-              return (
-                <PaymentMethod card={pm.card} type={pm.type} number={pm.number} name={pm.name} expDate={pm.expDate} />
-              )
-            })
-          }
+          <PaymentMethod
+            card={wallet.card}
+            type={wallet.type}
+            number={wallet.number}
+            name={wallet.name}
+            expDate={wallet.expDate}
+          />
         </div>
 
         <div>
@@ -36,7 +32,7 @@ const Wallet = () => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Wallet;
