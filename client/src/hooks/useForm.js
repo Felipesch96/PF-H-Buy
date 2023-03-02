@@ -80,9 +80,6 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     e.preventDefault();
     const { name, img, condition, price, description, category, stock } =
       formStorage;
-      
-    // uploadSingleImage(img);
-
     dispatch(
       fetchNewProducts({
         name,

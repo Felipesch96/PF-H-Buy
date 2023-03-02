@@ -8,7 +8,7 @@ const categories = require("./routes/categories.router");
 const favorites = require("./routes/favorites.router");
 const cart = require("./routes/cart.router");
 const orders = require("./routes/orders.router");
-const imgCloud = require("./controllers/cloudinary/cloudinary.router");
+// const imgCloud = require("./controllers/cloudinary/cloudinary.router");
 
 const cors = require("cors");
 
@@ -40,7 +40,7 @@ server.use("/categories", categories);
 server.use("/favorites", favorites);
 server.use("/cart", cart);
 server.use("/orders", orders);
-server.use("/cloud", imgCloud);
+// server.use("/cloud", imgCloud);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

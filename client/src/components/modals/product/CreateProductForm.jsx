@@ -47,10 +47,7 @@ const CreateProductFrom = ({ onClose }) => {
     handlePriceBlur, handleDescBlur, handlePhotoBlur, handleStockcBlur, handleCondBlur, handleCatBlur} =
     useForm(initialForm, formValidations);
 
-    const categories = useSelector((state) => state.product.categories)
-    const [imagen, setImagen] = useState();
-
-
+    const categories = useSelector((state) => state.product.categories);
 
   return (
     <form onSubmit={handleSubmitProduct} className="formContainerP">
@@ -81,7 +78,6 @@ const CreateProductFrom = ({ onClose }) => {
           id="img"
           type="file"
           className=""
-          // value={imagen}
           onChange={handleChange}
           onBlur={handlePhotoBlur}
         />
@@ -157,7 +153,6 @@ const CreateProductFrom = ({ onClose }) => {
         {errors.description && <p className="errors">{errors.description}</p>}
       </section>
 
-      {/* {aca va cloudinary} */}
       {formStorage.name && formStorage.description && formStorage.category && formStorage.condition && formStorage.img &&
       formStorage.price && formStorage.stock && formStorage.category !== "Select an option" && formStorage.condition !== "Select an option"
       ?<button type="submit" className="productButton">Create</button>
