@@ -3,29 +3,29 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useForm } from "../../../hooks/useForm";
 
-const formValidations = (form, type) => {
+const formValidations = (formStorage, type) => {
   const reg = new RegExp('^[0-9]*$');
   const errors = {};
 
-  if (type === "name" && !form.trim()) {
+  if (type === "name" && !formStorage.trim()) {
     errors.name = "The name of the product is required";
   }
-  if (type === "description" && !form?.length > 0) {
+  if (type === "description" && !formStorage?.length > 0) {
     errors.description = "You must provide a short description of your product";
   }
-  if (type === "price" && (form < 1 || !reg.test(form))) {
+  if (type === "price" && (formStorage < 1 || !reg.test(formStorage))) {
     errors.price = "Price must be a number higher than 0";
   }
-  if (type === "stock" && (form < 1 || !reg.test(form))) {
+  if (type === "stock" && (formStorage < 1 || !reg.test(formStorage))) {
     errors.stock = "You must provide at least 1 product";
   }
-  if (type === "condition" && (!form || form === "Select an option")) {
+  if (type === "condition" && (!formStorage || formStorage === "Select an option")) {
     errors.condition = "Please select a condition";
   }
-  if (type === "category" && (!form || form === "Select an option")) {
+  if (type === "category" && (!formStorage || formStorage === "Select an option")) {
     errors.category = "Please select a category";
   }
-  if (type === "photo" && !form) {
+  if (type === "photo" && !formStorage) {
     errors.photo = "Please upload a photo";
   }
   return errors;
@@ -43,7 +43,7 @@ const initialForm = {
 
 
 const CreateProductFrom = ({ onClose }) => {
-  const { form, errors, handleNameBlur, handleChange, handleSubmitProduct,
+  const { formStorage, errors, handleNameBlur, handleChange, handleSubmitProduct,
     handlePriceBlur, handleDescBlur, handlePhotoBlur, handleStockcBlur, handleCondBlur, handleCatBlur} =
     useForm(initialForm, formValidations);
 
@@ -52,7 +52,7 @@ const CreateProductFrom = ({ onClose }) => {
 
 
   return (
-    <form onSubmit={handleSubmitProduct} className="formContainerP">
+    <formStorage onSubmit={handleSubmitProduct} className="formContainerP">
       <AiOutlineCloseCircle
         onClick={() => onClose(false)}
         className="closeIconP"
@@ -63,7 +63,7 @@ const CreateProductFrom = ({ onClose }) => {
             type="text"
             id="name"
             name="name"
-            value={form.name}
+            value={formStorage.name}
             onChange={handleChange}
             className="inputP"
             onBlur={handleNameBlur}
@@ -80,7 +80,7 @@ const CreateProductFrom = ({ onClose }) => {
           id="img"
           type="text"
           className="inputP"
-          value={form.img}
+          value={formStorage.img}
           onChange={handleChange}
           onBlur={handlePhotoBlur}
         />
@@ -96,7 +96,7 @@ const CreateProductFrom = ({ onClose }) => {
           id="price"
           type="text"
           className="inputP"
-          value={form.price}
+          value={formStorage.price}
           onChange={handleChange}
           onBlur={handlePriceBlur}
         />
@@ -125,7 +125,7 @@ const CreateProductFrom = ({ onClose }) => {
           id="stock"
           type="text"
           className="inputP"
-          value={form.stock}
+          value={formStorage.stock}
           onChange={handleChange}
           onBlur={handleStockcBlur}
         />
@@ -150,19 +150,19 @@ const CreateProductFrom = ({ onClose }) => {
           id="resume"
           name="description"
           onChange={handleChange}
-          value={form.description}
+          value={formStorage.description}
           onBlur={handleDescBlur}
         ></textarea>
         {errors.description && <p className="errors">{errors.description}</p>}
       </section>
 
       {/* {aca va cloudinary} */}
-      {form.name && form.description && form.category && form.condition && form.img &&
-      form.price && form.stock && form.category !== "Select an option" && form.condition !== "Select an option"
+      {formStorage.name && formStorage.description && formStorage.category && formStorage.condition && formStorage.img &&
+      formStorage.price && formStorage.stock && formStorage.category !== "Select an option" && formStorage.condition !== "Select an option"
       ?<button type="submit" className="productButton">Create</button>
       :<span className="errors">Please fill the blanks to create a product</span>}
        
-    </form>
+    </formStorage>
   );
 };
 
