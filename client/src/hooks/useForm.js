@@ -1,77 +1,88 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocalStorage } from "../customHooks/UseLocalStore";
 import { createCategory } from "../helpers/createCategory";
-import { fetchCategories, fetchNewProducts } from "../redux/thunks/productThunk";
+import {
+  fetchCategories,
+  fetchNewProducts,
+} from "../redux/thunks/productThunk";
 
 export const useForm = (initialForm = {}, formValidations, categories) => {
   const dispatch = useDispatch();
-  const { userLocal } = useSelector((state) => state.user)
+  const { userLocal } = useSelector((state) => state.user);
 
-  const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState([]);
+  const [formStorage, setformStorage] = useLocalStorage(
+    "prodForm",
+    initialForm
+  );
+
+  
 
   const handleChange = ({ target }) => {
-    setForm({
-      ...form,
+    setformStorage({
+      ...formStorage,
       [target.name]: target.value,
     });
   };
 
   const handleSubmitCategory = (e) => {
     e.preventDefault();
-    createCategory(form);
+    createCategory(formStorage);
     dispatch(fetchCategories());
   };
 
   const handleSubmitProduct = (e) => {
     e.preventDefault();
-    const { name, img, condition, price, description, category, stock } = form;
-    dispatch(fetchNewProducts({
-      name,
-      img,
-      condition,
-      price: Number(price),
-      description,
-      category,
-      stock: Number(stock),
-      seller_id: userLocal._id
-    }))
-    setForm({
-        name: "",
-        img: "",
-        price: "",
-        description: "",
-        category: "",
-        stock: "",
-        condition: ""
-    })
+    const { name, img, condition, price, description, category, stock } =
+      formStorage;
+    dispatch(
+      fetchNewProducts({
+        name,
+        img,
+        condition,
+        price: Number(price),
+        description,
+        category,
+        stock: Number(stock),
+        seller_id: userLocal._id,
+      })
+    );
+    setformStorage({
+      name: "",
+      img: "",
+      price: "",
+      description: "",
+      category: "",
+      stock: "",
+      condition: "",
+    });
   };
-
+  console.log(formStorage);
   const handleNameBlur = () => {
-    setErrors(formValidations(form.name, "name", categories));
+    setErrors(formValidations(formStorage.name, "name", categories));
   };
   const handlePriceBlur = () => {
-    setErrors(formValidations(form.price, "price"));
+    setErrors(formValidations(formStorage.price, "price"));
   };
   const handleDescBlur = () => {
-    setErrors(formValidations(form.description, "description"));
+    setErrors(formValidations(formStorage.description, "description"));
   };
   const handleStockcBlur = () => {
-    setErrors(formValidations(form.stock, "stock"));
+    setErrors(formValidations(formStorage.stock, "stock"));
   };
   const handleCondBlur = () => {
-    setErrors(formValidations(form.condition, "condition"));
+    setErrors(formValidations(formStorage.condition, "condition"));
   };
   const handleCatBlur = () => {
-    setErrors(formValidations(form.category, "category"));
+    setErrors(formValidations(formStorage.category, "category"));
   };
   const handlePhotoBlur = () => {
-    setErrors(formValidations(form.img, "photo"));
+    setErrors(formValidations(formStorage.img, "photo"));
   };
 
-
   return {
-    form,
+    formStorage,
     errors,
     handleStockcBlur,
     handleCondBlur,
