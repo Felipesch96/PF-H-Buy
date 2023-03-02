@@ -47,7 +47,7 @@ const Cards = ({ array }) => {
                     <div class="col">
                       <div class="card mb-3 rounded-4 bg-dark tarjeta">
                         <Card
-                          img={element.img}
+                          img={element.img_url}
                           name={element.name}
                           price={element.price}
                           score={element.score}

@@ -6,7 +6,7 @@ const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
   //comentariosss
   const date = props.created;
-  const formatDate = moment(date).utc().format("MMMM Do, YYYY");
+  // const formatDate = moment(date).utc().format("MMMM Do, YYYY");
 
   return (
     <div class="row g-0 tarjeta rounded-2">
@@ -45,7 +45,7 @@ const Card = (props) => {
           <span class="card-text">Category: {props.category}</span>
 
           <p class="card-text">
-            <small class="text-muted">Published: {formatDate}</small>
+            {/* <small class="text-muted">Published: {formatDate}</small> */}
           </p>
         </div>
       </div>
