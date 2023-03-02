@@ -1,4 +1,5 @@
 const Product = require("../../../schemas/Products");
+const cloudinary = require("../../../helpers/cloudinary");
 
 const productsCtrl = {};
 
@@ -11,6 +12,7 @@ productsCtrl.deleteProduct = async (req, res) => {
     if (productById.isActive) {
       res.status(200).send("please deactivate the product before deleting from the database");
     } else {
+      await cloudinary.uploader.destroy(productById.img_public_id, );
       await Product.findByIdAndDelete(id);
       res.status(200).send("successfully removed");
     }
