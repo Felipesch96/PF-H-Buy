@@ -1,13 +1,13 @@
 const Review = require("../../../schemas/Review");
 
-const getProducts = async (req, res) => {
-//   const { id } = req.params;
+const getReviews = async (req, res) => {
+  //   const { id } = req.params;
   try {
-    res.status(200).send(await Review.find());
-
+    const reviews = await Review.find();
+    res.status(200).send(reviews);
   } catch (error) {
-    res.status(400).send({ error: error.message });
+    res.status(400).send(error.message);
   }
 };
 
-module.exports = getProducts;
+module.exports = getReviews;
