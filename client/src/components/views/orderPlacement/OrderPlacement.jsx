@@ -12,7 +12,7 @@ export const OrderPlacement = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const orderId = useSelector((state) => state.cart.orderId)
-    const { cartList, shippingInfo, paymentMethod, totalItemsPrice } = useSelector(state => state.cart);
+    const { cartList, shippingInfo, totalItemsPrice } = useSelector(state => state.cart);
     const tax = totalItemsPrice * 0.15;
     const shippingPrice = 10;
     const finalPrice = tax + shippingPrice + totalItemsPrice;

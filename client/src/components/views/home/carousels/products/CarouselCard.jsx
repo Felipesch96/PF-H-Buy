@@ -4,7 +4,7 @@ import Rating from "@mui/material/Rating";
 
 const CarouselCard = (props) => {
   return (
-    <Link class="card card-prod-carousel text-center" to={`/products/${props._id}`}>
+    <Link class="card card-prod-carousel text-center" to={`/home/products/${props._id}`}>
       <div class="card-body">
         <p class="badge bg-primary text-wrap">{props.name}</p><br />
         <span class="badge bg-primary text-wrap" style={{ fontSize: "12px" }}>$ {props.price}</span><br />

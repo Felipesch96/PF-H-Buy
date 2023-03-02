@@ -6,7 +6,8 @@ const ordersHistory = async (req, res) => {
     if (!id) {
       res.status(200).send(await Order.find().populate("items.product"));
     } else {
-      res.status(200).send(await Order.findById(id).populate("items.product"));
+      const ordersByBuyer = await Order.find({buyer_id: id}).populate("items.product");
+      res.status(200).send(ordersByBuyer);
     }
   } catch (error) {
     res.status(400).send({ error: error.message });

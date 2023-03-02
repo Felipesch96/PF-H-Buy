@@ -51,7 +51,7 @@ const Cards = ({ array }) => {
                         category={element.category}
                       />
                       <div class="ver-produto">
-                        <Link to={`/products/${element._id}`}>
+                        <Link to={`/home/products/${element._id}`}>
                           <button type="button" class="btn btn-primary btn-sm">
                             View Product
                           </button>
