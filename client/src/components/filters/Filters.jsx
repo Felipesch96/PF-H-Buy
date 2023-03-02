@@ -14,7 +14,7 @@ import "./Filter.css";
 const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
   const { categories, filter } = useSelector((state) => state.product);
-
+  
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -27,19 +27,19 @@ const Filters = ({ setCurrentPage, setInput }) => {
     setCurrentPage(1);
     setInput(1);
   }
-
+  
   function handleOrderAlphabet(e) {
     dispatch(fetchOrderAlphabet(e.target.value));
     setCurrentPage(1);
     setInput(1);
   }
-
+  
   function handleOrderPrice(e) {
     dispatch(fetchOrderPrice(e.target.value));
     setCurrentPage(1);
     setInput(1);
   }
-
+  
   function handleOrderScore(e) {
     dispatch(fetchOrderScore(e.target.value));
     setCurrentPage(1);
@@ -77,13 +77,14 @@ const Filters = ({ setCurrentPage, setInput }) => {
                     placeholder="Search by name"
                     name="filter-by-name"
                     autoComplete="off"
-                    onClick={(e) => setSearch(e.target.value)}
-                  />
-                  <button class="mt-1 btn btn-primary btn-sm" type="submit">
+                    onChange={(e) => setSearch(e.target.value)}
+                    />
+                  <button class="mt-1 btn btn-primary btn-sm" type="submit" >
                     search
                   </button>
                 </form>
               ) : null}
+              {console.log(search)}
             </div>
             <form
               onSubmit={clearFilter}
