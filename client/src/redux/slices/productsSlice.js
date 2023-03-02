@@ -108,31 +108,17 @@ export const productsSlice = createSlice({
             ));
       }
     },
-    orderByScore: (state, { payload }) => {
+    orderByScore: (state) => {
       if (state.filterHelper.length) {
-        payload === "maximum_score"
-          ? (state.filterHelper = [...state.filterHelper].sort(
-              (a, b) => b.score - a.score
-            ))
-          : (state.filterHelper = [...state.filterHelper].sort(
-              (a, b) => b.score - a.score
-            ));
+        state.filterHelper = [...state.filterHelper].sort(
+          (a, b) => b.score - a.score
+        );
       } else if (state.filter.length) {
-        payload === "maximum_score"
-          ? (state.filterHelper = [...state.filter].sort(
-              (a, b) => b.score - a.score
-            ))
-          : (state.filterHelper = [...state.filter].sort(
-              (a, b) => b.score - a.score
-            ));
+        state.filterHelper = [...state.filter].sort(
+          (a, b) => b.score - a.score
+        );
       } else {
-        payload === "maximum_score"
-          ? (state.filter = [...state.products].sort(
-              (a, b) => b.score - a.score
-            ))
-          : (state.filter = [...state.products].sort(
-              (a, b) => b.score - a.score
-            ));
+        state.filter = [...state.products].sort((a, b) => b.score - a.score);
       }
     },
     clearFilter: (state) => {

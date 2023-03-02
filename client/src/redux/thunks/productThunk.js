@@ -106,10 +106,10 @@ export const fetchOrderPrice = (data) => {
   };
 };
 
-export const fetchOrderScore = (data) => {
+export const fetchOrderScore = () => {
   return async function (dispatch) {
     try {
-      dispatch(orderByScore(data));
+      dispatch(orderByScore());
     } catch (error) {
       dispatch(setError(error.response.data));
       console.log(error.response.data);
