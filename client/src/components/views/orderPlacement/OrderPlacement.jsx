@@ -24,7 +24,7 @@ export const OrderPlacement = () => {
         setMercadoPago(data)
     }
     const orderStatus  = async () => {
-        const data = await axios.put(`${REACT_APP_API_URL}/payment/${orderId}`, {
+        await axios.put(`${REACT_APP_API_URL}/payment/${orderId}`, {
             status: mercadoPago.Status,
             payment_id: mercadoPago.Payment,
             payment_method: mercadoPago.Type,
@@ -35,9 +35,12 @@ export const OrderPlacement = () => {
     useEffect(() => {
         if (location.search) mpResponse();
         if (mercadoPago.Status) orderStatus();
-        if (mercadoPago.Status === "approved") dispatch(removeAll());
-
     }, [location.search, mercadoPago.Status]);
+
+    const handleClick = () => { 
+        if (mercadoPago.Status === "approved") dispatch(removeAll());
+        history.push("/");
+    }
  
     
 
@@ -89,7 +92,7 @@ export const OrderPlacement = () => {
                  
                 </div>
                 {mercadoPago.Status !== "approved" ? <Payment/> 
-                : <div><p>Thanks for your purchase!</p><button onClick={()=>history.push("/")}>Go Home</button></div>}
+                : <div><p>Thanks for your purchase!</p><button onClick={handleClick}>Go Home</button></div>}
             </section>
             
         </main>
