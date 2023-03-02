@@ -41,7 +41,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
   }
 
   function handleOrderScore(e) {
-    dispatch(fetchOrderScore(e.target.value));
+    dispatch(fetchOrderScore());
     setCurrentPage(1);
     setInput(1);
   }

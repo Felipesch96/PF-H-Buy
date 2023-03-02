@@ -28,10 +28,13 @@ const products = mongoose.Schema({
   },
   reviews: [
     {
-      type:mongoose.Types.ObjectId,
-      ref:"Review",
-    }
-    ],
+      type: mongoose.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+  visits: {
+    type: Array,
+  },
   stock: {
     type: Number,
     /* require: true, */

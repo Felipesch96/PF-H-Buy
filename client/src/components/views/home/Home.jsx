@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
-import CarouselProducts from "./carousels/products/CarouselProducts";
-import CarouselProducts2 from "./carousels/products/CarouselProducts2";
-import CarouselProducts3 from "./carousels/products/CarouselProducts3";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { newGoogleUser } from "../../../redux/thunks/userThunk";
+import CarouselProducts from "./carousels/products/CarouselProducts";
 
 const Home = () => {
   const images = ["baner1.jpg", "baner2.jpg", "baner0.jpg"];
@@ -14,6 +12,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
   const { userLocal } = useSelector((state) => state.user);
+  const item = window.localStorage.getItem("history");
+  const history = JSON.parse(item);
 
   useEffect(() => {
     verifyAuth();
@@ -46,7 +46,7 @@ const Home = () => {
     }
   }
 
-  const selectNewImage = ( images, next = true) => {
+  const selectNewImage = (images, next = true) => {
     setTimeout(() => {
       const condition = next
         ? selectedIndex < images.length - 1
@@ -66,26 +66,23 @@ const Home = () => {
     <div className="home">
       <div className="carousel-banner">
         <a href="/products">
-        <CarouselBanner />
+          <CarouselBanner />
         </a>
       </div>
       <hr />
-      <br />
-      <h1 className="text-center">Recomendados</h1>
+      {/* <h1 className="text-center">Recomendados</h1>
       <div class="container-fluid carousel-productos">
         <CarouselProducts />
-      </div>
-      <hr />
-      <h1 className="text-center">Segun tus ultimas busquedas</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts2 />
-      </div>
-      <hr />
-      <h1 className="text-center">Lo mas vendido</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts3 />
-      </div>
-      <hr />
+      </div> */}
+      {history ? (
+        <>
+          <h1 className="text-center">Segun tus ultimas busquedas</h1>
+          <div class="container-fluid carousel-productos">
+            <CarouselProducts array={history} />
+          </div>
+          <hr />
+        </>
+      ) : null}
       <div className="text-center">
         <h1>¿Quieres ver mas productos?</h1>
         <a href="/products">

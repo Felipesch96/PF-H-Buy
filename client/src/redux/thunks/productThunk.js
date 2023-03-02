@@ -106,10 +106,10 @@ export const fetchOrderPrice = (data) => {
   };
 };
 
-export const fetchOrderScore = (data) => {
+export const fetchOrderScore = () => {
   return async function (dispatch) {
     try {
-      dispatch(orderByScore(data));
+      dispatch(orderByScore());
     } catch (error) {
       dispatch(setError(error.response.data));
       console.log(error.response.data);
@@ -138,6 +138,18 @@ export const fetchDetailProduct = (id) => {
     }
   };
 };
+
+export const fetchProductView = (payload) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put(`${REACT_APP_API_URL}/products/visits/${payload.product_id}`, payload);
+      dispatch(detailProduct(data));
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
+  };
+};
+
 export const clearDetailProduct = () => {
   return (dispatch) => {
     dispatch(clearDetail());

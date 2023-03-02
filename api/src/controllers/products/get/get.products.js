@@ -1,5 +1,6 @@
 const { model } = require("mongoose");
 const Product = require("../../../schemas/Products");
+const Users = require("../../../schemas/Users");
 
 const productsCtrl = {};
 
@@ -42,6 +43,9 @@ productsCtrl.getProducts = async (req, res) => {
         comment: 1,
         qualification: 1,
         user_id: 1,
+        userName: 1,
+        userLastName: 1,
+        userImage: 1,
       });
       allProducts.length
         ? res.status(200).send(allProducts)
@@ -59,7 +63,11 @@ productsCtrl.productById = async (req, res) => {
       comment: 1,
       qualification: 1,
       user_id: 1,
+      userName: 1,
+      userLastName: 1,
+      userImage: 1,
     });
+
     res.status(200).send(productById);
   } catch (error) {
     res.status(400).send({ error: error.message });

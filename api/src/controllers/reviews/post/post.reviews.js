@@ -6,11 +6,15 @@ const postReview = async (req, res) => {
   const { comment, qualification, product_id, user_id } = req.body;
   const product = await Products.findById(product_id);
   const user = await Users.findById(user_id);
+
   const newReview = new Review({
     comment,
     qualification,
     product_id,
-    user_id
+    user_id,
+    userName: user.name,
+    userLastName: user.lastName,
+    userImage: user.image
   });
 
   try {
