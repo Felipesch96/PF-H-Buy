@@ -73,7 +73,8 @@ const Cards = ({ array }) => {
                               if (element.stock > 0) {
                                 dispatch(addToCart(element));
                                 Swal.fire({
-                                  position: "top-end",
+                                  color:"white",
+                                  background:"#1299",
                                   icon: "success",
                                   title: "Producto agregado al carrito.",
                                   showConfirmButton: false,
@@ -81,7 +82,8 @@ const Cards = ({ array }) => {
                                 });
                               } else {
                                 Swal.fire({
-                                  position: "top-end",
+                                  color:"white",
+                                  background:"#1299",
                                   icon: "error",
                                   title: "Producto sin stock.",
                                   showConfirmButton: false,

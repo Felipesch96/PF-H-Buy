@@ -34,7 +34,7 @@ const DetailProduct = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
         dispatch(addToCart(detailProduct));
-        console.log(detailProduct)
+        console.log(detailProduct);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -49,15 +49,19 @@ const DetailProduct = () => {
       if (detailProduct.stock > 0) {
         dispatch(addToCart(detailProduct));
         Swal.fire({
-          position: "top-end",
+          color: "white",
+          background: "#1299",
+
           icon: "success",
           title: "Producto agregado al carrito.",
           showConfirmButton: false,
           timer: 1500,
         });
       } else {
-                Swal.fire({
-          position: "top-end",
+        Swal.fire({
+          background: "#1299",
+          color: "white",
+
           icon: "error",
           title: "Producto sin stock.",
           showConfirmButton: false,

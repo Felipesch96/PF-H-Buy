@@ -36,7 +36,8 @@ export const CategoryModal = ({ onClose }) => {
 				form.name?
 				<button type="submit" className="categoryButton" onClick={()=>{
 					Swal.fire({
-						position: "top-end",
+						color:"white",
+						background:"#1299",
 						icon: "success",
 						title: "Categoría creada.",
 						showConfirmButton: false,

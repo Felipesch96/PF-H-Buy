@@ -64,10 +64,10 @@ const Filters = ({ setCurrentPage, setInput }) => {
     <div>
       <div
         id="sidebar"
-        className="col-12 d-flex flex-column border max-height-sidebar py-2 text-center rounded mb-4 contenedor-filtros"
+        className="col-10 d-flex flex-column py-2 text-center rounded position-fixed colorletra"
       >
-        <div className="row">
-          <div className="col-lg-12 col-sm-6 col-12">
+        <div className="row ">
+          <div className="col-lg-3 col-sm-6 col-12 bg-dark rounded">
             <div class="d-flex justify-content-center">
               {filter.length ? (
                 <form onSubmit={(e) => handleChangeSearch(e)}>

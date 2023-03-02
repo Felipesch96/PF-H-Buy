@@ -8,7 +8,8 @@ function FavoriteButton() {
     <button onClick={() => {setIsFavorite(!isFavorite)
     if(isFavorite!==true){
       Swal.fire({
-        position: "top-end",
+        color:"white",
+        background:"#1299",
         icon: "success",
         title: "Producto agregado a favoritos.",
         showConfirmButton: false,
@@ -16,7 +17,8 @@ function FavoriteButton() {
       });}
       else{
         Swal.fire({
-          position: "top-end",
+          color:"white",
+          background:"#1299",
           icon: "error",
           title: "Producto eliminado de favoritos.",
           showConfirmButton: false,

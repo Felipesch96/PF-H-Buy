@@ -178,7 +178,8 @@ const CreateProductFrom = ({ onClose }) => {
             className="productButton"
             onClick={() => {
               Swal.fire({
-                position: "top-end",
+                color:"white",
+                background:"#1299",
                 icon: "success",
                 title: "Producto creado.",
                 showConfirmButton: false,

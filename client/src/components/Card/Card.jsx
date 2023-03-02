@@ -17,7 +17,7 @@ const Card = (props) => {
           src={props.img}
           class="img-fluid img-detail rounded-start bg-light"
           alt="..."
-          style={{ height: "230px" }}
+          style={{ maxHeight: "230px" }}
         />
         <hr />
         <div class="card-body">
@@ -33,7 +33,7 @@ const Card = (props) => {
             ${formater.format(props.price)}
           </span>
           <div class="container">
-            <span class="card-text mb-1">Qualification: {props.score} ☆</span>
+            <span class="card-text fs-6">Qualification: {props.score} ☆</span>
 
             <Rating
               style={{ fontSize: "17px" }}
@@ -44,12 +44,13 @@ const Card = (props) => {
             />
           </div>
 
-          <span class="card-text">Category: {props.category}</span>
+          <span class="card-text fs-6">Category: {props.category}</span>
 
           <span class="card-text">
             <small class="text-muted">
               Published: fecha de creacion del producto
             </small>
+            <br />
           </span>
         </div>
       </div>

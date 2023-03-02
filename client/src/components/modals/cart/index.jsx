@@ -9,8 +9,11 @@ export const CartModal = () => {
   const history = useHistory();
   const alert=()=>{
     Swal.fire({
-      position: "top-end",
       icon: "error",
+      width:390,
+      height:70,
+      color:"white",
+      background:"#1299",
       title: "No tienes ningun producto en carrito.",
       showConfirmButton: false,
       timer: 1500,
