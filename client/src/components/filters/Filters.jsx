@@ -8,6 +8,7 @@ import {
   fetchOrderScore,
   fetchSearchInFilter,
   fetchSearchProductByCtg,
+  getTopVisits,
 } from "../../redux/thunks/productThunk";
 import "./Filter.css";
 
@@ -18,7 +19,9 @@ const Filters = ({ setCurrentPage, setInput }) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    if (!categories.length) {
+      dispatch(fetchCategories());
+    }
   }, [dispatch]);
 
   function handleChangeSearch(e) {
@@ -40,7 +43,13 @@ const Filters = ({ setCurrentPage, setInput }) => {
     setInput(1);
   }
 
-  function handleOrderScore(e) {
+  function handleOrderTopViews() {
+    dispatch(getTopVisits());
+    setCurrentPage(1);
+    setInput(1);
+  }
+
+  function handleOrderScore() {
     dispatch(fetchOrderScore());
     setCurrentPage(1);
     setInput(1);
@@ -157,8 +166,16 @@ const Filters = ({ setCurrentPage, setInput }) => {
                     id="order"
                     onClick={handleOrderPrice}
                   />
-
                   <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
+                </div>
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    id="order"
+                    onClick={handleOrderTopViews}
+                  />
+                  <label class="pl-1 pt-sm-0 pt-1">top 5</label>
                 </div>
               </div>
               {filter.length ? (

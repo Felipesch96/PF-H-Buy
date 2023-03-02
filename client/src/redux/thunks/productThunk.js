@@ -12,8 +12,9 @@ import {
   orderByPrice,
   setFilterName,
   orderByScore,
+  setTopViews,
 } from "../slices/productsSlice";
-        const {REACT_APP_API_URL} = process.env
+const { REACT_APP_API_URL } = process.env;
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
@@ -142,8 +143,7 @@ export const fetchDetailProduct = (id) => {
 export const fetchProductView = (payload) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`${REACT_APP_API_URL}/products/visits/${payload.product_id}`, payload);
-      dispatch(detailProduct(data));
+      await axios.put(`${REACT_APP_API_URL}/products/visits/`, payload);
     } catch (error) {
       dispatch(setError(error.message));
     }
@@ -160,7 +160,10 @@ export function getProductsByName(name) {
   // trae los que incluyan name, puede ser mas de 1
   return async function (dispatch) {
     try {
-      let productsByName = await axios.get(`${REACT_APP_API_URL}/products?name=${name}`, {});
+      let productsByName = await axios.get(
+        `${REACT_APP_API_URL}/products?name=${name}`,
+        {}
+      );
       dispatch(setProducts(productsByName));
     } catch (error) {
       dispatch(setError(error.message));
@@ -171,10 +174,23 @@ export function getProductsByName(name) {
 export function getProductsByOrder(order) {
   return async function (dispatch) {
     try {
-      let productsByOrder = await axios.get(`${REACT_APP_API_URL}/products?order=${order}`, {});
-      return dispatch(setProducts(productsByOrder))
+      let productsByOrder = await axios.get(
+        `${REACT_APP_API_URL}/products?order=${order}`,
+        {}
+      );
+      return dispatch(setProducts(productsByOrder));
     } catch (error) {
       dispatch(setError(error.message));
     }
   };
 }
+
+export const getTopVisits = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setTopViews());
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
+  };
+};

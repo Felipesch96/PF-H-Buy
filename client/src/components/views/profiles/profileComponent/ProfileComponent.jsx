@@ -12,6 +12,7 @@ const ProfileComponent = () => {
   const dispatch = useDispatch();
   const { user, loginWithRedirect } = useAuth0();
   const userLocal = useSelector((state) => state.user.userLocal);
+  const { categories } = useSelector((state) => state.product);
   const [userType, setUserType] = useState("Buyer");
 
   const buyerButton = () => {
@@ -21,9 +22,14 @@ const ProfileComponent = () => {
   const sellerButton = () => {
     setUserType("Seller");
   };
+
   useEffect(() => {
-    dispatch(fetchCategories());
-    dispatch(fetchUserById(userLocal._id));
+    if (!categories.length) {
+      dispatch(fetchCategories());
+    }
+    if (!userLocal._id) {
+      dispatch(fetchUserById(userLocal._id));
+    }
   }, [dispatch, userLocal._id]);
 
   return user ? (

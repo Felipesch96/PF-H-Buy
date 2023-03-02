@@ -9,6 +9,7 @@ export const productsSlice = createSlice({
     filter: [],
     detailproduct: {},
     filterHelper: [],
+    topViews: [],
     error: "",
   },
   reducers: {
@@ -121,6 +122,11 @@ export const productsSlice = createSlice({
         state.filter = [...state.products].sort((a, b) => b.score - a.score);
       }
     },
+    setTopViews: (state) => {
+      state.topViews = [...state.products].sort(
+        (a, b) => b.visits.length - a.visits.length
+      ).slice(0,5);
+    },
     clearFilter: (state) => {
       state.filterHelper.length
         ? (state.filterHelper = []) && (state.filter = [])
@@ -149,5 +155,6 @@ export const {
   setFilter,
   setFilterName,
   setError,
+  setTopViews,
   clearFilter,
 } = productsSlice.actions;
