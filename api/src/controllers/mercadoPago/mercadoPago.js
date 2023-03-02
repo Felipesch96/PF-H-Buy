@@ -38,10 +38,19 @@ const payment = async (req, res) => {
   res.status(200).send({
     Payment: req.query.payment_id,
     Status: req.query.status,
-    MerchantOrder: req.query.merchant_order_id
-  })
+    Type: req.query.payment_type     });
+  
 };
 
+const orderStatus = async (req, res) => {
+  const { id } = req.params;
+  const data = req.body;
+  await Order.findByIdAndUpdate(id, data);
+  res.status(200).send("updated with success");
+}
 
-module.exports = { newPayment, payment };
+
+
+
+module.exports = { newPayment, payment, orderStatus };
 
