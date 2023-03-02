@@ -5,21 +5,19 @@ const products = mongoose.Schema({
     type: String,
     require: true,
   },
-  img: {
-    public_id: {
-      type: String,
-    },
-    secure_url: {
-      type: String
-    },
+  img_url: {
+    type: String
+  },
+  img_public_id:{
+    type: String
   },
   description: {
     type: String,
-    require: true,
+    // require: true,
   },
   price: {
     type: Number,
-    require: true,
+    // require: true,
   },
   brand: {
     type: String,
@@ -40,22 +38,22 @@ const products = mongoose.Schema({
   seller_id: {
     type: mongoose.Types.ObjectId,
     ref: "Users",
-    require: true,
+    // require: true,
   },
   category: {
     type: String,
-    require: true,
+    // require: true,
   },
   isActive: {
     type: Boolean,
     default: true,
-    require: true,
+    // require: true,
   },
   condition: {
     type: String,
     enum: ["new", "used"],
     default: "new",
-    require: true,
+    // require: true,
   },
   created: {
     type: Date,

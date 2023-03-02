@@ -6,6 +6,8 @@ import {
   fetchCategories,
   fetchNewProducts,
 } from "../redux/thunks/productThunk";
+import axios from "axios";
+
 
 export const useForm = (initialForm = {}, formValidations, categories) => {
   const dispatch = useDispatch();
@@ -17,13 +19,41 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     initialForm
   );
 
-  
+  const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
+  const [public_id, setPublic_id] = useState("");
+  const [cargada, setCargada] = useState(false);
 
-  const handleChange = ({ target }) => {
-    setformStorage({
-      ...formStorage,
-      [target.name]: target.value,
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onloadend = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
     });
+  };
+
+  const handleChange = async ({ target }) => {
+    if (target.name === "img") {
+      const files = target.files;
+      const base64 = await convertBase64(files[0]);
+      console.log(base64);
+      setformStorage({
+        ...formStorage,
+        img: base64
+      });
+    } else {
+      setformStorage({
+        ...formStorage,
+        [target.name]: target.value,
+      });
+    }
   };
 
   const handleSubmitCategory = (e) => {
@@ -32,10 +62,27 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     dispatch(fetchCategories());
   };
 
-  const handleSubmitProduct = (e) => {
+  function uploadSingleImage(base64) {
+    setLoading(true);
+    axios
+      .post("http://localhost:3001/products", { img: base64 })
+      .then((res) => {
+        setUrl(res.data.secure_url);
+        setPublic_id(res.data.public_id);
+        setCargada(true);
+        alert("Image uploaded Succesfully");
+      })
+      .then(() => setLoading(false))
+      .catch(console.log);
+  };
+
+  const handleSubmitProduct = async (e) => {
     e.preventDefault();
     const { name, img, condition, price, description, category, stock } =
       formStorage;
+      
+    // uploadSingleImage(img);
+
     dispatch(
       fetchNewProducts({
         name,

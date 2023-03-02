@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useForm } from "../../../hooks/useForm";
@@ -48,11 +48,12 @@ const CreateProductFrom = ({ onClose }) => {
     useForm(initialForm, formValidations);
 
     const categories = useSelector((state) => state.product.categories)
-    
+    const [imagen, setImagen] = useState();
+
 
 
   return (
-    <formStorage onSubmit={handleSubmitProduct} className="formContainerP">
+    <form onSubmit={handleSubmitProduct} className="formContainerP">
       <AiOutlineCloseCircle
         onClick={() => onClose(false)}
         className="closeIconP"
@@ -73,14 +74,14 @@ const CreateProductFrom = ({ onClose }) => {
 
       <section className="formInputP">
         <label  className="labelP">
-          Add a photo
+          Upload an image
         </label>
         <input
           name="img"
           id="img"
-          type="text"
-          className="inputP"
-          value={formStorage.img}
+          type="file"
+          className=""
+          // value={imagen}
           onChange={handleChange}
           onBlur={handlePhotoBlur}
         />
@@ -162,7 +163,7 @@ const CreateProductFrom = ({ onClose }) => {
       ?<button type="submit" className="productButton">Create</button>
       :<span className="errors">Please fill the blanks to create a product</span>}
        
-    </formStorage>
+    </form>
   );
 };
 
