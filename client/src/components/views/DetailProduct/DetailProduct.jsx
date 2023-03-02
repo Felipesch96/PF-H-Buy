@@ -253,35 +253,47 @@ const DetailProduct = () => {
               role="tabpanel"
               aria-labelledby="nav-review-tab"
             >
-              <p class="card-text text-center m-3 ">
-                <div class="container">
-                  <Box
-                    sx={{
-                      "& > legend": { mt: 2 },
-                    }}
-                  >
-                    <Typography component="legend">
-                      Califica el Producto:
-                    </Typography>
-                    <Rating
-                      name="simple-controlled"
-                      // value={value}
-                      onChange={(event, newValue) => {
-                        // setValue(newValue);
-                      }}
-                    />
-                    <div>
-                      <Typography component="legend">Puntuacion</Typography>
-                      <Rating
-                        name="read-only"
-                        // value={value}
-                        readOnly
-                      />
-                    </div>
-                  </Box>
-                  <Button variant="contained">Send</Button>
+              <div class="container">
+                {/* {detailProduct.reviews.length ?  */}
+                <div>
+                  {detailProduct.reviews?.length === 0 ? (
+                    <span class="card-text text-center text-danger-emphasis h5 m-3 d-flex justify-content-center">
+                      No hay ningun comentario acerca de este producto
+                    </span>
+                  ) : (
+                    detailProduct.reviews?.map((r) => {
+                      return (
+                        <>
+                          {/* <div class="col-xl-3 col-sm-6 col-12"> */}
+                          <div class="card mt-3 logouser">
+                            <div class="card-header bg-transparent h5">
+                              <i class="bi bi-person-circle  ">
+                                {" "}
+                                user: {r.user_id}
+                              </i>
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">Review</h5>
+                              <p class="card-text">
+                                Qualification:{r.qualification}
+                                <StarRating score={r.qualification} />
+                              </p>
+                              <p class="card-text">Comment: {r.comment}</p>
+                            </div>
+                            {/* <div class="card-footer bg-transparent">Footer</div> */}
+                          </div>
+                        </>
+                      );
+                    })
+                  )}
                 </div>
-              </p>
+                {/* </div> : (
+                  <div>
+                    No se encuentran comentarias acerca de este producto
+                  </div>
+                )} */}
+                {/* <p class="card-text text-center m-3 Reviews"></p> */}
+              </div>
             </div>
           </div>
         </div>
