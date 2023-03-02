@@ -13,4 +13,24 @@ productsCtrl.updateProduct = async (req, res) => {
   }
 };
 
+productsCtrl.updateVisits = async (req, res) => {
+  const { product_id, user_id } = req.body;
+  const product = await Product.findById(product_id);
+  const verify = product.visits.includes(user_id)
+
+  try {
+    if (!verify) {
+      const data = {
+        visits: [...product.visits, user_id],
+      };
+      await Product.findByIdAndUpdate(product_id, data);
+      res.status(200).send("updated with success");
+    } else {
+      res.status(200).send("the visit already exists");
+    }
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = productsCtrl;

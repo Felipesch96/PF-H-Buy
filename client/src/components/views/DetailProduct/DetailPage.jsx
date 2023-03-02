@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import {
   clearDetailProduct,
   fetchDetailProduct,
+  fetchProductView,
 } from "../../../redux/thunks/productThunk";
 import LoaderCard from "../../Loaders/CardLoader/CardLoader";
 import DetailCard from "./DetailCard";
@@ -13,9 +14,15 @@ const DetailPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const detailProduct = useSelector((state) => state.product.detailproduct);
+  const userLocal = useSelector((state) => state.user.userLocal);
+  const payload = {
+    product_id: id,
+    user_id: userLocal._id
+  }
 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
+    dispatch(fetchProductView(payload));
     return () => {
       dispatch(clearDetailProduct());
     };

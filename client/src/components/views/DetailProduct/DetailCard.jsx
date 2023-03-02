@@ -20,13 +20,12 @@ const DetailCard = () => {
   const verifyHistory = history.filter(
     (Element) => Element._id === detailProduct._id
   );
-
   const formater = new Intl.NumberFormat("en");
   useEffect(() => {
     if (!verifyHistory.length) {
       setHistory([...history, detailProduct]);
     }
-  }, [history, detailProduct, verifyHistory.length, setHistory]);
+  }, [detailProduct]);
 
   const addElementToCart = () => {
     if (thisProduct) {

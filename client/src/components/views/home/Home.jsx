@@ -74,11 +74,11 @@ const Home = () => {
       <div class="container-fluid carousel-productos">
         <CarouselProducts />
       </div> */}
-      {history && history.length > 3 ? (
+      {history ? (
         <>
           <h1 className="text-center">Segun tus ultimas busquedas</h1>
           <div class="container-fluid carousel-productos">
-            <CarouselProducts array={history}/>
+            <CarouselProducts array={history} />
           </div>
           <hr />
         </>

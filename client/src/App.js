@@ -8,9 +8,6 @@ const About = lazy(() => import("./components/views/about/About"));
 const ProductsPage = lazy(() =>
   import("./components/views/productsPage/ProductsPage")
 );
-const DetailProduct = lazy(() =>
-  import("./components/views/DetailProduct/DetailProduct")
-);
 const Footer = lazy(() => import("./components/views/footer/Footer"));
 const ProfileComponent = lazy(() =>
   import("./components/views/profiles/profileComponent/ProfileComponent")
