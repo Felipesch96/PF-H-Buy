@@ -61,25 +61,7 @@ const DetailProduct = () => {
       }
     }
   };
-  /*   ///estado local para la calificacion
-    const [value, setValue] = useState(detailProduct.score);
-    // const value = ;
-  
-    //
-    const promedio = (detailProduct.score + value) / 2;
-    //
-    /*const labels = {
-      0.5: "Useless",
-      1: "Useless+",
-      1.5: "Poor",
-      2: "Poor+",
-      2.5: "Ok",
-      3: "Ok+",
-      3.5: "Good",
-      4: "Good+",
-      4.5: "Excellent",
-      5: "Excellent+",
-    }; */
+  // const promedio = (detailProduct.score + value) / 2;
 
   return (
     <div className="container-fluid p-4 contenedor-detalle">
@@ -266,19 +248,23 @@ const DetailProduct = () => {
                         <>
                           {/* <div class="col-xl-3 col-sm-6 col-12"> */}
                           <div class="card mt-3 logouser">
-                            <div class="card-header bg-transparent h5">
-                              <i class="bi bi-person-circle  ">
-                                {" "}
-                                user: {r.user_id}
-                              </i>
+                            <div class="card-header bg-info h5">
+                              <i class="bi bi-person-circle h3 "> </i>
+                              user: {r.user_id}
                             </div>
                             <div class="card-body">
                               <h5 class="card-title">Review</h5>
                               <p class="card-text">
-                                Qualification:{r.qualification}
+                                Qualification: {r.qualification}{" "}
                                 <StarRating score={r.qualification} />
                               </p>
-                              <p class="card-text">Comment: {r.comment}</p>
+                              <p class="card-text comment">
+                                Comment:
+                                <div class="p-3 bg-info bg-opacity-10 border border-light-subtle rounded-2">
+                                  {r.comment}
+                                </div>
+                              </p>
+                              {/* <span class="bg-dark border rounded-2 text-light"></span> */}
                             </div>
                             {/* <div class="card-footer bg-transparent">Footer</div> */}
                           </div>
@@ -287,12 +273,6 @@ const DetailProduct = () => {
                     })
                   )}
                 </div>
-                {/* </div> : (
-                  <div>
-                    No se encuentran comentarias acerca de este producto
-                  </div>
-                )} */}
-                {/* <p class="card-text text-center m-3 Reviews"></p> */}
               </div>
             </div>
           </div>
