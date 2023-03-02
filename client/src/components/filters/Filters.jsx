@@ -133,7 +133,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="higher_price"
+                    value="maximum_score"
                     id="order"
                     onClick={handleOrderScore}
                   />

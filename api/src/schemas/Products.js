@@ -26,9 +26,12 @@ const products = mongoose.Schema({
   score: {
     type: Number,
   },
-  review: {
-    type: String,
-  },
+  reviews: [
+    {
+      type:mongoose.Types.ObjectId,
+      ref:"Review",
+    }
+    ],
   stock: {
     type: Number,
     /* require: true, */

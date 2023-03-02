@@ -28,6 +28,12 @@ const users = mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  reviews: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   addressID: {
     type: mongoose.Types.ObjectId,
     ref: "Address",
