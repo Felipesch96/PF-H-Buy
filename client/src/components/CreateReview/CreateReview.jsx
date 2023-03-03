@@ -17,7 +17,7 @@ const CreateReview = () => {
 
   const [review, setReview] = useState({
     user_id: "6400e3d8b537ed32782ac2ae",
-    product_id: "63f2a0d318098b163846c990",
+    product_id: "63f3c0a6a67dddb6eb0ceae8",
     qualification: 0,
     comment: "",
   });
@@ -56,7 +56,7 @@ const CreateReview = () => {
       dispatch(postReviews({ ...review }));
       setReview({
         user_id: "6400e3d8b537ed32782ac2ae",
-        product_id: "63f2a0d318098b163846c990",
+        product_id: "63f3c0a6a67dddb6eb0ceae8",
         qualification: 0,
         comment: "",
       });
