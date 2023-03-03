@@ -65,7 +65,7 @@ const DetailCard = () => {
         <div class="row g-10">
           <div class="col-5 col-sm-4 mb-1">
             <img
-              src={detailProduct.img}
+              src={detailProduct.img_url}
               class="img-fluid w-100 m-2 img-detail"
               alt="card-horizontal"
             />

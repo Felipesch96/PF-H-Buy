@@ -36,7 +36,7 @@ const ProductsPage = () => {
         </>
       ) : (
         <>
-          <Cards array={products} />
+          <Cards array={products.filter((element) => element.isActive === true)} />
         </>
       )}
     </div>

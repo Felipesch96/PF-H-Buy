@@ -31,13 +31,21 @@ export const EditCategoryCard = ({ categories }) => {
       title: "Categoría eliminada.",
       showConfirmButton: false,
       timer: 1500,
-      });
+    });
     deleteCategory(id);
   };
   const submitChanges = (e) => {
     e.preventDefault();
     editCategory(newCategory);
     setEdit(false);
+    Swal.fire({
+      color:"white",
+      background:"#1299",
+      icon: "success",
+      title: "Categoría modificada.",
+      showConfirmButton: false,
+      timer: 1500,
+      });
   };
   return (
     <div className="categoryDetails">
