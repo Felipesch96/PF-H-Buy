@@ -9,6 +9,7 @@ export const productsSlice = createSlice({
     filter: [],
     detailproduct: {},
     filterHelper: [],
+    topViews: [],
     error: "",
   },
   reducers: {
@@ -108,32 +109,23 @@ export const productsSlice = createSlice({
             ));
       }
     },
-    orderByScore: (state, { payload }) => {
+    orderByScore: (state) => {
       if (state.filterHelper.length) {
-        payload === "maximum_score"
-          ? (state.filterHelper = [...state.filterHelper].sort(
-              (a, b) => b.score - a.score
-            ))
-          : (state.filterHelper = [...state.filterHelper].sort(
-              (a, b) => b.score - a.score
-            ));
+        state.filterHelper = [...state.filterHelper].sort(
+          (a, b) => b.score - a.score
+        );
       } else if (state.filter.length) {
-        payload === "maximum_score"
-          ? (state.filterHelper = [...state.filter].sort(
-              (a, b) => b.score - a.score
-            ))
-          : (state.filterHelper = [...state.filter].sort(
-              (a, b) => b.score - a.score
-            ));
+        state.filterHelper = [...state.filter].sort(
+          (a, b) => b.score - a.score
+        );
       } else {
-        payload === "maximum_score"
-          ? (state.filter = [...state.products].sort(
-              (a, b) => b.score - a.score
-            ))
-          : (state.filter = [...state.products].sort(
-              (a, b) => b.score - a.score
-            ));
+        state.filter = [...state.products].sort((a, b) => b.score - a.score);
       }
+    },
+    setTopViews: (state) => {
+      state.topViews = [...state.products].sort(
+        (a, b) => b.visits.length - a.visits.length
+      ).slice(0,5);
     },
     clearFilter: (state) => {
       state.filterHelper.length
@@ -163,5 +155,6 @@ export const {
   setFilter,
   setFilterName,
   setError,
+  setTopViews,
   clearFilter,
 } = productsSlice.actions;

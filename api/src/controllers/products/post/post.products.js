@@ -1,30 +1,26 @@
 const Product = require("../../../schemas/Products");
-const cloudinary = require("../../../helpers/cloudinary")
+const cloudinary = require("../../cloudinary/cloudinaryConection");
 
 const productsCtrl = {};
 
 productsCtrl.createNewProduct = async (req, res) => {
   const data = req.body;
-
-  /* if (!req.file) {
-    return res.status(200).send("Please select an image");
-  }
- */
   try {
+    const uploadResponse = await cloudinary.uploader.upload(data.img, {
+      upload_preset: "henrybuy"
+    });
+    console.log(uploadResponse);
+    // res.send(uploadResponse);
 
-/*     const cloudinary_image = await cloudinary.uploader.upload(req.file.path, {
-      folder: "products"
-    })
-
-    data.image = {
-      public_id: cloudinary_image.public_id,
-      url: cloudinary_image.secure_url
-    } */
-    
     if (data.name.trim().length && data.description.trim().length) {
       console.log(data);
-      const newProduct = new Product(data);
+      const newProduct = new Product({
+        ...data,
+        img_url: uploadResponse.secure_url,
+        img_public_id: uploadResponse.public_id
+      });
       await newProduct.save();
+      console.log(newProduct);
       res.status(200).send(newProduct);
     } else {
       res.status(400).send({ error: `Please complete the form correctly` });

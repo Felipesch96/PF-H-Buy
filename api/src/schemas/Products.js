@@ -5,17 +5,19 @@ const products = mongoose.Schema({
     type: String,
     require: true,
   },
-  img: {
-    type: String,
-    require: true,
+  img_url: {
+    type: String
+  },
+  img_public_id:{
+    type: String
   },
   description: {
     type: String,
-    require: true,
+    // require: true,
   },
   price: {
     type: Number,
-    require: true,
+    // require: true,
   },
   brand: {
     type: String,
@@ -26,8 +28,14 @@ const products = mongoose.Schema({
   score: {
     type: Number,
   },
-  review: {
-    type: String,
+  reviews: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+  visits: {
+    type: Array,
   },
   stock: {
     type: Number,
@@ -36,19 +44,23 @@ const products = mongoose.Schema({
   seller_id: {
     type: mongoose.Types.ObjectId,
     ref: "Users",
+    // require: true,
     /* require: true, */
   },
   category: {
     type: String,
+    // require: true,
   },
   isActive: {
     type: Boolean,
     default: true,
+    // require: true,
   },
   condition: {
     type: String,
     enum: ["new", "used"],
     default: "new",
+    // require: true,
   },
   created: {
     type: Date,

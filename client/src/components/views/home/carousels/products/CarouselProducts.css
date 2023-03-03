@@ -33,3 +33,11 @@ align-items: center;
 .card-prod-carousel:hover{
   opacity: 0.5;
 }
+
+.fila-products{
+  display: grid;
+  gap: 0.5rem;
+  grid-auto-flow: column;
+  /* grid-auto-columns: 20%; */
+  overflow-x: auto;
+}

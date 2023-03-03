@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-import Card from "../Card/Card";
 import Paginate from "../Paginate/Paginate";
 import Filters from "../filters/Filters";
+import LoaderCard from "../Loaders/CardLoader/CardLoader";
 import "./Cards.css";
 import Rating from "@mui/material/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { addToCart } from "../../redux/slices/cartSlice";
 import FavoriteButton from "../Favorites/Favorites";
+// importo los componentes que se renderizaran con el Loader "lazy"
+const Card = lazy(() => import("../Card/Card"));
+//
 
 const Cards = ({ array }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,19 +27,13 @@ const Cards = ({ array }) => {
     (currentPage - 1) * cardsPerPage,
     (currentPage - 1) * cardsPerPage + cardsPerPage
   );
-  const selectFilter = useSelector((state) => state.product.filter);
-  // useEffect(() => {
-  //   if (selectFilter.length && currentPage > array.length / 9)
-  //     setCurrentPage(1);
-  // }, [selectFilter, currentPage, array.length]);
 
   return (
     <div class="container">
       <div class="row justify-content-start">
-        <div class="mt-4 col-3 filtros">
+        <div class="mt-4 col-3 ">
           <Filters setCurrentPage={setCurrentPage} setInput={setInput} />
         </div>
-        {/* <span>PAGE: {currentPage}</span> */}
         <div class="col-9">
           <div class="container">
             <Paginate
@@ -49,9 +46,16 @@ const Cards = ({ array }) => {
             />
             <div class="row row-cols-3">
               {Array.isArray(array) ? (
+                // array.length ? (
                 cardsCurrent.map((element) => (
-                  <div key={element._id} class="col">
-                    <div class="card mb-3 rounded-4 bg-dark tarjeta">
+                  //Loader de Carga de las Cards
+                  <Suspense
+                    key={element._id}
+                    fallback={<LoaderCard />}
+                    class="row row-cols-3 m-3"
+                  >
+                    <div class="col">
+                      <div class="card mb-3 rounded-4 bg-dark tarjeta">
                       <div class="d-grid gap-2 d-md-block">
                         <button
                           onClick={() => {
@@ -97,22 +101,27 @@ const Cards = ({ array }) => {
                         ></button>
                         <FavoriteButton />
                       </div>
-                      <Card
-                        img={element.img}
-                        name={element.name}
-                        price={element.price}
-                        score={element.score}
-                        category={element.category}
-                      />
-                      <div class="ver-produto">
-                        <Link to={`/products/${element._id}`}>
-                          <button type="button" class="btn btn-primary btn-sm">
-                            View Product
-                          </button>
-                        </Link>
+                        <Card
+                          img={element.img_url}
+                          name={element.name}
+                          price={element.price}
+                          score={element.score}
+                          category={element.category}
+                          created={element.created}
+                        />
+                        <div class="ver-produto">
+                          <Link to={`/products/${element._id}`}>
+                            <button
+                              type="button"
+                              class="btn btn-primary btn-sm"
+                            >
+                              View Product
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Suspense>
                 ))
               ) : (
                 <div class="container error">

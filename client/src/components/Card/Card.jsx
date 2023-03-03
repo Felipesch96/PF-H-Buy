@@ -1,13 +1,16 @@
-import Rating from "@mui/material/Rating";
 import React from "react";
+import Rating from "@mui/material/Rating";
 
 import "./Card.css";
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
+  //comentariosss
+  const date = props.created;
+  // const formatDate = moment(date).utc().format("MMMM Do, YYYY");
 
   return (
-    <div class="row g-0 tarjeta">
-      <div class="col-md-12">
+    <div class="row g-0 tarjeta rounded-2">
+      <div class="col-md-14">
         <img
           onError={({ currentTarget }) => {
             currentTarget.onerror = null; // prevents looping
@@ -15,20 +18,15 @@ const Card = (props) => {
               "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
           }}
           src={props.img}
-          class="img-fluid img-detail rounded-start bg-light"
+          class="img-fluid img-detail rounded-2 border bg-light"
           alt="..."
-          style={{ maxHeight: "230px" }}
+          style={{ height: "230px", width: "250px" }}
         />
-        <hr />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
           <span
-            class="card-text bg-success text-white rounded-2"
-            style={{
-              textAlign: "center",
-              display: "inline-block",
-              padding: "3px",
-            }}
+            class="card-text bg-success text-white rounded-1 p-1"
+            style={{ fontSize: "20px" }}
           >
             ${formater.format(props.price)}
           </span>
@@ -46,12 +44,9 @@ const Card = (props) => {
 
           <span class="card-text fs-6">Category: {props.category}</span>
 
-          <span class="card-text">
-            <small class="text-muted">
-              Published: fecha de creacion del producto
-            </small>
-            <br />
-          </span>
+          <p class="card-text">
+            {/* <small class="text-muted">Published: {formatDate}</small> */}
+          </p>
         </div>
       </div>
     </div>

@@ -7,7 +7,10 @@ const users = require("./routes/users.router");
 const categories = require("./routes/categories.router");
 const favorites = require("./routes/favorites.router");
 const cart = require("./routes/cart.router");
-const orders = require("./routes/orders.router")
+const orders = require("./routes/orders.router");
+const reviews = require("./routes/reviews.router");
+
+const cors = require("cors");
 
 require("./db.js");
 
@@ -29,6 +32,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
+server.use(cors());
 
 server.use("/products", products);
 server.use("/users", users);
@@ -36,6 +40,7 @@ server.use("/categories", categories);
 server.use("/favorites", favorites);
 server.use("/cart", cart);
 server.use("/orders", orders);
+server.use("/reviews", reviews);
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;
