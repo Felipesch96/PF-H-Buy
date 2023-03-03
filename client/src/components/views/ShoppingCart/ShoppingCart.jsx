@@ -63,7 +63,7 @@ export default function ShoppingCart() {
             className="clearCart"
             onClick={() => {
               dispatch(removeAll());
-              history.push("/products");
+              history.push("home/products");
             }}
           >
             Remove All

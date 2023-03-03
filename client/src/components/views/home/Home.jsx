@@ -65,7 +65,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="carousel-banner">
-        <a href="/products">
+        <a href="/home/products">
         <CarouselBanner />
         </a>
       </div>
@@ -88,7 +88,7 @@ const Home = () => {
       <hr />
       <div className="text-center">
         <h1>¿Quieres ver mas productos?</h1>
-        <a href="/products">
+        <a href="/home/products">
           <button className="btn btn-secondary">Click aquí</button>
           <hr />
         </a>
