@@ -8,6 +8,7 @@ import {
   fetchOrderScore,
   fetchSearchInFilter,
   fetchSearchProductByCtg,
+  getTopVisits,
 } from "../../redux/thunks/productThunk";
 import "./Filter.css";
 
@@ -18,7 +19,9 @@ const Filters = ({ setCurrentPage, setInput }) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    if (!categories.length) {
+      dispatch(fetchCategories());
+    }
   }, [dispatch]);
 
   function handleChangeSearch(e) {
@@ -39,9 +42,15 @@ const Filters = ({ setCurrentPage, setInput }) => {
     setCurrentPage(1);
     setInput(1);
   }
-  
-  function handleOrderScore(e) {
-    dispatch(fetchOrderScore(e.target.value));
+
+  function handleOrderTopViews() {
+    dispatch(getTopVisits());
+    setCurrentPage(1);
+    setInput(1);
+  }
+
+  function handleOrderScore() {
+    dispatch(fetchOrderScore());
     setCurrentPage(1);
     setInput(1);
   }
@@ -72,7 +81,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
               {filter.length ? (
                 <form onSubmit={(e) => handleChangeSearch(e)}>
                   <input
-                    className="form-control"
+                    className="input-filter"
                     type="text"
                     placeholder="Search by name"
                     name="filter-by-name"
@@ -134,7 +143,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="higher_price"
+                    value="maximum_score"
                     id="order"
                     onClick={handleOrderScore}
                   />
@@ -158,12 +167,20 @@ const Filters = ({ setCurrentPage, setInput }) => {
                     id="order"
                     onClick={handleOrderPrice}
                   />
-
                   <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
+                </div>
+                <div class="form-inline border rounded span-sm-2 my-2">
+                  <input
+                    type="radio"
+                    name="type"
+                    id="order"
+                    onClick={handleOrderTopViews}
+                  />
+                  <label class="pl-1 pt-sm-0 pt-1">top 5</label>
                 </div>
               </div>
               {filter.length ? (
-                <button class="btn btn-warning btn-sm" type="submit">
+                <button class="btn btn-warning btn-sm mb-2" type="submit">
                   Reset Filters
                 </button>
               ) : null}

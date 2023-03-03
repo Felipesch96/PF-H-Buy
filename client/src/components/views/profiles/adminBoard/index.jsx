@@ -12,8 +12,8 @@ import {
   fetchCategories,
   fetchProducts,
 } from "../../../../redux/thunks/productThunk";
-
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
+
 
 export const AdminBoard = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ export const AdminBoard = () => {
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
+  const [uploadImage, setUploadImage] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
@@ -41,9 +42,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(true);
               setProductModal(false);
+              
               setShowProducts(false);
               setShowCategories(false);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Create Categories
@@ -53,9 +55,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(true);
+              
               setShowProducts(false);
               setShowCategories(false);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Create Product
@@ -65,9 +68,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(false);
+              
               setShowCategories(true);
               setShowProducts(false);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Show categories
@@ -77,9 +81,10 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(false);
+              
               setShowCategories(false);
               setShowProducts(true);
-              setShowUsers(false)
+              setShowUsers(false);
             }}
           >
             Show products
@@ -89,16 +94,17 @@ export const AdminBoard = () => {
             onClick={() => {
               setCategoryModal(false);
               setProductModal(false);
+              
               setShowCategories(false);
               setShowProducts(false);
-              setShowUsers(true)
+              setShowUsers(true);
             }}
           >
             Show users
           </button>
         </section>
       </section>
-      <div>
+      <div className="modals">
         {categoryModal && <CategoryModal onClose={setCategoryModal} />}
 
         {productModal && <ProductModal onClose={setProductModal} />}

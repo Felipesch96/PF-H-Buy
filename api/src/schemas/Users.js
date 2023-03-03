@@ -15,12 +15,16 @@ const users = mongoose.Schema({
   image: {
     type: String,
   },
+  productsImages: {
+
+  },
   password: {
     type: String,
   },
   phone: {
     type: String,
   },
+  
   address: {
     type: String,
   },
@@ -28,6 +32,12 @@ const users = mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  reviews: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   addressID: {
     type: mongoose.Types.ObjectId,
     ref: "Address",

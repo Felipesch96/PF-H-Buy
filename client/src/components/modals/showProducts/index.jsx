@@ -11,6 +11,7 @@ export const ShowProductModal = ({ onClose }) => {
     { field: "name", headerName: "Name" },
     { field: "price", headerName: "Price" },
   ];
+  
   const rows = products.map((span) => ({
     id: span._id,
     name: span.name,
