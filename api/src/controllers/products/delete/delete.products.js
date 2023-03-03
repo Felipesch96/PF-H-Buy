@@ -1,5 +1,5 @@
 const Product = require("../../../schemas/Products");
-const cloudinary = require("../../cloudinary/uploadImage");
+const cloudinary = require("../../cloudinary/cloudinaryConection");
 
 const productsCtrl = {};
 
