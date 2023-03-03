@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
+import validate from "./validate";
 
 const CreateReview = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const CreateReview = () => {
 
   const [review, setReview] = useState({
     user_id: "6400e3d8b537ed32782ac2ae",
-    product_id: "63f25212af67a24595c75ad8",
+    product_id: "63f2a0d318098b163846c990",
     qualification: 0,
     comment: "",
   });
@@ -25,6 +26,7 @@ const CreateReview = () => {
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
   }
+  //
   const labels = {
     0.5: "Useless",
     1: "Useless+",
@@ -45,17 +47,23 @@ const CreateReview = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   // falta validaciones de el form de review
   const handleSubmit = function (e) {
     e.preventDefault();
-    dispatch(postReviews({ ...review }));
-    setReview({
-      user_id: "6400e3d8b537ed32782ac2ae",
-      product_id: "63f25212af67a24595c75ad8",
-      qualification: 0,
-      comment: "",
-    });
-    setValue(0);
+    let error = validate(review);
+    if (Object.keys(error).length === 0) {
+      dispatch(postReviews({ ...review }));
+      setReview({
+        user_id: "6400e3d8b537ed32782ac2ae",
+        product_id: "63f2a0d318098b163846c990",
+        qualification: 0,
+        comment: "",
+      });
+      setValue(0);
+    } else {
+      alert("Completa los campos requeridos");
+    }
   };
   //
 
@@ -100,8 +108,12 @@ const CreateReview = () => {
               <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
             )}
           </Box>
-
           <p class="text h2">{(review.qualification = value)}</p>
+          {validate(review).qualification ? (
+            <p class="text-danger">{validate(review).qualification}</p>
+          ) : (
+            <p></p>
+          )}
         </div>
         <div>
           <span>Ingresa un comentario:</span>
@@ -115,13 +127,19 @@ const CreateReview = () => {
               onChange={(e) => handleInputChange(e)}
               value={review.comment}
             />
+            {validate(review).comment ? (
+              <p class="text-danger">{validate(review).comment}</p>
+            ) : (
+              <p></p>
+            )}
           </form>
         </div>
-        <p class="text h2">Comment: {review.comment}</p>
+        {/* <p class="text h2">Comment: {review.comment}</p> */}
         <button
           type="submit"
           class="btn btn-primary"
           onClick={(e) => handleSubmit(e)}
+          disabled={Object.keys(validate(review)).length === 0 ? false : true}
         >
           Send
         </button>
@@ -129,5 +147,6 @@ const CreateReview = () => {
     </div>
   );
 };
+0;
 
 export default CreateReview;
