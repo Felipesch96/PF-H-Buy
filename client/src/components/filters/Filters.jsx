@@ -64,10 +64,10 @@ const Filters = ({ setCurrentPage, setInput }) => {
     <div>
       <div
         id="sidebar"
-        className="col-10 d-flex flex-column py-2 text-center rounded position-fixed colorletra"
+        className="col-10 d-flex flex-column py-2 text-center rounded colorletra"
       >
         <div className="row ">
-          <div className="col-lg-3 col-sm-6 col-12 bg-dark rounded">
+          <div className="bg-dark rounded">
             <div class="d-flex justify-content-center">
               {filter.length ? (
                 <form onSubmit={(e) => handleChangeSearch(e)}>
@@ -91,7 +91,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
               id="form-filters-combined"
               class="ml-md-2"
             >
-              <div className="col-lg-12 col-sm-6 col-12 mt-3 rounded-2 filterCategories">
+              <div className="mt-3 rounded-2 filterCategories">
                 <h6 class="span-1 fw-bold">Categories</h6>
                 <div>
                   {categories?.map((c) => {

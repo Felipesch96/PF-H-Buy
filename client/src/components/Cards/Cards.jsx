@@ -98,7 +98,7 @@ const Cards = ({ array }) => {
                         <FavoriteButton />
                       </div>
                       <Card
-                        img={element.img}
+                        img={element.img_url}
                         name={element.name}
                         price={element.price}
                         score={element.score}
