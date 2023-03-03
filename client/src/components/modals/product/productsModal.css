@@ -79,3 +79,7 @@
     height: 62vh;
     width: 47vh;
 }
+
+.para-img{
+    display: flex;
+}
