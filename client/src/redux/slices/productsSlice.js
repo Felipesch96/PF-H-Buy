@@ -123,9 +123,9 @@ export const productsSlice = createSlice({
       }
     },
     setTopViews: (state) => {
-      state.topViews = [...state.products].sort(
-        (a, b) => b.visits.length - a.visits.length
-      ).slice(0,5);
+      state.topViews = [...state.products]
+        .sort((a, b) => b.visits.length - a.visits.length)
+        .slice(0, 5);
     },
     clearFilter: (state) => {
       state.filterHelper.length

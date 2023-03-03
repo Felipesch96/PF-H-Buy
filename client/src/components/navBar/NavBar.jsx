@@ -4,10 +4,7 @@ import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
-import {
-  fetchSearch,
-  getProductsByName,
-} from "../../redux/thunks/productThunk";
+import { fetchSearch } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import { CartModal } from "../modals/cart/index";
@@ -46,15 +43,6 @@ const NavBar = () => {
   }
 
   const [serachNavStorage, setSearchNavStorage] = useState("");
-  function handleSearchInput(e) {
-    setSearchNavStorage(e.target.value);
-    console.log(serachNavStorage);
-  }
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-    getProductsByName(serachNavStorage);
-  };
 
   return (
     <nav class="navbar navbar-expand-lg border-bottom barra-navegador">

@@ -10,7 +10,7 @@ const CarouselProducts = ({array}) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: array?.length,
+    slidesToShow: array.length,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
@@ -41,7 +41,7 @@ const CarouselProducts = ({array}) => {
   return (
     <div>
       <Slider {...settings}>
-        {array?.map((p) => {
+        {array.map((p) => {
           return (
             <div key={p._id} class=" box">
               <CarouselCard
