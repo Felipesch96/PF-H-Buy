@@ -4,8 +4,10 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import "../category/categoryModal.css";
 import { EditCategoryCard } from "../../editCategoryCard";
 
-export const ShowCategoriesModal = ({ onClose }) => {
+export const ShowActiveCategoriesModal = ({ onClose }) => {
   const { categories } = useSelector((state) => state.product);
+
+  const activeCategories = categories.filter(c => c.isActive === true);
 
   return (
     <section className="categoryModal">
@@ -15,7 +17,7 @@ export const ShowCategoriesModal = ({ onClose }) => {
         className="closeIcon"
       />
       <div className="categoriesList">
-        {categories.map((c) => (
+        {activeCategories.map((c) => (
           <div key={c._id} className="categoriesItem">
             <EditCategoryCard categories={c} />
           </div>

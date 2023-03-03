@@ -6,8 +6,11 @@ import "./editCategoryCard.css";
 import { editCategory } from "../../helpers/editCategory";
 import { deleteCategory } from "../../helpers/deleteCategory";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { fetchCategories } from "../../redux/thunks/productThunk";
 
 export const EditCategoryCard = ({ categories }) => {
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [selected, setSelected] = useState(false);
   const [newCategory, setNewCategory] = useState({
@@ -25,14 +28,30 @@ export const EditCategoryCard = ({ categories }) => {
 
   const onDelete = (id) => {
     Swal.fire({
-      color:"white",
-      background:"#1299",
-      icon: "success",
-      title: "Categoría eliminada.",
-      showConfirmButton: false,
-      timer: 1500,
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      color: "white",
+      background: "#1299",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCategory(id);
+        dispatch(fetchCategories());
+        Swal.fire({
+          color: "white",
+          background: "#1299",
+          icon: "success",
+          title: "Deleted!",
+          text: "Your category has been deleted.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     });
-    deleteCategory(id);
   };
   const submitChanges = (e) => {
     e.preventDefault();

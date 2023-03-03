@@ -46,6 +46,15 @@ const users = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  created: {
+    type: Date,
+    immutable: true,
+    default: () => Date.now(),
+  },
+  modified: {
+    type: Date,
+    default: () => Date.now(),
+  },
 });
 
 module.exports = mongoose.model("Users", users);

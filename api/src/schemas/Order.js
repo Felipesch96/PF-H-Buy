@@ -39,7 +39,16 @@ const orderSchema = new mongoose.Schema({
   },
   // payment: {
 
-  // }
+  // },
+  created: {
+    type: Date,
+    immutable: true,
+    default: () => Date.now(),
+  },
+  modified: {
+    type: Date,
+    default: () => Date.now(),
+  },
 });
 
 module.exports = mongoose.model("Order", orderSchema);

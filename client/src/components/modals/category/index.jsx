@@ -22,18 +22,18 @@ const initialForm = {
 
 export const CategoryModal = ({ onClose }) => {
 	const categories = useSelector((state) => state.product.categories)
-	const { form, errors, handleChange, handleSubmitCategory, handleNameBlur } = useForm(initialForm, formValidations, categories)
+	const { formStorage, errors, handleChange, handleSubmitCategory, handleNameBlur } = useForm(initialForm, formValidations, categories)
 	return (
 		<section className="categoryModal">
 			<form onSubmit={handleSubmitCategory} className="formContainer" >
 				<AiOutlineCloseCircle onClick={() => onClose(false)} className="closeIcon" />
 				<section className="formInput">
 					<label htmlFor="name" className="nameLabel">Name of the category</label>
-					<input type="text" id="name" name="name" value={form.name} onChange={handleChange} onBlur={handleNameBlur} className="input" />
+					<input type="text" id="name" name="name" value={formStorage.name} onChange={handleChange} onBlur={handleNameBlur} className="input" />
 				</section>
 				{errors.name
 				?<p className="errors">{errors.name}</p>:
-				form.name?
+				formStorage.name?
 				<button type="submit" className="categoryButton" onClick={()=>{
 					Swal.fire({
 						color:"white",
