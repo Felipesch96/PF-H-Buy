@@ -21,9 +21,18 @@ const users = mongoose.Schema({
   phone: {
     type: String,
   },
-  address: {
-    type: String,
+  address:{
+    type: String
   },
+  userAddress:[ 
+  {
+    fullname: { type: String },
+    address: { type: String },
+    city: { type: String  },
+    postalCode: { type: String },
+    country: { type: String }
+  }
+],
   isActive: {
     type: Boolean,
     default: true,

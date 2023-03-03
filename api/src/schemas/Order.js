@@ -18,13 +18,13 @@ const orderSchema = new mongoose.Schema({
       },
     },
   ],
-  // shippingAddress: {
-  //   fullName: { type: String, required: true },
-  //   address: { type: String, required: true },
-  //   city: { type: String, required: true },
-  //   postalCode: { type: String, required: true },
-  //   country: { type: String, required: true },
-  // },
+  shippingAddress: {
+    fullname: { type: String, required: false , default: '' },
+    address: { type: String, required: false, default: '' },
+    city: { type: String, required: false, default: ''},
+    postalCode: { type: String, required: false, default: '' },
+    country: { type: String, required: false, default: '' },
+  },
   totalPrice: {
     type: Number,
     required: true,

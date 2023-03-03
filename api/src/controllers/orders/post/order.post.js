@@ -14,13 +14,12 @@ orderCtrl.newOrder = async (req, res) => {
         totalPrice: data.totalPrice, //redundante
       });
     await newOrder.save();
-    data.cartItems.map(async (element) => {
-    const aux = await Product.findById(element.product);
-    const newStock = aux.stock > 0 ? aux.stock - element.quantity : 0  
-    await Product.findByIdAndUpdate(element.product, { stock : newStock })
-    }) 
+    // data.cartItems.map(async (element) => {
+    // const aux = await Product.findById(element.product);
+    // const newStock = aux.stock > 0 ? aux.stock - element.quantity : 0  
+    // await Product.findByIdAndUpdate(element.product, { stock : newStock })
+    // }) 
     
-
       res.status(201).send({
         msg: 'order created',
         newOrder
@@ -30,4 +29,7 @@ orderCtrl.newOrder = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
+
+
+
 module.exports = orderCtrl;
