@@ -177,7 +177,7 @@ const CreateProductFrom = ({ onClose }) => {
           : <span className="errors">Please fill the blanks to create a product</span>}
 
       </form>
-      <div>
+      <div className="img-preview">
         {
           imgPreview
             ? <img src={imgPreview} />

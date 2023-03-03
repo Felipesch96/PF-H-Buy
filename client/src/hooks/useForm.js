@@ -81,7 +81,9 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
       category: "",
       stock: "",
       condition: "",
+      
     });
+    e.target.reset();
   };
   console.log(formStorage);
   const handleNameBlur = () => {
