@@ -33,10 +33,18 @@ const orderSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  paid: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "false",
   },
+  payment_id: {
+    type: String,
+    default: "false",
+  },
+  payment_method:{
+    type: String,
+    default: "false",
+  }
   // payment: {
 
   // }

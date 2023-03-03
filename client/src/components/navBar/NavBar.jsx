@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect, useState } from "react";
 import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, Route, useHistory, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
 import {
   fetchSearch,
@@ -28,7 +28,8 @@ const NavBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/")
+    if (location.pathname === "/") history.push("/home");
+    if (location.pathname === "/home")
       setRutaHistorial({ ...rutaHistorial, home: true });
     if (location.pathname === "/products")
       setRutaHistorial({ ...rutaHistorial, products: true });
@@ -42,7 +43,7 @@ const NavBar = () => {
   function submitSearch(e) {
     e.preventDefault();
     dispatch(fetchSearch(text));
-    history.push("/products");
+    history.push("/home/products");
   }
 
   const [serachNavStorage, setSearchNavStorage] = useState("");
@@ -82,11 +83,11 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/"
+                  location.pathname === "/home"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
-                href="/"
+                href="/home"
               >
                 Home
               </a>
@@ -94,11 +95,11 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/products"
+                  location.pathname === "/home/products"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
-                href="/products"
+                href="/home/products"
               >
                 Products
               </a>
@@ -106,7 +107,7 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/about"
+                  location.pathname === "/home/about"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
@@ -137,6 +138,7 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
+            <Route path="/home">
               <div className="shoppingCart">
                 <div
                   className={
@@ -150,7 +152,9 @@ const NavBar = () => {
                   onClick={() => setIsClicked(!isClicked)}
                 />
                 {isClicked && <CartModal />}
+                
               </div>
+              </Route>
             </li>
             <li>
               <div class="btn-group">
@@ -165,7 +169,7 @@ const NavBar = () => {
                 {isAuthenticated ? (
                   <ul class="dropdown-menu dropdown-menu-end justify-content-center">
                     <li>
-                      <Link className="nav-link mt-1" to="/profile">
+                      <Link className="nav-link mt-1" to="/home/profile">
                         Profile
                       </Link>
                     </li>

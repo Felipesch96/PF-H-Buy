@@ -18,11 +18,11 @@ const App = () => {
       <Router>
         <NavBar />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/about" component={About} />
-          <Route exact path="/products" component={ProductsPage} />
-          <Route exact path="/profile" component={ProfileComponent} />
-          <Route exact path="/products/:id" component={DetailProduct} />
+          <Route exact path="/home/products" component={ProductsPage} />
+          <Route exact path="/home/profile" component={ProfileComponent} />
+          <Route exact path="/home/products/:id" component={DetailProduct} />
           <Route exact path="/shoppingCart" component={ShoppingCart} />
           <Route exact path="/shipping" component={Shipping} />
           <Route path="/orderPlacement" component={OrderPlacement} />
