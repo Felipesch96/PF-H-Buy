@@ -9,6 +9,7 @@ const favorites = require("./routes/favorites.router");
 const cart = require("./routes/cart.router");
 const orders = require("./routes/orders.router");
 const reviews = require("./routes/reviews.router");
+const cors = require("cors");
 
 const cors = require("cors");
 

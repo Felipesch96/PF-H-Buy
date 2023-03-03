@@ -16,6 +16,9 @@ const ShoppingCart = lazy(() =>
   import("./components/views/ShoppingCart/ShoppingCart")
 );
 const Shipping = lazy(() => import("./components/views/Shipping/Shipping"));
+const CreatedReview = lazy(() =>
+  import("./components/CreateReview/CreateReview")
+);
 
 const App = () => {
   return (
@@ -31,6 +34,7 @@ const App = () => {
             <Route exact path="/profile" component={ProfileComponent} />
             <Route exact path="/shoppingCart" component={ShoppingCart} />
             <Route exact path="/shipping" component={Shipping} />
+            <Route exact path="/review" component={CreatedReview} />
           </Switch>
           <Footer />
         </Suspense>
