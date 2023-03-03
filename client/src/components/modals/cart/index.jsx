@@ -6,7 +6,8 @@ import "./cartModal.css";
 export const CartModal = () => {
   const { cartList, amountOfItems } = useSelector((state) => state.cart);
   const history = useHistory();
-  return amountOfItems > 0 ? (
+
+  return amountOfItems >  0 ? (
     <div className="cartModal">
       <div className="cartModalCardsList">
         {cartList.map((item) => (
@@ -23,7 +24,7 @@ export const CartModal = () => {
     </div>
   ) : (
     <div className="cartModal">
-      <p>You don't have items in your cart :/</p>
+      <p>Your cart is empty</p>
     </div>
   );
 };

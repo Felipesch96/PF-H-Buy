@@ -30,8 +30,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-bottom: 23px;
     border-radius: 10px;
+    gap: 10px
 }
 
 .orderPreview{
@@ -52,4 +52,52 @@
 .edit{
     text-decoration: none;
     color: green;
+}
+
+.finalItemImage{
+    height: 50px;
+    width: 50px;
+}
+
+
+.paid{
+    background-color: #6ebe45;
+    padding: 10px;
+    border-radius: 10px;
+    color: #f7f7f7;
+    margin: 0;
+}
+
+.pending{
+    background-color: #c51f3b;
+    padding: 10px;
+    border-radius: 10px;
+    color: #f7f7f7;
+    margin: 0;
+}
+
+
+.orderSummary{
+    margin: 0;
+    color: #02b9f3;
+}
+
+.postOrder{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.postOrderInfo{
+    margin: 0;
+}
+
+
+.goBackHome{
+    border: none;
+    height: 40px;
+    width: 200px;
+    background-color: #02b9f3;
+    color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
 }

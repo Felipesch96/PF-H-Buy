@@ -10,6 +10,7 @@ import ProfileComponent from "./components/views/profiles/profileComponent/Profi
 import Shipping from "./components/views/Shipping/Shipping";
 import ShoppingCart from "./components/views/ShoppingCart/ShoppingCart";
 import { OrderPlacement } from "./components/views/orderPlacement/OrderPlacement";
+import { AddAddress } from "./components/views/addAddress/AddAddress";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route exact path="/shipping" component={Shipping} />
           <Route path="/orderPlacement" component={OrderPlacement} />
           <Route exact path="/payment" component={Payment} />
+          <Route exact path="/addAddress" component={AddAddress} />
         </Switch>
         <Footer />
       </Router>

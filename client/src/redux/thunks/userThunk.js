@@ -2,7 +2,7 @@ import axios from "axios";
 import { setUsers, setUser, setCleanUser, setUserById } from "../slices/usersSlice";
 
 const {REACT_APP_API_URL} = process.env
-console.log(REACT_APP_API_URL)
+
 export const fetchUsers = () => {
   return async (dispatch) => {
     const { data } = await axios.get(`${REACT_APP_API_URL}/users`);

@@ -14,6 +14,7 @@ export default function ShoppingCart() {
   const history = useHistory();
   const buyer = useSelector((state) => state.user.userLocal);
   console.log(cartList)
+  console.log(buyer)
   const dispatch = useDispatch();
   const getTotal = () => {
     let totalPrice = 0;

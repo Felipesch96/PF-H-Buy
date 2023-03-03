@@ -65,3 +65,16 @@
     font-size: 13px;
     font-weight: 700px;
 }
+
+
+.selectedInfo{
+    border: 2px solid blue;
+    max-width: 200px;
+    height: 200px;
+}
+
+.notSelectedInfo{
+    max-width: 200px;
+    height: 200px;
+    border: 1px solid black
+}

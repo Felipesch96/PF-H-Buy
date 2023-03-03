@@ -3,13 +3,17 @@ import { useHistory } from "react-router-dom";
 import './shipping.css'
 import { setShipping } from "../../../redux/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+// import { AddAddress } from "../addAddress/AddAddress";
+
+const {REACT_APP_API_URL} = process.env
 const initialForm = {
   fullname: "",
   country: "",
   city: "",
   address: "",
-  postal: "",
+  postalCode: "",
 };
 
 const validationsForm = (form) => {
@@ -29,8 +33,8 @@ const validationsForm = (form) => {
   if (!form.address?.trim()) {
     errors.address = "Address is required";
   } 
-  if (!form.postal?.trim()) {
-    errors.postal = "Postal Code is required";
+  if (!form.postalCode?.trim()) {
+    errors.postalCode = "Postal Code is required";
   } 
 
   return errors;
@@ -39,17 +43,64 @@ const validationsForm = (form) => {
 export default function Shipping() {
   const { form, handleChange, errors, handleBlur } = useForm(initialForm, validationsForm);
   const buyer = useSelector((state) => state.user.userLocal);
+  const orderId = useSelector((state) => state.cart.orderId);
+  const [clicked, setClicked] = useState(false)
+  const [selected, setSelected] = useState({
+    address: '',
+    city: '',
+    postalCode: '',
+    country: '',
+    fullname: ''
+  })
   useEffect(()=>{
     if(!buyer._id) history.push('/shoppingCart')
   }, [])
+  
   const history = useHistory();
   const dispatch = useDispatch()
-  const handleShipmentSubmit = (e) => {
+  const handleShipmentSubmit = async(e) => {
     e.preventDefault();
+    if(buyer.addresses?.length > 0){
+      dispatch(setShipping(selected))
+      await axios.put(`${REACT_APP_API_URL}/orders/${orderId}`,{
+        shippingAddress: selected
+      })
+      history.push("/orderPlacement");
+      return
+    }
     dispatch(setShipping(form))
+    await axios.put(`${REACT_APP_API_URL}/users/${buyer._id}`,{
+      userAddress: form
+    })
+    await axios.put(`${REACT_APP_API_URL}/orders/${orderId}`,{
+      shippingAddress: form
+    })
     history.push("/orderPlacement");
   };
   return (
+    buyer.userAddress?.length > 0 ? buyer.userAddress.map(adr => (
+      <div>
+         <div key={adr.address} className={clicked ? 'selectedInfo' : 'notSelectedInfo'} onClick={()=> {
+          setSelected({...selected, 
+          address: adr.address,
+          city: adr.city,
+          postalCode: adr.postalCode,
+          country: adr.country,
+          fullname: adr.fullname
+        })
+        setClicked(!clicked)
+      }}>
+        <p>{adr.fullname}</p>
+        <p>{adr.address}</p>
+        <p>{adr.city}</p>
+        <p>{adr.postalCode}</p>
+
+      </div>
+      <button onClick={handleShipmentSubmit} className="shippingButton">Continue</button>
+      <button onClick={()=> history.push('/addAddress')}>New address</button>
+      </div>
+     
+    )): 
     <div className="shippingFormContainer">
       
       <form className="shippingForm" onSubmit={handleShipmentSubmit}>
@@ -117,16 +168,18 @@ export default function Shipping() {
           onBlur={handleBlur}
           className="shippingInput"
             type="text"
-            name="postal"
+            name="postalCode"
             id="postal"
-            value={form.postal}
+            value={form.postalCode}
             onChange={handleChange}
           />
           
         </section>
-        {errors.postal && <p className="errorShippingMessage">{errors.postal}</p>}
+        {errors.postalCode && <p className="errorShippingMessage">{errors.postalCode}</p>}
         <button disabled={form.fullname.length === 0 || Object.keys(errors).length >0} onClick={handleShipmentSubmit} className="shippingButton" type="submit">Continue</button>
       </form>
     </div>
   );
 }
+
+

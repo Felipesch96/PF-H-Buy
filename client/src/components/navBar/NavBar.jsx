@@ -138,23 +138,28 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-            <Route path="/home">
-              <div className="shoppingCart">
-                <div
-                  className={
-                    amountOfItems === 0 ? "negativeCounter" : "counter"
-                  }
-                >
-                  {amountOfItems}
-                </div>
-                <BsCart4
-                  className="carIcon"
-                  onClick={() => setIsClicked(!isClicked)}
-                />
-                {isClicked && <CartModal />}
-                
-              </div>
-              </Route>
+            
+             {    
+                  location.pathname !== '/home' && 
+                  location.pathname !== '/shipping' && 
+                  location.pathname !== '/orderPlacement' &&
+                  location.pathname !== '/shoppingCart' && 
+                  location.pathname !== '/home/profile' ? 
+                <div className="shoppingCart">
+                  <div
+                    className={
+                      amountOfItems === 0 ? "negativeCounter" : "counter"
+                    }
+                  >
+                    {amountOfItems}
+                  </div>
+                  <BsCart4
+                    className="carIcon"
+                    onClick={() => setIsClicked(!isClicked)}
+                  />
+                  {isClicked && <CartModal />}
+              </div> : ''}
+   
             </li>
             <li>
               <div class="btn-group">
