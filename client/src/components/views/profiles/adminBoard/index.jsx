@@ -26,7 +26,6 @@ export const AdminBoard = () => {
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
-  const [uploadImage, setUploadImage] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
@@ -34,7 +33,6 @@ export const AdminBoard = () => {
 
   return (
     <main className="adminBoard">
-      {/* <div className="leftNavBar"> */}
       <section className="buttons">
         <section className="creationButtons">
           <button

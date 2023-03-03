@@ -38,7 +38,6 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     if (target.name === "img") {
       const files = target.files;
       const base64 = await convertBase64(files[0]);
-      console.log(base64);
       setformStorage({
         ...formStorage,
         img: base64
@@ -85,7 +84,6 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     });
     e.target.reset();
   };
-  console.log(formStorage);
   const handleNameBlur = () => {
     setErrors(formValidations(formStorage.name, "name", categories));
   };

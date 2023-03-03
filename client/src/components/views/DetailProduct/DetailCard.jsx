@@ -25,6 +25,7 @@ const DetailCard = () => {
     if (!verifyHistory.length) {
       setHistory([...history, detailProduct]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailProduct]);
 
   const addElementToCart = () => {
@@ -32,7 +33,8 @@ const DetailCard = () => {
       if (detailProduct.stock > thisProduct.quantity) {
         dispatch(addToCart(detailProduct));
         Swal.fire({
-          position: "top-end",
+          color: "white",
+          background: "#1299",
           icon: "success",
           title: "Producto agregado al carrito.",
           showConfirmButton: false,
@@ -46,7 +48,8 @@ const DetailCard = () => {
       if (detailProduct.stock > 0) {
         dispatch(addToCart(detailProduct));
         Swal.fire({
-          position: "top-end",
+          color: "white",
+          background: "#1299",
           icon: "success",
           title: "Producto agregado al carrito.",
           showConfirmButton: false,
@@ -120,7 +123,8 @@ const DetailCard = () => {
                 class="fa-regular fa-heart"
                 onClick={() => {
                   Swal.fire({
-                    position: "top-end",
+                    color: "white",
+                    background: "#1299",
                     icon: "success",
                     title: "Producto agregado a favoritos.",
                     showConfirmButton: false,
