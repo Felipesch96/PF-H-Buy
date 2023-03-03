@@ -16,7 +16,7 @@ orderCtrl.newOrder = async (req, res) => {
     await newOrder.save();
     data.cartItems.map(async (element) => {
     const aux = await Product.findById(element.product);
-    const newStock = aux.stock - element.quantity;
+    const newStock = aux.stock > 0 ? aux.stock - element.quantity : 0  
     await Product.findByIdAndUpdate(element.product, { stock : newStock })
     }) 
     

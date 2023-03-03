@@ -35,11 +35,18 @@ const newPayment = async (req, res) => {
 };
 
 const payment = async (req, res) => {
-  res.status(200).send({
-    Payment: req.query.payment_id,
-    Status: req.query.status,
-    MerchantOrder: req.query.merchant_order_id
-  })
+  console.log('lo que llega', req.query)
+  try {
+    res.status(200).json({
+      Payment: req.query.payment_id,
+      Status: req.query.status,
+      MerchantOrder: req.query.merchant_order_id
+    })
+  }
+  catch(error){
+    console.log(error)
+  }
+
 };
 
 

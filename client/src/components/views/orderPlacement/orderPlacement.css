@@ -10,3 +10,46 @@
     display: flex;
     gap: 10px;
 }
+
+
+.shippingCard{
+    border: 1px solid #02b9f3;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.itemsCard{
+    border: 1px solid #02b9f3;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.summaryCard{
+    border: 1px solid #02b9f3;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 23px;
+    border-radius: 10px;
+}
+
+.orderPreview{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    margin-right: 50px;
+    
+}
+
+
+.orderTitle{
+    margin: 0;
+    color: #02b9f3;
+}
+
+.edit{
+    text-decoration: none;
+    color: green;
+}

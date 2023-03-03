@@ -6,10 +6,12 @@ import ClientProfile from "../clientProfile/ClientProfile";
 import SellerProfile from "../sellerProfile/SellerProfile";
 import { fetchUserById } from "../../../../redux/thunks/userThunk";
 import "./profileComponent.css";
+import { useHistory } from "react-router-dom";
 
 const ProfileComponent = () => {
   const dispatch = useDispatch();
   const userLocal = useSelector((state) => state.user.userLocal);
+  const history = useHistory()
   const [userType, setUserType] = useState("Buyer");
 
   const buyerButton = () => {
@@ -24,6 +26,9 @@ const ProfileComponent = () => {
     dispatch(fetchUserById(userLocal._id))
       },[dispatch, userLocal._id]);
 
+  useEffect(()=>{
+    if(!userLocal._id) history.push('/')
+  },[])
 
     
 

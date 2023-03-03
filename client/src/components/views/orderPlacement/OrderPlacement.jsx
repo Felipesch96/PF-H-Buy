@@ -1,28 +1,32 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import './orderPlacement.css'
 import Payment from "../payment/payment"
+import { useEffect } from "react"
+
 export const OrderPlacement = () => {
     const {cartList, shippingInfo, paymentMethod, totalItemsPrice} = useSelector(state => state.cart)
+    const { _id } = useSelector(state => state.user.userLocal)
+    const history = useHistory();
     const tax = totalItemsPrice * 0.15
     const shippingPrice = 10
     const finalPrice = tax + shippingPrice + totalItemsPrice
-    
+    useEffect(()=>{
+        if(!_id) history.push('/shoppingCart')
+      }, [])
+
     return(
         <main className="orderInfo">
-            <section>
-            <h1>Order preview</h1>
-            <section>
+            <section className="orderPreview">
+            <h1 className="orderTitle">Order preview</h1>
+            <section className="shippingCard">
                 <h4>Shipping</h4>
                  <p>Address {shippingInfo.address}</p>
                  <p>City {shippingInfo.city}</p>
                  <p>Postal Code {shippingInfo.postalCode}</p>
-                 <Link to="/shipping">Edit</Link>
+                 <Link className="edit" to="/shipping">Edit</Link>
             </section>
-            {/* <section>
-                <h4>Payment</h4>
-            </section> */}
-            <section>
+            <section className="itemsCard">
                 <h4>Items</h4>
                 <div>
                     {cartList.map(el => (
@@ -32,11 +36,11 @@ export const OrderPlacement = () => {
                             <p>{el.price * el.quantity}</p>
                         </div>
                     ))}
-                 <Link to="/shoppingCart">Edit</Link>
+                 <Link className="edit"  to="/shoppingCard">Edit</Link>
                 </div>
             </section>
             </section>
-            <section>
+            <section className="summaryCard">
                 <h4>Order Summary</h4>
                 <div>
                     <p>Shipping {shippingPrice}</p>

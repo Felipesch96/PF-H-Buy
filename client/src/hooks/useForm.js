@@ -5,6 +5,7 @@ import {
   fetchCategories,
   fetchNewProducts,
 } from "../redux/thunks/productThunk";
+import { set } from "mongoose";
 
 export const useForm = (initialForm = {}, formValidations, categories) => {
   const dispatch = useDispatch();
@@ -53,6 +54,11 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     });
   };
 
+  const handleBlur = (e) => {
+    console.log(e.target.name)
+    setErrors(formValidations(form))
+  }
+
   const handleNameBlur = () => {
     setErrors(formValidations(form.name, "name", categories));
   };
@@ -88,5 +94,6 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     handleSubmitCategory,
     handleSubmitProduct,
     handleNameBlur,
+    handleBlur
   };
 };

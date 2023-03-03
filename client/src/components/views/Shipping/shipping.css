@@ -6,6 +6,7 @@
     align-items: center;
     padding: 10px;
     flex-direction: column;
+
 }
 
 .shippingForm{
@@ -17,8 +18,10 @@
     padding-left: 20px;
     height: 500px;
     width: 500px;
-    gap: 20px;
+    gap: 10px;
     border-radius: 10px;
+    border-bottom: 2px solid #02b9f3;;
+
 }
 
 .shippingSection{
@@ -26,6 +29,7 @@
     gap: 10px;
     align-items: center;
     color: black;
+    
 }
 
 .shippingInput{
@@ -41,5 +45,23 @@
     background-color: #02b9f3;
     color: white;
     border-radius: 10px;
-    border: 1px solid snow
+    border: none;
+
+}
+
+
+.shippingLabel{
+    color: white;
+}
+
+.shippingTitle{
+    color: #02b9f3;
+    margin: 0;
+}
+
+.errorShippingMessage{
+    color: #8c0500;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700px;
 }

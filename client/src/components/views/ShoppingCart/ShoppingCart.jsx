@@ -13,6 +13,7 @@ export default function ShoppingCart() {
   const { user, isAuthenticated } = useAuth0();
   const history = useHistory();
   const buyer = useSelector((state) => state.user.userLocal);
+  console.log(cartList)
   const dispatch = useDispatch();
   const getTotal = () => {
     let totalPrice = 0;
@@ -45,7 +46,7 @@ export default function ShoppingCart() {
 
   return (
     <main className="mainCart">
-      <section>
+      <section className="productShower">
         <h3>Your cart</h3>
         <ul className="cartCardsList">
           {cartList.map((item) => (
@@ -55,6 +56,7 @@ export default function ShoppingCart() {
               quantity={item.quantity}
               price={item.price}
               key={item._id}
+              img={item.img}
             />
           ))}
         </ul>
@@ -75,7 +77,7 @@ export default function ShoppingCart() {
         <h4>Total: {getTotal()}</h4>
         {user && isAuthenticated ? (
           <button className="checkoutButton" onClick={handleCheckout}>
-            buy my products
+            Checkout
           </button>
         ) : (
           <>
