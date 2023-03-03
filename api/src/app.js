@@ -11,8 +11,6 @@ const orders = require("./routes/orders.router");
 const reviews = require("./routes/reviews.router");
 const cors = require("cors");
 
-const cors = require("cors");
-
 require("./db.js");
 
 const server = express();
