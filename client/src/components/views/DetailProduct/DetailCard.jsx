@@ -5,6 +5,7 @@ import { useLocalStorage } from "../../../customHooks/UseLocalStore";
 import { addToCart } from "../../../redux/slices/cartSlice";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
+import prom from "./detailFunctions";
 import "./DetailProduct.css";
 
 const DetailCard = () => {
@@ -23,7 +24,6 @@ const DetailCard = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailProduct]);
-
   const addElementToCart = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
@@ -57,6 +57,13 @@ const DetailCard = () => {
       }
     }
   };
+
+  //promedio de score
+  const promedio = detailProduct.reviews?.map((r) => r.qualification);
+  // console.log(promedio);
+  const promedioResult = prom(promedio);
+  // console.log(promedioResult);
+  // detailProduct.score = promedioResult;
 
   return (
     <div className="container-fluid p-4 contenedor-detalle">
@@ -92,10 +99,11 @@ const DetailCard = () => {
                   {formater.format(detailProduct.price)}
                 </h4>
                 <p class="card-text mb-1">
-                  Qualification: {detailProduct.score} ☆
+                  {/* Qualification: {detailProduct.score} ☆ */}
+                  Qualification: {promedioResult ? promedioResult : 5} ☆
                 </p>
                 <div class="container">
-                  <StarRating score={detailProduct.score} />
+                  <StarRating score={promedioResult ? promedioResult : 5} />
                 </div>
                 <p class="card-text">
                   <span class="text-muted">Last updated 3 mins ago</span>
