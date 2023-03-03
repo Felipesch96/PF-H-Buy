@@ -231,25 +231,49 @@ const DetailCard = () => {
               role="tabpanel"
               aria-labelledby="nav-review-tab"
             >
-              <p class="card-text text-center m-3 ">
-                <div class="container">
-                  <Box
-                    sx={{
-                      "& > legend": { mt: 2 },
-                    }}
-                  >
-                    <Typography component="legend">
-                      Califica el Producto:
-                    </Typography>
-                    <Rating name="simple-controlled" />
-                    <div>
-                      <Typography component="legend">Puntuacion</Typography>
-                      <Rating name="read-only" readOnly />
-                    </div>
-                  </Box>
-                  <Button variant="contained">Send</Button>
+              <div class="container">
+                {/* {detailProduct.reviews.length ?  */}
+                <div>
+                  {detailProduct.reviews?.length === 0 ? (
+                    <span class="card-text text-center text-danger-emphasis h5 m-3 d-flex justify-content-center">
+                      No hay ningun comentario acerca de este producto
+                    </span>
+                  ) : (
+                    detailProduct.reviews?.map((r) => {
+                      return (
+                        <>
+                          <div class="card mt-3 logouser">
+                            <div class="card-header bg-info h5">
+                              <img
+                                src={r.userImage}
+                                class="rounded-5 imgUser"
+                                style={{ height: "40px" }}
+                              />
+                              {/* <i class="bi bi-person-circle h3 "> </i> */}{" "}
+                              {r.userName} {r.userLastName}
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">Review</h5>
+                              <p class="card-text">
+                                Qualification: {r.qualification}{" "}
+                                <StarRating score={r.qualification} />
+                              </p>
+                              <p class="card-text comment">
+                                Comment:
+                                <div class="p-3 bg-info bg-opacity-10 border border-light-subtle rounded-2">
+                                  {r.comment}
+                                </div>
+                              </p>
+                              {/* <span class="bg-dark border rounded-2 text-light"></span> */}
+                            </div>
+                            {/* <div class="card-footer bg-transparent">Footer</div> */}
+                          </div>
+                        </>
+                      );
+                    })
+                  )}
                 </div>
-              </p>
+              </div>
             </div>
           </div>
         </div>

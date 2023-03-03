@@ -15,8 +15,8 @@ const CreateReview = () => {
   const [hover, setHover] = React.useState(-1);
 
   const [review, setReview] = useState({
-    user_id: "6401065d00e887b1e33cbf86",
-    product_id: "63f3cb07d4e18e9636111fb6",
+    user_id: "6400e3d8b537ed32782ac2ae",
+    product_id: "63f25212af67a24595c75ad8",
     qualification: 0,
     comment: "",
   });
@@ -50,8 +50,8 @@ const CreateReview = () => {
     e.preventDefault();
     dispatch(postReviews({ ...review }));
     setReview({
-      user_id: "6401065d00e887b1e33cbf86",
-      product_id: "63f3cb07d4e18e9636111fb6",
+      user_id: "6400e3d8b537ed32782ac2ae",
+      product_id: "63f25212af67a24595c75ad8",
       qualification: 0,
       comment: "",
     });
