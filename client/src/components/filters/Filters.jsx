@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchProducts,
@@ -16,6 +16,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
     if (!categories.length) {
       dispatch(fetchCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   function handleOrderAlphabet(e) {
@@ -48,7 +49,6 @@ const Filters = ({ setCurrentPage, setInput }) => {
     setInput(1);
   }
 
-
   function handleOrderScore(e) {
     dispatch(
       fetchProducts({
@@ -68,7 +68,8 @@ const Filters = ({ setCurrentPage, setInput }) => {
     const category = e.target.value;
     const prevCategories = (filters && filters.categories) || [];
     const newCategories = prevCategories.includes(category)
-      ? prevCategories.filter((category) => category !== category)
+      ? // eslint-disable-next-line
+        prevCategories.filter((category) => category !== category)
       : prevCategories.concat(category);
     dispatch(
       fetchProducts({
@@ -186,9 +187,11 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
                 </div>
               </div>
-              {filters.categories ? <button class="btn btn-warning btn-sm mb-2" type="submit">
-                Reset Filters
-              </button> : null}
+              {filters.categories ? (
+                <button class="btn btn-warning btn-sm mb-2" type="submit">
+                  Reset Filters
+                </button>
+              ) : null}
             </form>
           </div>
         </div>
