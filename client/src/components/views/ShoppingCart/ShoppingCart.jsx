@@ -55,7 +55,7 @@ export default function ShoppingCart() {
               quantity={item.quantity}
               price={item.price}
               key={item._id}
-              img={item.img}
+              img={item.img_url}
             />
           ))}
         </ul>

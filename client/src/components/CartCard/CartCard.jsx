@@ -16,7 +16,7 @@ const stockAlert=()=>{
   })
 }
 
-export default function CartCard({ name, id, quantity, price }) {
+export default function CartCard({ name, id, quantity, price, img }) {
   const dispatch = useDispatch();
   const updateCart = async () => {
     const cant = { quantity: quantity };

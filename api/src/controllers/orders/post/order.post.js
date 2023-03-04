@@ -1,6 +1,4 @@
 const Order = require('../../../schemas/Order')
-const Product = require ('../../../schemas/Products')
-
 
 const orderCtrl = {};
 
@@ -9,17 +7,11 @@ orderCtrl.newOrder = async (req, res) => {
   try {
     const newOrder = new Order({
         buyer_id: data.buyer,
-        items: data.cartItems, //id del item, cantidad, precio unitario y a quien corresponde (seller_id)
-        // shippingAddress: data.shippingAddress,
-        totalPrice: data.totalPrice, //redundante
+        items: data.cartItems,
+        totalPrice: data.totalPrice,
       });
     await newOrder.save();
-    // data.cartItems.map(async (element) => {
-    // const aux = await Product.findById(element.product);
-    // const newStock = aux.stock > 0 ? aux.stock - element.quantity : 0  
-    // await Product.findByIdAndUpdate(element.product, { stock : newStock })
-    // }) 
-    
+
       res.status(201).send({
         msg: 'order created',
         newOrder

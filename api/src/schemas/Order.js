@@ -44,10 +44,7 @@ const orderSchema = new mongoose.Schema({
   payment_method:{
     type: String,
     default: "false",
-  }
-  // payment: {
-
-  // },
+  },
   created: {
     type: Date,
     immutable: true,

@@ -81,7 +81,7 @@ export const AddAddress = () => {
               type="text"
               name="fullname"
               id="fullname"
-              value={form.fullname}
+              value={form?.fullname}
               onChange={handleChange}
             />
             
@@ -95,7 +95,7 @@ export const AddAddress = () => {
               type="text"
               name="country"
               id="country"
-              value={form.country}
+              value={form?.country}
               onChange={handleChange}
             />
             
@@ -109,7 +109,7 @@ export const AddAddress = () => {
               type="text"
               name="city"
               id="city"
-              value={form.city}
+              value={form?.city}
               onChange={handleChange}
             />
             
@@ -123,7 +123,7 @@ export const AddAddress = () => {
               type="text"
               name="address"
               id="address"
-              value={form.address}
+              value={form?.address}
               onChange={handleChange}
             />
             
@@ -137,13 +137,13 @@ export const AddAddress = () => {
               type="text"
               name="postalCode"
               id="postal"
-              value={form.postalCode}
+              value={form?.postalCode}
               onChange={handleChange}
             />
             
           </section>
           {errors.postalCode && <p className="errorShippingMessage">{errors.postalCode}</p>}
-          <button disabled={form.fullname.length === 0 || Object.keys(errors).length >0} onClick={handleShipmentSubmit} className="shippingButton" type="submit">Continue</button>
+          <button disabled={form?.fullname.length === 0 || Object.keys(errors).length >0} onClick={handleShipmentSubmit} className="shippingButton" type="submit">Continue</button>
         </form>
         </div>
     )
