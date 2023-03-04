@@ -14,3 +14,34 @@
   color: #387b62;
   cursor: pointer;
 }
+
+.datos-producto{
+  display: flex;
+}
+
+.img-modify{
+  height: 10rem ;
+  width: 10rem;
+}
+
+.modify-fields{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: row;
+}
+
+.modify-modal{
+  position: relative;
+  background-color: #5ec59f ;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 10px; 
+}
+
+.save-button{
+  margin-left: 2rem;
+  margin-top: 8rem;
+}

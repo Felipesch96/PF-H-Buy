@@ -12,20 +12,11 @@ import { fetchCategories } from "../../redux/thunks/productThunk";
 export const EditDeactiveCategoryCard = ({ category }) => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
-  const [selected, setSelected] = useState(false);
   const [newCategory, setNewCategory] = useState({
     id: category._id,
     name: category.name,
     isActive: category.isActive
   });
-
-  const handleOnClickEdit = () => {
-    if (edit) setSelected(true);
-  };
-
-  const handleOnChange = ({ target }) => {
-    setNewCategory({ ...newCategory, name: target.value });
-  };
 
   const onDelete = (id) => {
     Swal.fire({
