@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editProduct } from "../../../helpers/editProduct";
 import { EditProductCard } from "../../editProductCard";
 import "./showProducts.css";
 
 
 export const ModifyProductModal = ({ onClose }) => {
+  const dispatch = useDispatch();
   const { products } = useSelector((state) => state.product);
-  console.log(products);
+  // console.log(products);
   const [productId, setProductId] = useState();
   const [productToModify, setProductToModify] = useState();
   const [habilitar, setHabilitar] = useState(false);
@@ -22,7 +23,11 @@ export const ModifyProductModal = ({ onClose }) => {
     e.preventDefault();
     const producto = products.filter(p => p._id === productId);
     // console.log(producto);
-    setProductToModify(producto)
+    setProductToModify(producto);
+    setModifiedProduct({
+      ...modifiedProduct,
+      _id: producto[0]._id
+    });
   };
   console.log(productId);
   console.log(productToModify)
@@ -43,7 +48,7 @@ export const ModifyProductModal = ({ onClose }) => {
   console.log(modifiedProduct);
 
   const handleSaveChanges = () => {
-    editProduct(modifiedProduct)
+    dispatch(editProduct(modifiedProduct));
   };
 
   return (
@@ -77,7 +82,7 @@ export const ModifyProductModal = ({ onClose }) => {
                           {
                             habilitar
                               ? <div className="save-button">
-                                <button onClick={handleSaveChanges}>Save changes</button>
+                                <button onClick={() => handleSaveChanges()}>Save changes</button>
                               </div>
                               : null
                           }
