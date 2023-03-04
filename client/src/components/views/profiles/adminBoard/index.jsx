@@ -14,6 +14,8 @@ import {
 } from "../../../../redux/thunks/productThunk";
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
 import { ShowActiveProductModal } from "../../../modals/showProducts/ShowDeactiveProductModal";
+import { ShowActiveCategoriesModal } from "../../../modals/showCategories/ShowActiveCategoriesModal copy";
+
 
 
 export const AdminBoard = () => {
@@ -142,7 +144,7 @@ export const AdminBoard = () => {
       <div className="modals">
         {categoryModal && <CategoryModal onClose={setCategoryModal} />}
 
-        {showActiveCategories && <ShowDeactiveCategoriesModal onClose={setShowActiveCategories} />}
+        {showActiveCategories && <ShowActiveCategoriesModal onClose={setShowActiveCategories} />}
 
         {showDeactiveCategories && <ShowDeactiveCategoriesModal onClose={setShowDeactiveCategories} />}
 

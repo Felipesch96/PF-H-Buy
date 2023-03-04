@@ -24,7 +24,10 @@ export const ShowActiveProductModal = ({ onClose }) => {
 
   return (
     <div className="showProducts-grid">
-      <AiOutlineCloseCircle onClick={() => onClose(false)} className="close" />
+      <AiOutlineCloseCircle
+        onClick={() => onClose(false)}
+        className="closeIconP"
+      />
       <div style={{ height: "50vh", width: "60vh" }} class="container-fluid">
         <DataGrid
           rows={rows}

@@ -6,10 +6,8 @@ import { EditCategoryCard } from "../../editCategoryCard";
 
 export const ShowDeactiveCategoriesModal = ({ onClose }) => {
   const { categories } = useSelector((state) => state.product);
-  console.log(categories);
 
   const deactiveCategories = categories.filter(c => c.isActive === false);
-
   return (
     <section className="categoryModal">
       {/* <div className="showCategories"> */}
@@ -18,11 +16,20 @@ export const ShowDeactiveCategoriesModal = ({ onClose }) => {
         className="closeIcon"
       />
       <div className="categoriesList">
-        {deactiveCategories.map((c) => (
+        {
+          deactiveCategories
+            ? deactiveCategories.map((c) => (
+              <div key={c._id} className="categoriesItem">
+                <EditCategoryCard categories={c} />
+              </div>
+            ))
+            : "There is no deactivated categories"
+        }
+        {/* {categories.map((c) => (
           <div key={c._id} className="categoriesItem">
             <EditCategoryCard categories={c} />
           </div>
-        ))}
+        ))} */}
       </div>
       {/* </div> */}
     </section>

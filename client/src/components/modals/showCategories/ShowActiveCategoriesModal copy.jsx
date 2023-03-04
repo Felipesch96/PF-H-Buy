@@ -8,7 +8,6 @@ export const ShowActiveCategoriesModal = ({ onClose }) => {
   const { categories } = useSelector((state) => state.product);
 
   const activeCategories = categories.filter(c => c.isActive === true);
-
   return (
     <section className="categoryModal">
       {/* <div className="showCategories"> */}
@@ -17,11 +16,21 @@ export const ShowActiveCategoriesModal = ({ onClose }) => {
         className="closeIcon"
       />
       <div className="categoriesList">
-        {activeCategories.map((c) => (
+        {
+          activeCategories.map(c => {
+            return (
+              <div key={c._id} className="categoriesItem">
+                <p>{c.name}</p>
+                
+              </div>
+            )
+          })
+        }
+        {/* {activeCategories.map((c) => (
           <div key={c._id} className="categoriesItem">
             <EditCategoryCard categories={c} />
           </div>
-        ))}
+        ))} */}
       </div>
       {/* </div> */}
     </section>

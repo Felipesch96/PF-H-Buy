@@ -93,7 +93,6 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   </button>
                 </form>
               ) : null}
-              {console.log(search)}
             </div>
             <form
               onSubmit={clearFilter}
