@@ -47,7 +47,7 @@ export const AddAddress = () => {
         e.preventDefault()
         dispatch(setShipping(form))
     try {
-        await axios.put(`${REACT_APP_API_URL}/users/${buyer._id}`,{
+          await axios.put(`${REACT_APP_API_URL}/users/${buyer._id}`,{
             userAddress: form
           })
           await axios.put(`${REACT_APP_API_URL}/orders/${orderId}`,{

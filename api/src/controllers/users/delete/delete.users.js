@@ -18,4 +18,20 @@ usersCtrl.deleteUser = async (req, res) => {
   }
 };
 
+usersCtrl.deleteUserAddress = async (req, res) => {
+  const { id, addressId } = req.body
+  console.log(req.body)
+
+  
+  try {
+    const userById = await User.findById(id).update({
+      $pull: {"userAddress": addressId}
+    });
+    console.log(userById)
+  } catch (error) {
+    console.log(error)
+    res.status(400).send(error.message);
+  }
+};
+
 module.exports = usersCtrl;

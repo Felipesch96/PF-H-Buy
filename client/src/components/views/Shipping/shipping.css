@@ -67,14 +67,26 @@
 }
 
 
-.selectedInfo{
-    border: 2px solid blue;
-    max-width: 200px;
-    height: 200px;
+.allAddresses{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
 }
 
-.notSelectedInfo{
-    max-width: 200px;
-    height: 200px;
-    border: 1px solid black
+.allShippingInfo{
+    padding: 10px;
+}
+
+.shippingButtons{
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.newAddress{
+    align-self: center;
+    background-color: #6ebe45;;
+    color: white;
+    border-radius: 10px;
+    border: none;
 }
