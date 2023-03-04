@@ -58,13 +58,6 @@ const DetailCard = () => {
     }
   };
 
-  //promedio de score
-  const promedio = detailProduct.reviews?.map((r) => r.qualification);
-  // console.log(promedio);
-  const promedioResult = prom(promedio);
-  // console.log(promedioResult);
-  // detailProduct.score = promedioResult;
-
   return (
     <div className="container-fluid p-4 contenedor-detalle">
       <div class="card center info">
@@ -98,13 +91,17 @@ const DetailCard = () => {
                   <i class="bi bi-currency-dollar"></i>
                   {formater.format(detailProduct.price)}
                 </h4>
-                <p class="card-text mb-1">
-                  {/* Qualification: {detailProduct.score} ☆ */}
-                  Qualification: {promedioResult ? promedioResult : 5} ☆
+                {detailProduct.score ? <><p class="card-text mb-1">
+                  Qualification: {detailProduct.score
+                    ? detailProduct.score
+                    : 5}{" "}
+                  ☆
                 </p>
                 <div class="container">
-                  <StarRating score={promedioResult ? promedioResult : 5} />
-                </div>
+                  <StarRating
+                    score={detailProduct.score}
+                  />
+                </div></> : null}
                 <p class="card-text">
                   <span class="text-muted">Last updated 3 mins ago</span>
                 </p>

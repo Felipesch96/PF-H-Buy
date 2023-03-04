@@ -31,7 +31,7 @@ const Card = (props) => {
           >
             ${formater.format(props.price)}
           </span>
-          <div class="container">
+          {props.score ? <div class="container">
             <span class="card-text fs-6">Qualification: {props.score} ☆</span>
 
             <Rating
@@ -41,7 +41,7 @@ const Card = (props) => {
               precision={0.5}
               readOnly
             />
-          </div>
+          </div> : null}
 
           <span class="card-text fs-6">Category: {props.category}</span>
 
