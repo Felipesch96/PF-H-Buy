@@ -63,7 +63,7 @@ const DetailCard = () => {
   const promedio = detailProduct.reviews?.map((r) => r.qualification);
   // console.log(promedio);
   const promedioResult = prom(promedio);
-  // console.log(promedioResult);
+  console.log(promedioResult);
   // detailProduct.score = promedioResult;
 
   return (
@@ -101,10 +101,12 @@ const DetailCard = () => {
                 </h4>
                 <p class="card-text mb-1">
                   {/* Qualification: {detailProduct.score} ☆ */}
-                  Qualification: {promedioResult ? promedioResult : 5} ☆
+                  Qualification: {isNaN(promedioResult) ? 5 : promedioResult} ☆
                 </p>
                 <div class="container">
-                  <StarRating score={promedioResult ? promedioResult : 5} />
+                  <StarRating
+                    score={isNaN(promedioResult) ? 5 : promedioResult}
+                  />
                 </div>
                 <p class="card-text">
                   <span class="text-muted">Last updated 3 mins ago</span>

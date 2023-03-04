@@ -1,11 +1,10 @@
 const { model } = require("mongoose");
 const Product = require("../../../schemas/Products");
-const Users = require("../../../schemas/Users");
 
 const productsCtrl = {};
 
 productsCtrl.getProducts = async (req, res) => {
-  const products = await Product.find();
+  const products = await Product.find().populate;
 
   const { name, category, priceMin, priceMax, brand, condition, order } =
     req.query;
