@@ -23,9 +23,12 @@ export const usersSlice = createSlice({
     setUserById: (state) => {
       state.userById = {};
     },
+    removeAddress: (state, {payload}) => {
+      state.userLocal.userAddress = state.userLocal.userAddress.filter(adr => adr._id.toString() !== payload)
+    }
     
   },
 });
 
-export const { setUsers, setCleanUser, setUser, orderByName, setLogedUser, setUserById } =
+export const { setUsers, setCleanUser, setUser, orderByName, setLogedUser, setUserById, removeAddress } =
   usersSlice.actions;
