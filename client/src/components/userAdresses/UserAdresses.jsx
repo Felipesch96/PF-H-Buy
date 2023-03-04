@@ -1,8 +1,9 @@
-import axios from "axios"
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import './userAdresses.css'
-import { removeAddress } from "../../redux/slices/usersSlice"
+import axios from "axios";
+import { useState } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAddress } from "../../redux/slices/usersSlice";
+import './userAdresses.css';
 const {REACT_APP_API_URL} = process.env
 export const UserAdresses = ({address, city, postalCode, fullname, country, setSelected, id}) => {
   const { _id} = useSelector(state => state.user.userLocal)
@@ -27,7 +28,10 @@ export const UserAdresses = ({address, city, postalCode, fullname, country, setS
        <p className="shippingCardInfo">Address: {address}</p>
        <p className="shippingCardInfo">City: {city}</p>
        <p className="shippingCardInfo">Postal Code: {postalCode}</p>
-       <button onClick={()=> deleteAddress(id)}>X</button>
+       <FaTrashAlt
+            className="remover"
+            onClick={deleteAddress}
+          />
 
      </div>
     
