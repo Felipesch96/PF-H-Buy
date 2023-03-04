@@ -13,7 +13,6 @@ export const OrderPlacement = () => {
     const dispatch = useDispatch();
     const orderId = useSelector((state) => state.cart.orderId)
     const buyer = useSelector((state) => state.user.userLocal)
-    console.log(buyer)
     const { cartList, shippingInfo, totalItemsPrice } = useSelector(state => state.cart);
     const tax = totalItemsPrice * 0.15;
     const shippingPrice = 10;
