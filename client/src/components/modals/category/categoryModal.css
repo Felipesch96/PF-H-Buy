@@ -1,4 +1,3 @@
-
 .categoryModal {
     position: absolute;
     height: fit-content;
@@ -10,12 +9,19 @@
     border-radius: 10px;
 }
 
-.closeIcon{
+.closeIconC {
     width: 30px;
     height: 30px;
-    color: #5ec59f ;
+    color: #5ec59f;
 }
-.formContainer{
+
+.closeIconC:hover {
+    transition: 0.2s;
+    color: #387b62;
+    cursor: pointer;
+}
+
+.formContainer {
     display: flex;
     flex-direction: column;
     padding: 15px;
@@ -26,35 +32,36 @@
     transition: 0.2s;
     color: #387b62;
     cursor: pointer;
-  }
-  
-.formInput{
+}
+
+.formInput {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.nameLabel{
+.nameLabel {
     color: #5ec59f;
 }
-.input{
+
+.input {
     border: none;
     height: 25px;
     background-color: #2b4883;
-    border: 2px solid #5ec59f ;
+    border: 2px solid #5ec59f;
     border-radius: 5px;
     padding: 0px 10px;
     color: #5ec59f;
 }
 
-.input:focus{
+.input:focus {
     background-color: white;
     color: black;
 }
 
-.categoryButton{
-    border: 2px solid #5ec59f ;
-    border-radius: 20px ;
+.categoryButton {
+    border: 2px solid #5ec59f;
+    border-radius: 20px;
     width: 100px;
     align-self: center;
     height: 35px;
@@ -71,7 +78,7 @@
     color: #2b4883;
 }
 
-.errors{
+.errors {
     color: red;
     font-size: 12px;
     margin: 0;

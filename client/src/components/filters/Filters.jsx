@@ -12,6 +12,8 @@ const Filters = ({ setCurrentPage, setInput }) => {
     (state) => state.product
   );
 
+  const activeCategories = categories.filter(c => c.isActive === true);
+
   useEffect(() => {
     if (!categories.length) {
       dispatch(fetchCategories());
@@ -115,7 +117,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
               <div className="mt-3 rounded-2 filterCategories">
                 <h6 class="span-1 fw-bold">Categories</h6>
                 <div>
-                  {categories?.map((c) => {
+                  {activeCategories?.map((c) => {
                     return (
                       <div key={c._id}>
                         <input

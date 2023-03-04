@@ -53,6 +53,7 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
   const handleSubmitCategory = (e) => {
     e.preventDefault();
     createCategory(formStorage);
+    setformStorage("");
     dispatch(fetchCategories());
   };
 
