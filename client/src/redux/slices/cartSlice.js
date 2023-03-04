@@ -6,6 +6,16 @@ export const cartSlice = createSlice({
     cartList: [],
     amountOfItems: 0,
     shippingInfo: {},
+    orderId: "",
+    // shippingInfo: {
+    //   // fullname:'',
+    //   // address: '',
+    //   // postalCode: '',
+    //   // country: '',
+    //   // city: ''
+    // },
+    paymentMethod : {},
+    totalItemsPrice: 0 
   },
   reducers: {
     addToCart: (state, { payload }) => {
@@ -19,6 +29,9 @@ export const cartSlice = createSlice({
         state.cartList.push({ ...payload, quantity: 1 });
         state.amountOfItems++;
       }
+    },
+    addOrderId: (state, { payload }) => {
+      state.orderId = payload;
     },
     incrementQuantity: (state, { payload }) => {
       const item = state.cartList.find((item) => item._id === payload);
@@ -44,10 +57,16 @@ export const cartSlice = createSlice({
     removeAll: (state) => {
       state.cartList = [];
       state.amountOfItems = 0;
+      state.orderId = "";
     },
     setShipping: (state, { payload }) => {
+      console.log('llego')
+      console.log(payload)
       state.shippingInfo = payload;
     },
+    setPrice: (state, {payload}) => {
+      state.totalItemsPrice = payload
+    }
   },
 });
 
@@ -58,4 +77,6 @@ export const {
   removeFromCart,
   removeAll,
   setShipping,
+  addOrderId,
+  setPrice
 } = cartSlice.actions;

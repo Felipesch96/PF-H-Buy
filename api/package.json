@@ -23,6 +23,7 @@
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^9.0.0",
+    "mercadopago": "^1.5.15",
     "mongoose": "^6.9.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",

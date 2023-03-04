@@ -9,12 +9,12 @@ const {
   createNewUserByGoogle,
 } = require("../controllers/users/post/post.users");
 const { updateUser } = require("../controllers/users/put/put.users");
-const { deleteUser } = require("../controllers/users/delete/delete.users");
+const { deleteUser, deleteUserAddress } = require("../controllers/users/delete/delete.users");
 
 router.get("/", getUsers);
 router.get("/:id", usersById);
 router.post("/google", createNewUserByGoogle);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
-
+router.put("/", deleteUserAddress);
 module.exports = router;

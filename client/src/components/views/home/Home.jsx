@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import CarouselBanner from "./carousels/banner/CarouselBanner";
-import "./Home.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import { newGoogleUser } from "../../../redux/thunks/userThunk";
-import CarouselProducts from "./carousels/products/CarouselProducts";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchProducts,
+  fetchProducts
 } from "../../../redux/thunks/productThunk";
+import { newGoogleUser } from "../../../redux/thunks/userThunk";
+import CarouselBanner from "./carousels/banner/CarouselBanner";
+import CarouselProducts from "./carousels/products/CarouselProducts";
+import "./Home.css";
 
 const Home = () => {
   const images = ["baner1.jpg", "baner2.jpg", "baner0.jpg"];
@@ -71,8 +71,8 @@ const Home = () => {
   return (
     <div className="home">
       <div className="carousel-banner">
-        <a href="/products">
-          <CarouselBanner />
+        <a href="/home/products">
+        <CarouselBanner />
         </a>
       </div>
       <hr />
@@ -96,9 +96,9 @@ const Home = () => {
         </>
       ) : null}
       <div className="text-center">
-        <h1>¿Want to see more products?</h1>
-        <a href="/products">
-          <button className="btn btn-secondary">click here</button>
+        <h1>Want to see more products?</h1>
+        <a href="/home/products">
+          <button className="btn btn-secondary">Click here</button>
           <hr />
         </a>
       </div>

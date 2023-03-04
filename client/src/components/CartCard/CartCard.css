@@ -31,3 +31,13 @@
   color: red;
   background-color: transparent
 }
+
+.productPicture{
+  width: 100px;
+  height: 100px;
+}
+
+.productName{
+  font-size: 18px;
+  margin: 0;
+}

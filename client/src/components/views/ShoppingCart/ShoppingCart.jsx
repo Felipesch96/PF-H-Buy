@@ -2,10 +2,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { removeAll } from "../../../redux/slices/cartSlice";
+import { addOrderId, removeAll, setPrice } from "../../../redux/slices/cartSlice";
 import Login from "../../buttons/Login/Login";
 import CartCard from "../../CartCard/CartCard";
 import "./ShoppingCart.css";
+const { REACT_APP_API_URL } = process.env;
 
 export default function ShoppingCart() {
   const { amountOfItems, cartList } = useSelector((state) => state.cart);
@@ -18,6 +19,7 @@ export default function ShoppingCart() {
     cartList.forEach((item) => {
       totalPrice += item.price * item.quantity;
     });
+    dispatch(setPrice(totalPrice))
     return totalPrice;
   };
 
@@ -36,14 +38,14 @@ export default function ShoppingCart() {
       cartItems: productList,
       totalPrice: total,
     };
-    await axios.post(`http://localhost:3001/orders/`, data);
-    dispatch(removeAll());
-    history.push("/");
+    const response = await axios.post(`${REACT_APP_API_URL}/orders/`, data);
+    dispatch(addOrderId(response.data.newOrder?._id));
+    history.push(`/shipping`);
   };
 
   return (
     <main className="mainCart">
-      <section>
+      <section className="productShower">
         <h3>Your cart</h3>
         <ul className="cartCardsList">
           {cartList.map((item) => (
@@ -53,6 +55,7 @@ export default function ShoppingCart() {
               quantity={item.quantity}
               price={item.price}
               key={item._id}
+              img={item.img}
             />
           ))}
         </ul>
@@ -61,7 +64,7 @@ export default function ShoppingCart() {
             className="clearCart"
             onClick={() => {
               dispatch(removeAll());
-              history.push("/products");
+              history.push("home/products");
             }}
           >
             Remove All
@@ -73,7 +76,7 @@ export default function ShoppingCart() {
         <h4>Total: {getTotal()}</h4>
         {user && isAuthenticated ? (
           <button className="checkoutButton" onClick={handleCheckout}>
-            buy my products
+            Checkout
           </button>
         ) : (
           <>
