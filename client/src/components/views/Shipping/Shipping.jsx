@@ -13,7 +13,6 @@ const {REACT_APP_API_URL} = process.env
 export default function Shipping() {
   const buyer = useSelector((state) => state.user.userLocal);
   const orderId = useSelector((state) => state.cart.orderId);
-  console.log(buyer)
   const [selected, setSelected] = useState({
     address: '',
     city: '',
@@ -43,14 +42,14 @@ export default function Shipping() {
     buyer.userAddress?.length > 0 ? 
     <div className="allShippingInfo">
        <div className="allAddresses">
-     { buyer.userAddress.map(adr => <UserAdresses 
+     { buyer.userAddress?.map(adr => <UserAdresses 
       setSelected={setSelected}
-      address={adr.address} 
-      city={adr.city}
-      country={adr.country} 
-      postalCode={adr.postalCode}
-      fullname={adr.fullname}
-      id={adr._id}/>)}
+      address={adr?.address} 
+      city={adr?.city}
+      country={adr?.country} 
+      postalCode={adr?.postalCode}
+      fullname={adr?.fullname}
+      id={adr?._id}/>)}
 
     </div>
     <div className="shippingButtons">   
