@@ -9,7 +9,7 @@ export const UserAdresses = ({address, city, postalCode, fullname, country, setS
   const [clicked, setClicked] = useState(false)
   const dispatch = useDispatch()
   const deleteAddress = async(id) => {
-    await axios.delete(`${REACT_APP_API_URL}/users?id=${_id}&addressId=${id}`)
+    await axios.put(`${REACT_APP_API_URL}/users?id=${_id}&addressId=${id}`)
     dispatch(removeAddress(id))
   }
     return(

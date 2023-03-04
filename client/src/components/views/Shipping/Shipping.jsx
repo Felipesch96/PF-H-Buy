@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { UserAdresses } from "../../userAdresses/UserAdresses";
 import { AddAddress } from "../addAddress/AddAddress";
+import { fetchUserById } from "../../../redux/thunks/userThunk";
 
 const {REACT_APP_API_URL} = process.env
 
