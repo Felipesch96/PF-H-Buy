@@ -6,9 +6,7 @@ import "./ProductsPage.css";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const { filter, filterHelper, products, error } = useSelector(
-    (state) => state.product
-  );
+  const { products, error } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -26,18 +24,10 @@ const ProductsPage = () => {
             " {error}"
           </div>
         </div>
-      ) : filterHelper.length ? (
-        <>
-          <Cards array={filterHelper} />
-        </>
-      ) : filter?.length ? (
-        <>
-          <Cards array={filter} />
-        </>
       ) : (
-        <>
-          <Cards array={products.filter((element) => element.isActive === true)} />
-        </>
+        <Cards
+          array={products.filter((element) => element.isActive === true)}
+        />
       )}
     </div>
   );

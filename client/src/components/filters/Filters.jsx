@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  fetchProducts,
   fetchCategories,
   fetchClearFilter,
   fetchOrderAlphabet,
@@ -14,9 +15,12 @@ import "./Filter.css";
 
 const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
-  const { categories, filter } = useSelector((state) => state.product);
-  
+  const { categories, filters, order, page } = useSelector(
+    (state) => state.product
+  );
+
   const [search, setSearch] = useState("");
+  useEffect(() => setSearch(filters.name || ""), [filters]);
 
   useEffect(() => {
     if (!categories.length) {
@@ -26,44 +30,106 @@ const Filters = ({ setCurrentPage, setInput }) => {
 
   function handleChangeSearch(e) {
     e.preventDefault();
-    dispatch(fetchSearchInFilter(search));
+    dispatch(
+      fetchProducts({
+        filters: { ...filters, name: search },
+        order,
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
-  
+
   function handleOrderAlphabet(e) {
-    dispatch(fetchOrderAlphabet(e.target.value));
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "name",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
-  
+
   function handleOrderPrice(e) {
-    dispatch(fetchOrderPrice(e.target.value));
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "price",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
-  function handleOrderTopViews() {
-    dispatch(getTopVisits());
+  function handleOrderTopViews(e) {
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "visits",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
-  function handleOrderScore() {
-    dispatch(fetchOrderScore());
+  function handleOrderScore(e) {
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "score",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
   function handleChangeType(e) {
-    dispatch(fetchSearchProductByCtg(e.target.value));
+    const category = e.target.value;
+    const prevCategories = (filters && filters.categories) || [];
+    const newCategories = prevCategories.includes(category)
+      ? prevCategories.filter((category) => category !== category)
+      : prevCategories.concat(category);
+    dispatch(
+      fetchProducts({
+        filters: {
+          ...filters,
+          categories: newCategories,
+        },
+        order,
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
   function clearFilter(e) {
     e.preventDefault();
-    dispatch(fetchClearFilter());
+    dispatch(
+      fetchProducts({
+        filters: {},
+        order: {},
+        page,
+      })
+    );
     e.target.reset();
     setCurrentPage(1);
     setInput(1);
@@ -78,22 +144,20 @@ const Filters = ({ setCurrentPage, setInput }) => {
         <div className="row ">
           <div className="bg-dark rounded">
             <div class="d-flex justify-content-center">
-              {filter.length ? (
-                <form onSubmit={(e) => handleChangeSearch(e)}>
-                  <input
-                    className="input-filter"
-                    type="text"
-                    placeholder="Search by name"
-                    name="filter-by-name"
-                    autoComplete="off"
-                    onChange={(e) => setSearch(e.target.value)}
-                    />
-                  <button class="mt-1 btn btn-primary btn-sm" type="submit" >
-                    search
-                  </button>
-                </form>
-              ) : null}
-              {console.log(search)}
+              <form onSubmit={(e) => handleChangeSearch(e)}>
+                <input
+                  className="input-filter"
+                  type="text"
+                  placeholder="Search by name"
+                  name="filter-by-name"
+                  autoComplete="off"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button class="mt-1 btn btn-primary btn-sm" type="submit">
+                  search
+                </button>
+              </form>
             </div>
             <form
               onSubmit={clearFilter}
@@ -107,9 +171,14 @@ const Filters = ({ setCurrentPage, setInput }) => {
                     return (
                       <div key={c._id}>
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="categories"
                           value={c.name}
+                          checked={
+                            filters &&
+                            filters.categories &&
+                            filters.categories.includes(c.name)
+                          }
                           onClick={handleChangeType}
                         />
                         <label htmlFor="categories">{c.name}</label>
@@ -123,7 +192,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="A-Z"
+                    value="asc"
                     id="higher"
                     onClick={handleOrderAlphabet}
                   />
@@ -133,7 +202,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="Z-A"
+                    value="desc"
                     id="order"
                     onClick={handleOrderAlphabet}
                   />
@@ -143,7 +212,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="maximum_score"
+                    value="desc"
                     id="order"
                     onClick={handleOrderScore}
                   />
@@ -153,7 +222,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="lower_price"
+                    value="asc"
                     id="order"
                     onClick={handleOrderPrice}
                   />
@@ -163,7 +232,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="higher_price"
+                    value="desc"
                     id="order"
                     onClick={handleOrderPrice}
                   />
@@ -174,16 +243,15 @@ const Filters = ({ setCurrentPage, setInput }) => {
                     type="radio"
                     name="type"
                     id="order"
+                    value="desc"
                     onClick={handleOrderTopViews}
                   />
-                  <label class="pl-1 pt-sm-0 pt-1">top 5</label>
+                  <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher views</label>
                 </div>
               </div>
-              {filter.length ? (
-                <button class="btn btn-warning btn-sm mb-2" type="submit">
-                  Reset Filters
-                </button>
-              ) : null}
+              <button class="btn btn-warning btn-sm mb-2" type="submit">
+                Reset Filters
+              </button>
             </form>
           </div>
         </div>

@@ -20,7 +20,7 @@ const Card = (props) => {
           src={props.img}
           class="img-fluid img-detail rounded-2 border bg-light"
           alt="..."
-          style={{ height: "230px", width: "250px" }}
+          style={{ height: "230px", objectFit:'cover' }}
         />
         <div class="card-body">
           <h5 class="card-title">{props.name}</h5>
