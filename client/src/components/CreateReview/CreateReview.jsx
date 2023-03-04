@@ -1,10 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 import StarIcon from "@mui/icons-material/Star";
-import Stack from "@mui/material/Stack";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
 import validate from "./validate";
@@ -65,14 +63,6 @@ const CreateReview = () => {
       alert("Completa los campos requeridos");
     }
   };
-  //
-
-  //   useEffect(() => {
-  //     dispatch(postReviews());
-  //     // return () => {
-  //     //   cleanup;
-  //     // };
-  //   }, [dispatch]);
 
   return (
     <div class="container">
@@ -94,10 +84,10 @@ const CreateReview = () => {
               value={value}
               precision={0.5}
               getLabelText={getLabelText}
-              onChange={(event, newValue) => {
+              onChange={(newValue) => {
                 setValue(newValue);
               }}
-              onChangeActive={(event, newHover) => {
+              onChangeActive={(newHover) => {
                 setHover(newHover);
               }}
               emptyIcon={
@@ -134,7 +124,6 @@ const CreateReview = () => {
             )}
           </form>
         </div>
-        {/* <p class="text h2">Comment: {review.comment}</p> */}
         <button
           type="submit"
           class="btn btn-primary"

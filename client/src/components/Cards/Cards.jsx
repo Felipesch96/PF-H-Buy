@@ -4,11 +4,12 @@ import Paginate from "../Paginate/Paginate";
 import Filters from "../filters/Filters";
 import LoaderCard from "../Loaders/CardLoader/CardLoader";
 import "./Cards.css";
-import Rating from "@mui/material/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { addToCart } from "../../redux/slices/cartSlice";
 import FavoriteButton from "../Favorites/Favorites";
+import { Button } from "@mui/material";
+import { fetchProducts } from "../../redux/thunks/productThunk";
 // importo los componentes que se renderizaran con el Loader "lazy"
 const Card = lazy(() => import("../Card/Card"));
 //
@@ -27,6 +28,15 @@ const Cards = ({ array }) => {
     (currentPage - 1) * cardsPerPage,
     (currentPage - 1) * cardsPerPage + cardsPerPage
   );
+
+  function clearFilter() {
+    dispatch(
+      fetchProducts({
+        filters: {},
+        order: {},
+      })
+    );
+  }
 
   return (
     <div class="container">
@@ -56,51 +66,51 @@ const Cards = ({ array }) => {
                   >
                     <div class="col">
                       <div class="card mb-3 rounded-4 bg-dark tarjeta">
-                      <div class="d-grid gap-2 d-md-block">
-                        <button
-                          onClick={() => {
-                            if (thisProduct) {
-                              if (element.stock > thisProduct.quantity) {
-                                dispatch(addToCart(element));
-                                console.log(element);
-                                Swal.fire({
-                                  position: "top-end",
-                                  icon: "success",
-                                  title: "Producto agregado al carrito.",
-                                  showConfirmButton: false,
-                                  timer: 1500,
-                                });
+                        <div class="d-grid gap-2 d-md-block">
+                          <button
+                            onClick={() => {
+                              if (thisProduct) {
+                                if (element.stock > thisProduct.quantity) {
+                                  dispatch(addToCart(element));
+                                  console.log(element);
+                                  Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Producto agregado al carrito.",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                  });
+                                } else {
+                                  window.alert("No more products available");
+                                }
                               } else {
-                                window.alert("No more products available");
+                                if (element.stock > 0) {
+                                  dispatch(addToCart(element));
+                                  Swal.fire({
+                                    color: "white",
+                                    background: "#1299",
+                                    icon: "success",
+                                    title: "Producto agregado al carrito.",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                  });
+                                } else {
+                                  Swal.fire({
+                                    color: "white",
+                                    background: "#1299",
+                                    icon: "error",
+                                    title: "Producto sin stock.",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                  });
+                                }
                               }
-                            } else {
-                              if (element.stock > 0) {
-                                dispatch(addToCart(element));
-                                Swal.fire({
-                                  color:"white",
-                                  background:"#1299",
-                                  icon: "success",
-                                  title: "Producto agregado al carrito.",
-                                  showConfirmButton: false,
-                                  timer: 1500,
-                                });
-                              } else {
-                                Swal.fire({
-                                  color:"white",
-                                  background:"#1299",
-                                  icon: "error",
-                                  title: "Producto sin stock.",
-                                  showConfirmButton: false,
-                                  timer: 1500,
-                                });
-                              }
-                            }
-                          }}
-                          class="btn btn-primary bi bi-cart-plus-fill m-2"
-                          type="button"
-                        ></button>
-                        <FavoriteButton />
-                      </div>
+                            }}
+                            class="btn btn-primary bi bi-cart-plus-fill m-2"
+                            type="button"
+                          ></button>
+                          <FavoriteButton />
+                        </div>
                         <Card
                           img={element.img_url}
                           name={element.name}
@@ -126,8 +136,8 @@ const Cards = ({ array }) => {
               ) : (
                 <div class="container error">
                   <div class="alert alert-danger" role="alert">
-                    <a
-                      href="/products"
+                    <Button
+                      onClick={clearFilter}
                       class="alert"
                       style={{ textDecoration: "none" }}
                     >
@@ -136,7 +146,7 @@ const Cards = ({ array }) => {
                         style={{ fontSize: "30px" }}
                       />
                       "{array}", <strong>click to go back </strong>
-                    </a>
+                    </Button>
                   </div>
                 </div>
               )}

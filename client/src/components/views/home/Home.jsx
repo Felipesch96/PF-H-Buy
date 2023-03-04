@@ -7,7 +7,6 @@ import { newGoogleUser } from "../../../redux/thunks/userThunk";
 import CarouselProducts from "./carousels/products/CarouselProducts";
 import {
   fetchProducts,
-  getTopVisits,
 } from "../../../redux/thunks/productThunk";
 
 const Home = () => {
@@ -21,7 +20,6 @@ const Home = () => {
   const history = JSON.parse(item);
 
   useEffect(() => {
-    dispatch(getTopVisits());
     dispatch(fetchProducts());
     verifyAuth();
     const reloj = setInterval(() => {

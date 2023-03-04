@@ -5,7 +5,6 @@ import { useLocalStorage } from "../../../customHooks/UseLocalStore";
 import { addToCart } from "../../../redux/slices/cartSlice";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
-import prom from "./detailFunctions";
 import "./DetailProduct.css";
 
 const DetailCard = () => {
@@ -91,17 +90,17 @@ const DetailCard = () => {
                   <i class="bi bi-currency-dollar"></i>
                   {formater.format(detailProduct.price)}
                 </h4>
-                {detailProduct.score ? <><p class="card-text mb-1">
-                  Qualification: {detailProduct.score
-                    ? detailProduct.score
-                    : 5}{" "}
-                  ☆
-                </p>
-                <div class="container">
-                  <StarRating
-                    score={detailProduct.score}
-                  />
-                </div></> : null}
+                {detailProduct.score ? (
+                  <>
+                    <p class="card-text mb-1">
+                      Qualification:{" "}
+                      {detailProduct.score ? detailProduct.score : 5} ☆
+                    </p>
+                    <div class="container">
+                      <StarRating score={detailProduct.score} />
+                    </div>
+                  </>
+                ) : null}
                 <p class="card-text">
                   <span class="text-muted">Last updated 3 mins ago</span>
                 </p>
@@ -250,6 +249,7 @@ const DetailCard = () => {
                           <div class="card mt-3 logouser">
                             <div class="card-header bg-info h5">
                               <img
+                                alt={r.userName}
                                 src={r.userImage}
                                 class="rounded-5 imgUser"
                                 style={{ height: "40px" }}

@@ -4,7 +4,7 @@ import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
-import { fetchSearch } from "../../redux/thunks/productThunk";
+import { fetchProducts } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import { CartModal } from "../modals/cart/index";
@@ -32,17 +32,28 @@ const NavBar = () => {
     if (location.pathname === "/about")
       setRutaHistorial({ ...rutaHistorial, about: true });
     if (location.pathname === "/shoppingCart") setIsClicked(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const { amountOfItems } = useSelector((state) => state.cart);
+  const { filters, order, page } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    setText(filters.name || "");
+    // eslint-disable-next-line
+  }, [filters]);
 
   function submitSearch(e) {
     e.preventDefault();
-    dispatch(fetchSearch(text));
+    dispatch(
+      fetchProducts({
+        filters: { ...filters, name: text },
+        order,
+        page,
+      })
+    );
     history.push("/products");
   }
-
-  const [serachNavStorage, setSearchNavStorage] = useState("");
 
   return (
     <nav class="navbar navbar-expand-lg border-bottom barra-navegador">
