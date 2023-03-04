@@ -151,3 +151,11 @@
 .modals{
   margin: 1rem;
 }
+
+.adminButton:hover {
+  opacity: 50%;
+}
+
+.adminButton:focus {
+  background-color: rgb(68, 142, 212);
+}

@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 
 import { ProductModal } from "../../../modals/product";
 import { CategoryModal } from "../../../modals/category";
-import { ShowCategoriesModal } from "../../../modals/showCategories";
-import { ShowProductModal } from "../../../modals/showProducts";
+import { ShowDeactiveCategoriesModal } from "../../../modals/showCategories/ShowDeactiveCategoriesModal";
+import { ShowDeactiveProductModal } from "../../../modals/showProducts/ShowActiveProductModal";
 import { ShowUsersModal } from "../../../modals/showUsers";
 
 import "./adminBoard.css";
@@ -13,6 +13,9 @@ import {
   fetchProducts,
 } from "../../../../redux/thunks/productThunk";
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
+import { ShowActiveProductModal } from "../../../modals/showProducts/ShowDeactiveProductModal";
+import { ShowActiveCategoriesModal } from "../../../modals/showCategories/ShowActiveCategoriesModal copy";
+
 
 
 export const AdminBoard = () => {
@@ -26,10 +29,12 @@ export const AdminBoard = () => {
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [productModal, setProductModal] = useState(false);
-  const [showProducts, setShowProducts] = useState(false);
-  const [showCategories, setShowCategories] = useState(false);
+  const [showActiveProducts, setShowActiveProducts] = useState(false);
+  const [showDeactiveProducts, setShowDeactiveProducts] = useState(false);
+  const [showActiveCategories, setShowActiveCategories] = useState(false);
+  const [showDeactiveCategories, setShowDeactiveCategories] = useState(false);
   const [showUsers, setShowUsers] = useState(false);
-  
+
 
   return (
     <main className="adminBoard">
@@ -39,10 +44,11 @@ export const AdminBoard = () => {
             className="adminButton"
             onClick={() => {
               setCategoryModal(true);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowProducts(false);
-              setShowCategories(false);
+              setShowActiveProducts(false)
+              setShowDeactiveProducts(false);
               setShowUsers(false);
             }}
           >
@@ -52,10 +58,39 @@ export const AdminBoard = () => {
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(true);
+              setShowDeactiveCategories(false)
+              setProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowUsers(false);
+            }}
+          >
+            Show active categories
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(true)
+              setProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowUsers(false);
+            }}
+          >
+            Show deactive categories
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(true);
-              
-              setShowProducts(false);
-              setShowCategories(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
               setShowUsers(false);
             }}
           >
@@ -65,36 +100,39 @@ export const AdminBoard = () => {
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowCategories(true);
-              setShowProducts(false);
+              setShowActiveProducts(true);
+              setShowDeactiveProducts(false);
               setShowUsers(false);
             }}
           >
-            Show categories
+            Show active products
           </button>
           <button
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowCategories(false);
-              setShowProducts(true);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(true);
               setShowUsers(false);
             }}
           >
-            Show products
+            Show deactive products
           </button>
           <button
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowCategories(false);
-              setShowProducts(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
               setShowUsers(true);
             }}
           >
@@ -105,11 +143,15 @@ export const AdminBoard = () => {
       <div className="modals">
         {categoryModal && <CategoryModal onClose={setCategoryModal} />}
 
+        {showActiveCategories && <ShowActiveCategoriesModal onClose={setShowActiveCategories} />}
+
+        {showDeactiveCategories && <ShowDeactiveCategoriesModal onClose={setShowDeactiveCategories} />}
+
         {productModal && <ProductModal onClose={setProductModal} />}
 
-        {showCategories && <ShowCategoriesModal onClose={setShowCategories} />}
+        {showActiveProducts && <ShowActiveProductModal onClose={setShowActiveProducts} />}
 
-        {showProducts && <ShowProductModal onClose={setShowProducts} />}
+        {showDeactiveProducts && <ShowDeactiveProductModal onClose={setShowDeactiveProducts} />}
 
         {showUsers && <ShowUsersModal onClose={setShowUsers} />}
       </div>

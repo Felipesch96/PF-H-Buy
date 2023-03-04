@@ -23,8 +23,16 @@ const Cart = mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "Users",
     },
-  },
-  { timestamps: true }
+    created: {
+      type: Date,
+      immutable: true,
+      default: () => Date.now(),
+    },
+    modified: {
+      type: Date,
+      default: () => Date.now(),
+    },
+  }
 );
 
 module.exports = mongoose.model("Cart", Cart);
