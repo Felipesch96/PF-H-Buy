@@ -3,13 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchProducts,
   fetchCategories,
-  fetchClearFilter,
-  fetchOrderAlphabet,
-  fetchOrderPrice,
-  fetchOrderScore,
-  fetchSearchInFilter,
-  fetchSearchProductByCtg,
-  getTopVisits,
 } from "../../redux/thunks/productThunk";
 import "./Filter.css";
 

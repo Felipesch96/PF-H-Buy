@@ -26,7 +26,11 @@ const ProductsPage = () => {
         </div>
       ) : (
         <Cards
-          array={products.filter((element) => element.isActive === true)}
+          array={
+            Array.isArray(products)
+              ? products.filter((element) => element.isActive === true)
+              : products
+          }
         />
       )}
     </div>

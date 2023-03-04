@@ -5,7 +5,6 @@ const productsCtrl = {};
 productsCtrl.getProducts = async (req, res) => {
   const { name, category, orderBy, orderDirection, brand, condition } =
     req.query;
-    console.log({name, category, orderBy, orderDirection, brand, condition});
   if (name && typeof name !== "string") {
     return res.status(400).send("the 'name' parameter should be a string");
   }
@@ -46,7 +45,7 @@ productsCtrl.getProducts = async (req, res) => {
         });
 
       if (!allProducts.length) {
-        return res.status(400).send("There are no products in the DataBase")
+        return res.status(202).send("There are no products in the DataBase")
       }
       return res.status(200).send(allProducts)
   } catch (error) {
