@@ -5,7 +5,6 @@ import {
   fetchCategories,
   fetchNewProducts,
 } from "../redux/thunks/productThunk";
-import { set } from "mongoose";
 
 export const useForm = (initialForm = {}, formValidations, categories) => {
   const dispatch = useDispatch();

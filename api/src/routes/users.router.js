@@ -16,5 +16,5 @@ router.get("/:id", usersById);
 router.post("/google", createNewUserByGoogle);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
-router.delete("adresss", deleteUserAddress);
+router.delete("/", deleteUserAddress);
 module.exports = router;
