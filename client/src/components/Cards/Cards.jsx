@@ -62,7 +62,7 @@ const Cards = ({ array }) => {
                   {Array.isArray(array) ? (
                     // array.length ? (
                     cardsCurrent.map((element) => (
-                      <div class="col">
+                      <div key={element._id} class="col">
                         <div class="card mb-3 rounded-4 bg-dark tarjeta">
                           <div class="d-grid gap-2 d-md-block">
                             <button
@@ -142,8 +142,7 @@ const Cards = ({ array }) => {
                             class="bi bi-exclamation-triangle-fill"
                             style={{ fontSize: "40px" }}
                           />
-                          <br />
-                          "{array}",
+                          <br />"{array}",
                           <hr />
                           <strong>click to go back </strong>
                         </Button>
@@ -151,7 +150,6 @@ const Cards = ({ array }) => {
                     </div>
                   )}
                 </div>
-                
               </div>
             </div>
           </>
