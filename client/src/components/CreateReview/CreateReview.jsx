@@ -1,10 +1,8 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 import StarIcon from "@mui/icons-material/Star";
-import Stack from "@mui/material/Stack";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
 import validate from "./validate";
