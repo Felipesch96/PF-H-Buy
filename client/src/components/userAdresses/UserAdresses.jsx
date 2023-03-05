@@ -9,6 +9,7 @@ export const UserAdresses = ({address, city, postalCode, fullname, country, setS
   const { _id} = useSelector(state => state.user.userLocal)
   const [clicked, setClicked] = useState(false)
   const dispatch = useDispatch()
+  console.log('id de la direccion',id)
   const deleteAddress = async(id) => {
     await axios.put(`${REACT_APP_API_URL}/users?id=${_id}&addressId=${id}`)
     dispatch(removeAddress(id))
@@ -30,7 +31,7 @@ export const UserAdresses = ({address, city, postalCode, fullname, country, setS
        <p className="shippingCardInfo">Postal Code: {postalCode}</p>
        <FaTrashAlt
             className="remover"
-            onClick={deleteAddress}
+            onClick={() => deleteAddress(id)}
           />
 
      </div>

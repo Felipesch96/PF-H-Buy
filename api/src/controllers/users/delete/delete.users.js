@@ -26,6 +26,7 @@ usersCtrl.deleteUserAddress = async (req, res) => {
   
   const { id } = req.query;
   const { addressId } = req.query;
+  console.log(id)
   try {
     const user = await User.findById(id);
     const addresses = user.userAddress;

@@ -41,7 +41,7 @@ const initialForm = {
   };
 
 export const AddAddress = () => {
-    const { form, handleChange, errors, handleBlur } = useForm(initialForm, validationsForm);
+    const { form, handleShipmentChange, errors, handleBlur } = useForm(initialForm, validationsForm);
     const buyer = useSelector((state) => state.user.userLocal);
     const orderId = useSelector((state) => state.cart.orderId);
     const dispatch = useDispatch()
@@ -82,7 +82,7 @@ export const AddAddress = () => {
               name="fullname"
               id="fullname"
               value={form?.fullname}
-              onChange={handleChange}
+              onChange={handleShipmentChange}
             />
             
           </section>
@@ -96,7 +96,7 @@ export const AddAddress = () => {
               name="country"
               id="country"
               value={form?.country}
-              onChange={handleChange}
+              onChange={ handleShipmentChange}
             />
             
           </section>
@@ -110,7 +110,7 @@ export const AddAddress = () => {
               name="city"
               id="city"
               value={form?.city}
-              onChange={handleChange}
+              onChange={ handleShipmentChange}
             />
             
           </section>
@@ -124,7 +124,7 @@ export const AddAddress = () => {
               name="address"
               id="address"
               value={form?.address}
-              onChange={handleChange}
+              onChange={ handleShipmentChange}
             />
             
           </section>
@@ -138,7 +138,7 @@ export const AddAddress = () => {
               name="postalCode"
               id="postal"
               value={form?.postalCode}
-              onChange={handleChange}
+              onChange={ handleShipmentChange}
             />
             
           </section>
