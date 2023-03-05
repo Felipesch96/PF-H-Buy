@@ -66,12 +66,14 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
 
   const handleSubmitProduct = async (e) => {
     e.preventDefault();
-    const { name, img, condition, price, description, category, stock } =
+    const { name, img, brand, model, condition, price, description, category, stock } =
       formStorage;
     dispatch(
       fetchNewProducts({
         name,
         img,
+        brand,
+        model,
         condition,
         price: Number(price),
         description,
@@ -83,6 +85,8 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     setformStorage({
       name: "",
       img: "",
+      brand: "",
+      model: "",
       price: "",
       description: "",
       category: "",
@@ -94,6 +98,12 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
   };
   const handleNameBlur = () => {
     setErrors(formValidations(formStorage.name, "name", categories));
+  };
+  const handleBrandBlur = () => {
+    setErrors(formValidations(formStorage.brand, "brand"));
+  };
+  const handleModelBlur = () => {
+    setErrors(formValidations(formStorage.model, "model"));
   };
   const handlePriceBlur = () => {
     setErrors(formValidations(formStorage.price, "price"));
@@ -129,5 +139,7 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     handleSubmitCategory,
     handleSubmitProduct,
     handleNameBlur,
+    handleBrandBlur,
+    handleModelBlur
   };
 };
