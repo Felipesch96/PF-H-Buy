@@ -55,8 +55,8 @@ const CreateReview = () => {
     if (Object.keys(error).length === 0) {
       dispatch(postReviews({ ...review }));
       setReview({
-        user_id: "6404105d1e292c1db0543f6b",
-        product_id: "63f68abba4053e7d816afde6",
+        user_id: "6400e3d8b537ed32782ac2ae",
+        product_id: "63f3c0a6a67dddb6eb0ceae8",
         qualification: 0,
         comment: "",
       });
@@ -65,6 +65,13 @@ const CreateReview = () => {
       alert("Completa los campos requeridos");
     }
   };
+  //
+  //   useEffect(() => {
+  //     dispatch(postReviews());
+  //     // return () => {
+  //     //   cleanup;
+  //     // };
+  //   }, [dispatch]);
 
   return (
     <div class="container">

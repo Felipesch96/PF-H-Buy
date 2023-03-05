@@ -18,7 +18,15 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     initialForm
   );
 
+  const [form, setForm] = useState(initialForm);
+  
 
+  const handleShipmentChange = ({ target }) => {
+    setForm({
+      ...form,
+      [target.name]: target.value,
+    });
+  };
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -107,6 +115,8 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
   };
 
   return {
+    form,
+    handleShipmentChange,
     formStorage,
     errors,
     handleStockcBlur,

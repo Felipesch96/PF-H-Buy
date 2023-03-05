@@ -24,10 +24,18 @@ const users = mongoose.Schema({
   phone: {
     type: String,
   },
-  
-  address: {
-    type: String,
+  address:{
+    type: String
   },
+  userAddress:[ 
+  {
+    fullname: { type: String },
+    address: { type: String },
+    city: { type: String  },
+    postalCode: { type: String },
+    country: { type: String }
+  }
+],
   isActive: {
     type: Boolean,
     default: true,
@@ -45,6 +53,15 @@ const users = mongoose.Schema({
   isAdmin: {
     type: Boolean,
     default: false,
+  },
+  created: {
+    type: Date,
+    immutable: true,
+    default: () => Date.now(),
+  },
+  modified: {
+    type: Date,
+    default: () => Date.now(),
   },
 });
 

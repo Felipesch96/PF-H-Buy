@@ -16,7 +16,7 @@ const stockAlert=()=>{
   })
 }
 
-export default function CartCard({ name, id, quantity, price }) {
+export default function CartCard({ name, id, quantity, price, img }) {
   const dispatch = useDispatch();
   const updateCart = async () => {
     const cant = { quantity: quantity };
@@ -27,7 +27,8 @@ export default function CartCard({ name, id, quantity, price }) {
   };
   return (
     <main className="cartCards">
-      <h1>{name}</h1>
+      <h1 className="productName">{name}</h1>
+      <img className="productPicture" src={img} alt={name}/>
       <h5> Price: {price * quantity}</h5>
       <div className="manageCartProduct">
         <button className="quantityModderPlus" onClick={updateCart}>
@@ -57,3 +58,4 @@ export default function CartCard({ name, id, quantity, price }) {
     </main>
   );
 }
+  

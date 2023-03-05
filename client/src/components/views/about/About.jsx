@@ -117,10 +117,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Cesar Leyton</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Cesarleops">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Cesarleops">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>
@@ -132,10 +132,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Jhoan Alvarez</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/jackira01">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/jackira01">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>
@@ -147,10 +147,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Lara Onyskiw</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/laraonys">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/laraonys">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>
@@ -162,10 +162,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Nicolas Iconicoff</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Nicoiconi">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Nicoiconi">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>
@@ -177,10 +177,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Cristopher Lazo</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Cristopher-99">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Cristopher-99">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>
@@ -192,10 +192,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Felipe Schwindt</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Felipesch96">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/Felipesch96">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>
@@ -207,10 +207,10 @@ const About = () => {
               style={{ width: "150px" }}
             />
             <h5>Francisco Cia</h5>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/FranciscoCia">
               <img src={linkedin} alt="" style={{ width: "50px" }} />{" "}
             </a>
-            <a href="https://github.com/emijhernandez">
+            <a href="https://github.com/FranciscoCia">
               <img src={github} alt="" style={{ width: "50px" }} />{" "}
             </a>
           </div>

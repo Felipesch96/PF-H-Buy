@@ -22,6 +22,12 @@
     gap: 10px;
 }
 
+.closeIcon:hover {
+    transition: 0.2s;
+    color: #387b62;
+    cursor: pointer;
+  }
+  
 .formInput{
     display: flex;
     flex-direction: column;

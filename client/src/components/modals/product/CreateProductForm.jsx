@@ -3,6 +3,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useForm } from "../../../hooks/useForm";
+import "./productsModal.css";
 
 const formValidations = (formStorage, type) => {
   const reg = new RegExp('^[0-9]*$');

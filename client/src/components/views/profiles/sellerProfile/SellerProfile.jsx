@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { ProductModal } from "../../../modals/product";
 import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 import "./SellerProfile.css";
+const { REACT_APP_API_URL } = process.env;
 
 const SellerProfile = () => {
   const [productModal, setProductModal] = useState(false);
+  const user = useSelector((state) => state.user.userLocal);
+  const [orders, setOrders] = useState();
+
+  const getOrders = async () => {
+    const {data} = await axios.get(`${REACT_APP_API_URL}/orders?seller_id=${user._id}`);
+    setOrders(data)
+  }
+
+  useEffect(() => {
+    if (!orders) getOrders();
+  }, [orders]); 
 
   return (
     <div class="container-fluid seller-profile">
@@ -78,12 +92,28 @@ const SellerProfile = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        Sales (cant)
+                        Sales ({orders?.length})
                       </button>
                       <ul class="dropdown-menu">
-                        <li>
-                          <span>Sale</span>
-                        </li>
+                      {orders && orders.map((element) => {
+                            return (
+                              <a class="dropdown-item" key={element._id}>
+                                    <h6>Order N° {element._id}</h6>
+                                    <p>Total price: ${element.totalPrice}</p>
+                                    <span>Products: </span>
+                                    {element.items?.map((element) => {
+                                      return(
+                                        <div key={element._id}>
+                                          <span>{element.product.name}</span>
+                                          <p>${element.product.price}</p>
+                                          <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span>
+                                        </div>
+                                      )
+                                    })}
+                              </a>
+                            );
+                          })}
+                          
                       </ul>
                     </div>
                   </span>

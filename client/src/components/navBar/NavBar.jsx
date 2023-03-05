@@ -25,6 +25,7 @@ const NavBar = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (location.pathname === "/") history.push("/");
     if (location.pathname === "/")
       setRutaHistorial({ ...rutaHistorial, home: true });
     if (location.pathname === "/products")
@@ -105,7 +106,7 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/about"
+                  location.pathname === "//about"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
@@ -136,20 +137,28 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-              <div className="shoppingCart">
-                <div
-                  className={
-                    amountOfItems === 0 ? "negativeCounter" : "counter"
-                  }
-                >
-                  {amountOfItems}
+              {location.pathname !== "/" &&
+              location.pathname !== "/shipping" &&
+              location.pathname !== "/orderPlacement" &&
+              location.pathname !== "/shoppingCart" &&
+              location.pathname !== "//profile" ? (
+                <div className="shoppingCart">
+                  <div
+                    className={
+                      amountOfItems === 0 ? "negativeCounter" : "counter"
+                    }
+                  >
+                    {amountOfItems}
+                  </div>
+                  <BsCart4
+                    className="carIcon"
+                    onClick={() => setIsClicked(!isClicked)}
+                  />
+                  {isClicked && <CartModal />}
                 </div>
-                <BsCart4
-                  className="carIcon"
-                  onClick={() => setIsClicked(!isClicked)}
-                />
-                {isClicked && <CartModal />}
-              </div>
+              ) : (
+                ""
+              )}
             </li>
             <li>
               <div class="btn-group">
