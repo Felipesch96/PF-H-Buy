@@ -5,7 +5,9 @@ import { ProductModal } from "../../../modals/product";
 import { CategoryModal } from "../../../modals/category";
 import { ShowDeactiveCategoriesModal } from "../../../modals/showCategories/ShowDeactiveCategoriesModal";
 import { ShowDeactiveProductModal } from "../../../modals/showProducts/ShowActiveProductModal";
-import { ShowUsersModal } from "../../../modals/showUsers";
+import { ShowActiveUsersModal } from "../../../modals/showUsers/ShowActiveUsersModal";
+import { ShowDeactiveUsersModal } from "../../../modals/showUsers/ShowDeactiveUsersModal";
+
 
 import "./adminBoard.css";
 import {
@@ -35,7 +37,8 @@ export const AdminBoard = () => {
   const [modifyProductModal, setModifyProductModal] = useState(false);
   const [showActiveProducts, setShowActiveProducts] = useState(false);
   const [showDeactiveProducts, setShowDeactiveProducts] = useState(false);
-  const [showUsers, setShowUsers] = useState(false);
+  const [showActiveUsers, setShowActiveUsers] = useState(false);
+  const [showDeactiveUsers, setShowDeactiveUsers] = useState(false);
 
 
   return (
@@ -52,7 +55,8 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(false)
               setShowDeactiveProducts(false);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Create Categories
@@ -67,7 +71,8 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(false);
               setShowDeactiveProducts(false);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Show active categories
@@ -82,7 +87,8 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(false);
               setShowDeactiveProducts(false);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Show deactive categories
@@ -97,7 +103,8 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(false);
               setShowDeactiveProducts(false);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Create Product
@@ -112,7 +119,8 @@ export const AdminBoard = () => {
               setModifyProductModal(true);
               setShowActiveProducts(false);
               setShowDeactiveProducts(false);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Modify Product
@@ -127,7 +135,8 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(true);
               setShowDeactiveProducts(false);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Show active products
@@ -142,7 +151,8 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(false);
               setShowDeactiveProducts(true);
-              setShowUsers(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Show deactive products
@@ -157,10 +167,27 @@ export const AdminBoard = () => {
               setModifyProductModal(false);
               setShowActiveProducts(false);
               setShowDeactiveProducts(false);
-              setShowUsers(true);
+              setShowActiveUsers(true);
+              setShowDeactiveUsers(false);
             }}
           >
-            Show users
+            Show active users
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
+              setProductModal(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(true);
+            }}
+          >
+            Show deactive users
           </button>
         </section>
       </section>
@@ -179,7 +206,9 @@ export const AdminBoard = () => {
 
         {showDeactiveProducts && <ShowDeactiveProductModal onClose={setShowDeactiveProducts} />}
 
-        {showUsers && <ShowUsersModal onClose={setShowUsers} />}
+        {showActiveUsers && <ShowActiveUsersModal onClose={setShowActiveUsers} />}
+
+        {showDeactiveUsers && <ShowDeactiveUsersModal onClose={setShowDeactiveUsers} />}
       </div>
     </main>
   );

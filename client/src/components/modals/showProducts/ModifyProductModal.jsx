@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { editProduct } from "../../../helpers/editProduct";
+import { fetchProducts } from "../../../redux/thunks/productThunk";
 import { EditProductCard } from "../../editProductCard";
 import "./showProducts.css";
 
@@ -93,6 +94,7 @@ export const ModifyProductModal = ({ onClose }) => {
       };
     });
   };
+
 
   return (
     <section className="modify-modal">
