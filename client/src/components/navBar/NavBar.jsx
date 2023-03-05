@@ -25,8 +25,8 @@ const NavBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/") history.push("/home");
-    if (location.pathname === "/home")
+    if (location.pathname === "/") history.push("/");
+    if (location.pathname === "/")
       setRutaHistorial({ ...rutaHistorial, home: true });
     if (location.pathname === "/products")
       setRutaHistorial({ ...rutaHistorial, products: true });
@@ -82,11 +82,11 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/home"
+                  location.pathname === "/"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
-                href="/home"
+                href="/"
               >
                 Home
               </a>
@@ -94,11 +94,11 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/home/products"
+                  location.pathname === "/products"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
-                href="/home/products"
+                href="/products"
               >
                 Products
               </a>
@@ -106,7 +106,7 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "/home/about"
+                  location.pathname === "//about"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
@@ -137,13 +137,11 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-            
-             {    
-                  location.pathname !== '/home' && 
-                  location.pathname !== '/shipping' && 
-                  location.pathname !== '/orderPlacement' &&
-                  location.pathname !== '/shoppingCart' && 
-                  location.pathname !== '/home/profile' ? 
+              {location.pathname !== "/" &&
+              location.pathname !== "/shipping" &&
+              location.pathname !== "/orderPlacement" &&
+              location.pathname !== "/shoppingCart" &&
+              location.pathname !== "//profile" ? (
                 <div className="shoppingCart">
                   <div
                     className={
@@ -157,8 +155,10 @@ const NavBar = () => {
                     onClick={() => setIsClicked(!isClicked)}
                   />
                   {isClicked && <CartModal />}
-              </div> : ''}
-   
+                </div>
+              ) : (
+                ""
+              )}
             </li>
             <li>
               <div class="btn-group">
@@ -173,7 +173,7 @@ const NavBar = () => {
                 {isAuthenticated ? (
                   <ul class="dropdown-menu dropdown-menu-end justify-content-center">
                     <li>
-                      <Link className="nav-link mt-1" to="/home/profile">
+                      <Link className="nav-link mt-1" to="/profile">
                         Profile
                       </Link>
                     </li>

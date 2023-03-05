@@ -6,7 +6,7 @@ import {
   fetchDetailProduct,
   fetchProductView,
 } from "../../../redux/thunks/productThunk";
-import LoaderCard from "../../Loaders/CardLoader/CardLoader";
+import CardLoader from "../../CardLoader/CardLoader";
 import DetailCard from "./DetailCard";
 import "./DetailProduct.css";
 
@@ -17,8 +17,8 @@ const DetailPage = () => {
   const userLocal = useSelector((state) => state.user.userLocal);
   const payload = {
     product_id: id,
-    user_id: userLocal._id
-  }
+    user_id: userLocal._id,
+  };
 
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
@@ -28,7 +28,7 @@ const DetailPage = () => {
     };
   }, [dispatch, id]);
 
-  return <>{detailProduct.name ? <DetailCard /> : <LoaderCard />}</>;
+  return <>{detailProduct.name ? <DetailCard /> : <CardLoader />}</>;
 };
 
 export default DetailPage;
