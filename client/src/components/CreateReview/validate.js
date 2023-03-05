@@ -6,6 +6,7 @@ export default function validate(input) {
     error.qualification = "Calificacion entre 1 y 5";
 
   if (!input.comment) error.comment = "Comentario requerido";
+  else if (input.comment.length < 5) error.comment = "Minimo 5 Caracteres";
   else if (input.comment.length > 40) error.comment = "Maximo 40 Caracteres";
   //   else if (!onlyLetter.test(input.comment)) error.comment = "Solo Letras";
 

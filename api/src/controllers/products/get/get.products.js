@@ -27,27 +27,27 @@ productsCtrl.getProducts = async (req, res) => {
   const categories = category && category.split(",");
 
   try {
-      const where = {}
-      if (categories) where.category = categories;
-      if (name) where.name = new RegExp(name, "i");
-      if (brand) where.brand = brand;
-      if (condition) where.condition = condition;
+    const where = {};
+    if (categories) where.category = categories;
+    if (name) where.name = new RegExp(name, "i");
+    if (brand) where.brand = brand;
+    if (condition) where.condition = condition;
 
-      const allProducts = await Product.find(where)
-        .sort([[orderBy || "name", orderDirection || "asc"]])
-        .populate("reviews", {
-          comment: 1,
-          qualification: 1,
-          user_id: 1,
-          userName: 1,
-          userLastName: 1,
-          userImage: 1,
-        });
+    const allProducts = await Product.find(where)
+      .sort([[orderBy || "name", orderDirection || "asc"]])
+      .populate("reviews", {
+        comment: 1,
+        qualification: 1,
+        user_id: 1,
+        userName: 1,
+        userLastName: 1,
+        userImage: 1,
+      });
 
-      if (!allProducts.length) {
-        return res.status(202).send("There are no products in the DataBase")
-      }
-      return res.status(200).send(allProducts)
+    if (!allProducts.length) {
+      return res.status(202).send("There are no products in the DataBase");
+    }
+    return res.status(200).send(allProducts);
   } catch (error) {
     return res.status(400).send({ error: error.message });
   }
