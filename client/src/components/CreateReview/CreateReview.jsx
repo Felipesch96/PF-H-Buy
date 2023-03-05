@@ -2,22 +2,27 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import StarIcon from "@mui/icons-material/Star";
 import Stack from "@mui/material/Stack";
+import StarIcon from "@mui/icons-material/Star";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
 import validate from "./validate";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const CreateReview = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector((state) => state.user.userLocal);
+
   ///estado local para la calificacion
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
 
   const [review, setReview] = useState({
-    user_id: "6404105d1e292c1db0543f6b",
-    product_id: "63f68abba4053e7d816afde6",
+    user_id: user._id,
+    product_id: "64037b0724bb777cc1875c87",
     qualification: 0,
     comment: "",
   });
@@ -55,23 +60,18 @@ const CreateReview = () => {
     if (Object.keys(error).length === 0) {
       dispatch(postReviews({ ...review }));
       setReview({
-        user_id: "6400e3d8b537ed32782ac2ae",
-        product_id: "63f3c0a6a67dddb6eb0ceae8",
+        user_id: user._id,
+        product_id: "64037b0724bb777cc1875c87",
         qualification: 0,
         comment: "",
       });
       setValue(0);
+      alert("Review enviada, gracias por su tiempo !");
+      history.push("/profile");
     } else {
       alert("Completa los campos requeridos");
     }
   };
-  //
-  //   useEffect(() => {
-  //     dispatch(postReviews());
-  //     // return () => {
-  //     //   cleanup;
-  //     // };
-  //   }, [dispatch]);
 
   return (
     <div class="container">
