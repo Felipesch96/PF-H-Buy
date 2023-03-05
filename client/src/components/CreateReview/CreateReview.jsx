@@ -1,8 +1,10 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
 import StarIcon from "@mui/icons-material/Star";
-import { useState } from "react";
+import Stack from "@mui/material/Stack";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
 import validate from "./validate";
@@ -14,8 +16,8 @@ const CreateReview = () => {
   const [hover, setHover] = React.useState(-1);
 
   const [review, setReview] = useState({
-    user_id: "6400e3d8b537ed32782ac2ae",
-    product_id: "63f3c0a6a67dddb6eb0ceae8",
+    user_id: "6404105d1e292c1db0543f6b",
+    product_id: "63fe9cb6e83e986c6e6b9f4f",
     qualification: 0,
     comment: "",
   });
@@ -53,8 +55,8 @@ const CreateReview = () => {
     if (Object.keys(error).length === 0) {
       dispatch(postReviews({ ...review }));
       setReview({
-        user_id: "6400e3d8b537ed32782ac2ae",
-        product_id: "63f3c0a6a67dddb6eb0ceae8",
+        user_id: "6404105d1e292c1db0543f6b",
+        product_id: "63fe9cb6e83e986c6e6b9f4f",
         qualification: 0,
         comment: "",
       });
@@ -63,6 +65,13 @@ const CreateReview = () => {
       alert("Completa los campos requeridos");
     }
   };
+  //
+  //   useEffect(() => {
+  //     dispatch(postReviews());
+  //     // return () => {
+  //     //   cleanup;
+  //     // };
+  //   }, [dispatch]);
 
   return (
     <div class="container">
@@ -84,10 +93,10 @@ const CreateReview = () => {
               value={value}
               precision={0.5}
               getLabelText={getLabelText}
-              onChange={(newValue) => {
+              onChange={(event, newValue) => {
                 setValue(newValue);
               }}
-              onChangeActive={(newHover) => {
+              onChangeActive={(event, newHover) => {
                 setHover(newHover);
               }}
               emptyIcon={
@@ -124,6 +133,7 @@ const CreateReview = () => {
             )}
           </form>
         </div>
+        {/* <p class="text h2">Comment: {review.comment}</p> */}
         <button
           type="submit"
           class="btn btn-primary"
