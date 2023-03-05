@@ -30,12 +30,20 @@ const formValidations = (formStorage, type) => {
   if (type === "photo" && !formStorage) {
     errors.photo = "Please upload a photo";
   }
+  if (type === "brand" && !formStorage?.length > 0) {
+    errors.brand = "You must provide the brand of your product";
+  }  
+  if (type === "model" && !formStorage?.length > 0) {
+    errors.model = "You must provide the model of your product";
+  }
   return errors;
 };
 
 const initialForm = {
   name: "",
   img: "",
+  brand: "",
+  model: "",
   price: "",
   description: "",
   category: "",
@@ -47,7 +55,7 @@ const initialForm = {
 
 const CreateProductFrom = ({ onClose }) => {
   const { formStorage, errors, handleNameBlur, handleChange, handleSubmitProduct,
-    handlePriceBlur, handleDescBlur, handlePhotoBlur, handleStockcBlur, handleCondBlur, handleCatBlur } =
+    handlePriceBlur, handleDescBlur, handlePhotoBlur, handleStockcBlur, handleCondBlur, handleCatBlur, handleBrandBlur, handleModelBlur } =
     useForm(initialForm, formValidations);
 
   const categories = useSelector((state) => state.product.categories);
@@ -103,7 +111,48 @@ const CreateProductFrom = ({ onClose }) => {
           />
           {errors.photo && <p className="errors">{errors.photo}</p>}
         </section>
-
+        <section className="formInputP">
+          <label className="labelP">Select a category</label>
+          <select onChange={handleChange} onBlur={handleCatBlur} name="category">
+            <option>Select an option</option>
+            {categories.map((element) => {
+              return (
+                <option key={element._id}>{element.name}</option>
+              )
+            })}
+          </select>
+          {errors.category && <p className="errors">{errors.category}</p>}
+        </section>
+        <section className="formInputP">
+          <label className="labelP">
+            Brand
+          </label>
+          <input
+            name="brand"
+            id="brand"
+            type="text"
+            className="inputP"
+            value={formStorage.brand}
+            onChange={handleChange}
+            onBlur={handleBrandBlur}
+          />
+          {errors.brand && <p className="errors">{errors.brand}</p>}
+        </section>
+        <section className="formInputP">
+          <label className="labelP">
+            Model
+          </label>
+          <input
+            name="model"
+            id="model"
+            type="text"
+            className="inputP"
+            value={formStorage.model}
+            onChange={handleChange}
+            onBlur={handleModelBlur}
+          />
+          {errors.model && <p className="errors">{errors.model}</p>}
+        </section>
         <section className="formInputP">
           <label className="labelP">
             Add a Price
@@ -119,20 +168,6 @@ const CreateProductFrom = ({ onClose }) => {
           />
           {errors.price && <p className="errors">{errors.price}</p>}
         </section>
-
-        <section className="formInputP">
-          <label className="labelP">Select a category</label>
-          <select onChange={handleChange} onBlur={handleCatBlur} name="category">
-            <option>Select an option</option>
-            {categories.map((element) => {
-              return (
-                <option key={element._id}>{element.name}</option>
-              )
-            })}
-          </select>
-          {errors.category && <p className="errors">{errors.category}</p>}
-        </section>
-
         <section className="formInputP">
           <label className="labelP">
             Stock
