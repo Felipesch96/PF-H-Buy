@@ -5,12 +5,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const CarouselProducts = ({array}) => {
+const CarouselProducts = ({ array }) => {
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: array.length,
+    slidesToShow: array.length < 5 ? array.length : 4,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [

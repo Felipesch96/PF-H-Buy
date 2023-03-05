@@ -35,7 +35,6 @@ const Home = () => {
     if (user) {
       if (!userLocal.email) {
         if (user.given_name) {
-          console.log("no hay");
           const newUserAuth = {
             name: user.given_name,
             lastName: user.family_name,
@@ -44,7 +43,6 @@ const Home = () => {
           };
           dispatch(newGoogleUser(newUserAuth));
         } else {
-          console.log("no hay");
           const newUserAuth = {
             name: user.nickname,
             image: String(user.picture),
@@ -96,7 +94,7 @@ const Home = () => {
         <>
           <h2 className="text-center">According to your last searches</h2>
           <div class="container-fluid carousel-productos">
-            <CarouselProducts array={history} />
+            <CarouselProducts array={history.slice(1, 7)} />
           </div>
           <hr />
         </>

@@ -90,17 +90,21 @@ const DetailCard = () => {
                   <i class="bi bi-currency-dollar"></i>
                   {formater.format(detailProduct.price)}
                 </h4>
+                <br />
                 {detailProduct.score ? (
                   <>
                     <p class="card-text mb-1">
-                      Qualification:{" "}
-                      {detailProduct.score ? detailProduct.score : 5} ☆
+                      Qualification: {detailProduct.score} ☆
                     </p>
                     <div class="container">
                       <StarRating score={detailProduct.score} />
                     </div>
                   </>
-                ) : null}
+                ) : (
+                  <>
+                    <span>there are no grades</span>
+                  </>
+                )}
                 <p class="card-text">
                   <span class="text-muted">Last updated 3 mins ago</span>
                 </p>

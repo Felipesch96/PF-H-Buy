@@ -9,6 +9,7 @@ const Card = (props) => {
   const formatDate = moment(date).utc().format("MMMM Do, YYYY");
   const imgError =
     "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
+
   return (
     <div class="row g-0 tarjeta rounded-2">
       <div class="col-md-14">
@@ -26,6 +27,7 @@ const Card = (props) => {
           >
             ${formater.format(props.price)}
           </span>
+          <br />
           {props.score ? (
             <div class="container">
               <span class="card-text fs-6">Qualification: {props.score} ☆</span>
