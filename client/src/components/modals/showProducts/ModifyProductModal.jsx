@@ -14,7 +14,8 @@ export const ModifyProductModal = ({ onClose }) => {
   const [productToModify, setProductToModify] = useState();
   const [habilitar, setHabilitar] = useState(false);
   const [modifiedProduct, setModifiedProduct] = useState();
-  // console.log(products);
+
+  const [imgPreview, setImgPreview] = useState();
 
   const handleProductId = (e) => {
     setProductId(e.target.value)
@@ -39,7 +40,33 @@ export const ModifyProductModal = ({ onClose }) => {
     }
   };
 
-  const handlerModifiedProduct = (e) => {
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onloadend = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const handlerModifiedImage = async (e) => {
+    if (e.target.name === "img") {
+      const files = e.target.files;
+      const base64 = await convertBase64(files[0]);
+      console.log(base64)
+      setModifiedProduct({
+        ...modifiedProduct,
+        img: base64
+      });
+    }
+  }
+  const handlerModifiedProduct = async (e) => {
     setModifiedProduct({
       ...modifiedProduct,
       [e.target.name]: e.target.value
@@ -48,7 +75,23 @@ export const ModifyProductModal = ({ onClose }) => {
   console.log(modifiedProduct);
 
   const handleSaveChanges = () => {
+    setHabilitar(false);
     dispatch(editProduct(modifiedProduct));
+  };
+
+  const handlerImgPreview = (e) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+
+      fileReader.onloadend = () => {
+        setImgPreview(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
 
   return (
@@ -75,17 +118,17 @@ export const ModifyProductModal = ({ onClose }) => {
                   return (
                     <div className="datos-producto">
                       <div>
-                        <div className="inputs">
+                        <div className="inputs images">
                           <div className="modify-fields">
                             <img src={p.img_url} alt="" className="img-modify" />
                           </div>
-                          {
-                            habilitar
-                              ? <div className="save-button">
-                                <button onClick={() => handleSaveChanges()}>Save changes</button>
-                              </div>
-                              : null
-                          }
+                          <div>
+                            {
+                              imgPreview
+                                ? <img src={imgPreview} className="img-modify" />
+                                : null
+                            }
+                          </div>
                         </div>
                         <div className="inputs">
                           <div className="modify-fields">
@@ -113,6 +156,7 @@ export const ModifyProductModal = ({ onClose }) => {
                               ? <div className="modify-fields">
                                 <label htmlFor="">New condition</label>
                                 <select name="condition" id="" onChange={(e) => handlerModifiedProduct(e)}>
+                                  <option value={null}>-</option>
                                   <option value="new">New</option>
                                   <option value="used">Used</option>
                                 </select>
@@ -130,6 +174,8 @@ export const ModifyProductModal = ({ onClose }) => {
                               ? <div className="modify-fields">
                                 <label htmlFor="">isActive?</label>
                                 <select name="isActive" id="" onChange={(e) => handlerModifiedProduct(e)}>
+                                  <option value={null}>-</option>
+
                                   <option value="true">Yes</option>
                                   <option value="false">No</option>
                                 </select>
@@ -172,9 +218,18 @@ export const ModifyProductModal = ({ onClose }) => {
                           </div>
                           {
                             habilitar
-                              ? <div className="modify-fields">
+                              ? <div className="modify-fields" onChange={(e) => handlerImgPreview(e)}>
                                 <label htmlFor="">Select new image</label>
-                                <input type="file" />
+                                <input name="img" type="file" onChange={(e) => handlerModifiedImage(e)} />
+                              </div>
+                              : null
+                          }
+                        </div>
+                        <div>
+                          {
+                            habilitar
+                              ? <div className="save-button">
+                                <button onClick={() => handleSaveChanges()}>Save changes</button>
                               </div>
                               : null
                           }

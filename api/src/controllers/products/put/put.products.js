@@ -1,15 +1,31 @@
 const Product = require("../../../schemas/Products");
+const cloudinary = require("../../cloudinary/cloudinaryConection");
+
 
 const productsCtrl = {};
 
 productsCtrl.updateProduct = async (req, res) => {
   const { id } = req.params;
   const data = req.body;
-  try {
-    await Product.findByIdAndUpdate(id, data);
-    res.status(200).send("updated with success");
-  } catch (error) {
-    res.status(400).send(error.message);
+  const productById = await Product.findById(id);
+  console.log(productById)
+
+  if (data.img) {
+    try {
+      await cloudinary.uploader.destroy(productById.img_public_id);
+      const uploadResponse = await cloudinary.uploader.upload(data.img, {
+        upload_preset: "henrybuy",
+      });
+      // console.log(uploadResponse);
+      await Product.findByIdAndUpdate(id, {
+        ...data,
+        img_url: uploadResponse.secure_url,
+        img_public_id: uploadResponse.public_id,
+      });
+      res.status(200).send("updated with success");
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
   }
 };
 

@@ -22,6 +22,7 @@
 .img-modify{
   height: 10rem ;
   width: 10rem;
+  margin-left: 1rem;
 }
 
 .modify-fields{
@@ -38,10 +39,15 @@
   position: relative;
   background-color: #5ec59f ;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 .save-button{
-  margin-left: 2rem;
-  margin-top: 8rem;
+  margin-left: 8rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.images{
+  display: flex;
 }
