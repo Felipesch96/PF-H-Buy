@@ -3,10 +3,11 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useForm } from "../../../hooks/useForm";
+import PreviewCard from "../../Card/PreviewCard";
 import "./productsModal.css";
 
 const formValidations = (formStorage, type) => {
-  const reg = new RegExp('^[0-9]*$');
+  const reg = new RegExp("^[0-9]*$");
   const errors = {};
 
   if (type === "name" && !formStorage.trim()) {
@@ -21,10 +22,16 @@ const formValidations = (formStorage, type) => {
   if (type === "stock" && (formStorage < 1 || !reg.test(formStorage))) {
     errors.stock = "You must provide at least 1 product";
   }
-  if (type === "condition" && (!formStorage || formStorage === "Select an option")) {
+  if (
+    type === "condition" &&
+    (!formStorage || formStorage === "Select an option")
+  ) {
     errors.condition = "Please select a condition";
   }
-  if (type === "category" && (!formStorage || formStorage === "Select an option")) {
+  if (
+    type === "category" &&
+    (!formStorage || formStorage === "Select an option")
+  ) {
     errors.category = "Please select a category";
   }
   if (type === "photo" && !formStorage) {
@@ -32,7 +39,7 @@ const formValidations = (formStorage, type) => {
   }
   if (type === "brand" && !formStorage?.length > 0) {
     errors.brand = "You must provide the brand of your product";
-  }  
+  }
   if (type === "model" && !formStorage?.length > 0) {
     errors.model = "You must provide the model of your product";
   }
@@ -51,15 +58,26 @@ const initialForm = {
   condition: "",
 };
 
-
-
 const CreateProductFrom = ({ onClose }) => {
-  const { formStorage, errors, handleNameBlur, handleChange, handleSubmitProduct,
-    handlePriceBlur, handleDescBlur, handlePhotoBlur, handleStockcBlur, handleCondBlur, handleCatBlur, handleBrandBlur, handleModelBlur } =
-    useForm(initialForm, formValidations);
+  const {
+    formStorage,
+    errors,
+    handleNameBlur,
+    handleChange,
+    handleSubmitProduct,
+    handlePriceBlur,
+    handleDescBlur,
+    handlePhotoBlur,
+    handleStockcBlur,
+    handleCondBlur,
+    handleCatBlur,
+    handleBrandBlur,
+    handleModelBlur,
+  } = useForm(initialForm, formValidations);
 
   const categories = useSelector((state) => state.product.categories);
   const [imgPreview, setImgPreview] = useState();
+  const [formPreview, setformPreview] = useState({});
 
   const handlerImgPreview = (e) => {
     return new Promise((resolve, reject) => {
@@ -73,6 +91,14 @@ const CreateProductFrom = ({ onClose }) => {
       fileReader.onerror = (error) => {
         reject(error);
       };
+    });
+  };
+
+  const handleChangeValue = (e) => {
+    handleChange(e);
+    setformPreview({
+      ...formPreview,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -90,7 +116,7 @@ const CreateProductFrom = ({ onClose }) => {
             id="name"
             name="name"
             value={formStorage.name}
-            onChange={handleChange}
+            onChange={handleChangeValue}
             className="inputP"
             onBlur={handleNameBlur}
           />
@@ -98,87 +124,79 @@ const CreateProductFrom = ({ onClose }) => {
         </section>
 
         <section className="formInputP" onChange={(e) => handlerImgPreview(e)}>
-          <label className="labelP">
-            Upload an image
-          </label>
+          <label className="labelP">Upload an image</label>
           <input
             name="img"
             id="img"
             type="file"
             className=""
-            onChange={handleChange}
+            onChange={handleChangeValue}
             onBlur={handlePhotoBlur}
           />
           {errors.photo && <p className="errors">{errors.photo}</p>}
         </section>
         <section className="formInputP">
           <label className="labelP">Select a category</label>
-          <select onChange={handleChange} onBlur={handleCatBlur} name="category">
+          <select
+            onChange={handleChangeValue}
+            onBlur={handleCatBlur}
+            name="category"
+          >
             <option>Select an option</option>
             {categories.map((element) => {
-              return (
-                <option key={element._id}>{element.name}</option>
-              )
+              return <option key={element._id}>{element.name}</option>;
             })}
           </select>
           {errors.category && <p className="errors">{errors.category}</p>}
         </section>
         <section className="formInputP">
-          <label className="labelP">
-            Brand
-          </label>
+          <label className="labelP">Brand</label>
           <input
             name="brand"
             id="brand"
             type="text"
             className="inputP"
             value={formStorage.brand}
-            onChange={handleChange}
+            onChange={handleChangeValue}
             onBlur={handleBrandBlur}
           />
           {errors.brand && <p className="errors">{errors.brand}</p>}
         </section>
         <section className="formInputP">
-          <label className="labelP">
-            Model
-          </label>
+          <label className="labelP">Model</label>
           <input
             name="model"
             id="model"
             type="text"
             className="inputP"
             value={formStorage.model}
-            onChange={handleChange}
+            onChange={handleChangeValue}
             onBlur={handleModelBlur}
           />
           {errors.model && <p className="errors">{errors.model}</p>}
         </section>
         <section className="formInputP">
-          <label className="labelP">
-            Add a Price
-          </label>
+          <label className="labelP">Add a Price</label>
           <input
             name="price"
             id="price"
             type="text"
             className="inputP"
             value={formStorage.price}
-            onChange={handleChange}
+            onChange={handleChangeValue}
             onBlur={handlePriceBlur}
           />
           {errors.price && <p className="errors">{errors.price}</p>}
         </section>
         <section className="formInputP">
-          <label className="labelP">
-            Stock
-          </label>
+          <label className="labelP">Stock</label>
           <input
             name="stock"
             id="stock"
             type="text"
             className="inputP"
             value={formStorage.stock}
-            onChange={handleChange}
+            onChange={handleChangeValue}
             onBlur={handleStockcBlur}
           />
           {errors.stock && <p className="errors">{errors.stock}</p>}
@@ -186,7 +204,11 @@ const CreateProductFrom = ({ onClose }) => {
 
         <section className="formInputP">
           <label className="labelP">Select a condition</label>
-          <select onChange={handleChange} onBlur={handleCondBlur} name="condition">
+          <select
+            onChange={handleChangeValue}
+            onBlur={handleCondBlur}
+            name="condition"
+          >
             <option>Select an option</option>
             <option>new</option>
             <option>used</option>
@@ -195,51 +217,56 @@ const CreateProductFrom = ({ onClose }) => {
         </section>
 
         <section className="formInputP">
-          <label className="labelP">
-            Describe your product
-          </label>
+          <label className="labelP">Describe your product</label>
           <textarea
             id="resume"
             name="description"
-            onChange={handleChange}
+            onChange={handleChangeValue}
             value={formStorage.description}
             onBlur={handleDescBlur}
           ></textarea>
           {errors.description && <p className="errors">{errors.description}</p>}
         </section>
 
-        {formStorage.name && formStorage.description && formStorage.category && formStorage.condition && formStorage.img &&
-          formStorage.price && formStorage.stock && formStorage.category !== "Select an option" && formStorage.condition !== "Select an option"
-          ? (
-            <button
-              type="submit"
-              className="productButton"
-              onClick={() => {
-                Swal.fire({
-                  color:"white",
-                  background:"#1299",
-                  icon: "success",
-                  title: "Producto creado.",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-              }}
-            >
-              Create
-            </button>
-          ) : (
-            <span className="errors">
-              Please fill the blanks to create a product
-            </span>
-          )}
-
+        {formStorage.name &&
+        formStorage.description &&
+        formStorage.category &&
+        formStorage.condition &&
+        formStorage.img &&
+        formStorage.price &&
+        formStorage.stock &&
+        formStorage.category !== "Select an option" &&
+        formStorage.condition !== "Select an option" ? (
+          <button
+            type="submit"
+            className="productButton"
+            onClick={() => {
+              Swal.fire({
+                color: "white",
+                background: "#1299",
+                icon: "success",
+                title: "Producto creado.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }}
+          >
+            Create
+          </button>
+        ) : (
+          <span className="errors">
+            Please fill the blanks to create a product
+          </span>
+        )}
       </form>
       <div className="img-preview">
-        {
-          imgPreview
-            ? <img src={imgPreview} />
-            : null
-        }
+        <PreviewCard
+          img={imgPreview}
+          name={formPreview.name}
+          price={formPreview.price}
+          category={formPreview.category}
+          description={formPreview.description}
+        />
       </div>
     </div>
   );
