@@ -112,10 +112,12 @@ const DetailCard = () => {
                     <span>there are no grades</span>
                   </>
                 )}
-                <p class="card-text">
+                <div class="card-text mt-3">
                   {/* <span class="text-muted">Last updated 3 mins ago</span> */}
-                  <span class="text-muted">Published: {formatDate}</span>
-                </p>
+                  <span class="text-muted">
+                    Published: <strong>{formatDate}</strong>{" "}
+                  </span>
+                </div>
               </div>
               <button
                 class="p-1 btn btn-success bi bi-handbag-fill m-3"
