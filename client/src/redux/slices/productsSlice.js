@@ -4,14 +4,10 @@ export const productsSlice = createSlice({
   name: "productSlice",
   initialState: {
     categories: [],
-
     products: [],
     filters: {},
     order: { by: "name", direction: "asc" },
-    // search: [],
-    // filter: [],
     detailproduct: {},
-    // filterHelper: [],
     topViews: [],
     error: "",
   },
@@ -130,11 +126,7 @@ export const productsSlice = createSlice({
     //     state.filter = [...state.products].sort((a, b) => b.score - a.score);
     //   }
     // },
-    // setTopViews: (state) => {
-    //   state.topViews = [...state.products]
-    //     .sort((a, b) => b.visits.length - a.visits.length)
-    //     .slice(0, 5);
-    // },
+    // 
     // clearFilter: (state) => {
     //   state.filterHelper.length
     //     ? (state.filterHelper = []) && (state.filter = [])
@@ -149,10 +141,16 @@ export const productsSlice = createSlice({
     clearDetail: (state) => {
       state.detailproduct = [];
     },
+    setTopViews: (state) => {
+        state.topViews = [...state.products]
+          .sort((a, b) => b.visits.length - a.visits.length)
+          .slice(0, 5);
+      },
   },
 });
 
 export const {
+  setTopViews,
   setProducts,
   setCategories,
   detailProduct,

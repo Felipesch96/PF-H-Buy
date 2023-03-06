@@ -17,9 +17,9 @@ const PreviewCard = (props) => {
           <button
             class="btn btn-primary bi bi-cart-plus-fill m-2"
             type="button"
-            disabled="true"
+            disabled={true}
           ></button>
-          <FavoriteButton disable="true" />
+          <FavoriteButton disable={true} />
         </div>
         <div class="row g-0 tarjeta rounded-2">
           <div class="col-md-14">
@@ -71,7 +71,7 @@ const PreviewCard = (props) => {
         </div>
 
         <div class="ver-produto">
-          <button disabled="true" type="button" class="btn btn-primary btn-sm">
+          <button disabled={true} type="button" class="btn btn-primary btn-sm">
             View Product
           </button>
         </div>
