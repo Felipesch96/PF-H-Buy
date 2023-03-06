@@ -4,18 +4,20 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import StarIcon from "@mui/icons-material/Star";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { postReviews } from "../../redux/thunks/review.Thunk";
-import validate from "./validate";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postReviews } from "../../redux/thunks/review.Thunk";
+const { REACT_APP_API_URL } = process.env;
+import validate from "./validate";
+import axios from "axios";
+import "./CreateReview.css";
 
 const CreateReview = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.user.userLocal);
-
+  const order = useSelector;
   ///estado local para la calificacion
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
@@ -66,83 +68,111 @@ const CreateReview = () => {
         comment: "",
       });
       setValue(0);
-      alert("Review enviada, gracias por su tiempo !");
+      alert("Review sent successfully, Thank you for your time!");
       history.push("/profile");
     } else {
       alert("Completa los campos requeridos");
     }
   };
+  /// producto id
+  const [orders, setOrders] = useState();
 
+  const getOrders = async () => {
+    const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
+    setOrders(data);
+  };
+
+  useEffect(() => {
+    if (!orders) getOrders();
+  }, [orders]);
+
+  ///
   return (
-    <div class="container">
-      <h2>Dejanos tu opinion acerca del Producto</h2>
-      <form class="form-floating">
-        <div>
-          <span>Califica el producto:</span>
-        </div>
-        <div class="form-floating mb-3 rating">
-          <Box
-            sx={{
-              width: 200,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Rating
-              name="hover-feedback"
-              value={value}
-              precision={0.5}
-              getLabelText={getLabelText}
-              onChange={(event, newValue) => {
-                setValue(newValue);
-              }}
-              onChangeActive={(event, newHover) => {
-                setHover(newHover);
-              }}
-              emptyIcon={
-                <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
-              }
-            />
-            {value !== null && (
-              <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
-            )}
-          </Box>
-          <p class="text h2">{(review.qualification = value)}</p>
-          {validate(review).qualification ? (
-            <p class="text-danger">{validate(review).qualification}</p>
-          ) : (
-            <p></p>
-          )}
-        </div>
-        <div>
-          <span>Ingresa un comentario:</span>
-        </div>
-        <div class="form-floating mb-3">
-          <form class="form-floating">
-            <input
-              type="text"
-              name="comment"
-              id="comment"
-              onChange={(e) => handleInputChange(e)}
-              value={review.comment}
-            />
-            {validate(review).comment ? (
-              <p class="text-danger">{validate(review).comment}</p>
+    <div class="container fondoReview">
+      <div class="formulario ">
+        <form class="form-floating  p-3 formContent">
+          <h1 class="text-center mb-5 p-2 title">
+            ¡Leave us your opinion about the Product!
+          </h1>
+          <div class="form-floating rating mb-3">
+            <div class="input-group justify-content-center">
+              <div class="mt-3"></div>
+              <label class="h4 rating p-1" for="star">
+                <i class="bi bi-star-fill"> Rate the product:</i>{" "}
+                {(review.qualification = value)}
+              </label>
+              <Box
+                sx={{
+                  alignItems: "center",
+                }}
+              >
+                <Rating
+                  name="hover-feedback"
+                  value={value}
+                  precision={0.5}
+                  getLabelText={getLabelText}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                  onChangeActive={(event, newHover) => {
+                    setHover(newHover);
+                  }}
+                  emptyIcon={
+                    <StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />
+                  }
+                />
+                {value !== null && (
+                  <Box sx={{ ml: 2 }}>
+                    {labels[hover !== -1 ? hover : value]}
+                  </Box>
+                )}
+                {/* <span class="text h2 p-2" id="star">
+                  {(review.qualification = value)}
+                </span> */}
+              </Box>
+            </div>
+            {validate(review).qualification ? (
+              <p class="text-danger mb-2">{validate(review).qualification}</p>
             ) : (
-              <p></p>
+              <div class="text-success mb-2">¡Valid!</div>
             )}
-          </form>
-        </div>
-        {/* <p class="text h2">Comment: {review.comment}</p> */}
-        <button
-          type="submit"
-          class="btn btn-primary"
-          onClick={(e) => handleSubmit(e)}
-          disabled={Object.keys(validate(review)).length === 0 ? false : true}
-        >
-          Send
-        </button>
-      </form>
+          </div>
+          <div class="form-floating mb-3 ">
+            <div class="input-group input-group-lg justify-content-center">
+              <label for="comment" class="form-label h4">
+                <i class="bi bi-chat-left-text-fill"> Comment:</i>
+              </label>
+              {/* <form class="form-floating"> */}
+              <div>
+                <input
+                  type="text"
+                  name="comment"
+                  id="comment"
+                  placeholder="enter comment..."
+                  class="form-control input-lg rounded-1 mb-2"
+                  value={review.comment}
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
+            </div>
+            {validate(review).comment ? (
+              <div class="text-danger mb-2">{validate(review).comment}</div>
+            ) : (
+              <div class="text-success mb-2">¡Valid!</div>
+            )}
+            <button
+              type="submit"
+              class="btn btn-success btn-lg"
+              onClick={(e) => handleSubmit(e)}
+              disabled={
+                Object.keys(validate(review)).length === 0 ? false : true
+              }
+            >
+              <i class="bi bi-send-check-fill"> Submit </i>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -14,16 +14,15 @@ const ClientProfile = () => {
   const [orders, setOrders] = useState();
 
   const getOrders = async () => {
-    const {data} = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
-    setOrders(data)
-  }
+    const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
+    setOrders(data);
+  };
 
   useEffect(() => {
     if (!orders) getOrders();
-  }, [orders]); 
+  }, [orders]);
 
-
-    return (
+  return (
     <div>
       <div class="col-lg-8 col-md-8">
         <nav class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -83,25 +82,34 @@ const ClientProfile = () => {
                           Purchases ({orders?.length})
                         </button>
                         <ul class="dropdown-menu">
-                        {orders && orders.map((element) => {
-                            return (
-                              <a class="dropdown-item" key={element._id}>
-                                    <h6>Order N° {element._id}</h6>
-                                    <p>Total price: ${element.totalPrice}</p>
-                                    <span>Products: </span>
-                                    {element.items?.map((element) => {
-                                      return(
-                                        <div key={element._id}>
-                                          <span>{element.product.name}</span>
-                                          <p>${element.product.price}</p>
-                                          <span><button type="button" class="btn btn-secondary btn-sm">Score</button></span>
-                                        </div>
-                                      )
-                                    })}
-                              </a>
-                            );
-                          })}
-                          
+                          {orders &&
+                            orders.map((element) => {
+                              return (
+                                <a class="dropdown-item" key={element._id}>
+                                  <h6>Order N° {element._id}</h6>
+                                  <p>Total price: ${element.totalPrice}</p>
+                                  <span>Products: </span>
+                                  {element.items?.map((element) => {
+                                    return (
+                                      <div key={element._id}>
+                                        <span>{element.product.name}</span>
+                                        <p>${element.product.price}</p>
+                                        <span>
+                                          <Link to={`/review`}>
+                                            <button
+                                              type="button"
+                                              class="btn btn-secondary btn-sm"
+                                            >
+                                              Rate the product
+                                            </button>
+                                          </Link>
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </a>
+                              );
+                            })}
                         </ul>
                       </div>
                     </span>
