@@ -8,10 +8,10 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
-const { REACT_APP_API_URL } = process.env;
 import validate from "./validate";
 import axios from "axios";
 import "./CreateReview.css";
+// const { REACT_APP_API_URL } = process.env;
 
 const CreateReview = () => {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const CreateReview = () => {
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
 
+  //Estado local de la review
   const [review, setReview] = useState({
     user_id: user._id,
     product_id: "64037b0724bb777cc1875c87",
@@ -75,16 +76,6 @@ const CreateReview = () => {
     }
   };
   /// producto id
-  const [orders, setOrders] = useState();
-
-  const getOrders = async () => {
-    const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
-    setOrders(data);
-  };
-
-  useEffect(() => {
-    if (!orders) getOrders();
-  }, [orders]);
 
   ///
   return (
@@ -126,9 +117,6 @@ const CreateReview = () => {
                     {labels[hover !== -1 ? hover : value]}
                   </Box>
                 )}
-                {/* <span class="text h2 p-2" id="star">
-                  {(review.qualification = value)}
-                </span> */}
               </Box>
             </div>
             {validate(review).qualification ? (
@@ -142,7 +130,6 @@ const CreateReview = () => {
               <label for="comment" class="form-label h4">
                 <i class="bi bi-chat-left-text-fill"> Comment:</i>
               </label>
-              {/* <form class="form-floating"> */}
               <div>
                 <input
                   type="text"
@@ -176,6 +163,4 @@ const CreateReview = () => {
     </div>
   );
 };
-0;
-
 export default CreateReview;
