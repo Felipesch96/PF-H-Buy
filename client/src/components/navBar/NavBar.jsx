@@ -80,40 +80,43 @@ const NavBar = () => {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li className="nav-item">
-              <a
-                className={
-                  location.pathname === "/"
-                    ? "nav-link mt-1 route-flag route-hover"
-                    : "nav-link mt-1 route-hover"
-                }
-                href="/"
-              >
-                Home
-              </a>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <span
+                  className={
+                    location.pathname === "/"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                >
+                  Home
+                </span>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className={
-                  location.pathname === "/products"
-                    ? "nav-link mt-1 route-flag route-hover"
-                    : "nav-link mt-1 route-hover"
-                }
-                href="/products"
-              >
-                Products
-              </a>
+              <Link style={{ textDecoration: "none" }} to="/products">
+                <span
+                  className={
+                    location.pathname === "/products"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                >
+                  Products
+                </span>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className={
-                  location.pathname === "/about"
-                    ? "nav-link mt-1 route-flag route-hover"
-                    : "nav-link mt-1 route-hover"
-                }
-                href="/about"
-              >
-                About
-              </a>
+              <Link style={{ textDecoration: "none" }} to="/about">
+                <span
+                  className={
+                    location.pathname === "/about"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                >
+                  About
+                </span>
+              </Link>
             </li>
           </ul>
           <div>
