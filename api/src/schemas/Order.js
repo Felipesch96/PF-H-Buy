@@ -18,13 +18,13 @@ const orderSchema = new mongoose.Schema({
       },
     },
   ],
-  // shippingAddress: {
-  //   fullName: { type: String, required: true },
-  //   address: { type: String, required: true },
-  //   city: { type: String, required: true },
-  //   postalCode: { type: String, required: true },
-  //   country: { type: String, required: true },
-  // },
+  shippingAddress: {
+    fullname: { type: String, required: false , default: '' },
+    address: { type: String, required: false, default: '' },
+    city: { type: String, required: false, default: ''},
+    postalCode: { type: String, required: false, default: '' },
+    country: { type: String, required: false, default: '' },
+  },
   totalPrice: {
     type: Number,
     required: true,
@@ -33,13 +33,18 @@ const orderSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  paid: {
-    type: Boolean,
-    default: false,
+  status: {
+    type: String,
+    default: "false",
   },
-  // payment: {
-
-  // },
+  payment_id: {
+    type: String,
+    default: "false",
+  },
+  payment_method:{
+    type: String,
+    default: "false",
+  },
   created: {
     type: Date,
     immutable: true,

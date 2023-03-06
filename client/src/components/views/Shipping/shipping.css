@@ -1,0 +1,92 @@
+.shippingFormContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+
+}
+
+.shippingForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #146da1;
+    padding-left: 20px;
+    height: 500px;
+    width: 500px;
+    gap: 10px;
+    border-radius: 10px;
+    border-bottom: 2px solid #02b9f3;;
+
+}
+
+.shippingSection{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: black;
+    
+}
+
+.shippingInput{
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #02b9f3;
+}
+
+
+.shippingButton{
+    align-self: center;
+    background-color: #02b9f3;
+    color: white;
+    border-radius: 10px;
+    border: none;
+
+}
+
+
+.shippingLabel{
+    color: white;
+}
+
+.shippingTitle{
+    color: #02b9f3;
+    margin: 0;
+}
+
+.errorShippingMessage{
+    color: #8c0500;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700px;
+}
+
+
+.allAddresses{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+.allShippingInfo{
+    padding: 10px;
+}
+
+.shippingButtons{
+    display: flex;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.newAddress{
+    align-self: center;
+    background-color: #6ebe45;;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}

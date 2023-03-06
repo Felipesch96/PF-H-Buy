@@ -7,12 +7,14 @@ import SellerProfile from "../sellerProfile/SellerProfile";
 import { fetchUserById } from "../../../../redux/thunks/userThunk";
 import "./profileComponent.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useHistory } from "react-router-dom";
 
 const ProfileComponent = () => {
   const dispatch = useDispatch();
   const { user, loginWithRedirect } = useAuth0();
   const userLocal = useSelector((state) => state.user.userLocal);
   const { categories } = useSelector((state) => state.product);
+  const history = useHistory()
   const [userType, setUserType] = useState("Buyer");
 
   const buyerButton = () => {

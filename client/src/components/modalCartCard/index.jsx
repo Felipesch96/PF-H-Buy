@@ -17,32 +17,27 @@ export const ModalCartCard = ({ name, quantity, id }) => {
       return window.alert("No more product in stock");
     dispatch(incrementQuantity(id));
   };
-  return (
-    <div className="modalCards">
-      <p className="itemN">{name}</p>
-      <button className="modalButtonsPlus" onClick={updateCart}>
-        +
-      </button>
-      <p className="mQuan">{quantity}</p>
-      {quantity > 1 ? (
-        <button
-          className="modalButtonsMinus"
-          onClick={() => dispatch(decrementQuantity(id))}
-        >
-          -
-        </button>
-      ) : (
-        <FaTrashAlt
-          className="remover"
-          onClick={() => dispatch(removeFromCart({ id, quantity }))}
-        />
-      )}
-      {quantity > 1 ? (
-        <FaTrashAlt
-          className="remover"
-          onClick={() => dispatch(removeFromCart({ id, quantity }))}
-        />
-      ) : null}
-    </div>
-  );
-};
+    return(
+        <div className="modalCards">
+            <p className='itemN'>{name}</p>
+            <button className="modalButtonsPlus" onClick={updateCart}>
+            +
+            </button>
+            <p className="mQuan">{quantity}</p>
+            { quantity > 1
+             ? <button
+            className="modalButtonsMinus"
+            onClick={() => dispatch(decrementQuantity(id))}
+            >
+            -
+            </button> : <FaTrashAlt
+            className="remover"
+            onClick={() => dispatch(removeFromCart({ id, quantity }))}
+          />}
+          {quantity > 1 ? <FaTrashAlt className="remover"
+            onClick={() => dispatch(removeFromCart({ id, quantity }))}
+          /> : null }
+            
+        </div>
+    )
+}
