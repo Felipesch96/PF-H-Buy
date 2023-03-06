@@ -106,7 +106,7 @@ const NavBar = () => {
             <li className="nav-item">
               <a
                 className={
-                  location.pathname === "//about"
+                  location.pathname === "/about"
                     ? "nav-link mt-1 route-flag route-hover"
                     : "nav-link mt-1 route-hover"
                 }
