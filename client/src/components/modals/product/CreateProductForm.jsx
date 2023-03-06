@@ -143,9 +143,13 @@ const CreateProductFrom = ({ onClose }) => {
             name="category"
           >
             <option>Select an option</option>
-            {categories.map((element) => {
-              return <option key={element._id}>{element.name}</option>;
-            })}
+            {Array.isArray(categories) ? (
+              categories.map((element) => {
+                return <option key={element._id}>{element.name}</option>;
+              })
+            ) : (
+              <option>None</option>
+            )}
           </select>
           {errors.category && <p className="errors">{errors.category}</p>}
         </section>
