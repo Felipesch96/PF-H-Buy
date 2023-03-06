@@ -7,6 +7,7 @@ import './userAdresses.css';
 const {REACT_APP_API_URL} = process.env
 export const UserAdresses = ({address, city, postalCode, fullname, country, setSelected, id}) => {
   const { _id} = useSelector(state => state.user.userLocal)
+  console.log('id del usuario',_id)
   const [clicked, setClicked] = useState(false)
   const dispatch = useDispatch()
   console.log('id de la direccion',id)
