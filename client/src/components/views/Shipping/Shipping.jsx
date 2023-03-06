@@ -39,6 +39,8 @@ export default function Shipping() {
     history.push("/orderPlacement");
     
   };
+  console.log(buyer)
+  buyer.userAddress.map(e => console.log(e))
   return (
     buyer.userAddress?.length > 0 ? 
     <div className="allShippingInfo">
@@ -55,7 +57,7 @@ export default function Shipping() {
     </div>
     <div className="shippingButtons">   
      <button onClick={handleShipmentSubmit} className="shippingButton" disabled={!selected.address}>Continue</button>
-     <button className="newAddress" onClick={ buyer.userAddress.length === 5 ? window.alert('You only can have five addresses saved') :()=> history.push('/addAddress')}>New address</button></div>
+     <button className="newAddress" disabled={buyer.userAddress.length === 5} onClick={ ()=> history.push('/addAddress')}>New address</button></div>
     </div>
      :
       <AddAddress/>

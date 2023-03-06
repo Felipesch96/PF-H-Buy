@@ -6,7 +6,7 @@ import "./Card.css";
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
   const date = props.created;
-  const formatDate = moment(date).utc().format("MMMM Do, YYYY");
+  const formatDate = moment(date).format("MMMM Do YYYY");
   const imgError =
     "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
 

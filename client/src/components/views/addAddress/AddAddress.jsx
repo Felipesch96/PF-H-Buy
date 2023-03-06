@@ -5,7 +5,7 @@ import { setShipping } from "../../../redux/slices/cartSlice";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchUserById } from "../../../redux/thunks/userThunk";
 import { useEffect } from "react";
-import { addNewAddress } from "../../../redux/slices/usersSlice";
+import { addNewAddress, setUserById } from "../../../redux/slices/usersSlice";
 
 const {REACT_APP_API_URL} = process.env
 const initialForm = {
@@ -46,20 +46,22 @@ export const AddAddress = () => {
     const orderId = useSelector((state) => state.cart.orderId);
     const dispatch = useDispatch()
     const history = useHistory()
-   
+    console.log('este',orderId)
     const handleShipmentSubmit = async(e) => {
         e.preventDefault()
         
         dispatch(setShipping(form))
-        dispatch(addNewAddress(form))
+        
     try {
-          await axios.put(`${REACT_APP_API_URL}/users/${buyer._id}`,{
+        const {data} =   await axios.put(`${REACT_APP_API_URL}/users/${buyer._id}`,{
             userAddress: form
           })
-         
+         console.log(data)
           await axios.put(`${REACT_APP_API_URL}/orders/${orderId}`,{
             shippingAddress: form
           })
+
+          dispatch(addNewAddress(data))
     } catch (error) {
         console.log(error)
     }

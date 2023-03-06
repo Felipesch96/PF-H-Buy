@@ -7,11 +7,12 @@ import './userAdresses.css';
 const {REACT_APP_API_URL} = process.env
 export const UserAdresses = ({address, city, postalCode, fullname, country, setSelected, id}) => {
   const { _id} = useSelector(state => state.user.userLocal)
+  console.log('id del usuario',_id)
   const [clicked, setClicked] = useState(false)
   const dispatch = useDispatch()
   console.log('id de la direccion',id)
   const deleteAddress = async(id) => {
-    await axios.put(`${REACT_APP_API_URL}/users?id=${_id}&addressId=${id}`)
+    await axios.delete(`${REACT_APP_API_URL}/users?id=${_id}&addressId=${id}`)
     dispatch(removeAddress(id))
   }
     return(

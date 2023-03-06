@@ -8,10 +8,10 @@ import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postReviews } from "../../redux/thunks/review.Thunk";
-const { REACT_APP_API_URL } = process.env;
 import validate from "./validate";
 import axios from "axios";
 import "./CreateReview.css";
+const { REACT_APP_API_URL } = process.env;
 
 const CreateReview = () => {
   const dispatch = useDispatch();
@@ -176,6 +176,5 @@ const CreateReview = () => {
     </div>
   );
 };
-0;
 
 export default CreateReview;
