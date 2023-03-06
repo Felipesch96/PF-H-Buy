@@ -13,7 +13,7 @@ export const ShowDeactiveProductModal = ({ onClose }) => {
     { field: "isActive", headerName: "Active" }
   ];
 
-  const deactiveProducts = products.filter(p => p.isActive === false);
+  const deactiveProducts = Array.isArray(products) ? products.filter(p => p.isActive === false) : [];
   // console.log(deactiveProducts);
 
   const rows = deactiveProducts.map((span) => ({

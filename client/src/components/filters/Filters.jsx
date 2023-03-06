@@ -4,13 +4,17 @@ import {
   fetchProducts,
   fetchCategories,
 } from "../../redux/thunks/productThunk";
+import "../views/productsPage/ProductsPage.css";
 import "./Filter.css";
+
 
 const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
   const { categories, filters, order, page } = useSelector(
     (state) => state.product
   );
+
+  const activeCategories = Array.isArray(categories) ? categories.filter(c => c.isActive === true) : categories;
 
   useEffect(() => {
     if (!categories.length) {
@@ -99,7 +103,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
     setInput(1);
   }
 
-  return (
+  return Array.isArray(categories) ? (
     <div>
       <div
         id="sidebar"
@@ -115,7 +119,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
               <div className="mt-3 rounded-2 filterCategories">
                 <h6 class="span-1 fw-bold">Categories</h6>
                 <div>
-                  {categories?.map((c) => {
+                  {activeCategories?.map((c) => {
                     return (
                       <div key={c._id}>
                         <input
@@ -197,6 +201,18 @@ const Filters = ({ setCurrentPage, setInput }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <>
+      <div class="mt-5">
+          <div class="alert alert-danger" role="alert">
+            <i
+              class="bi bi-exclamation-triangle-fill"
+              style={{ fontSize: "30px" }}
+            />
+            " {categories}"
+          </div>
+        </div>
+    </>
   );
 };
 

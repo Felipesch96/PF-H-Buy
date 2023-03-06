@@ -9,22 +9,14 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { fetchCategories } from "../../redux/thunks/productThunk";
 
-export const EditCategoryCard = ({ categories }) => {
+export const EditDeactiveCategoryCard = ({ category }) => {
   const dispatch = useDispatch();
-  const [edit, setEdit] = useState(false);
-  const [selected, setSelected] = useState(false);
+  const [edit, setEdit] = useState(true);
   const [newCategory, setNewCategory] = useState({
-    id: categories._id,
-    name: categories.name,
+    id: category._id,
+    name: category.name,
+    isActive: category.isActive
   });
-
-  const handleOnClickEdit = () => {
-    if (edit) setSelected(true);
-  };
-
-  const handleOnChange = ({ target }) => {
-    setNewCategory({ ...newCategory, name: target.value });
-  };
 
   const onDelete = (id) => {
     Swal.fire({
@@ -56,7 +48,7 @@ export const EditCategoryCard = ({ categories }) => {
   const submitChanges = (e) => {
     e.preventDefault();
     editCategory(newCategory);
-    setEdit(false);
+    setEdit(!edit);
     Swal.fire({
       color:"white",
       background:"#1299",
@@ -66,23 +58,35 @@ export const EditCategoryCard = ({ categories }) => {
       timer: 1500,
       });
   };
+
+  const handleChangeName = ({ target }) => {
+    setNewCategory({ ...newCategory, name: target.value });
+    console.log(newCategory);
+  };
+
+  const handleActiveChange = ({ target }) => {
+    setNewCategory({ ...newCategory, isActive: target.value })
+  };
+
   return (
     <div className="categoryDetails">
-      {selected ? (
-        <input
-          value={newCategory.name}
-          type="text"
-          onChange={handleOnChange}
-          onBlur={() => {
-            setSelected(false);
-          }}
-        />
-      ) : (
-        <span onClick={handleOnClickEdit}>{newCategory.name}</span>
-      )}
+      {
+         <div>
+         <input
+           type="text"
+           value={newCategory.name}
+           disabled={edit}
+           onChange={(e) => handleChangeName(e)}
+         />
+         <select name="active" id="active" disabled={edit} onChange={(e) => handleActiveChange(e)}>
+           <option value={false}>Deactive</option>
+           <option value={true}>Active</option>
+         </select>
+       </div>
+      }
       <FiEdit2 onClick={() => setEdit(!edit)} />
       {!edit && <MdDelete onClick={() => onDelete(newCategory.id)} />}
-      {edit && <AiOutlineSave onClick={submitChanges} />}
+      {!edit && <AiOutlineSave onClick={submitChanges} />}
     </div>
   );
 };

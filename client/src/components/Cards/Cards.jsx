@@ -142,7 +142,8 @@ const Cards = ({ array }) => {
                             class="bi bi-exclamation-triangle-fill"
                             style={{ fontSize: "40px" }}
                           />
-                          <br />"{array}",
+                          <br />
+                          "{array}",
                           <hr />
                           <strong>click to go back </strong>
                         </Button>
@@ -150,6 +151,7 @@ const Cards = ({ array }) => {
                     </div>
                   )}
                 </div>
+                
               </div>
             </div>
           </>
