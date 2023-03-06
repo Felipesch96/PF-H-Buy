@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../../redux/thunks/productThunk";
+import { fetchProducts, getTopVisits } from "../../../redux/thunks/productThunk";
 import { newGoogleUser } from "../../../redux/thunks/userThunk";
 import CardLoader from "../../CardLoader/CardLoader";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
@@ -23,6 +23,7 @@ const Home = () => {
     setLoader(true);
     verifyAuth();
     dispatch(fetchProducts());
+    dispatch(getTopVisits())
     setLoader(false);
     const reloj = setInterval(() => {
       selectNewImage(selectedIndex, images);

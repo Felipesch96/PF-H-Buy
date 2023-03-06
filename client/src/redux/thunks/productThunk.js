@@ -6,6 +6,7 @@ import {
   detailProduct,
   clearDetail,
   setError,
+  setTopViews,
 } from "../slices/productsSlice";
 
 const { REACT_APP_API_URL } = process.env;
@@ -202,12 +203,12 @@ export const clearDetailProduct = () => {
 //   };
 // }
 
-// export const getTopVisits = () => {
-//   return async (dispatch) => {
-//     try {
-//       dispatch(setTopViews());
-//     } catch (error) {
-//       dispatch(setError(error.message));
-//     }
-//   };
-// };
+export const getTopVisits = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(setTopViews());
+    } catch (error) {
+      dispatch(setError(error.message));
+    }
+  };
+};

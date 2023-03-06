@@ -36,7 +36,6 @@ const DetailCard = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        dispatch(addToCart(detailProduct));
       } else {
         window.alert("No more products available");
       }
@@ -51,7 +50,6 @@ const DetailCard = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        dispatch(addToCart(detailProduct));
       } else {
         window.alert("Not in stock");
       }

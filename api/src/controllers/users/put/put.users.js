@@ -5,7 +5,7 @@ const usersCtrl = {};
 usersCtrl.updateUser = async (req, res) => {
   const { id } = req.params;
   const data = req.body.userAddress;
-  console.log(req.body.userAddress)
+  console.log('nueva adr',data)
   try {
     await User.findByIdAndUpdate(id, { $push: {"userAddress": {
       fullname: data.fullname,
@@ -14,7 +14,9 @@ usersCtrl.updateUser = async (req, res) => {
       address: data.address,
       postalCode: data.postalCode
     }}})
-    res.status(200).send("updated successfully");
+    const {userAddress} = await User.findById(id)
+    
+    res.status(200).send(userAddress);
   } catch (error) {
     console.log(error)
     res.status(400).send(error.message);

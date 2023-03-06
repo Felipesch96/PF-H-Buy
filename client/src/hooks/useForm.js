@@ -27,6 +27,12 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
       [target.name]: target.value,
     });
   };
+
+  
+ const handleBlur = (e) => {
+      handleChange(e);
+      setErrors(formValidations(form));
+ }
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -141,6 +147,7 @@ export const useForm = (initialForm = {}, formValidations, categories) => {
     handleSubmitProduct,
     handleNameBlur,
     handleBrandBlur,
-    handleModelBlur
+    handleModelBlur,
+    handleBlur
   };
 };

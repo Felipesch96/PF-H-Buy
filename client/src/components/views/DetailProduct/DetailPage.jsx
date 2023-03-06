@@ -20,9 +20,15 @@ const DetailPage = () => {
     user_id: userLocal._id,
   };
 
+  const userVerify = () => {
+    if (userLocal._id) {
+      dispatch(fetchProductView(payload));
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchDetailProduct(id));
-    dispatch(fetchProductView(payload));
+    userVerify();
     return () => {
       dispatch(clearDetailProduct());
     };
