@@ -1,17 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 import "./ClientProfile.css";
-// import ProfileComponent from "./client/src/components/views/profiles/profileComponent/ProfileComponent";
+const { REACT_APP_API_URL } = process.env;
 
 const ClientProfile = () => {
-  // const favs = useSelector((state) => state.fav.favList);
+  const user = useSelector((state) => state.user.userLocal);
+  const [orders, setOrders] = useState();
 
-  /*   useEffect(() => {
-    if (!favs.length) dispatch(getFavs(user._id));
-  }, [favs.length]); */
+  const getOrders = async () => {
+    const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
+    setOrders(data);
+  };
+
+  useEffect(() => {
+    if (!orders) getOrders();
+  }, [orders]);
 
   return (
     <div>
@@ -70,12 +79,37 @@ const ClientProfile = () => {
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          Purchases (cant)
+                          Purchases ({orders?.length})
                         </button>
                         <ul class="dropdown-menu">
-                          <li>
-                            <span>Purchase 1</span>
-                          </li>
+                          {orders &&
+                            orders.map((element) => {
+                              return (
+                                <a class="dropdown-item" key={element._id}>
+                                  <h6>Order N° {element._id}</h6>
+                                  <p>Total price: ${element.totalPrice}</p>
+                                  <span>Products: </span>
+                                  {element.items?.map((element) => {
+                                    return (
+                                      <div key={element._id}>
+                                        <span>{element.product.name}</span>
+                                        <p>${element.product.price}</p>
+                                        <span>
+                                          <Link to={`/review`}>
+                                            <button
+                                              type="button"
+                                              class="btn btn-secondary btn-sm"
+                                            >
+                                              Rate the product
+                                            </button>
+                                          </Link>
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </a>
+                              );
+                            })}
                         </ul>
                       </div>
                     </span>

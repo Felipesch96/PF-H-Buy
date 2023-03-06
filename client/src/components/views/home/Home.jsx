@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import CarouselProducts from "./carousels/products/CarouselProducts";
-import CarouselProducts2 from "./carousels/products/CarouselProducts2";
-import CarouselProducts3 from "./carousels/products/CarouselProducts3";
-import CarouselBanner from "./carousels/banner/CarouselBanner";
-import "./Home.css";
-import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../../redux/thunks/productThunk";
 import { newGoogleUser } from "../../../redux/thunks/userThunk";
+import CardLoader from "../../CardLoader/CardLoader";
+import CarouselBanner from "./carousels/banner/CarouselBanner";
+import CarouselProducts from "./carousels/products/CarouselProducts";
+import "./Home.css";
 
 const Home = () => {
   const images = ["baner1.jpg", "baner2.jpg", "baner0.jpg"];
@@ -14,14 +14,22 @@ const Home = () => {
   const dispatch = useDispatch();
   const { user } = useAuth0();
   const { userLocal } = useSelector((state) => state.user);
+  const { topViews } = useSelector((state) => state.product);
+  const item = window.localStorage.getItem("history");
+  const history = JSON.parse(item);
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
+    setLoader(true);
     verifyAuth();
+    dispatch(fetchProducts());
+    setLoader(false);
     const reloj = setInterval(() => {
       selectNewImage(selectedIndex, images);
     }, 3000);
     return () => clearInterval(reloj);
-  });
+    //eslint-disable-next-line
+  }, [dispatch, user]);
 
   function verifyAuth() {
     if (user) {
@@ -46,7 +54,7 @@ const Home = () => {
     }
   }
 
-  const selectNewImage = ( images, next = true) => {
+  const selectNewImage = (images, next = true) => {
     setTimeout(() => {
       const condition = next
         ? selectedIndex < images.length - 1
@@ -62,34 +70,39 @@ const Home = () => {
     }, 500);
   };
 
-  return (
+  return loader ? (
+    <CardLoader />
+  ) : (
     <div className="home">
       <div className="carousel-banner">
-        <a href="/products">
-        <CarouselBanner />
+        <a href="/home/products">
+          <CarouselBanner />
         </a>
       </div>
       <hr />
-      <br />
-      <h1 className="text-center">Recomendados</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts />
-      </div>
-      <hr />
-      <h1 className="text-center">Segun tus ultimas busquedas</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts2 />
-      </div>
-      <hr />
-      <h1 className="text-center">Lo mas vendido</h1>
-      <div class="container-fluid carousel-productos">
-        <CarouselProducts3 />
-      </div>
-      <hr />
+      {topViews.length ? (
+        <>
+          <h2 className="text-center">Top 5 Products More views</h2>
+          <div class="container-fluid carousel-productos">
+            <CarouselProducts array={topViews} />
+          </div>
+          <hr />
+        </>
+      ) : null}
+
+      {history ? (
+        <>
+          <h2 className="text-center">According to your last searches</h2>
+          <div class="container-fluid carousel-productos">
+            <CarouselProducts array={history.slice(0, 7)} />
+          </div>
+          <hr />
+        </>
+      ) : null}
       <div className="text-center">
-        <h1>¿Quieres ver mas productos?</h1>
-        <a href="/products">
-          <button className="btn btn-secondary">Click aquí</button>
+        <h1>Want to see more products?</h1>
+        <a href="/home/products">
+          <button className="btn btn-secondary">Click here</button>
           <hr />
         </a>
       </div>

@@ -3,9 +3,11 @@ import { useDispatch } from "react-redux";
 
 import { ProductModal } from "../../../modals/product";
 import { CategoryModal } from "../../../modals/category";
-import { ShowCategoriesModal } from "../../../modals/showCategories";
-import { ShowProductModal } from "../../../modals/showProducts";
-import { ShowUsersModal } from "../../../modals/showUsers";
+import { ShowDeactiveCategoriesModal } from "../../../modals/showCategories/ShowDeactiveCategoriesModal";
+import { ShowDeactiveProductModal } from "../../../modals/showProducts/ShowActiveProductModal";
+import { ShowActiveUsersModal } from "../../../modals/showUsers/ShowActiveUsersModal";
+import { ShowDeactiveUsersModal } from "../../../modals/showUsers/ShowDeactiveUsersModal";
+
 
 import "./adminBoard.css";
 import {
@@ -13,6 +15,10 @@ import {
   fetchProducts,
 } from "../../../../redux/thunks/productThunk";
 import { fetchUsers } from "../../../../redux/thunks/userThunk";
+import { ShowActiveProductModal } from "../../../modals/showProducts/ShowDeactiveProductModal";
+import { ShowActiveCategoriesModal } from "../../../modals/showCategories/ShowActiveCategoriesModal copy";
+import { ModifyProductModal } from "../../../modals/showProducts/ModifyProductModal";
+
 
 
 export const AdminBoard = () => {
@@ -25,27 +31,32 @@ export const AdminBoard = () => {
   }, [dispatch]);
 
   const [categoryModal, setCategoryModal] = useState(false);
+  const [showActiveCategories, setShowActiveCategories] = useState(false);
+  const [showDeactiveCategories, setShowDeactiveCategories] = useState(false);
   const [productModal, setProductModal] = useState(false);
-  const [uploadImage, setUploadImage] = useState(false);
-  const [showProducts, setShowProducts] = useState(false);
-  const [showCategories, setShowCategories] = useState(false);
-  const [showUsers, setShowUsers] = useState(false);
-  
+  const [modifyProductModal, setModifyProductModal] = useState(false);
+  const [showActiveProducts, setShowActiveProducts] = useState(false);
+  const [showDeactiveProducts, setShowDeactiveProducts] = useState(false);
+  const [showActiveUsers, setShowActiveUsers] = useState(false);
+  const [showDeactiveUsers, setShowDeactiveUsers] = useState(false);
+
 
   return (
     <main className="adminBoard">
-      {/* <div className="leftNavBar"> */}
       <section className="buttons">
         <section className="creationButtons">
           <button
             className="adminButton"
             onClick={() => {
               setCategoryModal(true);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowProducts(false);
-              setShowCategories(false);
-              setShowUsers(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false)
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Create Categories
@@ -54,11 +65,46 @@ export const AdminBoard = () => {
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(true);
+              setShowDeactiveCategories(false)
+              setProductModal(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
+            }}
+          >
+            Show active categories
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(true)
+              setProductModal(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
+            }}
+          >
+            Show deactive categories
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(true);
-              
-              setShowProducts(false);
-              setShowCategories(false);
-              setShowUsers(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
             Create Product
@@ -67,53 +113,102 @@ export const AdminBoard = () => {
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowCategories(true);
-              setShowProducts(false);
-              setShowUsers(false);
+              setModifyProductModal(true);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
-            Show categories
+            Modify Product
           </button>
           <button
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowCategories(false);
-              setShowProducts(true);
-              setShowUsers(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(true);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
-            Show products
+            Show active products
           </button>
           <button
             className="adminButton"
             onClick={() => {
               setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
               setProductModal(false);
-              
-              setShowCategories(false);
-              setShowProducts(false);
-              setShowUsers(true);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(true);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(false);
             }}
           >
-            Show users
+            Show deactive products
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
+              setProductModal(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(true);
+              setShowDeactiveUsers(false);
+            }}
+          >
+            Show active users
+          </button>
+          <button
+            className="adminButton"
+            onClick={() => {
+              setCategoryModal(false);
+              setShowActiveCategories(false);
+              setShowDeactiveCategories(false)
+              setProductModal(false);
+              setModifyProductModal(false);
+              setShowActiveProducts(false);
+              setShowDeactiveProducts(false);
+              setShowActiveUsers(false);
+              setShowDeactiveUsers(true);
+            }}
+          >
+            Show deactive users
           </button>
         </section>
       </section>
       <div className="modals">
         {categoryModal && <CategoryModal onClose={setCategoryModal} />}
 
+        {showActiveCategories && <ShowActiveCategoriesModal onClose={setShowActiveCategories} />}
+
+        {showDeactiveCategories && <ShowDeactiveCategoriesModal onClose={setShowDeactiveCategories} />}
+
         {productModal && <ProductModal onClose={setProductModal} />}
 
-        {showCategories && <ShowCategoriesModal onClose={setShowCategories} />}
+        {modifyProductModal && <ModifyProductModal onClose={setModifyProductModal} />}
 
-        {showProducts && <ShowProductModal onClose={setShowProducts} />}
+        {showActiveProducts && <ShowActiveProductModal onClose={setShowActiveProducts} />}
 
-        {showUsers && <ShowUsersModal onClose={setShowUsers} />}
+        {showDeactiveProducts && <ShowDeactiveProductModal onClose={setShowDeactiveProducts} />}
+
+        {showActiveUsers && <ShowActiveUsersModal onClose={setShowActiveUsers} />}
+
+        {showDeactiveUsers && <ShowDeactiveUsersModal onClose={setShowDeactiveUsers} />}
       </div>
     </main>
   );

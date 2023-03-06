@@ -1,0 +1,22 @@
+
+.shippingCardInfo{
+    margin: 0;
+    color: black;
+}
+
+.selectedInfo{
+    border: 2px solid #02b9f3;
+    max-width: 200px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.notSelectedInfo{
+    max-width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    
+}

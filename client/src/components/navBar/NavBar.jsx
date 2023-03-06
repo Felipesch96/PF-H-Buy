@@ -4,10 +4,7 @@ import { BsCart4 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useLocalStorage } from "../../customHooks/UseLocalStore";
-import {
-  fetchSearch,
-  getProductsByName,
-} from "../../redux/thunks/productThunk";
+import { fetchProducts } from "../../redux/thunks/productThunk";
 import Login from "../buttons/Login/Login";
 import Logout from "../buttons/Logout/Logout";
 import { CartModal } from "../modals/cart/index";
@@ -28,6 +25,7 @@ const NavBar = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (location.pathname === "/") history.push("/");
     if (location.pathname === "/")
       setRutaHistorial({ ...rutaHistorial, home: true });
     if (location.pathname === "/products")
@@ -35,26 +33,28 @@ const NavBar = () => {
     if (location.pathname === "/about")
       setRutaHistorial({ ...rutaHistorial, about: true });
     if (location.pathname === "/shoppingCart") setIsClicked(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   const { amountOfItems } = useSelector((state) => state.cart);
+  const { filters, order, page } = useSelector((state) => state.product);
+
+  useEffect(() => {
+    setText(filters.name || "");
+    // eslint-disable-next-line
+  }, [filters]);
 
   function submitSearch(e) {
     e.preventDefault();
-    dispatch(fetchSearch(text));
+    dispatch(
+      fetchProducts({
+        filters: { ...filters, name: text },
+        order,
+        page,
+      })
+    );
     history.push("/products");
   }
-
-  const [serachNavStorage, setSearchNavStorage] = useState("");
-  function handleSearchInput(e) {
-    setSearchNavStorage(e.target.value);
-    console.log(serachNavStorage);
-  }
-
-  const searchHandler = (e) => {
-    e.preventDefault();
-    getProductsByName(serachNavStorage);
-  };
 
   return (
     <nav class="navbar navbar-expand-lg border-bottom barra-navegador">
@@ -80,40 +80,43 @@ const NavBar = () => {
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li className="nav-item">
-              <a
-                className={
-                  location.pathname === "/"
-                    ? "nav-link mt-1 route-flag route-hover"
-                    : "nav-link mt-1 route-hover"
-                }
-                href="/"
-              >
-                Home
-              </a>
+              <Link style={{ textDecoration: "none" }} to="/">
+                <span
+                  className={
+                    location.pathname === "/"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                >
+                  Home
+                </span>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className={
-                  location.pathname === "/products"
-                    ? "nav-link mt-1 route-flag route-hover"
-                    : "nav-link mt-1 route-hover"
-                }
-                href="/products"
-              >
-                Products
-              </a>
+              <Link style={{ textDecoration: "none" }} to="/products">
+                <span
+                  className={
+                    location.pathname === "/products"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                >
+                  Products
+                </span>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className={
-                  location.pathname === "/about"
-                    ? "nav-link mt-1 route-flag route-hover"
-                    : "nav-link mt-1 route-hover"
-                }
-                href="/about"
-              >
-                About
-              </a>
+              <Link style={{ textDecoration: "none" }} to="/about">
+                <span
+                  className={
+                    location.pathname === "/about"
+                      ? "nav-link mt-1 route-flag route-hover"
+                      : "nav-link mt-1 route-hover"
+                  }
+                >
+                  About
+                </span>
+              </Link>
             </li>
           </ul>
           <div>
@@ -137,20 +140,28 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-              <div className="shoppingCart">
-                <div
-                  className={
-                    amountOfItems === 0 ? "negativeCounter" : "counter"
-                  }
-                >
-                  {amountOfItems}
+              {location.pathname !== "/" &&
+              location.pathname !== "/shipping" &&
+              location.pathname !== "/orderPlacement" &&
+              location.pathname !== "/shoppingCart" &&
+              location.pathname !== "//profile" ? (
+                <div className="shoppingCart">
+                  <div
+                    className={
+                      amountOfItems === 0 ? "negativeCounter" : "counter"
+                    }
+                  >
+                    {amountOfItems}
+                  </div>
+                  <BsCart4
+                    className="carIcon"
+                    onClick={() => setIsClicked(!isClicked)}
+                  />
+                  {isClicked && <CartModal />}
                 </div>
-                <BsCart4
-                  className="carIcon"
-                  onClick={() => setIsClicked(!isClicked)}
-                />
-                {isClicked && <CartModal />}
-              </div>
+              ) : (
+                ""
+              )}
             </li>
             <li>
               <div class="btn-group">

@@ -25,6 +25,13 @@
     height: 30px;
     color: #2b4883;
 }
+
+.closeIcon:hover {
+    transition: 0.2s;
+    color: #387b62;
+    cursor: pointer;
+  }
+  
 .formContainerP{
     display: flex;
     flex-direction: column;

@@ -6,7 +6,7 @@ import "./editProductCard.css";
 import { editProduct } from "../../helpers/editProduct";
 import { deleteProduct } from "../../helpers/deleteProduct";
 
-export const EditProductCard = ({ products }) => {
+export const EditProductCard = ({ product }) => {
   const [edit, setEdit] = useState(false);
   const [selected, setSelected] = useState({
     name: false,
@@ -17,10 +17,10 @@ export const EditProductCard = ({ products }) => {
   });
 
   const [newProduct, setNewProduct] = useState({
-    _id: products._id,
-    name: products.name,
-    description: products.description,
-    price: products.price,
+    _id: product._id,
+    name: product.name,
+    description: product.description,
+    price: product.price,
   });
   const handleOnClickEdit = ({ target }) => {
     if (edit) setSelected({ ...selected, [target.id]: true });

@@ -1,75 +1,109 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  fetchProducts,
   fetchCategories,
-  fetchClearFilter,
-  fetchOrderAlphabet,
-  fetchOrderPrice,
-  fetchOrderScore,
-  fetchSearchInFilter,
-  fetchSearchProductByCtg,
-  getTopVisits,
 } from "../../redux/thunks/productThunk";
+import "../views/productsPage/ProductsPage.css";
 import "./Filter.css";
+
 
 const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
-  const { categories, filter } = useSelector((state) => state.product);
-  
-  const [search, setSearch] = useState("");
+  const { categories, filters, order, page } = useSelector(
+    (state) => state.product
+  );
+
+  const activeCategories = Array.isArray(categories) ? categories.filter(c => c.isActive === true) : categories;
 
   useEffect(() => {
     if (!categories.length) {
       dispatch(fetchCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
-  function handleChangeSearch(e) {
-    e.preventDefault();
-    dispatch(fetchSearchInFilter(search));
-    setCurrentPage(1);
-    setInput(1);
-  }
-  
   function handleOrderAlphabet(e) {
-    dispatch(fetchOrderAlphabet(e.target.value));
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "name",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
-  
+
   function handleOrderPrice(e) {
-    dispatch(fetchOrderPrice(e.target.value));
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "price",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
-  function handleOrderTopViews() {
-    dispatch(getTopVisits());
-    setCurrentPage(1);
-    setInput(1);
-  }
-
-  function handleOrderScore() {
-    dispatch(fetchOrderScore());
+  function handleOrderScore(e) {
+    dispatch(
+      fetchProducts({
+        filters,
+        order: {
+          by: "score",
+          direction: e.target.value,
+        },
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
   function handleChangeType(e) {
-    dispatch(fetchSearchProductByCtg(e.target.value));
+    const category = e.target.value;
+    const prevCategories = (filters && filters.categories) || [];
+    const newCategories = prevCategories.includes(category)
+      ? // eslint-disable-next-line
+        prevCategories.filter((category) => category !== category)
+      : prevCategories.concat(category);
+    dispatch(
+      fetchProducts({
+        filters: {
+          ...filters,
+          categories: newCategories,
+        },
+        order,
+        page,
+      })
+    );
     setCurrentPage(1);
     setInput(1);
   }
 
   function clearFilter(e) {
     e.preventDefault();
-    dispatch(fetchClearFilter());
+    dispatch(
+      fetchProducts({
+        filters: {},
+        order: {},
+        page,
+      })
+    );
     e.target.reset();
     setCurrentPage(1);
     setInput(1);
   }
 
-  return (
+  return Array.isArray(categories) ? (
     <div>
       <div
         id="sidebar"
@@ -77,24 +111,6 @@ const Filters = ({ setCurrentPage, setInput }) => {
       >
         <div className="row ">
           <div className="bg-dark rounded">
-            <div class="d-flex justify-content-center">
-              {filter.length ? (
-                <form onSubmit={(e) => handleChangeSearch(e)}>
-                  <input
-                    className="input-filter"
-                    type="text"
-                    placeholder="Search by name"
-                    name="filter-by-name"
-                    autoComplete="off"
-                    onChange={(e) => setSearch(e.target.value)}
-                    />
-                  <button class="mt-1 btn btn-primary btn-sm" type="submit" >
-                    search
-                  </button>
-                </form>
-              ) : null}
-              {console.log(search)}
-            </div>
             <form
               onSubmit={clearFilter}
               id="form-filters-combined"
@@ -103,13 +119,18 @@ const Filters = ({ setCurrentPage, setInput }) => {
               <div className="mt-3 rounded-2 filterCategories">
                 <h6 class="span-1 fw-bold">Categories</h6>
                 <div>
-                  {categories?.map((c) => {
+                  {activeCategories?.map((c) => {
                     return (
                       <div key={c._id}>
                         <input
-                          type="radio"
+                          type="checkbox"
                           name="categories"
                           value={c.name}
+                          checked={
+                            filters &&
+                            filters.categories &&
+                            filters.categories.includes(c.name)
+                          }
                           onClick={handleChangeType}
                         />
                         <label htmlFor="categories">{c.name}</label>
@@ -123,7 +144,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="A-Z"
+                    value="asc"
                     id="higher"
                     onClick={handleOrderAlphabet}
                   />
@@ -133,7 +154,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="Z-A"
+                    value="desc"
                     id="order"
                     onClick={handleOrderAlphabet}
                   />
@@ -143,7 +164,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="maximum_score"
+                    value="desc"
                     id="order"
                     onClick={handleOrderScore}
                   />
@@ -153,7 +174,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="lower_price"
+                    value="asc"
                     id="order"
                     onClick={handleOrderPrice}
                   />
@@ -163,23 +184,14 @@ const Filters = ({ setCurrentPage, setInput }) => {
                   <input
                     type="radio"
                     name="type"
-                    value="higher_price"
+                    value="desc"
                     id="order"
                     onClick={handleOrderPrice}
                   />
                   <label class="pl-1 pt-sm-0 pt-1">&nbsp;higher price</label>
                 </div>
-                <div class="form-inline border rounded span-sm-2 my-2">
-                  <input
-                    type="radio"
-                    name="type"
-                    id="order"
-                    onClick={handleOrderTopViews}
-                  />
-                  <label class="pl-1 pt-sm-0 pt-1">top 5</label>
-                </div>
               </div>
-              {filter.length ? (
+              {filters.categories ? (
                 <button class="btn btn-warning btn-sm mb-2" type="submit">
                   Reset Filters
                 </button>
@@ -189,6 +201,18 @@ const Filters = ({ setCurrentPage, setInput }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <>
+      <div class="mt-5">
+          <div class="alert alert-danger" role="alert">
+            <i
+              class="bi bi-exclamation-triangle-fill"
+              style={{ fontSize: "30px" }}
+            />
+            " {categories}"
+          </div>
+        </div>
+    </>
   );
 };
 

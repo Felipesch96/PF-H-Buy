@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
-function FavoriteButton() {
+function FavoriteButton({disable}) {
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <button onClick={() => {setIsFavorite(!isFavorite)
+    <button disabled={disable ? disable : false} onClick={() => {setIsFavorite(!isFavorite)
     if(isFavorite!==true){
       Swal.fire({
         color:"white",

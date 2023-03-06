@@ -1,7 +1,3 @@
-import { Button } from "@mui/material";
-import Box from "@mui/material/Box";
-import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -10,6 +6,7 @@ import { addToCart } from "../../../redux/slices/cartSlice";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 import "./DetailProduct.css";
+import moment from "moment";
 
 const DetailCard = () => {
   const dispatch = useDispatch();
@@ -25,14 +22,15 @@ const DetailCard = () => {
     if (!verifyHistory.length) {
       setHistory([...history, detailProduct]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailProduct]);
-
   const addElementToCart = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
         dispatch(addToCart(detailProduct));
         Swal.fire({
-          position: "top-end",
+          color: "white",
+          background: "#1299",
           icon: "success",
           title: "Producto agregado al carrito.",
           showConfirmButton: false,
@@ -46,7 +44,8 @@ const DetailCard = () => {
       if (detailProduct.stock > 0) {
         dispatch(addToCart(detailProduct));
         Swal.fire({
-          position: "top-end",
+          color: "white",
+          background: "#1299",
           icon: "success",
           title: "Producto agregado al carrito.",
           showConfirmButton: false,
@@ -58,14 +57,20 @@ const DetailCard = () => {
       }
     }
   };
+  ///
+  const date = detailProduct.created;
+  const formatDate = moment(date).format("MMMM Do YYYY, h:mm a");
+  // const ago = ; //moment(formatDate).format("MMMM Do YYYY, h:mm:ss a");
+  console.log(formatDate);
 
+  ///
   return (
     <div className="container-fluid p-4 contenedor-detalle">
       <div class="card center info">
         <div class="row g-10">
           <div class="col-5 col-sm-4 mb-1">
             <img
-              src={detailProduct.img}
+              src={detailProduct.img_url}
               class="img-fluid w-100 m-2 img-detail"
               alt="card-horizontal"
             />
@@ -92,15 +97,27 @@ const DetailCard = () => {
                   <i class="bi bi-currency-dollar"></i>
                   {formater.format(detailProduct.price)}
                 </h4>
-                <p class="card-text mb-1">
-                  Qualification: {detailProduct.score} ☆
-                </p>
-                <div class="container">
-                  <StarRating score={detailProduct.score} />
+                <br />
+                {detailProduct.score ? (
+                  <>
+                    <p class="card-text mb-1">
+                      Qualification: {detailProduct.score} ☆
+                    </p>
+                    <div class="container">
+                      <StarRating score={detailProduct.score} />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <span>there are no grades</span>
+                  </>
+                )}
+                <div class="card-text mt-3">
+                  {/* <span class="text-muted">Last updated 3 mins ago</span> */}
+                  <span class="text-muted">
+                    Published: <strong>{formatDate}</strong>{" "}
+                  </span>
                 </div>
-                <p class="card-text">
-                  <span class="text-muted">Last updated 3 mins ago</span>
-                </p>
               </div>
               <button
                 class="p-1 btn btn-success bi bi-handbag-fill m-3"
@@ -120,7 +137,8 @@ const DetailCard = () => {
                 class="fa-regular fa-heart"
                 onClick={() => {
                   Swal.fire({
-                    position: "top-end",
+                    color: "white",
+                    background: "#1299",
                     icon: "success",
                     title: "Producto agregado a favoritos.",
                     showConfirmButton: false,
@@ -231,25 +249,50 @@ const DetailCard = () => {
               role="tabpanel"
               aria-labelledby="nav-review-tab"
             >
-              <p class="card-text text-center m-3 ">
-                <div class="container">
-                  <Box
-                    sx={{
-                      "& > legend": { mt: 2 },
-                    }}
-                  >
-                    <Typography component="legend">
-                      Califica el Producto:
-                    </Typography>
-                    <Rating name="simple-controlled" />
-                    <div>
-                      <Typography component="legend">Puntuacion</Typography>
-                      <Rating name="read-only" readOnly />
-                    </div>
-                  </Box>
-                  <Button variant="contained">Send</Button>
+              <div class="container">
+                {/* {detailProduct.reviews.length ?  */}
+                <div>
+                  {detailProduct.reviews?.length === 0 ? (
+                    <span class="card-text text-center text-danger-emphasis h5 m-3 d-flex justify-content-center">
+                      No hay ningun comentario acerca de este producto
+                    </span>
+                  ) : (
+                    detailProduct.reviews?.map((r) => {
+                      return (
+                        <>
+                          <div class="card mt-3 logouser">
+                            <div class="card-header bg-info h5">
+                              <img
+                                alt={r.userName}
+                                src={r.userImage}
+                                class="rounded-5 imgUser"
+                                style={{ height: "40px" }}
+                              />
+                              {/* <i class="bi bi-person-circle h3 "> </i> */}{" "}
+                              {r.userName} {r.userLastName}
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">Review</h5>
+                              <p class="card-text">
+                                Qualification: {r.qualification}{" "}
+                                <StarRating score={r.qualification} />
+                              </p>
+                              <p class="card-text comment">
+                                Comment:
+                                <div class="p-3 bg-info bg-opacity-10 border border-light-subtle rounded-2">
+                                  {r.comment}
+                                </div>
+                              </p>
+                              {/* <span class="bg-dark border rounded-2 text-light"></span> */}
+                            </div>
+                            {/* <div class="card-footer bg-transparent">Footer</div> */}
+                          </div>
+                        </>
+                      );
+                    })
+                  )}
                 </div>
-              </p>
+              </div>
             </div>
           </div>
         </div>

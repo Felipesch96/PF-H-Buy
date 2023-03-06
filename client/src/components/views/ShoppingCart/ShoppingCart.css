@@ -1,7 +1,7 @@
 .mainCart{
   padding: 15px;
   display: flex;
-  gap: 70px;
+  gap: 200px;
 }
 
 .cartCardsList{
@@ -14,6 +14,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 13px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  padding: 10px;
+  min-height: 150px;
+  max-height: 200px;
+  border: 2px solid #00D775
+  
 }
 
 .clearCart{
@@ -42,4 +49,15 @@ border: none;
 
 .checkoutButton:hover {
 background: #00bd68;
+}
+
+
+.productShower{
+  border: 2px solid #02b9f3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+
 }
