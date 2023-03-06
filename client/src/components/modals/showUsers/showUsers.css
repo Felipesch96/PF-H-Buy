@@ -80,3 +80,18 @@
     height: 70vh;
     width: 70vh;
 }
+
+.modify-user-modal{
+    background-color: #5ec59f;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px; 
+}
+
+.modify-fields{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modify-user-image{
+    height: 7rem;
+  }

@@ -31,8 +31,8 @@ export const ModifyProductModal = ({ onClose }) => {
       _id: producto[0]._id
     });
   };
-  console.log(productId);
-  console.log(productToModify)
+  // console.log(productId);
+  // console.log(productToModify);
   const handleHabilitar = () => {
     if (habilitar) {
       setHabilitar(false);
@@ -110,15 +110,16 @@ export const ModifyProductModal = ({ onClose }) => {
               <input type="text" id="productToModify" onChange={(e) => handleProductId(e)} />
               <button>Search</button>
             </form>
-            <div>
-              <label htmlFor="">Check to modify</label>
-              <input type="checkbox" checked={habilitar} onChange={(e) => handleHabilitar(e)} />
-            </div>
+
             <div className="modify-fields">
               {
                 productToModify?.map(p => {
                   return (
                     <div className="datos-producto">
+                      <div>
+                        <label htmlFor="">Check to modify</label>
+                        <input type="checkbox" checked={habilitar} onChange={(e) => handleHabilitar(e)} />
+                      </div>
                       <div>
                         <div className="inputs images">
                           <div className="modify-fields">
@@ -209,7 +210,6 @@ export const ModifyProductModal = ({ onClose }) => {
                                 <label htmlFor="">isActive?</label>
                                 <select name="isActive" id="" onChange={(e) => handlerModifiedProduct(e)}>
                                   <option value={null}>-</option>
-
                                   <option value="true">Yes</option>
                                   <option value="false">No</option>
                                 </select>
