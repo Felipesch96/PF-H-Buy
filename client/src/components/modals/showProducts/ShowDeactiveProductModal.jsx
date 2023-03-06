@@ -13,14 +13,14 @@ export const ShowActiveProductModal = ({ onClose }) => {
     { field: "isActive", headerName: "Active" }
   ];
   
-  const activeProducts = products.filter(p => p.isActive === true);
+  const activeProducts = Array.isArray(products) ? products.filter(p => p.isActive === true) : [];
 
-  const rows = activeProducts.map((span) => ({
+  const rows = Array.isArray(products) ? activeProducts.map((span) => ({
     id: span._id,
     name: span.name,
     price: span.price,
     isActive: span.isActive
-  }));
+  })) : [];
 
   return (
     <div className="showProducts-grid">

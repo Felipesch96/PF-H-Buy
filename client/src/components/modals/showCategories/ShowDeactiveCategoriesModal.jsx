@@ -7,7 +7,7 @@ import { EditDeactiveCategoryCard } from "../../editCategoryCard/EditDeactiveCat
 export const ShowDeactiveCategoriesModal = ({ onClose }) => {
   const { categories } = useSelector((state) => state.product);
 
-  const deactiveCategories = categories.filter(c => c.isActive === false);
+  const deactiveCategories = Array.isArray(categories) ? categories.filter(c => c.isActive === false) : categories;
   return (
     <section className="categoryModal">
       <AiOutlineCloseCircle

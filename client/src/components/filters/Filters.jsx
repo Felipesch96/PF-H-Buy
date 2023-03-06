@@ -14,7 +14,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
     (state) => state.product
   );
 
-  const activeCategories = categories.filter(c => c.isActive === true);
+  const activeCategories = Array.isArray(categories) ? categories.filter(c => c.isActive === true) : categories;
 
   useEffect(() => {
     if (!categories.length) {

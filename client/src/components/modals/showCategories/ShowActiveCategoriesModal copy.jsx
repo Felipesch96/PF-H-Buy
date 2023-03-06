@@ -7,7 +7,7 @@ import { EditActiveCategoryCard } from "../../editCategoryCard/EditActiveCategor
 export const ShowActiveCategoriesModal = ({ onClose }) => {
   const { categories } = useSelector((state) => state.product);
 
-  const activeCategories = categories.filter(c => c.isActive === true);
+  const activeCategories = Array.isArray(categories) ? categories.filter(c => c.isActive === true) : categories;
 
   return (
     <section className="categoryModal">
