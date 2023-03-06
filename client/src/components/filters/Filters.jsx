@@ -4,7 +4,9 @@ import {
   fetchProducts,
   fetchCategories,
 } from "../../redux/thunks/productThunk";
+import "../views/productsPage/ProductsPage.css";
 import "./Filter.css";
+
 
 const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
@@ -99,7 +101,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
     setInput(1);
   }
 
-  return (
+  return Array.isArray(categories) ? (
     <div>
       <div
         id="sidebar"
@@ -197,6 +199,18 @@ const Filters = ({ setCurrentPage, setInput }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <>
+      <div class="mt-5">
+          <div class="alert alert-danger" role="alert">
+            <i
+              class="bi bi-exclamation-triangle-fill"
+              style={{ fontSize: "30px" }}
+            />
+            " {categories}"
+          </div>
+        </div>
+    </>
   );
 };
 

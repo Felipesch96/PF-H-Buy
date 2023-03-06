@@ -9,9 +9,7 @@ categoriesCtrl.getCategories = async (req, res) => {
       const allCategories = await Category.find();
       allCategories.length
         ? res.status(200).send(allCategories)
-        : res
-            .status(202)
-            .send({ error: `There are no categories in the DataBase` });
+        : res.status(202).send("There are no categories in the DataBase");
     } else {
       const allCategories = await Category.find();
       const categoryByName = allCategories.filter((element) =>
