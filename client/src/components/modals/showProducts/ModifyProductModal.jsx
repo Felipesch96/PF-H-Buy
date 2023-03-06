@@ -150,6 +150,38 @@ export const ModifyProductModal = ({ onClose }) => {
                         </div>
                         <div className="inputs">
                           <div className="modify-fields">
+                            <label htmlFor="">Brand</label>
+                            <input type="text" value={p.brand} disabled />
+                          </div>
+                          <div>
+                            {
+                              habilitar
+                                ? <div className="modify-fields">
+                                  <label htmlFor="">New brand</label>
+                                  < input name="brand" type="text" onChange={(e) => handlerModifiedProduct(e)} />
+                                </div>
+                                : null
+                            }
+                          </div>
+                        </div>
+                        <div className="inputs">
+                          <div className="modify-fields">
+                            <label htmlFor="">Model</label>
+                            <input type="text" value={p.model} disabled />
+                          </div>
+                          <div>
+                            {
+                              habilitar
+                                ? <div className="modify-fields">
+                                  <label htmlFor="">New model</label>
+                                  < input name="model" type="text" onChange={(e) => handlerModifiedProduct(e)} />
+                                </div>
+                                : null
+                            }
+                          </div>
+                        </div>
+                        <div className="inputs">
+                          <div className="modify-fields">
                             <label htmlFor="">Condition</label>
                             <input type="text" value={p.condition} disabled />
                           </div>

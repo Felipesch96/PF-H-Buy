@@ -48,7 +48,7 @@ export const EditDeactiveCategoryCard = ({ category }) => {
   const submitChanges = (e) => {
     e.preventDefault();
     editCategory(newCategory);
-    setEdit(false);
+    setEdit(!edit);
     Swal.fire({
       color:"white",
       background:"#1299",
