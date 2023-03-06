@@ -78,6 +78,7 @@ const CreateProductFrom = ({ onClose }) => {
   const categories = useSelector((state) => state.product.categories);
   const [imgPreview, setImgPreview] = useState();
   const [formPreview, setformPreview] = useState({});
+  const activeCategories = categories.filter(c => c.isActive === true);
 
   const handlerImgPreview = (e) => {
     return new Promise((resolve, reject) => {
@@ -144,7 +145,7 @@ const CreateProductFrom = ({ onClose }) => {
           >
             <option>Select an option</option>
             {Array.isArray(categories) ? (
-              categories.map((element) => {
+              activeCategories.map((element) => {
                 return <option key={element._id}>{element.name}</option>;
               })
             ) : (

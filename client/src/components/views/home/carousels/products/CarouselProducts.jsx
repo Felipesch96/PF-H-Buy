@@ -46,7 +46,7 @@ const CarouselProducts = ({ array }) => {
             <div key={p._id} class=" box">
               <CarouselCard
                 _id={p._id}
-                img={p.img}
+                img={p.img_url}
                 name={p.name}
                 score={p.score}
                 price={p.price}

@@ -94,7 +94,7 @@ const Home = () => {
         <>
           <h2 className="text-center">According to your last searches</h2>
           <div class="container-fluid carousel-productos">
-            <CarouselProducts array={history.slice(1, 7)} />
+            <CarouselProducts array={history.slice(0, 7)} />
           </div>
           <hr />
         </>
