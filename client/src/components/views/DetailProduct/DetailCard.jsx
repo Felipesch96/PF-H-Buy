@@ -6,6 +6,7 @@ import { addToCart } from "../../../redux/slices/cartSlice";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 import "./DetailProduct.css";
+import moment from "moment";
 
 const DetailCard = () => {
   const dispatch = useDispatch();
@@ -56,7 +57,13 @@ const DetailCard = () => {
       }
     }
   };
+  ///
+  const date = detailProduct.created;
+  const formatDate = moment(date).format("MMMM Do YYYY, h:mm a");
+  // const ago = ; //moment(formatDate).format("MMMM Do YYYY, h:mm:ss a");
+  console.log(formatDate);
 
+  ///
   return (
     <div className="container-fluid p-4 contenedor-detalle">
       <div class="card center info">
@@ -105,9 +112,12 @@ const DetailCard = () => {
                     <span>there are no grades</span>
                   </>
                 )}
-                <p class="card-text">
-                  <span class="text-muted">Last updated 3 mins ago</span>
-                </p>
+                <div class="card-text mt-3">
+                  {/* <span class="text-muted">Last updated 3 mins ago</span> */}
+                  <span class="text-muted">
+                    Published: <strong>{formatDate}</strong>{" "}
+                  </span>
+                </div>
               </div>
               <button
                 class="p-1 btn btn-success bi bi-handbag-fill m-3"
