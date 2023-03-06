@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Cards from "../../Cards/Cards";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../../redux/thunks/productThunk";
+import { fetchCategories, fetchProducts } from "../../../redux/thunks/productThunk";
 import "./ProductsPage.css";
 
 const ProductsPage = () => {
@@ -10,6 +10,7 @@ const ProductsPage = () => {
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   return (
