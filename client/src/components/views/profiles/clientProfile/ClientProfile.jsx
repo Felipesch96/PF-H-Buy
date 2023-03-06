@@ -17,7 +17,7 @@ const ClientProfile = () => {
     const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
     setOrders(data);
   };
-
+  
   useEffect(() => {
     if (!orders) getOrders();
   }, [orders]);
@@ -82,11 +82,16 @@ const ClientProfile = () => {
                           Purchases ({orders?.length})
                         </button>
                         <ul class="dropdown-menu">
+                          {console.log(orders)}
                           {orders &&
                             orders.map((element) => {
                               return (
                                 <a class="dropdown-item" key={element._id}>
-                                  <h6>Order N° {element._id}</h6>
+                                  
+                                  {element.status === "approved"
+                                  ? <div>
+                                    <h6>Order N° {element._id}</h6>
+                                    <span class="text-success">Status: payed</span>
                                   <p>Total price: ${element.totalPrice}</p>
                                   <span>Products: </span>
                                   {element.items?.map((element) => {
@@ -107,6 +112,9 @@ const ClientProfile = () => {
                                       </div>
                                     );
                                   })}
+                                  </div>
+                                  :null}
+                                  
                                 </a>
                               );
                             })}
