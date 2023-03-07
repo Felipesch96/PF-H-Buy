@@ -85,7 +85,7 @@ const ProfileComponent = () => {
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6 contenedor-perfiles">
+        <div class="col-lg-6 col-md-6">
           {userLocal.isAdmin ? (
             <AdminBoard />
           ) : userType === "Seller" ? (
