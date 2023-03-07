@@ -32,11 +32,8 @@ export default function UploadImage() {
       .post("http://localhost:3001/cloud", { image: base64 })
       .then((res) => {
         setCloudResponse(res.data);
-        console.log(cloudResponse);
         setUrl(res.data.secure_url);
-        console.log(url);
         setProdImg({ public_id: res.data.public_id, secure_url: res.data.secure_url })
-        console.log(prodImg);
         alert("Image uploaded Succesfully");
       })
       .then(() => setLoading(false))
@@ -58,11 +55,8 @@ export default function UploadImage() {
   const uploadImage = async (event) => {
     // event.preventDefault()
     const files = event.target.files;
-    console.log(files.length);
-    console.log(files[0]);
     if (files.length === 1) {
       const base64 = await convertBase64(files[0]);
-      // console.log(base64);
       const imagenSubida = uploadSingleImage(base64);
       return imagenSubida;
     };

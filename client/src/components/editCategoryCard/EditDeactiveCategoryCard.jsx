@@ -61,7 +61,6 @@ export const EditDeactiveCategoryCard = ({ category }) => {
 
   const handleChangeName = ({ target }) => {
     setNewCategory({ ...newCategory, name: target.value });
-    console.log(newCategory);
   };
 
   const handleActiveChange = ({ target }) => {

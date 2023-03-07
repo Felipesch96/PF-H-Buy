@@ -24,7 +24,6 @@ export const usersSlice = createSlice({
       state.userById = {};
     },
     addNewAddress: (state, {payload}) => {
-      console.log(payload)
       state.userLocal.userAddress = payload
     },
     removeAddress: (state, {payload}) => {

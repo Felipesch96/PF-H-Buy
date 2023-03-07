@@ -70,7 +70,6 @@ const Cards = ({ array }) => {
                                 if (thisProduct) {
                                   if (element.stock > thisProduct.quantity) {
                                     dispatch(addToCart(element));
-                                    console.log(element);
                                     Swal.fire({
                                       position: "top-end",
                                       icon: "success",
