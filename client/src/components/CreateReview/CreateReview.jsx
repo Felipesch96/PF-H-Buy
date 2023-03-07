@@ -25,7 +25,7 @@ const CreateReview = () => {
   //Estado local de la review
   const [review, setReview] = useState({
     user_id: user._id,
-    product_id: "64037b0724bb777cc1875c87",
+    product_id: "6405ee8ec94e10f9b17fcea6",
     qualification: 0,
     comment: "",
   });
@@ -64,7 +64,7 @@ const CreateReview = () => {
       dispatch(postReviews({ ...review }));
       setReview({
         user_id: user._id,
-        product_id: "64037b0724bb777cc1875c87",
+        product_id: "6405ee8ec94e10f9b17fcea6",
         qualification: 0,
         comment: "",
       });
