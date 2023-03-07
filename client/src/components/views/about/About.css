@@ -9,7 +9,6 @@
   text-align: left;
   color: rgb(0, 0, 0);
   font-family: 'Muli',sans-serif;
-
   justify-content: center;
 }
 
@@ -20,4 +19,12 @@
 }
 .img{
   background-image: url("./media/logoHenry.png");
+}
+.title{
+    /* background-color: ; */
+    color: black;
+}
+.subtitle{
+    background-color: rgb(144, 224, 239);
+    border: 2px solid white;
 }
