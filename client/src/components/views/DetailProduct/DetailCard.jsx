@@ -7,6 +7,7 @@ import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 import "./DetailProduct.css";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const DetailCard = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ const DetailCard = () => {
     (Element) => Element._id === detailProduct._id
   );
   const formater = new Intl.NumberFormat("en");
-  console.log(history);
   useEffect(() => {
     if (!verifyHistory.length) {
       if (history.length > 7) {
@@ -32,28 +32,12 @@ const DetailCard = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
         dispatch(addToCart(detailProduct));
-        Swal.fire({
-          color: "white",
-          background: "#1299",
-          icon: "success",
-          title: "Producto agregado al carrito.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
       } else {
         window.alert("No more products available");
       }
     } else {
       if (detailProduct.stock > 0) {
         dispatch(addToCart(detailProduct));
-        Swal.fire({
-          color: "white",
-          background: "#1299",
-          icon: "success",
-          title: "Producto agregado al carrito.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
       } else {
         window.alert("Not in stock");
       }
@@ -121,12 +105,13 @@ const DetailCard = () => {
                   </span>
                 </div>
               </div>
-              <button
-                class="p-1 btn btn-success bi bi-handbag-fill m-3"
+              <Link
+                to="/shoppingCart"
+                class="btn btn-success bi bi-cart-plus-fill m-3"
                 onClick={addElementToCart}
               >
-                Buy product{" "}
-              </button>
+                Buy product
+              </Link>
 
               <button
                 onClick={addElementToCart}
@@ -212,6 +197,7 @@ const DetailCard = () => {
                 <thead>
                   <tr class="table-primary">
                     <th scope="col">Name</th>
+                    <th scope="col">State</th>
                     <th scope="col">Brand</th>
                     <th scope="col">Model</th>
                     <th scope="col">Category</th>
@@ -220,25 +206,26 @@ const DetailCard = () => {
                 <tbody>
                   <tr>
                     <th scope="row">{detailProduct.name}</th>
+                    <th scope="row">{detailProduct.condition}</th>
                     <th scope="row">
                       {detailProduct.brand ? (
                         detailProduct.brand
                       ) : (
-                        <span class="text-danger">not specified</span>
+                        <span class="text-warning">not specified</span>
                       )}
                     </th>
                     <th scope="row">
                       {detailProduct.model ? (
                         detailProduct.model
                       ) : (
-                        <span class="text-danger">not specified</span>
+                        <span class="text-warning">not specified</span>
                       )}
                     </th>
                     <th scope="row">
                       {detailProduct.category ? (
                         detailProduct.category
                       ) : (
-                        <span class="text-danger">not specified</span>
+                        <span class="text-warning">not specified</span>
                       )}
                     </th>
                   </tr>
@@ -285,9 +272,7 @@ const DetailCard = () => {
                                   {r.comment}
                                 </div>
                               </p>
-                              {/* <span class="bg-dark border rounded-2 text-light"></span> */}
                             </div>
-                            {/* <div class="card-footer bg-transparent">Footer</div> */}
                           </div>
                         </>
                       );
