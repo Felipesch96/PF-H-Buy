@@ -2,20 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // import { Link } from "react-router-dom";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
-import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 import "./ClientProfile.css";
 const { REACT_APP_API_URL } = process.env;
 
 const ClientProfile = () => {
+  const history = useHistory();
   const user = useSelector((state) => state.user.userLocal);
   const [orders, setOrders] = useState();
 
   const getOrders = async () => {
     const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
     setOrders(data);
+  };
+
+  const handleClick = async (id) => {
+    const { data } = await axios.get(`${REACT_APP_API_URL}/reviews/${id}?user_id=${user._id}`);
+    if (data.length){
+      alert("Ya hiciste este review");
+
+    } else {
+      history.push(`/review/${id}`);
+    }
   };
   
   useEffect(() => {
@@ -48,17 +59,6 @@ const ClientProfile = () => {
           >
             Account
           </a>
-          <a
-            class="nav-link"
-            id="nav-payment-tab"
-            data-bs-toggle="tab"
-            href="#nav-payment"
-            role="tab"
-            aria-controls="nav-payment"
-            aria-selected="false"
-          >
-            Wallet
-          </a>
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div
@@ -82,32 +82,30 @@ const ClientProfile = () => {
                           Purchases ({orders?.length})
                         </button>
                         <ul class="dropdown-menu">
-                          {console.log(orders)}
                           {orders &&
-                            orders.map((element) => {
+                            orders.map((order) => {
                               return (
-                                <a class="dropdown-item" key={element._id}>
+                                <a class="dropdown-item" key={order._id}>
                                   
-                                  {element.status === "approved"
+                                  {order.status === "approved"
                                   ? <div>
-                                    <h6>Order N° {element._id}</h6>
+                                    <h6>Order N° {order._id}</h6>
                                     <span class="text-success">Status: payed</span>
-                                  <p>Total price: ${element.totalPrice}</p>
+                                  <p>Total price: ${order.totalPrice}</p>
                                   <span>Products: </span>
-                                  {element.items?.map((element) => {
+                                  {order.items?.map((element) => {
                                     return (
                                       <div key={element._id}>
                                         <span>{element.product.name}</span>
                                         <p>${element.product.price}</p>
                                         <span>
-                                          <Link to={`/review`}>
                                             <button
+                                              onClick={() => handleClick(element.product._id)}
                                               type="button"
                                               class="btn btn-secondary btn-sm"
                                             >
                                               Rate the product
                                             </button>
-                                          </Link>
                                         </span>
                                       </div>
                                     );
@@ -223,15 +221,7 @@ const ClientProfile = () => {
             <AccountInfo />
             {/* la idea es que reciba los datos del usuario */}
           </div>
-          <div
-            class="tab-pane fade"
-            id="nav-payment"
-            role="tabpanel"
-            aria-labelledby="nav-payment-tab"
-          >
-            <Wallet />
-            {/* deberia recibir los datos del usuario */}
-          </div>
+
         </div>
       </div>
     </div>

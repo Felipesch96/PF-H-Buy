@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/orderPlacement" component={OrderPlacement} />
           <Route exact path="/payment" component={Payment} />
           <Route exact path="/addAddress" component={AddAddress} />
-          <Route exact path="/review" component={CreateReview} />
+          <Route exact path="/review/:id" component={CreateReview} />
           <Route exact path="/loader" component={CardLoader} />
         </Switch>
         <Footer />
