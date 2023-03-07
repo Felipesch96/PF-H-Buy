@@ -15,7 +15,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 const { REACT_APP_API_URL } = process.env;
 
 const CreateReview = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.user.userLocal);
@@ -24,6 +24,7 @@ const CreateReview = () => {
   const [value, setValue] = React.useState(0);
   const [hover, setHover] = React.useState(-1);
 
+  //Estado local de la review
   const [review, setReview] = useState({
     user_id: user._id,
     product_id: id,
@@ -77,16 +78,6 @@ const CreateReview = () => {
     }
   };
   /// producto id
-  const [orders, setOrders] = useState();
-
-  const getOrders = async () => {
-    const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
-    setOrders(data);
-  };
-
-  useEffect(() => {
-    if (!orders) getOrders();
-  }, [orders]);
 
   ///
   return (
@@ -128,9 +119,6 @@ const CreateReview = () => {
                     {labels[hover !== -1 ? hover : value]}
                   </Box>
                 )}
-                {/* <span class="text h2 p-2" id="star">
-                  {(review.qualification = value)}
-                </span> */}
               </Box>
             </div>
             {validate(review).qualification ? (
@@ -144,7 +132,6 @@ const CreateReview = () => {
               <label for="comment" class="form-label h4">
                 <i class="bi bi-chat-left-text-fill"> Comment:</i>
               </label>
-              {/* <form class="form-floating"> */}
               <div>
                 <input
                   type="text"
