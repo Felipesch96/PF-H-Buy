@@ -1,0 +1,31 @@
+a###
+POST http://localhost:3001/products HTTP/1.1
+Content-Type: application/json
+
+{
+  "inca_id": 1,
+  "name": "perro guia",
+  "category": "63a9a44edb95cf04836b66b4",
+  "price": 1000,
+  "description": "Gorro regional."
+}
+
+###
+GET http://localhost:3001/products http/1.1
+
+
+###
+GET http://localhost:3001/products/63a88a21983b229ab79197a1 http/1.1
+
+
+###
+PUT  http://localhost:3001/products/64055b3157784ed287aa7e1b HTTP/1.1
+Content-Type: application/json
+
+{
+  "isActive": false
+}
+
+
+###
+DELETE http://localhost:3001/products/63a9b51b2309d479e90e68d7 HTTP/1.1
