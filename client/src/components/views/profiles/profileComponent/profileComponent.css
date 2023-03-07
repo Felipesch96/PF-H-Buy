@@ -13,11 +13,6 @@
   height: auto;
 }
 
-.contenedor-perfiles{
-  border: 1px solid black;
-  padding: 1rem;
-}
-
 .perfil-buyer-contenedor{
   background-color: rgb(78, 122, 245);
   display: flex;
