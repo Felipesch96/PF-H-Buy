@@ -46,7 +46,16 @@ const Card = (props) => {
               />
             </div>
           ) : (
+            <div> 
             <span>No scores</span>
+            <Rating
+                style={{ fontSize: "17px" }}
+                name="half-rating-read"
+                value={0}
+                precision={0.5}
+                readOnly
+              />
+            </div>
           )}
           <br />
 

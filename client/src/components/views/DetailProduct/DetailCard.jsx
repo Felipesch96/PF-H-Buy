@@ -53,11 +53,12 @@ const DetailCard = () => {
     <div className="container-fluid p-4 contenedor-detalle">
       <div class="card center info">
         <div class="row g-10">
-          <div class="col-5 col-sm-4 mb-1">
+          <div class="col-5 col-sm-3 mb-1">
             <img
               src={detailProduct.img_url}
-              class="img-fluid w-100 m-2 img-detail"
+              class="img-fluid w-100 m-2 mt-4 img-detail"
               alt="card-horizontal"
+              style={{maxHeight:"60vh"}}
             />
           </div>
           <div class="col">
@@ -131,14 +132,16 @@ const DetailCard = () => {
                     timer: 1500,
                   });
                 }}
-              />
+                />
             </div>
-          </div>
 
-          <nav class="mt-1 nav justify-content-center pestanas">
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          </div>
+          <div class= "container mt-4">
+
+          <nav class="mt-1 nav justify-content-center p-1 pestanas">
+            <div class="nav nav-tabs rounded-3 tabs" id="nav-tab" role="tablist">
               <button
-                class="nav-link active"
+                class="nav-link active btn"
                 id="nav-home-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-description"
@@ -148,9 +151,10 @@ const DetailCard = () => {
                 aria-selected="true"
               >
                 Description
+                <i class="bi bi-bookmarks"></i>
               </button>
               <button
-                class="nav-link"
+                class="nav-link btn"
                 id="nav-profile-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-characteris"
@@ -158,11 +162,12 @@ const DetailCard = () => {
                 role="tab"
                 aria-controls="nav-characteris"
                 aria-selected="false"
-              >
+                >
                 Characteristics
+                  <i class="bi bi-check2-all"></i>
               </button>
               <button
-                class="nav-link"
+                class="nav-link btn"
                 id="nav-contact-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-review"
@@ -172,17 +177,20 @@ const DetailCard = () => {
                 aria-selected="false"
               >
                 Reviews
+                <i class="bi bi-chat-left-text-fill"></i>
               </button>
             </div>
           </nav>
+
           <div class="tab-content" id="nav-tabContent">
             <div
-              class="tab-pane fade show active"
+              class="tab-pane fade show active bg-light m-3 rounded-3"
               id="nav-description"
               role="tabpanel"
               aria-labelledby="nav-description-tab"
+              
             >
-              <span class="card-text text-center m-3 d-flex justify-content-center">
+              <span class="card-text text-center p-3 h5 m-3 d-flex justify-content-center" >
                 {detailProduct.description}
               </span>
             </div>
@@ -192,9 +200,10 @@ const DetailCard = () => {
               role="tabpanel"
               aria-labelledby="nav-characteris-tab"
             >
+
               <table class="table">
                 <thead>
-                  <tr class="table-primary">
+                  <tr class="table-dark">
                     <th scope="col">Name</th>
                     <th scope="col">State</th>
                     <th scope="col">Brand</th>
@@ -203,7 +212,7 @@ const DetailCard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr class="table-light">
                     <th scope="row">{detailProduct.name}</th>
                     <th scope="row">{detailProduct.condition}</th>
                     <th scope="row">
@@ -230,6 +239,7 @@ const DetailCard = () => {
                   </tr>
                 </tbody>
               </table>
+
             </div>
             <div
               class="tab-pane fade m-3"
@@ -242,7 +252,7 @@ const DetailCard = () => {
                 <div>
                   {detailProduct.reviews?.length === 0 ? (
                     <span class="card-text text-center text-danger-emphasis h5 m-3 d-flex justify-content-center">
-                      No hay ningun comentario acerca de este producto
+                      No comments about this product
                     </span>
                   ) : (
                     detailProduct.reviews?.map((r) => {
@@ -281,6 +291,8 @@ const DetailCard = () => {
               </div>
             </div>
           </div>
+          </div>
+
         </div>
       </div>
     </div>
