@@ -32,7 +32,7 @@ export const fetchProducts = ({
       });
       if (order.by === "visits") {
         data = data.sort((a, b) =>
-          order.direction === "asc"
+          order.direction === "asc" 
             ? b.visits.length - a.visits.length
             : a.visits.length - b.visits.length
         );

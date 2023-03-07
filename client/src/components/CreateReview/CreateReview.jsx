@@ -11,9 +11,11 @@ import { postReviews } from "../../redux/thunks/review.Thunk";
 import validate from "./validate";
 import axios from "axios";
 import "./CreateReview.css";
-// const { REACT_APP_API_URL } = process.env;
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+const { REACT_APP_API_URL } = process.env;
 
 const CreateReview = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.user.userLocal);
@@ -25,7 +27,7 @@ const CreateReview = () => {
   //Estado local de la review
   const [review, setReview] = useState({
     user_id: user._id,
-    product_id: "6405ee8ec94e10f9b17fcea6",
+    product_id: id,
     qualification: 0,
     comment: "",
   });
@@ -64,7 +66,7 @@ const CreateReview = () => {
       dispatch(postReviews({ ...review }));
       setReview({
         user_id: user._id,
-        product_id: "6405ee8ec94e10f9b17fcea6",
+        product_id: id,
         qualification: 0,
         comment: "",
       });
