@@ -22,8 +22,6 @@ export const MyProductsModal = ({ onClose }) => {
   const handleProductId = (e) => {
     setProductId(e.target.value);
   };
-  console.log(productId);
-  console.log(productToModify);
 
   useEffect(() => {
     const producto = myProducts.filter(p => p._id === productId);
@@ -33,7 +31,6 @@ export const MyProductsModal = ({ onClose }) => {
       _id: productId
     })
   }, [productId]);
-  console.log(modifiedProduct);
 
   const handlerModifiedProduct = async (e) => {
     setModifiedProduct({
@@ -89,7 +86,6 @@ export const MyProductsModal = ({ onClose }) => {
     if (e.target.name === "img") {
       const files = e.target.files;
       const base64 = await convertBase64(files[0]);
-      console.log(base64)
       setModifiedProduct({
         ...modifiedProduct,
         img: base64
