@@ -79,7 +79,7 @@ const NavBar = () => {
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
-            <li className="nav-item">
+            <li className="nav-item " style={{ marginRight: "30px" }}>
               <Link style={{ textDecoration: "none" }} to="/">
                 <span
                   className={
@@ -88,11 +88,12 @@ const NavBar = () => {
                       : "nav-link mt-1 route-hover"
                   }
                 >
+                  <i class="bi bi-house-fill " />
                   Home
                 </span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ marginRight: "30px" }}>
               <Link style={{ textDecoration: "none" }} to="/products">
                 <span
                   className={
@@ -101,11 +102,12 @@ const NavBar = () => {
                       : "nav-link mt-1 route-hover"
                   }
                 >
+                  <i class="bi bi-shop"></i>
                   Products
                 </span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ marginRight: "30px" }}>
               <Link style={{ textDecoration: "none" }} to="/about">
                 <span
                   className={
@@ -114,6 +116,7 @@ const NavBar = () => {
                       : "nav-link mt-1 route-hover"
                   }
                 >
+                  <i class="bi bi-people-fill"></i>
                   About
                 </span>
               </Link>
