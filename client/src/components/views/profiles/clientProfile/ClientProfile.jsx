@@ -177,11 +177,21 @@ const ClientProfile = () => {
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          Inquiries (cant)
+                          Asked questions (cant)
                         </button>
                         <ul class="dropdown-menu">
                           <li>
-                            <span>Product 1</span>
+                            {
+                              user?.asked_questions?.map(p => {
+                                return(
+                                  <div>
+                                    <p>{p.product}</p>
+                                    <p>{p.seller}</p>
+                                    <p>{p.pregunta}</p>
+                                  </div>
+                                )
+                              })
+                            }
                           </li>
                         </ul>
                       </div>

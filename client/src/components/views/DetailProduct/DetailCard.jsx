@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useLocalStorage } from "../../../customHooks/UseLocalStore";
@@ -8,17 +8,29 @@ import StarRating from "../../StarRating/StarRating";
 import "./DetailProduct.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import Questions from "./Questions";
+import { editProduct } from "../../../helpers/editProduct";
+import { fetchUserById } from "../../../redux/thunks/userThunk";
 
 const DetailCard = () => {
   const dispatch = useDispatch();
-  const [history, setHistory] = useLocalStorage("history", []);
-  const detailProduct = useSelector((state) => state.product.detailproduct);
+
+  const {userLocal} = useSelector(state => state.user);
   const cart = useSelector((state) => state.cart.cartList);
+  const detailProduct = useSelector((state) => state.product.detailproduct);
+  console.log(detailProduct)
+
+  const [history, setHistory] = useLocalStorage("history", []);
+
+
   const thisProduct = cart.find((element) => element._id === detailProduct._id);
+
   const verifyHistory = history.filter(
     (Element) => Element._id === detailProduct._id
   );
+
   const formater = new Intl.NumberFormat("en");
+
   useEffect(() => {
     if (!verifyHistory.length) {
       if (history.length > 7) {
@@ -28,6 +40,7 @@ const DetailCard = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailProduct]);
+
   const addElementToCart = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
@@ -48,7 +61,8 @@ const DetailCard = () => {
   const formatDate = moment(date).format("MMMM Do YYYY, h:mm a");
   // const ago = ; //moment(formatDate).format("MMMM Do YYYY, h:mm:ss a");
 
-  ///
+
+  
   return (
     <div className="container-fluid p-4 contenedor-detalle">
       <div class="card center info">
@@ -139,7 +153,7 @@ const DetailCard = () => {
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <button
                 class="nav-link active"
-                id="nav-home-tab"
+                id="nav-description-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-description"
                 type="button"
@@ -151,7 +165,7 @@ const DetailCard = () => {
               </button>
               <button
                 class="nav-link"
-                id="nav-profile-tab"
+                id="nav-characteristics-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-characteris"
                 type="button"
@@ -163,7 +177,7 @@ const DetailCard = () => {
               </button>
               <button
                 class="nav-link"
-                id="nav-contact-tab"
+                id="nav-reviews-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#nav-review"
                 type="button"
@@ -172,6 +186,18 @@ const DetailCard = () => {
                 aria-selected="false"
               >
                 Reviews
+              </button>
+              <button
+                class="nav-link"
+                id="nav-question-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#nav-question"
+                type="button"
+                role="tab"
+                aria-controls="nav-question"
+                aria-selected="false"
+              >
+                Questions
               </button>
             </div>
           </nav>
@@ -279,6 +305,25 @@ const DetailCard = () => {
                   )}
                 </div>
               </div>
+            </div>
+            <div
+              className="question-text"
+              class="tab-pane fade m-3"
+              id="nav-question"
+              role="tabpanel"
+              aria-labelledby="nav-question-tab"
+              onClick={fetchUserById(detailProduct.seller_id)}
+            >
+              <Questions
+              
+              product_id={detailProduct?._id} 
+              seller_id={detailProduct?.seller_id}
+              name={detailProduct?.name} 
+              model={detailProduct?.model} 
+              brand={detailProduct?.brand} 
+              price={detailProduct?.price}
+              producto={detailProduct}
+              />
             </div>
           </div>
         </div>

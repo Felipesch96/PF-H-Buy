@@ -10,18 +10,18 @@ const { REACT_APP_API_URL } = process.env;
 
 const SellerProfile = () => {
   const [productModal, setProductModal] = useState(false);
-  const [myProductsModal ,setMyProductsModal] = useState();
+  const [myProductsModal, setMyProductsModal] = useState();
   const user = useSelector((state) => state.user.userLocal);
   const [orders, setOrders] = useState();
 
   const getOrders = async () => {
-    const {data} = await axios.get(`${REACT_APP_API_URL}/orders?seller_id=${user._id}`);
+    const { data } = await axios.get(`${REACT_APP_API_URL}/orders?seller_id=${user._id}`);
     setOrders(data)
   }
 
   useEffect(() => {
     if (!orders) getOrders();
-  }, [orders]); 
+  }, [orders]);
 
   return (
     <div class="container-fluid seller-profile">
@@ -100,25 +100,25 @@ const SellerProfile = () => {
                         Sales ({orders?.length})
                       </button>
                       <ul class="dropdown-menu">
-                      {orders && orders.map((element) => {
-                            return (
-                              <a class="dropdown-item" key={element._id}>
-                                    <h6>Order N° {element._id}</h6>
-                                    <p>Total price: ${element.totalPrice}</p>
-                                    <span>Products: </span>
-                                    {element.items?.map((element) => {
-                                      return(
-                                        <div key={element._id}>
-                                          <span>{element.product.name}</span>
-                                          <p>${element.product.price}</p>
-                                          <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span>
-                                        </div>
-                                      )
-                                    })}
-                              </a>
-                            );
-                          })}
-                          
+                        {orders && orders.map((element) => {
+                          return (
+                            <a class="dropdown-item" key={element._id}>
+                              <h6>Order N° {element._id}</h6>
+                              <p>Total price: ${element.totalPrice}</p>
+                              <span>Products: </span>
+                              {element.items?.map((element) => {
+                                return (
+                                  <div key={element._id}>
+                                    <span>{element.product.name}</span>
+                                    <p>${element.product.price}</p>
+                                    <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span>
+                                  </div>
+                                )
+                              })}
+                            </a>
+                          );
+                        })}
+
                       </ul>
                     </div>
                   </span>
@@ -162,7 +162,16 @@ const SellerProfile = () => {
                         Questions (cant)
                       </button>
                       <ul class="dropdown-menu">
-                        <li>Question 1</li>
+                        {
+                          user.received_questions?.map(p => {
+                            return(
+                              <div>
+                                <p>{p.product}</p>
+                                <p>{p.seller}</p>
+                              </div>
+                            )
+                          })
+                        }
                       </ul>
                     </div>
                   </span>

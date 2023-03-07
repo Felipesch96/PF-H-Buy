@@ -10,3 +10,17 @@
 .info{
   background-color: #d7edfd;
 }
+
+.question-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+.alinear-pregunta{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

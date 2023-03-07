@@ -54,6 +54,12 @@ const users = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  asked_questions: {
+    type: Array
+  },
+  received_questions: {
+    type: Array
+  },
   created: {
     type: Date,
     immutable: true,
