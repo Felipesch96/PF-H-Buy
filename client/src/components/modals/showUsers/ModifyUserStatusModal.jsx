@@ -5,7 +5,7 @@ import { useState } from "react";
 import { editUser } from "../../../helpers/editUser";
 
 
-export const ModifyUserModal = ({ onClose }) => {
+export const ModifyUserStatusModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.user);
   const [userId, setUserId] = useState();
