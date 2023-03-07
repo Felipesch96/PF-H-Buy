@@ -58,7 +58,7 @@ const Cards = ({ array }) => {
                   setInput={setInput}
                   array={array}
                 />
-                <div class="row row-cols-3">
+                <div class="row row-cols-3 mb-5">
                   {Array.isArray(array) ? (
                     // array.length ? (
                     cardsCurrent.map((element) => (

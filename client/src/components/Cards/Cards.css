@@ -3,14 +3,24 @@
 }
 
 .tarjeta-preview {
-  height: 40rem;
+  height: 100%;
   width: 20rem;
+  align-items: center;
+  margin: 3rem;
 }
 
 .tarjeta2 {
   border: 1px solid black;
   background-color: rgb(255, 255, 255);
+  height: 100%;
 }
+
+.tarjeta3 {
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
 .tarjeta:hover {
   transition: 0.2s;
   box-shadow: 8px 5px 15px black;

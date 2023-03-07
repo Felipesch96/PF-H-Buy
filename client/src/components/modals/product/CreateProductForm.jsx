@@ -78,7 +78,7 @@ const CreateProductFrom = ({ onClose }) => {
   const categories = useSelector((state) => state.product.categories);
   const [imgPreview, setImgPreview] = useState();
   const [formPreview, setformPreview] = useState({});
-  const activeCategories = categories.filter(c => c.isActive === true);
+  const activeCategories = categories.filter((c) => c.isActive === true);
 
   const handlerImgPreview = (e) => {
     return new Promise((resolve, reject) => {
@@ -264,15 +264,14 @@ const CreateProductFrom = ({ onClose }) => {
           </span>
         )}
       </form>
-      <div className="img-preview">
-        <PreviewCard
-          img={imgPreview}
-          name={formPreview.name}
-          price={formPreview.price}
-          category={formPreview.category}
-          description={formPreview.description}
-        />
-      </div>
+
+      <PreviewCard
+        img={imgPreview}
+        name={formPreview.name}
+        price={formPreview.price}
+        category={formPreview.category}
+        description={formPreview.description}
+      />
     </div>
   );
 };
