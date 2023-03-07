@@ -10,7 +10,7 @@ import {
 } from "../slices/productsSlice";
 
 const { REACT_APP_API_URL } = process.env;
-
+console.log(REACT_APP_API_URL)
 export const fetchProducts = ({
   filters = {},
   order = {},
