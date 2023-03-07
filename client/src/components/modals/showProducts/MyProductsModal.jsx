@@ -16,6 +16,7 @@ export const MyProductsModal = ({ onClose }) => {
   const [productId, setProductId] = useState();
   const [habilitar, setHabilitar] = useState(false);
   const [modifiedProduct, setModifiedProduct] = useState();
+  const [imgPreview, setImgPreview] = useState();
 
 
   const handleProductId = (e) => {
@@ -53,6 +54,48 @@ export const MyProductsModal = ({ onClose }) => {
     setHabilitar(false);
     dispatch(editProduct(modifiedProduct));
   };
+
+  const handlerImgPreview = (e) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(e.target.files[0]);
+
+      fileReader.onloadend = () => {
+        setImgPreview(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onloadend = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+  
+  const handlerModifiedImage = async (e) => {
+    if (e.target.name === "img") {
+      const files = e.target.files;
+      const base64 = await convertBase64(files[0]);
+      console.log(base64)
+      setModifiedProduct({
+        ...modifiedProduct,
+        img: base64
+      });
+    }
+  }
 
   return (
     <section className="my-products-modal">
@@ -97,7 +140,10 @@ export const MyProductsModal = ({ onClose }) => {
                 <div>
                   {
                     habilitar
-                      ? <input type="file" />
+                      ? <div className="modify-fields" onChange={(e) => handlerImgPreview(e)}>
+                        <label htmlFor="">Select new image</label>
+                        <input name="img" type="file" onChange={(e) => handlerModifiedImage(e)} />
+                      </div>
                       : <img src={productToModify.img_url} className="imagen-my-products" alt="" disabled />
                   }
                 </div>
