@@ -3,6 +3,7 @@ import github from "./media/github.png";
 // import styles from "./landingPage.module.css";
 import logo from "./media/logoHenry.png";
 import "./About.css";
+//
 const About = () => {
   return (
     <div className="landing">
