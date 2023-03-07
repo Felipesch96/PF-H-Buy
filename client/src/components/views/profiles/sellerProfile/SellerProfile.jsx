@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ProductModal } from "../../../modals/product";
+import { MyProductsModal } from "../../../modals/showProducts/MyProductsModal";
 import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 import "./SellerProfile.css";
@@ -9,6 +10,7 @@ const { REACT_APP_API_URL } = process.env;
 
 const SellerProfile = () => {
   const [productModal, setProductModal] = useState(false);
+  const [myProductsModal ,setMyProductsModal] = useState();
   const user = useSelector((state) => state.user.userLocal);
   const [orders, setOrders] = useState();
 
@@ -38,17 +40,6 @@ const SellerProfile = () => {
           </a>
           <a
             class="nav-link"
-            id="nav-account-tab"
-            data-bs-toggle="tab"
-            href="#nav-account"
-            role="tab"
-            aria-controls="nav-account"
-            aria-selected="false"
-          >
-            Account
-          </a>
-          <a
-            class="nav-link"
             id="nav-payment-tab"
             data-bs-toggle="tab"
             href="#nav-payment"
@@ -59,7 +50,7 @@ const SellerProfile = () => {
             Wallet
           </a>
           <a
-            class="nav-link crear-prod"
+            class="nav-link"
             id="nav-create-product-tab"
             data-bs-toggle="tab"
             href="#nav-create-product"
@@ -71,6 +62,20 @@ const SellerProfile = () => {
             }}
           >
             Create Product
+          </a>
+          <a
+            class="nav-link"
+            id="nav-my-products-tab"
+            data-bs-toggle="tab"
+            href="#nav-my-products"
+            role="tab"
+            aria-controls="nav-my-products"
+            aria-selected="false"
+            onClick={() => {
+              setMyProductsModal(true);
+            }}
+          >
+            My products
           </a>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -168,14 +173,6 @@ const SellerProfile = () => {
           </div>
           <div
             class="tab-pane fade"
-            id="nav-account"
-            role="tabpanel"
-            aria-labelledby="nav-account-tab"
-          >
-            <AccountInfo />
-          </div>
-          <div
-            class="tab-pane fade"
             id="nav-payment"
             role="tabpanel"
             aria-labelledby="nav-payment-tab"
@@ -190,6 +187,14 @@ const SellerProfile = () => {
             aria-labelledby="nav-create-product-tab"
           >
             {productModal && <ProductModal onClose={setProductModal} />}
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-my-products"
+            role="tabpanel"
+            aria-labelledby="nav-my-products-tab"
+          >
+            {myProductsModal && <MyProductsModal onClose={setMyProductsModal} />}
           </div>
         </div>
       </div>

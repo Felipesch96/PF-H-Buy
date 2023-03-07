@@ -58,12 +58,12 @@ const Cards = ({ array }) => {
                   setInput={setInput}
                   array={array}
                 />
-                <div class="row row-cols-3">
+                <div class="row row-cols-3 mb-5">
                   {Array.isArray(array) ? (
                     // array.length ? (
                     cardsCurrent.map((element) => (
-                      <div key={element._id} class="col">
-                        <div class="card mb-3 rounded-4 bg-dark tarjeta">
+                      <div key={element._id} class="p-3">
+                        <div class="card mb-3 rounded-4 bg-dark tarjeta2">
                           <div class="d-grid gap-2 d-md-block">
                             <button
                               onClick={() => {
@@ -132,7 +132,7 @@ const Cards = ({ array }) => {
                     ))
                   ) : (
                     <div class="container error">
-                      <div class="alert alert-danger" role="alert">
+                      <div class="alert alert-warning" role="alert">
                         <Button
                           onClick={clearFilter}
                           class="alert"

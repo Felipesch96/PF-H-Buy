@@ -5,6 +5,7 @@ const postReview = require("../controllers/reviews/post/post.reviews")
 
 
 router.get("/", getReviews);
+router.get("/:id", getReviews);
 router.post("/", postReview);
 
 

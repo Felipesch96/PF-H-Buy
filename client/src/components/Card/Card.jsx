@@ -11,22 +11,27 @@ const Card = (props) => {
     "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
 
   return (
-    <div class="row g-0 tarjeta rounded-2">
+    <div class="row g-0 tarjeta1 rounded-2">
       <div class="col-md-14">
         <img
           src={props.img ? props.img : imgError}
-          class="img-fluid img-detail rounded-2 border bg-light"
+          class="img-fluid img-detail rounded-3 border bg-light mt-0"
           alt="..."
           style={{ height: "230px", objectFit: "cover" }}
         />
         <div class="card-body">
-          <h5 class="card-title">{props.name}</h5>
-          <span
+            <h4
+              class="card-title d-inline-block text-truncate"
+              style={{ maxWidth: "100%" }}
+            >
+              {props.name}
+            </h4>
+          <p
             class="card-text bg-success text-white rounded-1 p-1"
             style={{ fontSize: "20px" }}
           >
             ${formater.format(props.price)}
-          </span>
+          </p>
           <br />
           {props.score ? (
             <div class="container">
@@ -40,7 +45,10 @@ const Card = (props) => {
                 readOnly
               />
             </div>
-          ) : null}
+          ) : (
+            <span>No scores</span>
+          )}
+          <br />
 
           <span class="card-text fs-6">Category: {props.category}</span>
 

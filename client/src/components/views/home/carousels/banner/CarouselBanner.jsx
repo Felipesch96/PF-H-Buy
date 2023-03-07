@@ -2,9 +2,7 @@ import React from "react";
 import "./CarouselBanner.css";
 
 const CarouselBanner = () => {
-  // const [loaded, setLoaded] = useState(false);
-  // const [selectedImages, setSelectedImages] = useState(images[0]);
-
+  
   return (
     <div
       id="carouselExampleAutoplaying"
@@ -12,16 +10,7 @@ const CarouselBanner = () => {
       data-bs-ride="carousel"
     >
       <div class="carousel-inner tamano">
-        {/* {
-          images?.map(i => {
-            return (
-              <div class="carousel-item active contenedor-imagen">
-                <img src={require(`../media/${i}`)} class="img-fluid imagen" alt="img-fluid"
-                ></img>
-              </div>
-            )
-          })
-        } */}
+        
         <div class="carousel-item active">
           <img
             src={require(`../media/baner0.jpg`)}
@@ -44,7 +33,7 @@ const CarouselBanner = () => {
           />
         </div>
         <button
-          class="carousel-control-prev "
+          class="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="prev"
@@ -60,7 +49,7 @@ const CarouselBanner = () => {
           data-bs-target="#carouselExampleAutoplaying"
           data-bs-slide="next"
         >
-          <span className="cambio-carousel">
+          <span className="prev-next">
             <b>Next</b>
           </span>
           <span class="carousel-control-next-icon"></span>

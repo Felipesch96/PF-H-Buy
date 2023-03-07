@@ -204,7 +204,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
   ) : (
     <>
       <div class="mt-5">
-          <div class="alert alert-danger" role="alert">
+          <div class="alert alert-warning" role="alert">
             <i
               class="bi bi-exclamation-triangle-fill"
               style={{ fontSize: "30px" }}

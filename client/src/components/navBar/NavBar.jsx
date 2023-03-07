@@ -140,11 +140,7 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-              {location.pathname !== "/" &&
-              location.pathname !== "/shipping" &&
-              location.pathname !== "/orderPlacement" &&
-              location.pathname !== "/shoppingCart" &&
-              location.pathname !== "//profile" ? (
+              {location.pathname == "/products" ? (
                 <div className="shoppingCart">
                   <div
                     className={
@@ -159,9 +155,7 @@ const NavBar = () => {
                   />
                   {isClicked && <CartModal />}
                 </div>
-              ) : (
-                ""
-              )}
+              ) : null}
             </li>
             <li>
               <div class="btn-group">
