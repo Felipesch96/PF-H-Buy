@@ -1,15 +1,10 @@
-.tarjeta{
-    border: 1px solid black;
-    background-color: rgb(255, 255, 255);
-    height: 580px;
+.tarjeta1 {
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
 }
-.tarjeta:hover{
-    box-shadow: 8px 5px 10px rgb(5, 5, 5);
+.tarjeta:hover {
+  box-shadow: 8px 5px 10px rgb(5, 5, 5);
 }
-.img-detail{
-    margin-top: 5px;
-    height: 95%;
-    width: 95%;
-    box-shadow: 1px 1px 1px rgba(14, 13, 13, 0.323);
-
-  }
+.img-detail {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.323);
+}

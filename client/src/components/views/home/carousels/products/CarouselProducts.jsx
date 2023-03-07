@@ -43,7 +43,7 @@ const CarouselProducts = ({ array }) => {
       <Slider {...settings}>
         {array.map((p) => {
           return (
-            <div key={p._id} class=" box">
+            <div key={p._id} class="box">
               <CarouselCard
                 _id={p._id}
                 img={p.img_url}

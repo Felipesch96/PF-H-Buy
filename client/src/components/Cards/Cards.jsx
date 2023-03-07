@@ -62,8 +62,8 @@ const Cards = ({ array }) => {
                   {Array.isArray(array) ? (
                     // array.length ? (
                     cardsCurrent.map((element) => (
-                      <div key={element._id} class="col">
-                        <div class="card mb-3 rounded-4 bg-dark tarjeta">
+                      <div key={element._id} class="p-3">
+                        <div class="card mb-3 rounded-4 bg-dark tarjeta2">
                           <div class="d-grid gap-2 d-md-block">
                             <button
                               onClick={() => {

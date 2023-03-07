@@ -7,10 +7,9 @@
   width: 20rem;
 }
 
-.tarjeta {
+.tarjeta2 {
   border: 1px solid black;
   background-color: rgb(255, 255, 255);
-  height: 580px;
 }
 .tarjeta:hover {
   transition: 0.2s;

@@ -26,9 +26,6 @@ align-items: center;
   margin: 5px;
 }
 
-.card-body img{
-  height: fit-;
-}
 
 .card-prod-carousel:hover{
   opacity: 0.5;
