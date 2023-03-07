@@ -24,7 +24,7 @@ const ProductsPage = () => {
   return (
     <div class="container-fluid text-center pag-prods">
       {error ? (
-        <div class="mt-5">
+        <div class="p-5 w-50 d-inline-block">
           <div class="alert alert-danger" role="alert">
             <i
               class="bi bi-exclamation-triangle-fill"

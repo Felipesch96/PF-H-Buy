@@ -18,8 +18,12 @@ const DetailCard = () => {
     (Element) => Element._id === detailProduct._id
   );
   const formater = new Intl.NumberFormat("en");
+  console.log(history);
   useEffect(() => {
     if (!verifyHistory.length) {
+      if (history.length > 7) {
+        history[0] = detailProduct;
+      }
       setHistory([...history, detailProduct]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

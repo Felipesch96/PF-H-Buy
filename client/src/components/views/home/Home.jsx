@@ -1,7 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, getTopVisits } from "../../../redux/thunks/productThunk";
+import { Link } from "react-router-dom";
+import {
+  fetchProducts,
+  getTopVisits,
+} from "../../../redux/thunks/productThunk";
 import { newGoogleUser } from "../../../redux/thunks/userThunk";
 import CardLoader from "../../CardLoader/CardLoader";
 import CarouselBanner from "./carousels/banner/CarouselBanner";
@@ -23,7 +27,7 @@ const Home = () => {
     setLoader(true);
     verifyAuth();
     dispatch(fetchProducts());
-    dispatch(getTopVisits())
+    dispatch(getTopVisits());
     setLoader(false);
     const reloj = setInterval(() => {
       selectNewImage(selectedIndex, images);
@@ -76,9 +80,9 @@ const Home = () => {
   ) : (
     <div className="home">
       <div className="carousel-banner">
-        <a href="/home/products">
+        <Link to="/products">
           <CarouselBanner />
-        </a>
+        </Link>
       </div>
       <hr />
       {topViews.length ? (
@@ -102,10 +106,10 @@ const Home = () => {
       ) : null}
       <div className="text-center">
         <h1>Want to see more products?</h1>
-        <a href="/home/products">
+        <Link to="/products">
           <button className="btn btn-secondary">Click here</button>
           <hr />
-        </a>
+        </Link>
       </div>
     </div>
   );

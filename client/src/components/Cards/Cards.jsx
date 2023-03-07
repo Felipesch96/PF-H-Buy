@@ -132,7 +132,7 @@ const Cards = ({ array }) => {
                     ))
                   ) : (
                     <div class="container error">
-                      <div class="alert alert-danger" role="alert">
+                      <div class="alert alert-warning" role="alert">
                         <Button
                           onClick={clearFilter}
                           class="alert"
