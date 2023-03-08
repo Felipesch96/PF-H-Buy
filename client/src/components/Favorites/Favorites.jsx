@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { createFavorite } from "../../helpers/createFavorite";
+import Swal from "sweetalert2";
 
 function FavoriteButton({ productId }) {
   const { userLocal } = useSelector((state) => state.user);
@@ -17,6 +18,14 @@ function FavoriteButton({ productId }) {
   const handlerAddToFavorites = (e) => {
     e.preventDefault();
     createFavorite(newFav);
+    Swal.fire({
+      color: "white",
+      background: "#1299",
+      icon: "success",
+      title: "Product added to favorites.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (

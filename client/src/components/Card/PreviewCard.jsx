@@ -25,7 +25,7 @@ const PreviewCard = (props) => {
             disabled
           ></button>
         </div>
-        <div class=" row g-0 tarjeta3 rounded-2">
+        <div class=" row g-0 tarjeta3 rounded-2 w-100">
           <div class="col-md-14">
             {" "}
             <div class="col-md-14">

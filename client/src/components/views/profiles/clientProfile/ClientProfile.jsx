@@ -38,7 +38,6 @@ const ClientProfile = () => {
         icon: "error",
         title: "Oops...",
         text: "You have already reviewed this product!",
-        footer: '<a href="">Why do I have this issue?</a>',
       });
     } else {
       history.push(`/review/${id}`);

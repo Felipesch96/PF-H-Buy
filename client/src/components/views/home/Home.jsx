@@ -87,7 +87,7 @@ const Home = () => {
       <hr />
       {topViews.length ? (
         <>
-          <h2 className="text-center">Top 5 Products More views</h2>
+          <h2 className="text-center">Most seen Products</h2>
           <div class="container-fluid carousel-productos">
             <CarouselProducts array={topViews} />
           </div>
