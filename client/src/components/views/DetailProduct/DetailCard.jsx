@@ -14,6 +14,8 @@ const DetailCard = () => {
   const dispatch = useDispatch();
   const [history, setHistory] = useLocalStorage("history", []);
   const detailProduct = useSelector((state) => state.product.detailproduct);
+  const sellerDetail = detailProduct.seller_id;
+  console.log(sellerDetail)
   const cart = useSelector((state) => state.cart.cartList);
   const thisProduct = cart.find((element) => element._id === detailProduct._id);
   const verifyHistory = history.filter(
@@ -126,9 +128,9 @@ const DetailCard = () => {
                 onClick={() => {
                   Swal.fire({
                     color: "white",
-                    background: "#1299",
+                    background: "#0077B6",
                     icon: "success",
-                    title: "Producto agregado a favoritos.",
+                    title: "Product added to your Favorites.",
                     showConfirmButton: false,
                     timer: 1500,
                   });
@@ -144,7 +146,7 @@ const DetailCard = () => {
                 role="tablist"
               >
                 <button
-                  class="nav-link btn"
+                  class="nav-link active btn"
                   id="nav-profile-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-about"
@@ -157,7 +159,7 @@ const DetailCard = () => {
                   <i class="bi bi-person-bounding-box"></i>
                 </button>
                 <button
-                  class="nav-link active btn"
+                  class="nav-link btn"
                   id="nav-home-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-description"
@@ -206,7 +208,22 @@ const DetailCard = () => {
                 aria-labelledby="nav-about-tab"
               >
                 <span class="card-text text-center p-3 h5 m-3 d-flex justify-content-center">
-                  aca va el perfil del comprador
+                <table class="table">
+                  <thead>
+                      <tr class="table-dark">
+                      <th scope="col">Profile Picture</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-light">
+                      <th scope="row"><img src={sellerDetail.image} /></th>
+                      <th scope="row">{sellerDetail.name} {sellerDetail.lastName}</th>
+                      <th scope="row">{sellerDetail.email}</th>
+                    </tr>
+                  </tbody>
+                </table>
                 </span>
               </div>
               <div
