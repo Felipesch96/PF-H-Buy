@@ -179,13 +179,13 @@ const ClientProfile = () => {
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          Favorites (cant)
+                          Favorites {`(${myFavorites.length})`}
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu lista-favoritos">
                           {myFavorites?.map(f => {
                             const producto = products.filter(p => p._id === f.product_id);
                             return (
-                              <li>
+                              <li className="cada-favorito">
                                 <a href={`/products/${producto[0]?._id}`}>
                                   {`${producto[0]?.name} $ ${producto[0]?.price}`}
                                 </a>

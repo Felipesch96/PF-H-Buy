@@ -1,3 +1,16 @@
 .buyer-button{
   width: fit-content;
 }
+
+.cada-favorito{
+  display: flex;
+  width: 20rem;
+  justify-content: space-between;
+  border: 1px solid black;
+  align-items: center;
+}
+
+.lista-favoritos{
+  width: fit-content;
+  height: fit-content;
+}
