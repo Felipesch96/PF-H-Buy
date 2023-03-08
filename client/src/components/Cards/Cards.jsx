@@ -64,7 +64,7 @@ const Cards = ({ array }) => {
                     cardsCurrent.map((element) => (
                       <div key={element._id} class="p-3">
                         <div class="card mb-3 rounded-4 bg-dark tarjeta2">
-                          <div class="d-grid gap-2 d-md-block">
+                          <div className="cart-fav">
                             <button
                               onClick={() => {
                                 if (thisProduct) {
