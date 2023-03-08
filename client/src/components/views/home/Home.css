@@ -6,7 +6,7 @@
 
 .home {
   min-height: 100vh;
-  background-color: rgb(208, 250, 237);
+  /* background-color: rgb(208, 250, 237); */
   flex-direction: column;
 }
 

@@ -35,6 +35,15 @@ const DetailCard = () => {
     if (thisProduct) {
       if (detailProduct.stock > thisProduct.quantity) {
         dispatch(addToCart(detailProduct));
+        Swal.fire({
+          color: "white",
+          position: "center",
+          icon: "success",
+          background: "#1299",
+          title: "Product added to cart.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       } else {
         window.alert("No more products available");
       }
@@ -123,19 +132,6 @@ const DetailCard = () => {
                 Add to Cart
               </button>
 
-              <FavoriteButton
-                class="fa-regular fa-heart"
-                onClick={() => {
-                  Swal.fire({
-                    color: "white",
-                    background: "#0077B6",
-                    icon: "success",
-                    title: "Product added to your Favorites.",
-                    showConfirmButton: false,
-                    timer: 1500,
-                  });
-                }}
-              />
             </div>
           </div>
           <div class="container mt-4">

@@ -21,7 +21,7 @@ const PreviewCard = (props) => {
           ></button>
           <FavoriteButton disable={true} />
         </div>
-        <div class=" row g-0 tarjeta3 rounded-2">
+        <div class=" row g-0 tarjeta3 rounded-2 w-100">
           <div class="col-md-14">
             {" "}
             <div class="col-md-14">
@@ -32,7 +32,7 @@ const PreviewCard = (props) => {
                 style={{ height: "230px", objectFit: "cover" }}
               />
               <br />
-                <h4 class="card-title d-inline-block text-truncate">
+                <h4 class="card-title d-inline-block text-truncate w-100">
                   {props.name ? props.name : "your product name"}
                 </h4>
                 <br />

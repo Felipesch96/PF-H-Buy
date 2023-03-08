@@ -197,7 +197,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                 </div>
               </div>
               {filters.categories ? (
-                <button class="btn btn-warning btn-sm mb-2" type="submit">
+                <button class="btn btn-primary btn-sm mb-2" type="submit">
                   Reset Filters
                 </button>
               ) : null}

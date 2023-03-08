@@ -73,7 +73,7 @@ const Cards = ({ array }) => {
                                     Swal.fire({
                                       position: "top-end",
                                       icon: "success",
-                                      title: "Producto agregado al carrito.",
+                                      title: "Product added to cart.",
                                       showConfirmButton: false,
                                       timer: 1500,
                                     });
@@ -87,7 +87,7 @@ const Cards = ({ array }) => {
                                       color: "white",
                                       background: "#1299",
                                       icon: "success",
-                                      title: "Producto agregado al carrito.",
+                                      title: "Product added to cart.",
                                       showConfirmButton: false,
                                       timer: 1500,
                                     });
