@@ -1,7 +1,8 @@
 const Favorite = require("../../../schemas/Favorites");
 
+const favoritesCtrl = {};
 
-const deleteFav = async (req, res) => {
+favoritesCtrl.deleteFav = async (req, res) => {
   const { id } = req.params;
   try {
       await Favorite.findByIdAndDelete(id);
@@ -11,4 +12,4 @@ const deleteFav = async (req, res) => {
   }
 };
 
-module.exports = { deleteFav };
+module.exports = favoritesCtrl;
