@@ -3,7 +3,6 @@ import { AiOutlineSave } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { editUser } from "../../../../helpers/editUser";
-import { EditUserCard } from "../../../editUserCard";
 import "./AccountInfo.css";
 import Swal from "sweetalert2";
 
@@ -26,8 +25,8 @@ const AccountInfo = () => {
   const submitChanges = (e) => {
     e.preventDefault();
     editUser(newUserInfo);
-    setEditName(!editName);
-    setEditPhone(!editPhone);
+    setEditName(false);
+    setEditPhone(false);
     Swal.fire({
       color: "white",
       background: "#1299",
