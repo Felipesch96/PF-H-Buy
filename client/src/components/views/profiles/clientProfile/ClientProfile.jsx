@@ -22,7 +22,7 @@ const ClientProfile = () => {
   // console.log(favList);
   const myFavorites = favList.filter((f) => f.user_id === userLocal._id);
   // console.log(myFavorites);
-  const [orders, setOrders] = useState();
+  const [orders, setOrders] = useState();   
 
   const getOrders = async () => {
     const { data } = await axios.get(
@@ -99,7 +99,18 @@ const ClientProfile = () => {
             aria-controls="nav-home"
             aria-selected="true"
           >
-            Home
+            Purchases ({orders?.length})
+          </a>
+          <a
+            class="nav-link"
+            id="nav-fav-tab"
+            data-bs-toggle="tab"
+            href="#nav-fav"
+            role="tab"
+            aria-controls="nav-fav"
+            aria-selected="false"
+          >
+            Favorites {(myFavorites.length)}
           </a>
           <a
             class="nav-link"
@@ -120,38 +131,27 @@ const ClientProfile = () => {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-            <div class="column">
-              <div class="col-md-6">
-                <div class="card mb-4 mt-4 buyer-button">
-                  <div class="card-body">
-                    <span class="text-primary font-italic">
-                      <div class="btn-group dropend">
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Purchases ({orders?.length})
-                        </button>
-                        <ul class="dropdown-menu">
+            <div className="orders-list">
+                <div class="card mt-3 bg-dark-subtle">
+                  <div>
+                    <span class="font-italic bg">
+                      <ul>
                           {orders &&
                             orders.map((order) => {
                               return (
-                                <a class="dropdown-item" key={order._id}>
-                                  {order.status === "approved" ? (
-                                    <div>
-                                      <h6>Order N° {order._id}</h6>
-                                      <span class="text-success">
-                                        Status: payed
-                                      </span>
-                                      <p>Total price: ${order.totalPrice}</p>
+                                <div key={order._id}>
+                                  {order.status === "approved"
+                                    ? <div class="bg-light one-order shadow-lg me-2 p-3 rounded mt-3">
+                                      <h6 class="order-Title mt-3 text-primary-emphasis">Order N° {order._id}</h6>
+                                      <span class="text-success">Status: payed</span>
+                                      <p class="totalPrice ">Total price: ${order.totalPrice}</p>
                                       <span>Products: </span>
                                       {order.items?.map((element) => {
                                         return (
-                                          <div key={element._id}>
-                                            <span>{element.product.name}</span>
-                                            <p>${element.product.price}</p>
+                                          <div key={element._id} className="product-container">
+                                            <div>
+                                              <span>{element.product.name}</span>
+                                            </div>
                                             <span>
                                               <button
                                                 onClick={() =>
@@ -160,107 +160,56 @@ const ClientProfile = () => {
                                                   )
                                                 }
                                                 type="button"
-                                                class="btn btn-secondary btn-sm"
+                                                class="btn btn-primary btn-sm"
                                               >
-                                                Rate the product
+                                                Score this product
                                               </button>
                                             </span>
                                           </div>
                                         );
                                       })}
                                     </div>
-                                  ) : null}
-                                </a>
+                                    : null}
+
+                                </div>
                               );
                             })}
                         </ul>
-                      </div>
                     </span>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card mb-4 mt-4 buyer-button">
-                  <div class="card-body">
-                    <span class="text-primary font-italic">
-                      <div class="btn-group dropend">
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Favorites {`(${myFavorites.length})`}
-                        </button>
-                        <ul class="dropdown-menu lista-favoritos">
-                          {myFavorites?.map((f) => {
-                            const producto = products.filter(
-                              (p) => p._id === f.product_id
-                            );
+              
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="nav-fav"
+            role="tabpanel"
+            aria-labelledby="nav-account-tab"
+          >
+            <div>
+                <div class="card mb-4 mt-4 bg-dark-subtle">
+                  <div class="">
+                    <span class="font-italic">
+                        <ul className="lista-favoritos">
+                          {myFavorites?.map(f => {
+                            const producto = products.filter(p => p._id === f.product_id);
                             return (
                               <li className="cada-favorito">
-                                <a href={`/products/${producto[0]?._id}`}>
-                                  {`${producto[0]?.name} $ ${producto[0]?.price}`}
-                                </a>
-                                <button
-                                  onClick={() => onDelete(producto[0]?._id)}
-                                >
-                                  x
-                                </button>
+                                  <a class="tag text-secondary text-decoration-none" href={`/products/${producto[0]?._id}`}>
+                                    {`${producto[0]?.name} $ ${producto[0]?.price}`}
+                                  </a>
+                                  <button type="button" class="btn btn-primary"
+                                  onClick={() => onDelete(producto[0]?._id)}>x</button>
+                                
                               </li>
                             );
                           })}
                         </ul>
-                      </div>
                     </span>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="card mb-4 mt-4 buyer-button">
-                  <div class="card-body">
-                    <span class="text-primary font-italic">
-                      <div class="btn-group dropend">
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Inquiries (cant)
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <span>Product 1</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card mb-4 mt-4 buyer-button">
-                  <div class="card-body">
-                    <span class="text-primary font-italic">
-                      <div class="btn-group dropend">
-                        <button
-                          type="button"
-                          class="btn btn-primary dropdown-toggle"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          Claims (cant)
-                        </button>
-                        <ul class="dropdown-menu">
-                          <span>Claim 1</span>
-                        </ul>
-                      </div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div
             class="tab-pane fade"

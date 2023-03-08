@@ -8,7 +8,7 @@ const About = () => {
   return (
     <div className="landing">
       <div class="container pt-4">
-        <h1 className="text-center bg-info rounded-3 title">About of H-Buy</h1>
+        <h1 className="text-center bg-info rounded-3 title">About H-Buy</h1>
         <div class="row ">
           <div class="col ">
             <img
@@ -19,93 +19,67 @@ const About = () => {
           </div>
           <div class=" bg-dark bg-opacity-25 col border rounded-5 p-3">
             <h2 className="text-center rounded-2 subtitle">
-              ¿Que es H-buy? <i class="bi bi-shop"></i>
+              ¿What's H-buy? <i class="bi bi-shop"></i>
             </h2>
-            H-Buy es una plataforma en línea que permite a los usuarios realizar
-            compras de productos o servicios de manera virtual.
+            H-Buy it's an online platform that allows users to purchase products or services.
             <br />
             <br />
             <h2 className="text-center rounded-2 subtitle">
-              ¿Que nos ofrece H-buy?
+              ¿What does H-buy offer you?
             </h2>
-            A través de esta plataforma los clientes pueden buscar y seleccionar
-            los productos que desean adquirir, agregarlos a su carrito de
-            compras y realizar el pago de manera segura utilizando diferentes
-            medios de pago electrónicos.
+            Through this platform customers can search and select the products they want to buy, add them to cart and pay for them safelly using different payment methods.
             <br />
             <br />
-            Además, H-Buy puede incluir funciones adicionales como filtros
+            Besides that, H-Buy includes additional functions like searching filters,
             <br />
-            de búsqueda, recomendaciones personalizadas, reseñas de productos,
+            personal recommendations, product reviews, 
             <br />
-            seguimiento de envíos y servicio al cliente en línea.
+            shipment tracking and online customer support
             <br />
             <br />
-            En resumen, es una alternativa práctica y conveniente
+            To sum up, it's a practical and convinient alternative
             <br />
-            para hacer compras desde cualquier lugar con acceso a internet, sin
+            to purchase what you need from any place with internet connection, 
             <br />
-            necesidad de acudir a una tienda física.
+            without having to attend to a fisical store.
             <br />
           </div>
           <div class="bg-dark bg-opacity-25 border rounded-5 p-2 mb-3">
             <br />
             <h2 className="text-center bg-info rounded-2 title">
-              ¿Que mas ofrecemos?
+              ¿What else do we offer?
             </h2>
             <br />
             <ul>
               <li>
-                Catálogo de productos: nosotros presentamos un catálogo de
-                productos con fotos,
-                <br /> descripciones y precios para que los clientes puedan
-                explorar los productos y realizar su selección.
+                Catalogue: we present you a list of products with pictures, description and prices for the customers to explore and choose according to their needs.
+                
               </li>
               <li>
-                Carrito de compras: el carrito de compras es una herramienta que
-                permite a los clientes <br />
-                agregar productos a su pedido y luego hacer el pago en una sola
-                transacción.
+                Cart: this is the section that allows customers to add products to their wish list and pay for it easly.
               </li>
               <li>
-                Procesamiento de pagos: ofrecemos diferentes métodos de pago en
-                línea, como tarjeta de <br />
-                crédito, PayPal, transferencia bancaria, entre otros, para
-                facilitar el proceso de compra.
+                Payment processing: we offer different payment methods online, like credit or debit card, wire transfer or PayPal, to make the purchase easier.
               </li>
               <li>
-                Seguridad en línea: tambien implementamos medidas de seguridad
-                para
-                <br /> proteger la información personal y financiera de los
-                clientes, como encriptación de datos, <br />
-                autenticación de usuario, y seguridad en el procesamiento de
-                pagos.
+                Safety: we have safety protocols implemented with the goal of keeping your personal and finatial information safe, like data encryption, <br />  users authentication and safety on the payment proccessing.
               </li>
               <li>
-                Servicio al cliente: nuestro equipo ofrece servicios de atención
-                al cliente en línea, <br />
-                como chat en vivo, correo electrónico o teléfono, para resolver{" "}
-                <br />
-                cualquier duda o problema que puedan tener los clientes.
+                Customer service: our team offers online customer service, like live chat, email or by phone to answer,
+                 <br />
+                any doubt or problem that a client can run into. 
               </li>
               <li>
+                Shipping and delivery: we offer different shippment options, including
                 Envío y entrega: nosotros ofrecemos diferentes opciones
-                <br /> de envío, incluyendo la entrega a domicilio, recogida en
-                tienda, envío express, entre otros.
+                <br /> delivery, store pickup, express delivery, etc.
               </li>
               <li>
-                Evaluaciones y reseñas: los clientes pueden dar su opinión sobre
-                los productos que <br />
-                han comprado a través de evaluaciones
-                <br /> y reseñas en línea, lo que puede ayudar a otros clientes
-                en su proceso de compra.
+                Reviews: customers can give it's opinion on the product they have purchased through reviews,
+                <br /> feature that can help other clients on their purchases
               </li>
             </ul>
-            En general, H-Buy busca ofrecer una experiencia de compra fácil,
-            rápida y segura para los clientes en
-            <br /> línea, lo que puede ayudar a las empresas a llegar a un
-            público más amplio y a aumentar sus ventas.
-            <br />
+            H-Buy hopes to offer an easy, fast and safe experience to it's users.
           </div>
         </div>
       </div>

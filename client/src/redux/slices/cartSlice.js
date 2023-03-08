@@ -57,7 +57,6 @@ export const cartSlice = createSlice({
     removeAll: (state) => {
       state.cartList = [];
       state.amountOfItems = 0;
-      state.orderId = "";
     },
     setShipping: (state, { payload }) => {
       state.shippingInfo = payload;
