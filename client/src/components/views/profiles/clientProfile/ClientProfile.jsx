@@ -33,7 +33,7 @@ const ClientProfile = () => {
 
   const handleClick = async (id) => {
     const { data } = await axios.get(
-      `${REACT_APP_API_URL}/reviews/${id}?user_id=${user._id}`
+      `${REACT_APP_API_URL}/reviews/${id}?user_id=${userLocal._id}`
     );
     if (data.length) {
       Swal.fire({
