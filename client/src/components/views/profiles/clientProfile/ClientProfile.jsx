@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
 import "./ClientProfile.css";
+import Swal from "sweetalert2";
 const { REACT_APP_API_URL } = process.env;
 
 const ClientProfile = () => {
@@ -22,7 +23,12 @@ const ClientProfile = () => {
   const handleClick = async (id) => {
     const { data } = await axios.get(`${REACT_APP_API_URL}/reviews/${id}?user_id=${user._id}`);
     if (data.length){
-      alert("Ya hiciste este review");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You have already reviewed this product!',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
 
     } else {
       history.push(`/review/${id}`);

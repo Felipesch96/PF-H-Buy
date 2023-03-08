@@ -8,6 +8,7 @@ import StarRating from "../../StarRating/StarRating";
 import "./DetailProduct.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import selectCategories from "../../Card/selectCategories";
 
 const DetailCard = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const DetailCard = () => {
               src={detailProduct.img_url}
               class="img-fluid w-100 m-2 mt-4 img-detail"
               alt="card-horizontal"
-              style={{maxHeight:"60vh"}}
+              style={{ maxHeight: "60vh" }}
             />
           </div>
           <div class="col">
@@ -132,167 +133,165 @@ const DetailCard = () => {
                     timer: 1500,
                   });
                 }}
-                />
+              />
             </div>
-
           </div>
-          <div class= "container mt-4">
-
-          <nav class="mt-1 nav justify-content-center p-1 pestanas">
-            <div class="nav nav-tabs rounded-3 tabs" id="nav-tab" role="tablist">
-              <button
-                class="nav-link active btn"
-                id="nav-home-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#nav-description"
-                type="button"
-                role="tab"
-                aria-controls="nav-description"
-                aria-selected="true"
+          <div class="container mt-4">
+            <nav class="mt-1 nav justify-content-center p-1 pestanas">
+              <div
+                class="nav nav-tabs rounded-3 tabs"
+                id="nav-tab"
+                role="tablist"
               >
-                Description
-                <i class="bi bi-bookmarks"></i>
-              </button>
-              <button
-                class="nav-link btn"
-                id="nav-profile-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#nav-characteris"
-                type="button"
-                role="tab"
-                aria-controls="nav-characteris"
-                aria-selected="false"
+                <button
+                  class="nav-link active btn"
+                  id="nav-home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-description"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-description"
+                  aria-selected="true"
                 >
-                Characteristics
+                  Description
+                  <i class="bi bi-bookmarks"></i>
+                </button>
+                <button
+                  class="nav-link btn"
+                  id="nav-profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-characteris"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-characteris"
+                  aria-selected="false"
+                >
+                  Characteristics
                   <i class="bi bi-check2-all"></i>
-              </button>
-              <button
-                class="nav-link btn"
-                id="nav-contact-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#nav-review"
-                type="button"
-                role="tab"
-                aria-controls="nav-review"
-                aria-selected="false"
+                </button>
+                <button
+                  class="nav-link btn"
+                  id="nav-contact-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-review"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-review"
+                  aria-selected="false"
+                >
+                  Reviews
+                  <i class="bi bi-chat-left-text-fill"></i>
+                </button>
+              </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+              <div
+                class="tab-pane fade show active bg-light m-3 rounded-3"
+                id="nav-description"
+                role="tabpanel"
+                aria-labelledby="nav-description-tab"
               >
-                Reviews
-                <i class="bi bi-chat-left-text-fill"></i>
-              </button>
-            </div>
-          </nav>
-
-          <div class="tab-content" id="nav-tabContent">
-            <div
-              class="tab-pane fade show active bg-light m-3 rounded-3"
-              id="nav-description"
-              role="tabpanel"
-              aria-labelledby="nav-description-tab"
-              
-            >
-              <span class="card-text text-center p-3 h5 m-3 d-flex justify-content-center" >
-                {detailProduct.description}
-              </span>
-            </div>
-            <div
-              class="tab-pane fade m-3"
-              id="nav-characteris"
-              role="tabpanel"
-              aria-labelledby="nav-characteris-tab"
-            >
-
-              <table class="table">
-                <thead>
-                  <tr class="table-dark">
-                    <th scope="col">Name</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Brand</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Category</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="table-light">
-                    <th scope="row">{detailProduct.name}</th>
-                    <th scope="row">{detailProduct.condition}</th>
-                    <th scope="row">
-                      {detailProduct.brand ? (
-                        detailProduct.brand
-                      ) : (
-                        <span class="text-warning">not specified</span>
-                      )}
-                    </th>
-                    <th scope="row">
-                      {detailProduct.model ? (
-                        detailProduct.model
-                      ) : (
-                        <span class="text-warning">not specified</span>
-                      )}
-                    </th>
-                    <th scope="row">
-                      {detailProduct.category ? (
-                        detailProduct.category
-                      ) : (
-                        <span class="text-warning">not specified</span>
-                      )}
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
-
-            </div>
-            <div
-              class="tab-pane fade m-3"
-              id="nav-review"
-              role="tabpanel"
-              aria-labelledby="nav-review-tab"
-            >
-              <div class="container">
-                {/* {detailProduct.reviews.length ?  */}
-                <div>
-                  {detailProduct.reviews?.length === 0 ? (
-                    <span class="card-text text-center text-danger-emphasis h5 m-3 d-flex justify-content-center">
-                      No comments about this product
-                    </span>
-                  ) : (
-                    detailProduct.reviews?.map((r) => {
-                      return (
-                        <>
-                          <div class="card mt-3 logouser">
-                            <div class="card-header bg-info h5">
-                              <img
-                                alt={r.userName}
-                                src={r.userImage}
-                                class="rounded-5 imgUser"
-                                style={{ height: "40px" }}
-                              />
-                              {/* <i class="bi bi-person-circle h3 "> </i> */}{" "}
-                              {r.userName} {r.userLastName}
+                <span class="card-text text-center p-3 h5 m-3 d-flex justify-content-center">
+                  {detailProduct.description}
+                </span>
+              </div>
+              <div
+                class="tab-pane fade m-3"
+                id="nav-characteris"
+                role="tabpanel"
+                aria-labelledby="nav-characteris-tab"
+              >
+                <table class="table">
+                  <thead>
+                    <tr class="table-dark">
+                      <th scope="col">Name</th>
+                      <th scope="col">State</th>
+                      <th scope="col">Brand</th>
+                      <th scope="col">Model</th>
+                      <th scope="col">Category</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="table-light">
+                      <th scope="row">{detailProduct.name}</th>
+                      <th scope="row">{detailProduct.condition}</th>
+                      <th scope="row">
+                        {detailProduct.brand ? (
+                          detailProduct.brand
+                        ) : (
+                          <span class="text-warning">not specified</span>
+                        )}
+                      </th>
+                      <th scope="row">
+                        {detailProduct.model ? (
+                          detailProduct.model
+                        ) : (
+                          <span class="text-warning">not specified</span>
+                        )}
+                      </th>
+                      <th scope="row">
+                        {detailProduct.category ? (
+                          <div>{selectCategories(detailProduct.category)} </div>
+                        ) : (
+                          <span class="text-warning">not specified</span>
+                        )}
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div
+                class="tab-pane fade m-3"
+                id="nav-review"
+                role="tabpanel"
+                aria-labelledby="nav-review-tab"
+              >
+                <div class="container">
+                  {/* {detailProduct.reviews.length ?  */}
+                  <div>
+                    {detailProduct.reviews?.length === 0 ? (
+                      <span class="card-text text-center text-danger-emphasis h5 m-3 d-flex justify-content-center">
+                        No comments about this product
+                      </span>
+                    ) : (
+                      detailProduct.reviews?.map((r) => {
+                        return (
+                          <>
+                            <div class="card mt-3 logouser">
+                              <div class="card-header bg-info h5">
+                                <img
+                                  alt={r.userName}
+                                  src={r.userImage}
+                                  class="rounded-5 imgUser"
+                                  style={{ height: "40px" }}
+                                />
+                                {/* <i class="bi bi-person-circle h3 "> </i> */}{" "}
+                                {r.userName} {r.userLastName}
+                              </div>
+                              <div class="card-body">
+                                <h5 class="card-title">Review</h5>
+                                <p class="card-text">
+                                  Qualification: {r.qualification}{" "}
+                                  <StarRating score={r.qualification} />
+                                </p>
+                                <p class="card-text comment">
+                                  Comment:
+                                  <div class="p-3 bg-info bg-opacity-10 border border-light-subtle rounded-2">
+                                    {r.comment}
+                                  </div>
+                                </p>
+                              </div>
                             </div>
-                            <div class="card-body">
-                              <h5 class="card-title">Review</h5>
-                              <p class="card-text">
-                                Qualification: {r.qualification}{" "}
-                                <StarRating score={r.qualification} />
-                              </p>
-                              <p class="card-text comment">
-                                Comment:
-                                <div class="p-3 bg-info bg-opacity-10 border border-light-subtle rounded-2">
-                                  {r.comment}
-                                </div>
-                              </p>
-                            </div>
-                          </div>
-                        </>
-                      );
-                    })
-                  )}
+                          </>
+                        );
+                      })
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          </div>
-
         </div>
       </div>
     </div>
