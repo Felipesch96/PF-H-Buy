@@ -1,19 +1,15 @@
 const Favorites = require("../../../schemas/Favorites");
 
-const allFavs = async (req, res) => {
-  const {id} = req.params;
+const favoritesCtrl = {}
+
+favoritesCtrl.getFavorites = async (req, res) => {
   try {
-    if (!id) { 
-      res.status(200).send(await Favorites.find())
-    } else {
-      const allFavs = await Favorites.find({user_id: id})
-      .populate("product_id")
-      allFavs.length?res.status(200).send(allFavs):res.status(400).send({ error: `No favorites found` });
-    }
-    
+    const allFavorites = await Favorites.find();
+    res.send(allFavorites);
+    console.log(allFavorites)
   } catch (error) {
     res.status(400).send({ error: error.message });
-  }
+  };
 };
 
-module.exports = { allFavs };
+module.exports = favoritesCtrl;

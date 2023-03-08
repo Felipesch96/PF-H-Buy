@@ -2,14 +2,13 @@
   background-color: rgb(214, 208, 208);
 }
 .filterCategories{
-  background-color: rgba(108, 228, 120, 0.418);
-
+background-color: #0077B6;
 }
 .orders{
-  background-color: rgba(41, 221, 245, 0.306);
+  background-color: #03045E;
 }
 .colorletra{
-  color: rgb(199, 199, 199);
+  color: rgb(253, 253, 253);
 }
 
 .input-filter{

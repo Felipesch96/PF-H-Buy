@@ -11,6 +11,7 @@ export const CartModal = () => {
       <div className="cartModalCardsList">
         {cartList.map((item) => (
           <ModalCartCard
+            key={item._id}
             name={item.name}
             quantity={item.quantity}
             id={item._id}

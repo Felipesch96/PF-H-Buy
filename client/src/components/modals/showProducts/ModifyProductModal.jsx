@@ -10,7 +10,6 @@ import "./showProducts.css";
 export const ModifyProductModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.product);
-  // console.log(products);
   const [productId, setProductId] = useState();
   const [productToModify, setProductToModify] = useState();
   const [habilitar, setHabilitar] = useState(false);
@@ -24,15 +23,12 @@ export const ModifyProductModal = ({ onClose }) => {
   const handleModifySubmit = (e) => {
     e.preventDefault();
     const producto = products.filter(p => p._id === productId);
-    // console.log(producto);
     setProductToModify(producto);
     setModifiedProduct({
       ...modifiedProduct,
       _id: producto[0]._id
     });
   };
-  console.log(productId);
-  console.log(productToModify)
   const handleHabilitar = () => {
     if (habilitar) {
       setHabilitar(false);
@@ -60,7 +56,6 @@ export const ModifyProductModal = ({ onClose }) => {
     if (e.target.name === "img") {
       const files = e.target.files;
       const base64 = await convertBase64(files[0]);
-      console.log(base64)
       setModifiedProduct({
         ...modifiedProduct,
         img: base64
@@ -73,7 +68,6 @@ export const ModifyProductModal = ({ onClose }) => {
       [e.target.name]: e.target.value
     });
   };
-  console.log(modifiedProduct);
 
   const handleSaveChanges = () => {
     setHabilitar(false);

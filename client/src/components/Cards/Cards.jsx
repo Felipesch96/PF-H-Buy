@@ -64,17 +64,16 @@ const Cards = ({ array }) => {
                     cardsCurrent.map((element) => (
                       <div key={element._id} class="p-3">
                         <div class="card mb-3 rounded-4 bg-dark tarjeta2">
-                          <div class="d-grid gap-2 d-md-block">
+                          <div className="cart-fav">
                             <button
                               onClick={() => {
                                 if (thisProduct) {
                                   if (element.stock > thisProduct.quantity) {
                                     dispatch(addToCart(element));
-                                    console.log(element);
                                     Swal.fire({
                                       position: "top-end",
                                       icon: "success",
-                                      title: "Producto agregado al carrito.",
+                                      title: "Product added to cart.",
                                       showConfirmButton: false,
                                       timer: 1500,
                                     });
@@ -88,7 +87,7 @@ const Cards = ({ array }) => {
                                       color: "white",
                                       background: "#1299",
                                       icon: "success",
-                                      title: "Producto agregado al carrito.",
+                                      title: "Product added to cart.",
                                       showConfirmButton: false,
                                       timer: 1500,
                                     });
@@ -97,7 +96,7 @@ const Cards = ({ array }) => {
                                       color: "white",
                                       background: "#1299",
                                       icon: "error",
-                                      title: "Producto sin stock.",
+                                      title: "No more stock.",
                                       showConfirmButton: false,
                                       timer: 1500,
                                     });
@@ -107,7 +106,7 @@ const Cards = ({ array }) => {
                               class="btn btn-primary bi bi-cart-plus-fill m-2"
                               type="button"
                             ></button>
-                            <FavoriteButton />
+                            <FavoriteButton productId={element._id} />
                           </div>
                           <Card
                             img={element.img_url}

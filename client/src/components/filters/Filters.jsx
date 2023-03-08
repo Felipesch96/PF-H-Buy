@@ -4,9 +4,9 @@ import {
   fetchProducts,
   fetchCategories,
 } from "../../redux/thunks/productThunk";
+import selectCategories from "../Card/selectCategories";
 import "../views/productsPage/ProductsPage.css";
 import "./Filter.css";
-
 
 const Filters = ({ setCurrentPage, setInput }) => {
   const dispatch = useDispatch();
@@ -14,7 +14,9 @@ const Filters = ({ setCurrentPage, setInput }) => {
     (state) => state.product
   );
 
-  const activeCategories = Array.isArray(categories) ? categories.filter(c => c.isActive === true) : categories;
+  const activeCategories = Array.isArray(categories)
+    ? categories.filter((c) => c.isActive === true)
+    : categories;
 
   useEffect(() => {
     if (!categories.length) {
@@ -107,7 +109,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
     <div>
       <div
         id="sidebar"
-        className="col-10 d-flex flex-column py-2 text-center rounded colorletra"
+        className="col-13 d-flex flex-column py-2 text-center rounded colorletra"
       >
         <div className="row ">
           <div className="bg-dark rounded">
@@ -118,13 +120,14 @@ const Filters = ({ setCurrentPage, setInput }) => {
             >
               <div className="mt-3 rounded-2 filterCategories">
                 <h6 class="span-1 fw-bold">Categories</h6>
-                <div>
+                <div class="container">
                   {activeCategories?.map((c) => {
                     return (
-                      <div key={c._id}>
+                      <div key={c._id} class="form-check checkinput">
                         <input
                           type="checkbox"
                           name="categories"
+                          class="form-check-input"
                           value={c.name}
                           checked={
                             filters &&
@@ -133,7 +136,9 @@ const Filters = ({ setCurrentPage, setInput }) => {
                           }
                           onClick={handleChangeType}
                         />
-                        <label htmlFor="categories">{c.name}</label>
+                        <label htmlFor="categories" class="form-check-label ">
+                          {selectCategories(c.name)}
+                        </label>
                       </div>
                     );
                   })}
@@ -192,7 +197,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                 </div>
               </div>
               {filters.categories ? (
-                <button class="btn btn-warning btn-sm mb-2" type="submit">
+                <button class="btn btn-primary btn-sm mb-2" type="submit">
                   Reset Filters
                 </button>
               ) : null}
@@ -204,14 +209,14 @@ const Filters = ({ setCurrentPage, setInput }) => {
   ) : (
     <>
       <div class="mt-5">
-          <div class="alert alert-warning" role="alert">
-            <i
-              class="bi bi-exclamation-triangle-fill"
-              style={{ fontSize: "30px" }}
-            />
-            " {categories}"
-          </div>
+        <div class="alert alert-warning" role="alert">
+          <i
+            class="bi bi-exclamation-triangle-fill"
+            style={{ fontSize: "30px" }}
+          />
+          " {categories}"
         </div>
+      </div>
     </>
   );
 };

@@ -14,7 +14,7 @@ const NavBar = () => {
   const history = useHistory();
   const [isClicked, setIsClicked] = useState(false);
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
   const [rutaHistorial, setRutaHistorial] = useState({
     home: false,
@@ -79,7 +79,7 @@ const NavBar = () => {
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
-            <li className="nav-item">
+            <li className="nav-item " style={{ marginRight: "30px" }}>
               <Link style={{ textDecoration: "none" }} to="/">
                 <span
                   className={
@@ -88,11 +88,12 @@ const NavBar = () => {
                       : "nav-link mt-1 route-hover"
                   }
                 >
+                  <i class="bi bi-house-fill " />
                   Home
                 </span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ marginRight: "30px" }}>
               <Link style={{ textDecoration: "none" }} to="/products">
                 <span
                   className={
@@ -101,11 +102,12 @@ const NavBar = () => {
                       : "nav-link mt-1 route-hover"
                   }
                 >
+                  <i class="bi bi-shop"></i>
                   Products
                 </span>
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" style={{ marginRight: "30px" }}>
               <Link style={{ textDecoration: "none" }} to="/about">
                 <span
                   className={
@@ -114,6 +116,7 @@ const NavBar = () => {
                       : "nav-link mt-1 route-hover"
                   }
                 >
+                  <i class="bi bi-people-fill"></i>
                   About
                 </span>
               </Link>
@@ -140,7 +143,12 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-              {location.pathname == "/products" ? (
+              {location.pathname !== "/" &&
+              location.pathname !== "/about" &&
+              location.pathname !== "/shipping" &&
+              location.pathname !== "/orderPlacement" &&
+              location.pathname !== "/shoppingCart" &&
+              location.pathname !== "/profile" ? (
                 <div className="shoppingCart">
                   <div
                     className={
@@ -158,25 +166,21 @@ const NavBar = () => {
               ) : null}
             </li>
             <li>
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-primary dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-person-square" />
-                </button>
-                {isAuthenticated ? (
+              {user ? (
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-person-square" />
+                  </button>
+
                   <ul class="dropdown-menu dropdown-menu-end justify-content-center">
                     <li>
                       <Link className="nav-link mt-1" to="/profile">
                         Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="nav-link mt-1" to="/shoppingCart">
-                        Cart
                       </Link>
                     </li>
                     <li>
@@ -186,14 +190,10 @@ const NavBar = () => {
                       <Logout />
                     </li>
                   </ul>
-                ) : (
-                  <ul class="dropdown-menu justify-content-center">
-                    <li>
-                      <Login message="Login" />
-                    </li>
-                  </ul>
-                )}
-              </div>
+                </div>
+              ) : (
+                <Login message="Login" />
+              )}
             </li>
           </ul>
         </div>

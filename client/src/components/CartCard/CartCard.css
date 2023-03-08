@@ -1,6 +1,7 @@
 .manageCartProduct{
   display: flex;
   gap: 10px;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   margin-bottom: 5px;
@@ -29,15 +30,49 @@
   border-radius: 40%;
   border: none;
   color: red;
-  background-color: transparent
+  background-color: white
 }
 
 .productPicture{
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  padding: 5px;
+  margin: 0;
+  background-color: #146da1;
+
 }
 
 .productName{
   font-size: 18px;
   margin: 0;
+  padding: 0;
+  width: 130px;
+}
+
+.cartCards{
+  display: flex;
+  gap: 10px;
+  background: #02b9f3;
+  border-radius: 10px;
+  color: black;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+}
+
+.quantityModifier{
+  display: flex;
+  gap:10px;
+  align-items: center;
+
+ 
+}
+
+.price{
+  font-size: 15px;
+  display: flex;
+  
+  align-items: flex-end;
+  height: 20px;
 }

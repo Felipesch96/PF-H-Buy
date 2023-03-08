@@ -39,8 +39,7 @@ export default function Shipping() {
     history.push("/orderPlacement");
     
   };
-  console.log(buyer)
-  buyer.userAddress.map(e => console.log(e))
+
   return (
     buyer.userAddress?.length > 0 ? 
     <div className="allShippingInfo">

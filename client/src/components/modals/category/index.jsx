@@ -36,7 +36,6 @@ export const CategoryModal = ({ onClose }) => {
 	const handlerNewCategoryForm = (e) =>{
 		setNewCategoryForm({name: e.target.value});
 	};
-	console.log(newCategoryForm);
 
 	const handleSubmitCategory = (e) => {
     e.preventDefault();

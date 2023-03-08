@@ -26,7 +26,6 @@ export const ModifyUserStatusModal = ({ onClose }) => {
       _id: usuario[0]._id
     });
   };
-  console.log(userToModify);
 
   const handleHabilitar = () => {
     if (habilitar) {
