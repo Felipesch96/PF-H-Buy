@@ -144,6 +144,19 @@ const DetailCard = () => {
                 role="tablist"
               >
                 <button
+                  class="nav-link btn"
+                  id="nav-profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-about"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-about"
+                  aria-selected="true"
+                >
+                  About the seller
+                  <i class="bi bi-person-bounding-box"></i>
+                </button>
+                <button
                   class="nav-link active btn"
                   id="nav-home-tab"
                   data-bs-toggle="tab"
@@ -151,7 +164,7 @@ const DetailCard = () => {
                   type="button"
                   role="tab"
                   aria-controls="nav-description"
-                  aria-selected="true"
+                  aria-selected="false"
                 >
                   Description
                   <i class="bi bi-bookmarks"></i>
@@ -188,6 +201,16 @@ const DetailCard = () => {
             <div class="tab-content" id="nav-tabContent">
               <div
                 class="tab-pane fade show active bg-light m-3 rounded-3"
+                id="nav-about"
+                role="tabpanel"
+                aria-labelledby="nav-about-tab"
+              >
+                <span class="card-text text-center p-3 h5 m-3 d-flex justify-content-center">
+                  aca va el perfil del comprador
+                </span>
+              </div>
+              <div
+                class="tab-pane fade show  bg-light m-3 rounded-3"
                 id="nav-description"
                 role="tabpanel"
                 aria-labelledby="nav-description-tab"
