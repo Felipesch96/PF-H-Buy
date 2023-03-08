@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ProductModal } from "../../../modals/product";
 import { MyProductsModal } from "../../../modals/showProducts/MyProductsModal";
-import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 import "./SellerProfile.css";
 const { REACT_APP_API_URL } = process.env;
@@ -96,14 +95,13 @@ const SellerProfile = () => {
                             return (
                               <div key={element._id}>
                                     <h6>Order N° {element._id}</h6>
-                                    <p>Total price: ${element.totalPrice}</p>
                                     <span>Products: </span>
                                     {element.items?.map((element) => {
                                       return(
                                         <div key={element._id}>
                                           <span>{element.product.name}</span>
                                           <p>${element.product.price}</p>
-                                          <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span>
+                                          {/* <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span> */}
                                         </div>
                                       )
                                     })}
