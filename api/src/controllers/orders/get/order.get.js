@@ -16,7 +16,7 @@ const ordersHistory = async (req, res) => {
     } else {
       const allOrders = await Order.find().populate("items.product");     
       const response = allOrders.filter(order => {
-       const aux = order.items.filter(item => item.product.seller_id?.toString() === seller_id)
+       const aux = order.items.filter(item => item.product?.seller_id?.toString() === seller_id)
        if (aux.length) return order;
      });      
       res.status(200).send(response); 
