@@ -20,11 +20,11 @@ GET http://localhost:3001/users/63a349e487497b16db2b6064 http/1.1
 
 
 ###
-PUT  http://localhost:3001/users/640553c6cea3445776fca612 HTTP/1.1
+PUT  http://localhost:3001/users/64075e41d924aeee752de912 HTTP/1.1
 Content-Type: application/json
 
 {
-  "isAdmin": true
+  "isAdmin": false
 }
 
 

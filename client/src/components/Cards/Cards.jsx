@@ -106,7 +106,7 @@ const Cards = ({ array }) => {
                               class="btn btn-primary bi bi-cart-plus-fill m-2"
                               type="button"
                             ></button>
-                            <FavoriteButton />
+                            <FavoriteButton productId={element._id} />
                           </div>
                           <Card
                             img={element.img_url}
