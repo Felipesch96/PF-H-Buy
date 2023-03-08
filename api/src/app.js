@@ -6,11 +6,17 @@ const products = require("./routes/products.router");
 const users = require("./routes/users.router");
 const categories = require("./routes/categories.router");
 const favorites = require("./routes/favorites.router");
+<<<<<<< Updated upstream
 const reviews = require("./routes/reviews.router");
 const cors = require("cors");
 const orders = require("./routes/orders.router")
 const payment = require("./routes/payment.router")
 const cart = require("./routes/cart.router")
+=======
+const cart = require("./routes/cart.router");
+const orders = require("./routes/orders.router");
+const reviews = require("./routes/reviews.router");
+>>>>>>> Stashed changes
 
 require("./db.js");
 
@@ -40,8 +46,11 @@ server.use("/categories", categories);
 server.use("/favorites", favorites);
 server.use("/orders", orders);
 server.use("/reviews", reviews);
+<<<<<<< Updated upstream
 server.use("/cart", cart);
 server.use("/payment", payment);
+=======
+>>>>>>> Stashed changes
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;

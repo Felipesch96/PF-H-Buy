@@ -28,6 +28,7 @@ const products = mongoose.Schema({
   score: {
     type: Number,
   },
+<<<<<<< Updated upstream
   reviews: [
     {
       type: mongoose.Types.ObjectId,
@@ -37,6 +38,22 @@ const products = mongoose.Schema({
   visits: {
     type: Array,
   },
+=======
+  /*  review: {
+    type: String,
+  }, */
+  reviews: [
+    {
+        type: mongoose.Types.ObjectId,
+        ref: "Review",
+      
+    },
+  ],
+  // reviews_id: {
+  //   type: mongoose.Types.ObjectId,
+  //   ref: "Review",
+  // },
+>>>>>>> Stashed changes
   stock: {
     type: Number,
     /* require: true, */

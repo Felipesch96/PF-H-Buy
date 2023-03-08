@@ -40,6 +40,7 @@ const Cards = ({ array }) => {
   return (
     <div class="container">
       <div class="row justify-content-start">
+<<<<<<< Updated upstream
         {!array.length ? (
           <CardLoader />
         ) : (
@@ -65,6 +66,43 @@ const Cards = ({ array }) => {
                       <div key={element._id} class="p-3">
                         <div class="card mb-3 rounded-4 bg-dark tarjeta2">
                           <div className="cart-fav">
+=======
+        <div class="mt-4 col-3 ">
+          <Filters setCurrentPage={setCurrentPage} setInput={setInput} />
+        </div>
+        <div class="col-9">
+          <div class="container">
+            <Paginate
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              cardsPerPage={cardsPerPage}
+              input={input}
+              setInput={setInput}
+              array={array}
+            />
+            <div class="row row-cols-3">
+              {Array.isArray(array) ? (
+                // array.length ? (
+                cardsCurrent.map((element) => (
+                  //Loader de Carga de las Cards
+                  <Suspense
+                    key={element._id}
+                    fallback={<LoaderCard />}
+                    class="row row-cols-3 m-2"
+                  >
+                    <div class="col">
+                      <div class="card mb-3 rounded-4 bg-dark tarjeta">
+                        <Card
+                          img={element.img}
+                          name={element.name}
+                          price={element.price}
+                          score={element.score}
+                          category={element.category}
+                          created={element.created}
+                        />
+                        <div class="ver-produto">
+                          <Link to={`/products/${element._id}`}>
+>>>>>>> Stashed changes
                             <button
                               onClick={() => {
                                 if (thisProduct) {

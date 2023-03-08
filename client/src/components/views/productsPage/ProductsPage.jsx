@@ -24,7 +24,11 @@ const ProductsPage = () => {
   return (
     <div class="container-fluid text-center pag-prods">
       {error ? (
+<<<<<<< Updated upstream
         <div class="p-5 w-50 d-inline-block">
+=======
+        <div class="error p-5">
+>>>>>>> Stashed changes
           <div class="alert alert-danger" role="alert">
             <i
               class="bi bi-exclamation-triangle-fill"

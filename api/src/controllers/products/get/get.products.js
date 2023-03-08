@@ -3,6 +3,7 @@ const Product = require("../../../schemas/Products");
 const productsCtrl = {};
 
 productsCtrl.getProducts = async (req, res) => {
+<<<<<<< Updated upstream
   const { name, category, orderBy, orderDirection, brand, condition } =
     req.query;
   if (name && typeof name !== "string") {
@@ -26,6 +27,12 @@ productsCtrl.getProducts = async (req, res) => {
 
   const categories = category && category.split(",");
 
+=======
+  const products = await Product.find();
+
+  const { name, category, priceMin, priceMax, brand, condition, order } =
+    req.query;
+>>>>>>> Stashed changes
   try {
     const where = {};
     if (categories) where.category = categories;
@@ -56,6 +63,7 @@ productsCtrl.getProducts = async (req, res) => {
 productsCtrl.productById = async (req, res) => {
   const { id } = req.params;
   try {
+<<<<<<< Updated upstream
     const productById = await Product.findById(id).populate("reviews", {
       comment: 1,
       qualification: 1,
@@ -65,6 +73,9 @@ productsCtrl.productById = async (req, res) => {
       userImage: 1,
     });
 
+=======
+    const productById = await Product.findById(id).populate("reviews.review");
+>>>>>>> Stashed changes
     res.status(200).send(productById);
   } catch (error) {
     res.status(400).send({ error: error.message });
