@@ -1,14 +1,14 @@
+import moment from "moment";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useLocalStorage } from "../../../customHooks/UseLocalStore";
 import { addToCart } from "../../../redux/slices/cartSlice";
+import selectCategories from "../../Card/selectCategories";
 import FavoriteButton from "../../Favorites/Favorites";
 import StarRating from "../../StarRating/StarRating";
 import "./DetailProduct.css";
-import moment from "moment";
-import { Link } from "react-router-dom";
-import selectCategories from "../../Card/selectCategories";
 
 const DetailCard = () => {
   const dispatch = useDispatch();

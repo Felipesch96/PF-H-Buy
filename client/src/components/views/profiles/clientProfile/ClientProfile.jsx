@@ -21,6 +21,7 @@ const ClientProfile = () => {
   const { favList } = useSelector((state) => state.favorite);
   const myFavorites = favList.filter((f) => f.user_id === userLocal._id);
   const [orders, setOrders] = useState();   
+  const [erase, setErase] = useState("false");
 
   const getOrders = async () => {
     const { data } = await axios.get(
@@ -47,9 +48,12 @@ const ClientProfile = () => {
 
   useEffect(() => {
     if (!orders) getOrders();
-    dispatch(getFavs())
+    if (erase === "true"){
+      dispatch(getFavs())
+      setErase("false")
+    }
 
-  }, [orders]);
+  }, [orders, erase]);
 
   useEffect(() => {
     dispatch(getFavs());
@@ -70,9 +74,9 @@ const ClientProfile = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const favToDelete = myFavorites.filter((f) => f.product_id === id);
-        console.log(favToDelete);
         deleteFavorite(favToDelete[0]._id);
         dispatch(getFavs());
+        setErase("true");
         Swal.fire({
           color: "white",
           background: "#1299",
@@ -134,7 +138,7 @@ const ClientProfile = () => {
             <div className="orders-list">
                 <div class="card mt-3 bg-dark-subtle">
                   <div>
-                    <span class="font-italic bg">
+                    <span class="font-italic">
                       <ul>
                           {orders?.length ? orders &&
                             orders.map((order) => {
@@ -144,7 +148,7 @@ const ClientProfile = () => {
                                     ? <div class="bg-light one-order shadow-lg me-2 p-3 rounded mt-3">
                                       <h6 class="order-Title mt-3 text-primary-emphasis">Order N° {order._id}</h6>
                                       <span class="text-success">Status: payed</span>
-                                      <p class="totalPrice ">Total price: ${order.totalPrice}</p>
+                                      <p class="totalPrice">Total price: ${order.totalPrice}</p>
                                       <span>Products: </span>
                                       {order.items?.map((element) => {
                                         return (
