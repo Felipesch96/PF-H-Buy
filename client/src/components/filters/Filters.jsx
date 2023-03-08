@@ -109,7 +109,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
     <div>
       <div
         id="sidebar"
-        className="col-10 d-flex flex-column py-2 text-center rounded colorletra"
+        className="col-13 d-flex flex-column py-2 text-center rounded colorletra"
       >
         <div className="row ">
           <div className="bg-dark rounded">
@@ -123,7 +123,7 @@ const Filters = ({ setCurrentPage, setInput }) => {
                 <div class="container">
                   {activeCategories?.map((c) => {
                     return (
-                      <div key={c._id} class="form-check">
+                      <div key={c._id} class="form-check checkinput">
                         <input
                           type="checkbox"
                           name="categories"
