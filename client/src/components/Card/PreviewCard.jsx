@@ -19,19 +19,19 @@ const PreviewCard = (props) => {
             type="button"
             disabled={true}
           ></button>
-          <FavoriteButton disable={true} />
+          <FavoriteButton disable={false} />
         </div>
-        <div class=" row g-0 tarjeta3 rounded-2">
+        <div class=" row g-0 tarjeta3 rounded-2 w-100">
           <div class="col-md-14">
-            {" "}
             <div class="col-md-14">
               <img
                 src={props.img ? props.img : imgError}
                 class="img-fluid img-detail rounded-2 border bg-light"
                 alt="..."
-                style={{ height: "230px", objectFit: "cover" }}
+                style={{ height: "250px", objectFit: "cover" }}
               />
-                <h4 class="card-title d-inline-block text-truncate">
+              <div class="card-body">
+                <h4 class="card-title d-inline-block text-truncate w-100">
                   {props.name ? props.name : "your product name"}
                 </h4>
                 <br />
@@ -68,6 +68,7 @@ const PreviewCard = (props) => {
                     Description: {props.description ? props.description : ""}
                   </span>
                 </div>
+              </div>
             </div>
           </div>
         </div>
