@@ -64,7 +64,10 @@ const PreviewCard = (props) => {
                 </span>
                 <br />
                 <div className="div-description-preview">
-                  <span class="card-text fs-6 description-preview">
+                  <span
+                    style={{ maxWidth: "15rem" }}
+                    class="d-inline-block text-truncate card-text fs-6 description-preview"
+                  >
                     Description: {props.description ? props.description : ""}
                   </span>
                 </div>

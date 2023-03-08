@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineSave } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import { editUser } from "../../../../helpers/editUser";
 import "./AccountInfo.css";
-import Swal from "sweetalert2";
 
 
 const AccountInfo = () => {
@@ -20,7 +20,6 @@ const AccountInfo = () => {
       [e.target.name]: e.target.value
     })
   };
-  console.log(newUserInfo);
 
   const submitChanges = (e) => {
     e.preventDefault();

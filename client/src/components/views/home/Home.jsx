@@ -95,7 +95,7 @@ const Home = () => {
         </>
       ) : null}
 
-      {history ? (
+      {user && history ? (
         <>
           <h2 className="text-center">According to your last searches</h2>
           <div class="container-fluid carousel-productos">

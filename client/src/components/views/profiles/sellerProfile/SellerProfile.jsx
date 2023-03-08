@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { ProductModal } from "../../../modals/product";
 import { MyProductsModal } from "../../../modals/showProducts/MyProductsModal";
-import AccountInfo from "../accountInfo/AccountInfo";
 import Wallet from "../paymentMethods/paymentMethodsTab/Wallet";
 import "./SellerProfile.css";
 const { REACT_APP_API_URL } = process.env;
@@ -85,28 +84,30 @@ const SellerProfile = () => {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-            <div class="column">
+            <div className="sales-list">
               {/* <div class="col-md-6"> */}
-              <div class="card mb-4 mt-4 seller-button">
-                <div class="card-body">
-                  <span class=" font-italic me-1">
-                    <div class="btn-group dropend">
+              <div class="card mt-3 bg-dark-subtle">
+                <div>
+                  <span class="font-italic">
                       <ul>
                       {orders?.length ? orders && orders.map((element) => {
                             return (
                               <div key={element._id}>
-                                    <h6>Order N° {element._id}</h6>
-                                    <p>Total price: ${element.totalPrice}</p>
+                                {element.status === "approved"
+                                    ? <div class="bg-light one-order shadow-lg me-2 p-3 rounded mt-3">
+                                      <h6 class="order-Title mt-3 text-primary-emphasis">Order N° {element._id}</h6>
                                     <span>Products: </span>
                                     {element.items?.map((element) => {
+                                      if (element.product.seller_id === user._id)
                                       return(
-                                        <div key={element._id}>
+                                        <div key={element._id} >
                                           <span>{element.product.name}</span>
                                           <p>${element.product.price}</p>
-                                          <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span>
+                                          {/* <span><button type="button" class="btn btn-secondary btn-sm">Mark as sent</button></span> */}
                                         </div>
                                       )
                                     })}
+                                    </div>: null}
                               </div>
                             );
                           })
@@ -115,7 +116,6 @@ const SellerProfile = () => {
                         </div>}
                           
                       </ul>
-                    </div>
                   </span>
                 </div>
               </div>
