@@ -99,7 +99,7 @@ export const OrderPlacement = () => {
         
                  
                 </div>
-                {mercadoPago.Status !== "approved" ? <Payment /> 
+                {mercadoPago.Status !== "approved" ? <Payment />
                 : <div><p>Thanks for your purchase!</p><button className="goBackHome" onClick={handleClick}>Go Home</button></div>}
             </section>            
         </main>
