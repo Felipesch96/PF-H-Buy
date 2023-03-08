@@ -144,7 +144,7 @@ const DetailCard = () => {
                 role="tablist"
               >
                 <button
-                  class="nav-link btn"
+                  class="nav-link active btn"
                   id="nav-profile-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-about"
@@ -157,7 +157,7 @@ const DetailCard = () => {
                   <i class="bi bi-person-bounding-box"></i>
                 </button>
                 <button
-                  class="nav-link active btn"
+                  class="nav-link btn"
                   id="nav-home-tab"
                   data-bs-toggle="tab"
                   data-bs-target="#nav-description"
