@@ -20,8 +20,7 @@ const ClientProfile = () => {
   const { userLocal } = useSelector((state) => state.user);
   const { favList } = useSelector((state) => state.favorite);
   const myFavorites = favList.filter((f) => f.user_id === userLocal._id);
-  const [orders, setOrders] = useState();   
-  const [erase, setErase] = useState("false");
+  const [orders, setOrders] = useState();
 
   const getOrders = async () => {
     const { data } = await axios.get(
@@ -48,12 +47,9 @@ const ClientProfile = () => {
 
   useEffect(() => {
     if (!orders) getOrders();
-    if (erase === "true"){
-      dispatch(getFavs())
-      setErase("false")
-    }
+    dispatch(getFavs())
 
-  }, [orders, erase]);
+  }, [orders]);
 
   useEffect(() => {
     dispatch(getFavs());
@@ -74,9 +70,9 @@ const ClientProfile = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const favToDelete = myFavorites.filter((f) => f.product_id === id);
+        console.log(favToDelete);
         deleteFavorite(favToDelete[0]._id);
         dispatch(getFavs());
-        setErase("true");
         Swal.fire({
           color: "white",
           background: "#1299",
@@ -114,7 +110,7 @@ const ClientProfile = () => {
             aria-controls="nav-fav"
             aria-selected="false"
           >
-            Favorites ({myFavorites.length? (myFavorites.length) : 0})
+            Favorites ({myFavorites.length ? (myFavorites.length) : 0})
           </a>
           <a
             class="nav-link"
@@ -136,57 +132,57 @@ const ClientProfile = () => {
             aria-labelledby="nav-home-tab"
           >
             <div className="orders-list">
-                <div class="card mt-3 bg-dark-subtle">
-                  <div>
-                    <span class="font-italic">
-                      <ul>
-                          {orders?.length ? orders &&
-                            orders.map((order) => {
-                              return (
-                                <div key={order._id}>
-                                  {order.status === "approved"
-                                    ? <div class="bg-light one-order shadow-lg me-2 p-3 rounded mt-3">
-                                      <h6 class="order-Title mt-3 text-primary-emphasis">Order N° {order._id}</h6>
-                                      <span class="text-success">Status: payed</span>
-                                      <p class="totalPrice">Total price: ${order.totalPrice}</p>
-                                      <span>Products: </span>
-                                      {order.items?.map((element) => {
-                                        return (
-                                          <div key={element._id} className="product-container">
-                                            <div>
-                                              <span>{element.product.name}</span>
-                                            </div>
-                                            <span>
-                                              <button
-                                                onClick={() =>
-                                                  handleClick(
-                                                    element.product._id
-                                                  )
-                                                }
-                                                type="button"
-                                                class="btn btn-primary btn-sm"
-                                              >
-                                                Score this product
-                                              </button>
-                                            </span>
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                    : null}
-
+              <div class="card mt-3 bg-dark-subtle">
+                <div>
+                  <span class="font-italic bg">
+                    <ul>
+                      {orders?.length ? orders &&
+                        orders.map((order) => {
+                          return (
+                            <div key={order._id}>
+                              {order.status === "approved"
+                                ? <div class="bg-light one-order shadow-lg me-2 p-3 rounded mt-3">
+                                  <h6 class="order-Title mt-3 text-primary-emphasis">Order N° {order._id}</h6>
+                                  <span class="text-success">Status: payed</span>
+                                  <p class="totalPrice ">Total price: ${order.totalPrice}</p>
+                                  <span>Products: </span>
+                                  {order.items?.map((element) => {
+                                    return (
+                                      <div key={element._id} className="product-container">
+                                        <div>
+                                          <span>{element.product.name}</span>
+                                        </div>
+                                        <span>
+                                          <button
+                                            onClick={() =>
+                                              handleClick(
+                                                element.product._id
+                                              )
+                                            }
+                                            type="button"
+                                            class="btn btn-primary btn-sm"
+                                          >
+                                            Score this product
+                                          </button>
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
                                 </div>
-                              );
-                            })
-                          : <div>
+                                : null}
+
+                            </div>
+                          );
+                        })
+                        : <div>
                           <div class="no-purchases p-3">You have no purchases yet!</div>
                           <button type="button" class="btn btn-primary" onClick={() => history.push("/products")}>Search products</button>
                         </div>}
-                        </ul>
-                    </span>
-                  </div>
+                    </ul>
+                  </span>
                 </div>
-              
+              </div>
+
             </div>
           </div>
           <div
@@ -195,33 +191,29 @@ const ClientProfile = () => {
             role="tabpanel"
             aria-labelledby="nav-account-tab"
           >
-            <div>
-                <div class="card mb-4 mt-4 bg-dark-subtle">
-                  <div class="">
-                    <span class="font-italic">
-                        <ul className="lista-favoritos">
-                          {myFavorites.length? myFavorites?.map(f => {
-                            const producto = products.filter(p => p._id === f.product_id);
-                            return (
-                              <li className="cada-favorito">
-                                  <a class="tag text-secondary text-decoration-none" href={`/products/${producto[0]?._id}`}>
-                                    {`${producto[0]?.name} $ ${producto[0]?.price}`}
-                                  </a>
-                                  <button type="button" class="btn btn-primary"
-                                  onClick={() => onDelete(producto[0]?._id)}>x</button>
-                                
-                              </li>
-                            );
-                          })
-                          : <div>
-                              <div class="no-favs p-3">You have no favorites...</div>
-                              <button type="button" class="btn btn-primary" onClick={() => history.push("/products")}>Search products</button>
-                            </div>}
-                        </ul>
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div class="card mb-4 mt-4 bg-dark-subtle">
+              <span class="font-italic">
+                <ul className="lista-favoritos">
+                  {myFavorites.length ? myFavorites?.map(f => {
+                    const producto = products.filter(p => p._id === f.product_id);
+                    return (
+                      <li className="cada-favorito">
+                        <a class="tag text-secondary text-decoration-none" href={`/products/${producto[0]?._id}`}>
+                          {`${producto[0]?.name} $ ${producto[0]?.price}`}
+                        </a>
+                        <button type="button" class="btn btn-primary"
+                          onClick={() => onDelete(producto[0]?._id)}>x</button>
+
+                      </li>
+                    );
+                  })
+                    : <div>
+                      <div class="no-favs p-3">You have no favorites...</div>
+                      <button type="button" class="btn btn-primary" onClick={() => history.push("/products")}>Search products</button>
+                    </div>}
+                </ul>
+              </span>
+            </div>
           </div>
           <div
             class="tab-pane fade"
