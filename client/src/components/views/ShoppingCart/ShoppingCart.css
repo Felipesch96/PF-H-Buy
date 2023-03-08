@@ -19,7 +19,7 @@
   padding: 10px;
   min-height: 150px;
   max-height: 200px;
-  border: 2px solid #00D775
+
   
 }
 
@@ -53,7 +53,7 @@ background: #00bd68;
 
 
 .productShower{
-  border: 2px solid #02b9f3;
+ 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
