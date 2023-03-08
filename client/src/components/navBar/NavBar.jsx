@@ -140,7 +140,12 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-              {location.pathname == "/products" ? (
+              {location.pathname !== "/" &&
+              location.pathname !== "/about" &&
+              location.pathname !== "/shipping" &&
+              location.pathname !== "/orderPlacement" &&
+              location.pathname !== "/shoppingCart" &&
+              location.pathname !== "/profile" ? (
                 <div className="shoppingCart">
                   <div
                     className={
