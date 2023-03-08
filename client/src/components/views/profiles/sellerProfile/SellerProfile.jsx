@@ -36,7 +36,7 @@ const SellerProfile = () => {
             aria-controls="nav-home"
             aria-selected="true"
           >
-            Home
+            Sales ({orders?.length? orders?.length : 0})
           </a>
           <a
             class="nav-link"
@@ -89,20 +89,12 @@ const SellerProfile = () => {
               {/* <div class="col-md-6"> */}
               <div class="card mb-4 mt-4 seller-button">
                 <div class="card-body">
-                  <span class="text-primary font-italic me-1">
+                  <span class=" font-italic me-1">
                     <div class="btn-group dropend">
-                      <button
-                        type="button"
-                        class="btn btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Sales ({orders?.length})
-                      </button>
-                      <ul class="dropdown-menu">
-                      {orders && orders.map((element) => {
+                      <ul>
+                      {orders?.length ? orders && orders.map((element) => {
                             return (
-                              <a class="dropdown-item" key={element._id}>
+                              <div key={element._id}>
                                     <h6>Order N° {element._id}</h6>
                                     <p>Total price: ${element.totalPrice}</p>
                                     <span>Products: </span>
@@ -115,60 +107,18 @@ const SellerProfile = () => {
                                         </div>
                                       )
                                     })}
-                              </a>
+                              </div>
                             );
-                          })}
+                          })
+                          : <div>
+                          <div class="no-favs p-3">You have no sales yet!</div>
+                        </div>}
                           
                       </ul>
                     </div>
                   </span>
                 </div>
               </div>
-              {/* </div> */}
-              {/* <div class="col-md-6"> */}
-              <div class="card mb- mt-4 seller-button">
-                <div class="card-body">
-                  <span class="text-primary font-italic me-1">
-                    <div class="btn-group dropend">
-                      <button
-                        type="button"
-                        class="btn btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Claims (cant)
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <span>claim</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </span>
-                </div>
-              </div>
-              {/* </div> */}
-              {/* <div class="col-md-6"> */}
-              <div class="card mb-4 mt-4 seller-button">
-                <div class="card-body">
-                  <span class="text-primary font-italic me-1">
-                    <div class="btn-group dropend">
-                      <button
-                        type="button"
-                        class="btn btn-primary dropdown-toggle"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        Questions (cant)
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>Question 1</li>
-                      </ul>
-                    </div>
-                  </span>
-                </div>
-              </div>
-              {/* </div> */}
             </div>
           </div>
           <div

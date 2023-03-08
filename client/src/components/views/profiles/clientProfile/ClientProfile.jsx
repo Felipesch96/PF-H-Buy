@@ -8,9 +8,9 @@ import { getFavs } from "../../../../redux/thunks/favThunk";
 import { fetchProducts } from "../../../../redux/thunks/productThunk";
 // import { Link } from "react-router-dom";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
+import Swal from "sweetalert2";
 import AccountInfo from "../accountInfo/AccountInfo";
 import "./ClientProfile.css";
-import Swal from "sweetalert2";
 const { REACT_APP_API_URL } = process.env;
 
 const ClientProfile = () => {
@@ -19,9 +19,7 @@ const ClientProfile = () => {
   const { products } = useSelector((state) => state.product);
   const { userLocal } = useSelector((state) => state.user);
   const { favList } = useSelector((state) => state.favorite);
-  // console.log(favList);
   const myFavorites = favList.filter((f) => f.user_id === userLocal._id);
-  // console.log(myFavorites);
   const [orders, setOrders] = useState();   
 
   const getOrders = async () => {
@@ -49,6 +47,8 @@ const ClientProfile = () => {
 
   useEffect(() => {
     if (!orders) getOrders();
+    dispatch(getFavs())
+
   }, [orders]);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const ClientProfile = () => {
           background: "#1299",
           icon: "success",
           title: "Deleted!",
-          text: "Your category has been deleted.",
+          text: "Your favorite has been deleted.",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -99,7 +99,7 @@ const ClientProfile = () => {
             aria-controls="nav-home"
             aria-selected="true"
           >
-            Purchases ({orders?.length})
+            Purchases ({orders?.length ? orders?.length : 0})
           </a>
           <a
             class="nav-link"
@@ -110,7 +110,7 @@ const ClientProfile = () => {
             aria-controls="nav-fav"
             aria-selected="false"
           >
-            Favorites {(myFavorites.length)}
+            Favorites ({myFavorites.length? (myFavorites.length) : 0})
           </a>
           <a
             class="nav-link"
@@ -136,7 +136,7 @@ const ClientProfile = () => {
                   <div>
                     <span class="font-italic bg">
                       <ul>
-                          {orders &&
+                          {orders?.length ? orders &&
                             orders.map((order) => {
                               return (
                                 <div key={order._id}>
@@ -173,7 +173,11 @@ const ClientProfile = () => {
 
                                 </div>
                               );
-                            })}
+                            })
+                          : <div>
+                          <div class="no-purchases p-3">You have no purchases yet!</div>
+                          <button type="button" class="btn btn-primary" onClick={() => history.push("/products")}>Search products</button>
+                        </div>}
                         </ul>
                     </span>
                   </div>
@@ -192,7 +196,7 @@ const ClientProfile = () => {
                   <div class="">
                     <span class="font-italic">
                         <ul className="lista-favoritos">
-                          {myFavorites?.map(f => {
+                          {myFavorites.length? myFavorites?.map(f => {
                             const producto = products.filter(p => p._id === f.product_id);
                             return (
                               <li className="cada-favorito">
@@ -204,7 +208,11 @@ const ClientProfile = () => {
                                 
                               </li>
                             );
-                          })}
+                          })
+                          : <div>
+                              <div class="no-favs p-3">You have no favorites...</div>
+                              <button type="button" class="btn btn-primary" onClick={() => history.push("/products")}>Search products</button>
+                            </div>}
                         </ul>
                     </span>
                   </div>
