@@ -5,7 +5,6 @@ import { DataGrid } from "@mui/x-data-grid";
 
 export const ShowDeactiveProductModal = ({ onClose }) => {
   const { products } = useSelector((state) => state.product);
-  // console.log(products);
   const columns = [
     { field: "id", headerName: "ID" },
     { field: "name", headerName: "Name" },
@@ -14,7 +13,6 @@ export const ShowDeactiveProductModal = ({ onClose }) => {
   ];
 
   const deactiveProducts = Array.isArray(products) ? products.filter(p => p.isActive === false) : [];
-  // console.log(deactiveProducts);
 
   const rows = deactiveProducts.map((span) => ({
     id: span._id,

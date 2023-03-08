@@ -178,11 +178,6 @@ const NavBar = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link className="nav-link mt-1" to="/shoppingCart">
-                        Cart
-                      </Link>
-                    </li>
-                    <li>
                       <hr class="dropdown-divider" />
                     </li>
                     <li>

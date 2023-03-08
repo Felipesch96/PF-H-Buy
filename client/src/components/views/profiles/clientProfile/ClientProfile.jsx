@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { deleteFavorite } from "../../../../helpers/deleteFavorite";
+import { getFavs } from "../../../../redux/thunks/favThunk";
+import { fetchProducts } from "../../../../redux/thunks/productThunk";
 // import { Link } from "react-router-dom";
 // import { getFavs } from "../../../../redux/thunks/favThunk";
 import AccountInfo from "../accountInfo/AccountInfo";
@@ -11,33 +14,77 @@ import Swal from "sweetalert2";
 const { REACT_APP_API_URL } = process.env;
 
 const ClientProfile = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.user.userLocal);
+  const { products } = useSelector((state) => state.product);
+  const { userLocal } = useSelector((state) => state.user);
+  const { favList } = useSelector((state) => state.favorite);
+  // console.log(favList);
+  const myFavorites = favList.filter((f) => f.user_id === userLocal._id);
+  // console.log(myFavorites);
   const [orders, setOrders] = useState();
 
   const getOrders = async () => {
-    const { data } = await axios.get(`${REACT_APP_API_URL}/orders/${user._id}`);
+    const { data } = await axios.get(
+      `${REACT_APP_API_URL}/orders/${userLocal._id}`
+    );
     setOrders(data);
   };
 
   const handleClick = async (id) => {
-    const { data } = await axios.get(`${REACT_APP_API_URL}/reviews/${id}?user_id=${user._id}`);
-    if (data.length){
+    const { data } = await axios.get(
+      `${REACT_APP_API_URL}/reviews/${id}?user_id=${user._id}`
+    );
+    if (data.length) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'You have already reviewed this product!',
-        footer: '<a href="">Why do I have this issue?</a>'
-      })
-
+        icon: "error",
+        title: "Oops...",
+        text: "You have already reviewed this product!",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
     } else {
       history.push(`/review/${id}`);
     }
   };
-  
+
   useEffect(() => {
     if (!orders) getOrders();
   }, [orders]);
+
+  useEffect(() => {
+    dispatch(getFavs());
+    dispatch(fetchProducts());
+  }, []);
+
+  const onDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      color: "white",
+      background: "#1299",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const favToDelete = myFavorites.filter((f) => f.product_id === id);
+        console.log(favToDelete);
+        deleteFavorite(favToDelete[0]._id);
+        dispatch(getFavs());
+        Swal.fire({
+          color: "white",
+          background: "#1299",
+          icon: "success",
+          title: "Deleted!",
+          text: "Your category has been deleted.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -92,33 +139,37 @@ const ClientProfile = () => {
                             orders.map((order) => {
                               return (
                                 <a class="dropdown-item" key={order._id}>
-                                  
-                                  {order.status === "approved"
-                                  ? <div>
-                                    <h6>Order N° {order._id}</h6>
-                                    <span class="text-success">Status: payed</span>
-                                  <p>Total price: ${order.totalPrice}</p>
-                                  <span>Products: </span>
-                                  {order.items?.map((element) => {
-                                    return (
-                                      <div key={element._id}>
-                                        <span>{element.product.name}</span>
-                                        <p>${element.product.price}</p>
-                                        <span>
-                                            <button
-                                              onClick={() => handleClick(element.product._id)}
-                                              type="button"
-                                              class="btn btn-secondary btn-sm"
-                                            >
-                                              Rate the product
-                                            </button>
-                                        </span>
-                                      </div>
-                                    );
-                                  })}
-                                  </div>
-                                  :null}
-                                  
+                                  {order.status === "approved" ? (
+                                    <div>
+                                      <h6>Order N° {order._id}</h6>
+                                      <span class="text-success">
+                                        Status: payed
+                                      </span>
+                                      <p>Total price: ${order.totalPrice}</p>
+                                      <span>Products: </span>
+                                      {order.items?.map((element) => {
+                                        return (
+                                          <div key={element._id}>
+                                            <span>{element.product.name}</span>
+                                            <p>${element.product.price}</p>
+                                            <span>
+                                              <button
+                                                onClick={() =>
+                                                  handleClick(
+                                                    element.product._id
+                                                  )
+                                                }
+                                                type="button"
+                                                class="btn btn-secondary btn-sm"
+                                              >
+                                                Rate the product
+                                              </button>
+                                            </span>
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  ) : null}
                                 </a>
                               );
                             })}
@@ -139,34 +190,27 @@ const ClientProfile = () => {
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          Favorites (cant)
+                          Favorites {`(${myFavorites.length})`}
                         </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <span>favorites 1</span>
-                          </li>
-                        </ul>
-                        {/*    <ul class="dropdown-menu">
-                          {favs.map((element) => {
+                        <ul class="dropdown-menu lista-favoritos">
+                          {myFavorites?.map((f) => {
+                            const producto = products.filter(
+                              (p) => p._id === f.product_id
+                            );
                             return (
-                              <ul key={element._id}>
-                                <li>
-                                  <h3>
-                                    <Link
-                                      to={`/products/${element.product_id?._id}`}
-                                    >
-                                      {element.product_id?.name}
-                                    </Link>
-                                  </h3>
-                                </li>
-
-                                <li>
-                                  <h4>${element.product_id?.price}</h4>
-                                </li>
-                              </ul>
+                              <li className="cada-favorito">
+                                <a href={`/products/${producto[0]?._id}`}>
+                                  {`${producto[0]?.name} $ ${producto[0]?.price}`}
+                                </a>
+                                <button
+                                  onClick={() => onDelete(producto[0]?._id)}
+                                >
+                                  x
+                                </button>
+                              </li>
                             );
                           })}
-                        </ul> */}
+                        </ul>
                       </div>
                     </span>
                   </div>
@@ -227,7 +271,6 @@ const ClientProfile = () => {
             <AccountInfo />
             {/* la idea es que reciba los datos del usuario */}
           </div>
-
         </div>
       </div>
     </div>

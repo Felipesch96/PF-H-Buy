@@ -29,3 +29,10 @@
 .filtros {
   padding-top: 4.4rem;
 }
+
+.cart-fav{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

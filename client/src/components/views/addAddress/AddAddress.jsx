@@ -46,7 +46,6 @@ export const AddAddress = () => {
     const orderId = useSelector((state) => state.cart.orderId);
     const dispatch = useDispatch()
     const history = useHistory()
-    console.log('este',orderId)
     const handleShipmentSubmit = async(e) => {
         e.preventDefault()
         
@@ -56,7 +55,6 @@ export const AddAddress = () => {
         const {data} =   await axios.put(`${REACT_APP_API_URL}/users/${buyer._id}`,{
             userAddress: form
           })
-         console.log(data)
           await axios.put(`${REACT_APP_API_URL}/orders/${orderId}`,{
             shippingAddress: form
           })

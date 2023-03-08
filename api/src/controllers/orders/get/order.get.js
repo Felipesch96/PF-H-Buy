@@ -1,3 +1,4 @@
+const { findById } = require("../../../schemas/Order");
 const Order = require("../../../schemas/Order");
 
 const ordersHistory = async (req, res) => {
@@ -25,4 +26,13 @@ const ordersHistory = async (req, res) => {
   }
 };
 
-module.exports = ordersHistory;
+const order = async (req, res) => {
+  const { id } = req.params;
+  try{
+    res.status(200).send(await Order.findById(id).populate("items.product"));
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+}
+
+module.exports = { ordersHistory, order };

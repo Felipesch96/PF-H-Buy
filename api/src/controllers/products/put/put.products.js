@@ -8,7 +8,6 @@ productsCtrl.updateProduct = async (req, res) => {
   const { id } = req.params;
   const data = req.body;
   const productById = await Product.findById(id);
-  console.log(productById)
 
   if (data.img) {
     try {
@@ -16,7 +15,6 @@ productsCtrl.updateProduct = async (req, res) => {
       const uploadResponse = await cloudinary.uploader.upload(data.img, {
         upload_preset: "henrybuy",
       });
-      // console.log(uploadResponse);
       await Product.findByIdAndUpdate(id, {
         ...data,
         img_url: uploadResponse.secure_url,

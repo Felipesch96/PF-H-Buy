@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { productsSlice } from "./slices/productsSlice";
 import { cartSlice } from "./slices/cartSlice";
 import { usersSlice } from "./slices/usersSlice";
+import { favSlice } from "./slices/favSlice";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -22,11 +23,13 @@ const persistConfig = {
 
 const persistedCart = persistReducer(persistConfig, cartSlice.reducer);
 const persistedUser = persistReducer(persistConfig, usersSlice.reducer);
+
 export const store = configureStore({
   reducer: {
     product: productsSlice.reducer,
     cart: persistedCart,
     user: persistedUser,
+    favorite: favSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

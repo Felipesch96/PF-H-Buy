@@ -64,7 +64,7 @@ export default function ShoppingCart() {
             className="clearCart"
             onClick={() => {
               dispatch(removeAll());
-              history.push("home/products");
+              history.push("/products");
             }}
           >
             Remove All
@@ -73,7 +73,7 @@ export default function ShoppingCart() {
       </section>
       <section className="cartOrder">
         <h4>{amountOfItems} items </h4>
-        <h4>Total: {getTotal()}</h4>
+        <h4>Total: ${getTotal()}</h4>
         {user && isAuthenticated ? (
           <button className="checkoutButton" onClick={handleCheckout}>
             Checkout
