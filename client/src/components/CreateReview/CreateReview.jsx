@@ -12,6 +12,7 @@ import validate from "./validate";
 import axios from "axios";
 import "./CreateReview.css";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import Swal from "sweetalert2";
 const { REACT_APP_API_URL } = process.env;
 
 const CreateReview = () => {
@@ -71,7 +72,11 @@ const CreateReview = () => {
         comment: "",
       });
       setValue(0);
-      alert("Review sent successfully, Thank you for your time!");
+      Swal.fire({
+        icon: 'success',
+        title: 'Review sent successfully..',
+        text: 'Thanks for your time!',
+      })
       history.push("/profile");
     } else {
       alert("Completa los campos requeridos");
