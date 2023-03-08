@@ -36,7 +36,7 @@ const PreviewCard = (props) => {
                 style={{ height: "230px", objectFit: "cover" }}
               />
               <br />
-              <h4 class="card-title d-inline-block text-truncate">
+              <h4 class="card-title d-inline-block text-truncate w-100">
                 {props.name ? props.name : "your product name"}
               </h4>
               <br />
