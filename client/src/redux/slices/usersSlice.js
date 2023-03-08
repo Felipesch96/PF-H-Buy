@@ -29,8 +29,7 @@ export const usersSlice = createSlice({
     },
     removeAddress: (state, {payload}) => {
       state.userLocal.userAddress = state.userLocal.userAddress.filter(adr => adr._id?.toString() !== payload)
-    }
-    
+    },
   },
 });
 
