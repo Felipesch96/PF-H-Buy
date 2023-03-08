@@ -14,7 +14,7 @@ const NavBar = () => {
   const history = useHistory();
   const [isClicked, setIsClicked] = useState(false);
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
+  const { user } = useAuth0();
   const [text, setText] = useLocalStorage("text", "");
   const [rutaHistorial, setRutaHistorial] = useState({
     home: false,
@@ -143,7 +143,12 @@ const NavBar = () => {
           </div>
           <ul class="navbar-nav mb-2 mb-lg-0 text-center fs-5 align-items-center">
             <li>
-              {location.pathname == "/products" ? (
+              {location.pathname !== "/" &&
+              location.pathname !== "/about" &&
+              location.pathname !== "/shipping" &&
+              location.pathname !== "/orderPlacement" &&
+              location.pathname !== "/shoppingCart" &&
+              location.pathname !== "/profile" ? (
                 <div className="shoppingCart">
                   <div
                     className={
@@ -161,16 +166,17 @@ const NavBar = () => {
               ) : null}
             </li>
             <li>
-              <div class="btn-group">
-                <button
-                  type="button"
-                  class="btn btn-primary dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-person-square" />
-                </button>
-                {isAuthenticated ? (
+              {user ? (
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-person-square" />
+                  </button>
+
                   <ul class="dropdown-menu dropdown-menu-end justify-content-center">
                     <li>
                       <Link className="nav-link mt-1" to="/profile">
@@ -184,14 +190,10 @@ const NavBar = () => {
                       <Logout />
                     </li>
                   </ul>
-                ) : (
-                  <ul class="dropdown-menu justify-content-center">
-                    <li>
-                      <Login message="Login" />
-                    </li>
-                  </ul>
-                )}
-              </div>
+                </div>
+              ) : (
+                <Login message="Login" />
+              )}
             </li>
           </ul>
         </div>
