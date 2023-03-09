@@ -15,7 +15,7 @@ const selectCategories = (category) => {
     case "tools":
       return <i class="bi bi-wrench ">{category}</i>;
     default:
-      return <i> {category} </i>;
+      return <i class="bi bi-tags-fill">{category}</i>;
   }
 };
 export default selectCategories;

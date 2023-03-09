@@ -112,12 +112,7 @@ const AccountInfo = () => {
           </div>
         </div>
       </div>
-      <hr />
       <div className="name-row">
-
-        <div class="col-sm-3">
-          <span class="mb-0">Address</span>
-        </div>
         <div className="name-row">
           <div class="col-sm-9">
             <span class="text-muted mb-0">{userLocal.address}</span>

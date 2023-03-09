@@ -39,17 +39,6 @@ const SellerProfile = () => {
           </a>
           <a
             class="nav-link"
-            id="nav-payment-tab"
-            data-bs-toggle="tab"
-            href="#nav-payment"
-            role="tab"
-            aria-controls="nav-payment"
-            aria-selected="false"
-          >
-            Wallet
-          </a>
-          <a
-            class="nav-link"
             id="nav-create-product-tab"
             data-bs-toggle="tab"
             href="#nav-create-product"
