@@ -18,7 +18,7 @@ const newPayment = async (req, res) => {
     let preference = {
       items: items,
       back_urls: {
-        "success": "http://localhost:3000/orderPlacement"
+        "success": "https://main.d2d0y3pf0pfssa.amplifyapp.com/orderPlacement"
       },
       auto_return: "approved",
     };
