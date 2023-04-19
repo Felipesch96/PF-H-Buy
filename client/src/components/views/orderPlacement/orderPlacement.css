@@ -1,0 +1,103 @@
+.orderInfo{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    padding: 20px;
+
+}
+
+.finalOrderItems{
+    display: flex;
+    gap: 10px;
+}
+
+
+.shippingCard{
+    border: 1px solid #02b9f3;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.itemsCard{
+    border: 1px solid #02b9f3;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.summaryCard{
+    border: 1px solid #02b9f3;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 10px;
+    gap: 10px
+}
+
+.orderPreview{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    margin-right: 50px;
+    
+}
+
+
+.orderTitle{
+    margin: 0;
+    color: #02b9f3;
+}
+
+.edit{
+    text-decoration: none;
+    color: green;
+}
+
+.finalItemImage{
+    height: 50px;
+    width: 50px;
+}
+
+
+.paid{
+    background-color: #6ebe45;
+    padding: 10px;
+    border-radius: 10px;
+    color: #f7f7f7;
+    margin: 0;
+}
+
+.pending{
+    background-color: #c51f3b;
+    padding: 10px;
+    border-radius: 10px;
+    color: #f7f7f7;
+    margin: 0;
+}
+
+
+.orderSummary{
+    margin: 0;
+    color: #02b9f3;
+}
+
+.postOrder{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.postOrderInfo{
+    margin: 0;
+}
+
+
+.goBackHome{
+    border: none;
+    height: 40px;
+    width: 200px;
+    background-color: #02b9f3;
+    color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+}

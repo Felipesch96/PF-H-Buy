@@ -1,0 +1,15 @@
+.productDetails{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.productDetails > span {
+    margin-bottom: 0;
+}
+
+.updateInput{
+    height: 20px;
+    width: 50px;
+}

@@ -1,0 +1,52 @@
+.cards-container {
+  margin-left: 20%;
+}
+
+.ver-produto {
+  padding-bottom: 2px;
+}
+
+.tarjeta-preview {
+  height: 100%;
+  width: 20rem;
+  align-items: center;
+  margin: 3rem;
+}
+
+.tarjeta2 {
+  border: 1px solid black;
+  width: 17rem;
+  background-color: rgb(255, 255, 255);
+}
+
+.tarjeta3 {
+  border: 1px solid black;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.tarjeta:hover {
+  transition: 0.2s;
+  box-shadow: 8px 5px 15px black;
+}
+
+.filtros {
+  padding-top: 4.4rem;
+}
+
+.cart-fav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 991px) {
+  .cards-container {
+    margin: 0;
+  }
+
+  .sm-filter {
+    display: none;
+  }
+}

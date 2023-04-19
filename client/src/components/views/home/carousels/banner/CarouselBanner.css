@@ -1,0 +1,29 @@
+.contenedor{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tamano img{
+  width: fit-content;
+  height: fit-content;
+}
+
+.contenedor-imagen{
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+}
+
+
+
+.imagen{
+  max-width: 94vw;
+  max-height: 81vh;
+}
+
+
+.prev-next{
+  color: black;
+}
+

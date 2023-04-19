@@ -1,0 +1,53 @@
+.modal-products{
+  position: relative;
+  height: 65vh;
+  width: 65vh;
+  background-color: #5ec59f ;
+  /* top: 15px;
+  left: 315px ; */
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 10px; 
+}
+
+.closeIconP:hover {
+  transition: 0.2s;
+  color: #387b62;
+  cursor: pointer;
+}
+
+.datos-producto{
+  display: flex;
+}
+
+.img-modify{
+  height: 10rem ;
+  width: 10rem;
+  margin-left: 1rem;
+}
+
+.modify-fields{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: row;
+}
+
+.modify-modal{
+  position: relative;
+  background-color: #5ec59f ;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 10px;
+}
+
+.save-button{
+  margin-left: 8rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.images{
+  display: flex;
+}

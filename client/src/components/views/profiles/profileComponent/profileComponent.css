@@ -1,0 +1,36 @@
+.pagina-perfiles{
+  background-color: rgb(201, 201, 201);
+  padding-top: 8vh;
+  min-height: 100vh;
+}
+
+.perfil-admin-contenedor{
+  background-color: rgb(183, 132, 250);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.perfil-buyer-contenedor{
+  background-color: rgb(78, 122, 245);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.perfil-seller-contenedor{
+  background-color: rgb(136, 184, 136);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.buttons-card-profil button{
+  color: #fff;
+}

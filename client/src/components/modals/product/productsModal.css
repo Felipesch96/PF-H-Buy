@@ -1,0 +1,150 @@
+.productModal-seller {
+    position: absolute;
+    min-height: 400px;
+    width: fit-content;
+    background-color: #5ec59f;
+    /* top: 15px;
+    left: 315px ; */
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px;
+}
+
+.showProductModal {
+    position: absolute;
+    /* min-height: 400px; */
+    max-height: 80vh;
+    background-color: #5ec59f;
+    /* top: 15px;
+    left: 315px ; */
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px;
+}
+
+.closeIcon {
+    width: 30px;
+    height: 30px;
+    color: #2b4883;
+    margin: 0.5rem;
+}
+
+.closeIcon:hover {
+    transition: 0.2s;
+    color: #387b62;
+    cursor: pointer;
+}
+
+.formContainerP {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+}
+
+.formInputP {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.labelP {
+    color: #2b4883;
+}
+
+.inputP {
+    border: none;
+    height: 25px;
+    background-color: #5ec59f;
+    border: 2px solid #2b4883;
+    border-radius: 5px;
+    padding: 0px 10px;
+    color: #2b4883;
+}
+
+.inputP:focus {
+    background-color: white;
+    color: black;
+}
+
+.productButton {
+    border: 2px solid #2b4883;
+    border-radius: 20px;
+    width: 100px;
+    align-self: center;
+    height: 35px;
+    background-color: #5ec59f;
+    font-weight: 600;
+    font-size: 15px;
+    color: #2b4883;
+    margin-top: 10px;
+}
+
+.productButton:hover {
+    background-color: #2b4883;
+    border: none;
+    color: #5ec59f;
+}
+
+.grid {
+    height: 62vh;
+    width: 47vh;
+}
+
+.para-img {
+    display: flex;
+}
+
+.para-img img {
+    height: 200px;
+}
+
+.my-product {
+    margin: 1rem;
+    display: flex;
+    /* align-items: center; */
+}
+
+.file-producto {
+    display: flex;
+    align-items: left; 
+    flex-direction: column;
+}
+
+.file-checkbox{
+    margin-left: 1rem;
+}
+
+.my-products-modal{
+    position: relative;
+    width: fit-content;
+    background-color: #5ec59f ;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-button{
+    margin-left: 1rem;
+}
+
+.div-my-product{
+    width: max-content;
+}
+
+.datos-my-products{
+    display: flex;
+    margin-bottom: 4rem;
+}
+
+.imagen-my-products{
+    width: 10rem;
+    margin: 0.5rem;
+}
+
+.save-button-my-products{
+    margin: 1rem;
+}
+
+.status-select{
+    margin: 0.3rem
+}

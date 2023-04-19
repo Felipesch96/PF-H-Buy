@@ -1,0 +1,76 @@
+.navbar {
+  background-color: rgb(21, 109, 160);
+  display: flex;
+  flex-direction: column;
+}
+input {
+  max-width: 250px;
+}
+
+.shoppingCart {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.negativeCounter {
+  background-color: #ff4742;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 50px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  right: 0;
+}
+.counter {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 50px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  right: 0;
+}
+.carIcon {
+  margin: 0;
+  height: 35px;
+  width: 35px;
+}
+
+@media screen and (max-width: 767px) {
+  .clase-logo {
+    display: none;
+  }
+}
+
+.navbar-collapse {
+  justify-content: space-around;
+}
+
+.route-flag {
+  color: #fff;
+}
+
+.visited-route {
+  color: rgb(134, 71, 71);
+}
+
+.route-hover:hover {
+  color: rgb(159, 217, 250);
+}
+
+.modalPosition {
+  position: relative;
+  
+}

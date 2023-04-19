@@ -1,0 +1,32 @@
+###
+POST http://localhost:3001/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "inca_id": 1,
+  "first_name": "Nico",
+  "last_name": "Iconicoff",
+  "username": "niconicoff",
+  "password": "password",
+  "email": "nicolas@email.com"
+}
+
+###
+GET http://localhost:3001/users http/1.1
+
+
+###
+GET http://localhost:3001/users/63a349e487497b16db2b6064 http/1.1
+
+
+###
+PUT  http://localhost:3001/users/64075e41d924aeee752de912 HTTP/1.1
+Content-Type: application/json
+
+{
+  "isAdmin": false
+}
+
+
+###
+DELETE http://localhost:3001/users/63a44fa45ddbf16d4fdb751e HTTP/1.1

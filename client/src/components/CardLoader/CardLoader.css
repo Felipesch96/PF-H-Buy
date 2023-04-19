@@ -1,0 +1,57 @@
+.loader-container{
+  margin-left: 40%;
+  margin-top: 20%;
+}
+
+.spinner {
+  height: 50px;
+  width: max-content;
+  font-size: 30px;
+  font-weight: 600;
+  font-family: monospace;
+  letter-spacing: 1em;
+  color: #000000;
+  filter: drop-shadow(0 0 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner span {
+  animation: loading6454 0.4s ease infinite;
+}
+
+.spinner span:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.spinner span:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.spinner span:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.spinner span:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.spinner span:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.spinner span:nth-child(7) {
+  animation-delay: 0.6s;
+}
+
+@keyframes loading6454 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}

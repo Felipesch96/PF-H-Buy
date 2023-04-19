@@ -1,0 +1,24 @@
+.contenedor-detalle {
+  /* background-color: rgb(208, 250, 237); */
+  min-height: 100vh;
+}
+
+.img-detail {
+  border: 1px solid rgb(61, 56, 56);
+  border-radius: 10px;
+}
+
+.info {
+  background-color: #d7edfd;
+}
+
+
+
+.tabs {
+  padding: 10px;
+  background-color: rgba(0, 180, 216);
+}
+
+.btn {
+  color: #ffffff;
+}

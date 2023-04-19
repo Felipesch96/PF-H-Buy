@@ -1,0 +1,40 @@
+.filter-component {
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+  margin-top: 10%;
+}
+
+.contenedor-filtros {
+  background-color: rgb(214, 208, 208);
+}
+.filterCategories {
+  background-color: #0077b6;
+}
+.orders {
+  background-color: #03045e;
+}
+
+.colorletra {
+  color: rgb(253, 253, 253);
+}
+
+.input-filter {
+  margin-top: 10px;
+}
+
+/* Estilos para el modal de filtros */
+.modal {
+  /* Posicionamiento en el centro de la pantalla */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Fondo oscurecido o translúcido */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Otros estilos de apariencia */
+}

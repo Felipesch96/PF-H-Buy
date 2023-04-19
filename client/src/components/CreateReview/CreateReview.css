@@ -1,0 +1,25 @@
+.fondoReview{
+    background-color: rgb(202, 240, 248);
+    min-height: 100vh;
+    max-width: 200vh;
+}
+.formulario{
+    padding-top: 3%;
+    padding: 5%;
+    
+}
+.formContent{
+    background-color: white;
+    text-align: center;
+    border: 2px solid rgb(0, 180, 216);
+    border-radius: 20px;
+    
+}
+.title{
+background-color: rgb(4, 102, 200);
+color: white;
+border: 1px solid rgb(0, 0, 0);
+border-radius: 5px;
+
+
+}

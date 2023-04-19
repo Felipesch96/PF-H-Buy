@@ -1,0 +1,20 @@
+.carousel-banner {
+  padding: 3vh 5vh;
+  max-width: 75rem;
+  margin: auto;
+}
+
+.home {
+  min-height: 100vh;
+  /* background-color: rgb(208, 250, 237); */
+  flex-direction: column;
+}
+
+.grid {
+  max-height: 40vh;
+  background-color: rgb(208, 250, 237);
+}
+
+.carousel-productos {
+  width: 80%;
+}

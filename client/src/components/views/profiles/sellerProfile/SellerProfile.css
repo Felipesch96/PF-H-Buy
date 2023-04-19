@@ -1,0 +1,9 @@
+.seller-button{
+  width: fit-content;
+}
+
+.sales-list{
+  max-height: 500px;
+  overflow-y: auto;
+  width: 100%;
+}

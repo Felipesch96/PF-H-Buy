@@ -1,0 +1,23 @@
+@import url('https://fonts.cdnfonts.com/css/urban-defender');
+.landing {
+  margin: 0px;
+  min-height: 100vh;
+  /* background-image: url("./media/landing.png"); */
+  /* background-size: 1550px 800px; */
+  background-color: rgb(208, 250, 237);
+  /* background: url("https://img.freepik.com/foto-gratis/fondo-azul-degradado-lujo-abstracto-azul-oscuro-liso-banner-estudio-vineta-negra_1258-52379.jpg?w=740&t=st=1678149130~exp=1678149730~hmac=679ccce576f22b16bf0f38965fff5df5fa27ca2bf4a533ce7a90d6d16b3346c6"); */
+  text-align: left;
+  color: rgb(0, 0, 0);
+  font-family: 'Muli',sans-serif;
+
+  justify-content: center;
+}
+
+.nosotros {
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.438);
+  text-align: center;
+}
+.img{
+  background-image: url("./media/logoHenry.png");
+}
