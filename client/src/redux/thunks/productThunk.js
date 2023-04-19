@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { onLogin, onSignUp } from "../slices/authSlice";
+
 import {
   setProducts,
   setCategories,

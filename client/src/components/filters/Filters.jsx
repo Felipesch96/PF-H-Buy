@@ -106,12 +106,12 @@ const Filters = ({ setCurrentPage, setInput }) => {
   }
 
   return Array.isArray(categories) ? (
-    <div>
+    <div className="filter-component d-none d-lg-block">
       <div
         id="sidebar"
         className="col-13 d-flex flex-column py-2 text-center rounded colorletra"
       >
-        <div className="row ">
+        <div className="row">
           <div className="bg-dark rounded">
             <form
               onSubmit={clearFilter}

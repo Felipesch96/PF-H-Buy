@@ -1,3 +1,7 @@
+.cards-container {
+  margin-left: 20%;
+}
+
 .ver-produto {
   padding-bottom: 2px;
 }
@@ -11,6 +15,7 @@
 
 .tarjeta2 {
   border: 1px solid black;
+  width: 17rem;
   background-color: rgb(255, 255, 255);
 }
 
@@ -29,9 +34,19 @@
   padding-top: 4.4rem;
 }
 
-.cart-fav{
+.cart-fav {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 991px) {
+  .cards-container {
+    margin: 0;
+  }
+
+  .sm-filter {
+    display: none;
+  }
 }

@@ -3,6 +3,7 @@ import Rating from "@mui/material/Rating";
 import moment from "moment";
 import selectCategories from "./selectCategories";
 import "./Card.css";
+
 const Card = (props) => {
   const formater = new Intl.NumberFormat("en");
   const date = props.created;
@@ -10,7 +11,7 @@ const Card = (props) => {
   const imgError =
     "https://gesisarg.com/sistema-gestion/res/archivos/imagen_articulo_por_defecto.jpg";
   return (
-    <div class="row g-0 tarjeta1 rounded-2">
+    <div class="m-1 g-0 tarjeta1 rounded-2">
       <div class="col-md-14">
         <img
           src={props.img ? props.img : imgError}
@@ -31,7 +32,6 @@ const Card = (props) => {
           >
             ${formater.format(props.price)}
           </p>
-          <br />
           {props.score ? (
             <div class="container">
               <span class="card-text fs-6">Qualification: {props.score} ☆</span>
